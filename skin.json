@@ -1,0 +1,81 @@
+{
+  "name": "Lakeus",
+  "version": "1.0.0",
+  "namemsg": "skinname-lakeus",
+  "descriptionmsg": "lakeus-skin-desc",
+  "url": "https://www.mediawiki.org/wiki/Skin:Lakeus",
+  "author": [
+    "[https://lakeus.xyz Lakejason0]"
+  ],
+  "type": "skin",
+  "requires": {
+    "MediaWiki": ">= 1.36.0"
+  },
+  "license-name": "GPL-2.0-or-later",
+  "manifest_version": 2,
+  "ValidSkinNames": {
+    "lakeus": {
+      "class": "SkinMustache",
+      "args": [
+        {
+          "name": "Lakeus",
+          "templateDirectory": "skins/Lakeus/templates/",
+          "messages": [
+            "sitetitle",
+            "search",
+            "otherlanguages",
+            "tagline"
+          ],
+          "styles": [
+            "mediawiki.ui.icon",
+            "mediawiki.ui.button",
+            "skins.lakeus.styles"
+          ],
+          "scripts": [
+            "skins.lakeus"
+          ],
+          "responsive": true
+        }
+      ]
+    }
+  },
+  "MessagesDirs": {
+    "Lakeus": [
+      "i18n"
+    ]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "",
+    "remoteSkinPath": "Lakeus"
+  },
+  "ResourceModules": {
+    "skins.lakeus.styles": {
+      "class": "ResourceLoaderSkinModule",
+      "features": {
+        "normalize": true,
+        "elements": true,
+        "content-tables": true,
+        "content-links": true,
+        "content-thumbnails": true,
+        "interface-category": true,
+        "toc": true
+      },
+      "targets": [
+        "desktop",
+        "mobile"
+      ],
+      "styles": [
+        "resources/skin.less"
+      ]
+    },
+    "skins.lakeus": {
+      "targets": [
+        "desktop",
+        "mobile"
+      ],
+      "packageFiles": [
+        "resources/skin.js"
+      ]
+    }
+  }
+}
