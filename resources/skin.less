@@ -3,6 +3,7 @@
 @background-color-base: white;
 @background-color-article: white;
 @background-color-content: white;
+@background-color-footer: #eeeeee;
 @border-color-content: #BBD4DE;
 @color-header: #4FC3F7;
 @color-base: #54595d;
@@ -11,12 +12,13 @@
 @color-link: #0645ad;
 @color-link--visited: #0b0080;
 @font-family: 'Roboto',-apple-system,BlinkMacSystemFont,'Segoe UI','Oxygen','Ubuntu','Cantarell','Helvetica Neue',sans-serif;
+@width-breakpoint-semi-mobile: 500px;
 
 /* Styles */
 html {
   background: @background-color-base;
   margin: 0;
-  padding: 0 0 20px;
+//  padding: 0 0 20px;
 }
 
 body {
@@ -44,9 +46,9 @@ a {
 .mw-portlet {
   position: relative;
 
-//  h3 {
-//    display: none;
-//  }
+  h3 {
+    display: none;
+  }
 
   li {
     display: inline-block;
@@ -79,6 +81,9 @@ a {
 }
 
 #logo-link {
+    @media screen and (max-width: @width-breakpoint-semi-mobile) {
+      display: none;
+    }
     display: flex;
     align-items: center;
 }
@@ -96,7 +101,7 @@ a {
 #siteNotice {
   width: 70%;
   max-width: 1200px;
-  margin:10px auto;
+  margin: 40px auto 10px;
   padding-bottom:8px;
   background-color: @background-color-content;
   border: 1px solid @border-color-content;
@@ -107,6 +112,7 @@ a {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 5px auto;
   }
   margin-right:30px;
   margin-left:10px;
@@ -176,7 +182,7 @@ a {
   }
 }
 .mw-echo-ui-overlay {
-  z-index: 3;
+  z-index: 3!important;
 }
 
 .mw-portlet-personal {
@@ -222,9 +228,12 @@ a {
   bottom: 0;
   background: white;
   z-index: 4;
+  height: 100%;
+  overflow-y: auto;
+  min-width: max-content;
 
   h3 {
-    display: none;
+    display: block;
   }
 
   a {
@@ -238,6 +247,10 @@ a {
 }
 
 /** CONTENT */
+
+.firstHeading {
+  display: block;
+}
 
 main {
   border-bottom: solid 20px @background-color-base;
@@ -286,21 +299,34 @@ main {
   @media screen and (min-width: @width-breakpoint-tablet) {
     max-width: 70%;
     margin: auto;
+    border: 1px solid @border-color-content;
   }
   @media screen and (max-width: @width-breakpoint-mobile) {
     max-width: 100%;
   }
   max-width: 1200px;
   background-color: @background-color-content;
-  border: 1px solid @border-color-content;
   position: relative;
 }
-  
-.mw-portlet-cactions {
-  margin-left: 40px;
+
+.printfooter {
+  @media screen {
+    display: none;
+  }
 }
 
 /* Checkbox hack dropdown */
+
+@keyframes animation-menu-show {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes animation-menu-hide {
+  from {opacity: 1;visibility:visible}
+  to {opacity: 0;}
+}
+
 .mw-portlet-personal,
 .mw-portlet-cactions {
   li {
@@ -309,7 +335,10 @@ main {
   }
 
   .mw-portlet-body {
-    display: none;
+    display: block;
+    visibility:hidden;
+    animation-name: animation-menu-hide;
+    animation-duration: 0.2s;
 
     ul {
       background: @background-color-article;
@@ -343,10 +372,16 @@ main {
     }
 
     ~ .mw-portlet-body {
-      display: block;
-      opacity: 1;
+      animation-name: animation-menu-show;
+      animation-duration: 0.2s;
     }
   }
+}
+
+.content-header-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .mw-portlet-namespaces {
@@ -368,7 +403,7 @@ main {
   }
 }
 
-.mw-portlet-views {
+/* .mw-portlet-views {
   flex-grow: 1;
 
   ul {
@@ -384,8 +419,13 @@ main {
   li:hover {
     background-color: rgba(0,0,0,0.03);
   }
+} */
+
+.mw-portlet-views, .mw-portlet-cactions {
+  .mw-portlet-namespaces();
 }
 
+/*
 .mw-portlet-cactions h3,
 .mw-portlet-views li {
   display: flex;
@@ -398,12 +438,23 @@ main {
   font-size: 100%;
   padding: 0;
 }
+*/
 
 .mw-portlet-cactions h3,
 .mw-portlet-cactions li a,
 .mw-portlet-views li a {
   color: @color-base;
   text-decoration: none;
+}
+
+#p-cactions-label {
+  font-size: 0.85em;
+  margin: 0 0;
+  padding: 0 0 0 0;
+  color: #54595d;
+  font-weight: bold;
+  padding-bottom: 6px;
+  display: inline-block;
 }
 
 /* CATEGORIES */
@@ -441,13 +492,21 @@ main {
 /* FOOTER */
 
 body > footer {
-  border-top: solid 20px @background-color-base;
+  border-top: solid 20px @background-color-footer;
   padding: 20px 0;
-
+  background: @background-color-footer;
   li {
     display: inline-block;
     margin-right: 20px;
   }
+}
+
+#footer-info li {
+  display: block;
+}
+
+#footer-icons {
+  float: right;
 }
 
 /* The following rules will not be needed in future */
