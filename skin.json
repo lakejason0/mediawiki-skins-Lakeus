@@ -5,7 +5,10 @@
   "descriptionmsg": "lakeus-skin-desc",
   "url": "https://www.mediawiki.org/wiki/Skin:Lakeus",
   "author": [
-    "[https://github.com/lakejason0 Lakejason0]"
+    "[https://github.com/lakejason0 Lakejason0]",
+    "Light beacon",
+    "Dianliang233",
+    "..."
   ],
   "type": "skin",
   "requires": {
