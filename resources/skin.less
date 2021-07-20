@@ -4,7 +4,7 @@
 @background-color-article: white;
 @background-color-content: white;
 @background-color-footer: #eeeeee;
-@border-color-content: #BBD4DE;
+@border-color-content: #ccc;
 @color-header: white;
 @color-base: #54595d;
 @color-gray: #a2a9b1;
@@ -13,12 +13,13 @@
 @color-link--visited: #0b0080;
 @font-family: 'Roboto',-apple-system,BlinkMacSystemFont,'Segoe UI','Oxygen','Ubuntu','Cantarell','Helvetica Neue',sans-serif;
 @width-breakpoint-semi-mobile: 500px;
+@elevation: 0 2px 2px rgba(0, 0, 0, 10%);
 
 /* Styles */
 html {
   background: @background-color-base;
   margin: 0;
-//  padding: 0 0 20px;
+  //  padding: 0 0 20px;
 }
 
 body {
@@ -59,7 +60,7 @@ a {
     margin-right: 0;
   }
 
-  input[type=checkbox] {
+  input[ type=checkbox ] {
     display: none;
   }
 }
@@ -70,12 +71,12 @@ a {
 .mw-header {
   background-color: @color-header;
   min-height: 50px;
-  box-shadow: -2px 1px 6px 2px rgba(81, 90, 97, 25%);
-  top:0;
-  left:0;
-  margin:auto;
-  height:0;
-  padding:0 20px 20px 20px;
+  box-shadow: @elevation;
+  top: 0;
+  left: 0;
+  margin: auto;
+  height: 0;
+  padding: 0 20px 20px 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -85,52 +86,56 @@ a {
 }
 
 #logo-link {
-    @media screen and (max-width: @width-breakpoint-semi-mobile) {
-      display: none;
-    }
-    display: flex;
-    align-items: center;
+  @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
+    display: none;
+  }
+  display: flex;
+  align-items: center;
 }
 
 #logo-image {
-    height: 50px;
+  height: 50px;
 }
 
 #logo-text {
-  border-bottom:0;
-  padding-bottom:0;
-  font-size:160%
+  border-bottom: 0;
+  padding-bottom: 0;
+  font-size: 160%;
 }
 
 #siteNotice {
   width: 70%;
   max-width: 1200px;
   margin: 40px auto 10px;
-  padding-bottom:8px;
+  padding-bottom: 8px;
   box-sizing: border-box;
   background-color: @background-color-content;
   border: 1px solid @border-color-content;
+  border-radius: 3px;
+  box-shadow: @elevation;
 }
 
 #p-search {
-  @media screen and (max-width: @width-breakpoint-tablet) {
+  @media screen and ( max-width: @width-breakpoint-tablet ) {
     width: 100%;
     display: flex;
     justify-content: center;
     margin: 5px auto;
   }
-  margin-right:30px;
-  margin-left:10px;
+  margin-right: 30px;
+  margin-left: 10px;
 
   #searchInput {
-    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Esearch%3C%2Ftitle%3E%3Cg%20fill%3D%22%2354595d%22%3E%3Cpath%20d%3D%22M7.5%2013a5.5%205.5%200%20100-11%205.5%205.5%200%20000%2011zm4.55.46A7.43%207.43%200%20017.5%2015a7.5%207.5%200%20115.96-2.95l6.49%206.49-1.41%201.41-6.49-6.49z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-image: url( 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Esearch%3C%2Ftitle%3E%3Cg%20fill%3D%22%2354595d%22%3E%3Cpath%20d%3D%22M7.5%2013a5.5%205.5%200%20100-11%205.5%205.5%200%20000%2011zm4.55.46A7.43%207.43%200%20017.5%2015a7.5%207.5%200%20115.96-2.95l6.49%206.49-1.41%201.41-6.49-6.49z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E' );
     background-color: #fff;
     background-size: 18px;
     -webkit-appearance: none;
-    @media screen and (max-width: @width-breakpoint-tablet) {
+
+    @media screen and ( max-width: @width-breakpoint-tablet ) {
       width: 100%;
     }
-    @media screen and (min-width: @width-breakpoint-desktop) {
+
+    @media screen and ( min-width: @width-breakpoint-desktop ) {
       max-width: 450px;
     }
     margin-top: 0;
@@ -138,7 +143,7 @@ a {
     border: solid 1px @color-gray-2;
     border-radius: 2px;
     padding: 7px 0 7px 29px;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.05 );
     outline: 0;
     background-position: left 6px center;
     background-repeat: no-repeat;
@@ -169,14 +174,15 @@ a {
   display: flex;
 }
 
-#pt-uls .uls-trigger:before{
-  padding-top:0;
+#pt-uls .uls-trigger:before {
+  padding-top: 0;
 }
 
 .mw-portlet-notifications {
   li {
     width: 20px;
     height: 20px;
+    margin: 0 0.25em;
   }
 
   a {
@@ -186,27 +192,28 @@ a {
     display: block;
   }
 }
+
 .mw-echo-ui-overlay {
-  z-index: 3!important;
+  z-index: 3 !important;
 }
 
 .mw-portlet-personal {
-	padding: 0 12px 0 0;
+  padding: 0 12px 0 0;
   height: 20px;
   width: 20px;
 
-	h3 {
-		background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAx0lEQVQ4jdXSzQmEQAwFYEuYUixhSwgkA8mQgKXYgS3YgXZgCZagHWgHuxf14t8osssGcv145CVJvjk+hBRFK2TrkK1D0cqHkN7CUBRI7L21KAqXMIDModiwD9oAkLlH0i3L+ooGiTWPAPPfJQTIHLGOB9h46YZnKS+3PI8PISW2GkV7FO2Jrb79h4+ODyElsYJYm437NSRWRCWdylgj++U0u+UAZI5E22hsWW03UWQtr2NT66zlCjz8uzNQbFiDN7F5/xB8aj57Ynp2FKI0bAAAAABJRU5ErkJggg== );
-		text-indent: -999px;
-		background-repeat: no-repeat;
-		height: 100%;
-		width: 40px;
+  h3 {
+    background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAx0lEQVQ4jdXSzQmEQAwFYEuYUixhSwgkA8mQgKXYgS3YgXZgCZagHWgHuxf14t8osssGcv145CVJvjk+hBRFK2TrkK1D0cqHkN7CUBRI7L21KAqXMIDModiwD9oAkLlH0i3L+ooGiTWPAPPfJQTIHLGOB9h46YZnKS+3PI8PISW2GkV7FO2Jrb79h4+ODyElsYJYm437NSRWRCWdylgj++U0u+UAZI5E22hsWW03UWQtr2NT66zlCjz8uzNQbFiDN7F5/xB8aj57Ynp2FKI0bAAAAABJRU5ErkJggg== );
+    text-indent: -999px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 40px;
     background-position: center center;
     margin: 0;
     padding: 0;
-		background-position: center top;
+    background-position: center top;
     overflow: hidden;
-	}
+  }
 
   h3 {
     display: flex;
@@ -214,14 +221,14 @@ a {
 
   .mw-portlet-body {
     ul {
-      top:45px;
-      right:-300%;
+      top: 45px;
+      right: -300%;
     }
   }
 
-//  @media (max-width: @width-breakpoint-tablet ) {
-//    margin-bottom: 10px;
-//  }
+  //  @media (max-width: @width-breakpoint-tablet ) {
+  //    margin-bottom: 10px;
+  //  }
 }
 
 // sidebar
@@ -251,12 +258,12 @@ a {
     padding: 8px;
   }
 
-  div[role="navigation"] {
-    padding: 0px 10px;
+  div[ role='navigation' ] {
+    padding: 0 10px;
     border-bottom: 1px #ddd solid;
   }
 
-  div[role="navigation"]:last-child {
+  div[ role='navigation' ]:last-child {
     border-bottom: none;
   }
 }
@@ -299,6 +306,7 @@ main {
     font-size: 0.85em;
     margin-bottom: 12px;
     line-height: 20px;
+
     &:empty {
       display: none;
     }
@@ -307,16 +315,15 @@ main {
   &__actions {
     display: flex;
   }
-  
-
 }
+
 #content {
-  @media screen and (min-width: @width-breakpoint-tablet) {
+  @media screen and ( min-width: @width-breakpoint-tablet ) {
     max-width: 70%;
     margin: 0 auto 40px;
-    border: 1px solid @border-color-content;
   }
-  @media screen and (max-width: @width-breakpoint-mobile) {
+
+  @media screen and ( max-width: @width-breakpoint-mobile ) {
     max-width: 100%;
   }
   max-width: 1200px;
@@ -334,13 +341,20 @@ main {
 /* Checkbox hack dropdown */
 
 @keyframes animation-menu-show {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0; }
+
+  to {
+    opacity: 1; }
 }
 
 @keyframes animation-menu-hide {
-  from {opacity: 1;visibility:visible}
-  to {opacity: 0;}
+  from {
+    opacity: 1;
+    visibility: visible; }
+
+  to {
+    opacity: 0; }
 }
 
 .mw-portlet-personal,
@@ -354,7 +368,7 @@ main {
 
   .mw-portlet-body {
     display: block;
-    visibility:hidden;
+    visibility: hidden;
     animation-name: animation-menu-hide;
     animation-duration: 0.2s;
 
@@ -363,13 +377,13 @@ main {
       position: absolute;
       overflow-y: auto;
       z-index: 2;
-      box-shadow: 0 5px 17px 0 rgba(0,0,0,0.24), 0 0 1px @color-gray;
+      box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px @color-gray;
       right: 0;
       min-width: 200px;
     }
   }
 
-  input[type="checkbox"] {
+  input[ type='checkbox' ] {
     display: block;
     position: absolute;
     opacity: 0;
@@ -402,10 +416,13 @@ main {
   justify-content: space-between;
 }
 
-.mw-portlet-namespaces, .mw-portlet-views, .mw-portlet-cactions, .mw-portlet-lang, .mw-portlet-variants {
+.mw-portlet-namespaces,
+.mw-portlet-views,
+.mw-portlet-cactions,
+.mw-portlet-lang,
+.mw-portlet-variants {
   margin-top: 10px;
   border-bottom: 1px solid @color-gray-2;
-  padding-right: 10px;
 
   a {
     font-size: 0.85em;
@@ -467,7 +484,9 @@ main {
   text-decoration: none;
 }
 
-#p-cactions-label, #p-variants-label, #p-lang-label {
+#p-cactions-label,
+#p-variants-label,
+#p-lang-label {
   font-size: 0.85em;
   margin: 0 5px;
   padding: 0 0 0 0;
@@ -505,7 +524,7 @@ main {
     display: block;
     background-color: @color-gray-2;
     color: @color-base;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03),0 1px 2px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 3px rgba( 0, 0, 0, 0.03 ), 0 1px 2px rgba( 0, 0, 0, 0.06 );
   }
 }
 
@@ -515,6 +534,7 @@ body > footer {
   border-top: solid 20px @background-color-footer;
   padding: 20px 0;
   background: @background-color-footer;
+
   li {
     display: inline-block;
     margin-right: 5px;
@@ -538,6 +558,7 @@ body > footer {
   float: right;
   clear: both;
 }
+
 .tleft {
   float: right;
   clear: both;
@@ -555,12 +576,12 @@ body > footer {
 }
 
 .toggle-list__list {
-  transform: translateX(-100%);
-  transition: cubic-bezier(.4,0,.2,1) .2s transform;
+  transform: translateX( -100% );
+  transition: cubic-bezier( 0.4, 0, 0.2, 1 ) 0.2s transform;
 }
 
 .toggle-list__checkbox:checked ~ .toggle-list__list {
-  transform: translateX(0%)
+  transform: translateX( 0% );
 }
 
 .toggle-list__checkbox ~ .toggle-list__mask {
@@ -570,10 +591,10 @@ body > footer {
   right: 0;
   opacity: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba( 0, 0, 0, 0.8 );
   z-index: 3;
   visibility: hidden;
-  transition: .3s cubic-bezier(.25,.8,.5,1) 1ms;
+  transition: 0.3s cubic-bezier( 0.25, 0.8, 0.5, 1 ) 1ms;
 }
 
 .toggle-list__checkbox:checked ~ .toggle-list__mask {
@@ -592,14 +613,14 @@ body > footer {
   color: transparent;
   left: 20px;
   z-index: 3;
-
 }
+
 .sidebar__icon:before {
   content: '';
   width: 20px;
   display: block;
   height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E %3Ctitle%3E menu %3C/title%3E %3Cpath d=%22M1 3v2h18V3zm0 8h18V9H1zm0 6h18v-2H1z%22/%3E %3C/svg%3E");
+  background-image: url( 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E %3Ctitle%3E menu %3C/title%3E %3Cpath d=%22M1 3v2h18V3zm0 8h18V9H1zm0 6h18v-2H1z%22/%3E %3C/svg%3E' );
 }
 
 .toctogglelabel {
