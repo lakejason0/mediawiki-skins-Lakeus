@@ -52,7 +52,7 @@ a {
 
   li {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 0;
   }
 
   li:last-child {
@@ -349,7 +349,7 @@ main {
 .mw-portlet-variants {
   li {
     display: block;
-    padding: 0.75em 0.875em;
+    padding: 0.2em 0.75em;
   }
 
   .mw-portlet-body {
@@ -409,7 +409,7 @@ main {
 
   a {
     font-size: 0.85em;
-    margin: 0 10px 0 0;
+    margin: 0 5px;
     color: @color-base;
     font-weight: bold;
     padding-bottom: 6px;
@@ -456,6 +456,10 @@ main {
 }
 */
 
+.mw-portlet-variants .mw-portlet-body ul {
+  min-width: 120px;
+}
+
 .mw-portlet-cactions h3,
 .mw-portlet-cactions li a,
 .mw-portlet-views li a {
@@ -465,7 +469,7 @@ main {
 
 #p-cactions-label, #p-variants-label, #p-lang-label {
   font-size: 0.85em;
-  margin: 0 0;
+  margin: 0 5px;
   padding: 0 0 0 0;
   color: #54595d;
   font-weight: bold;
