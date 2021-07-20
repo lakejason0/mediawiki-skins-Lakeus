@@ -55,6 +55,10 @@ a {
     margin-right: 10px;
   }
 
+  li:last-child {
+    margin-right: 0;
+  }
+
   input[type=checkbox] {
     display: none;
   }
@@ -103,6 +107,7 @@ a {
   max-width: 1200px;
   margin: 40px auto 10px;
   padding-bottom:8px;
+  box-sizing: border-box;
   background-color: @background-color-content;
   border: 1px solid @border-color-content;
 }
@@ -231,6 +236,7 @@ a {
   height: 100%;
   overflow-y: auto;
   min-width: max-content;
+  max-width: 500px;
 
   h3 {
     display: block;
@@ -243,6 +249,15 @@ a {
   .mw-portlet-body li {
     display: block;
     padding: 8px;
+  }
+
+  div[role="navigation"] {
+    padding: 0px 10px;
+    border-bottom: 1px #ddd solid;
+  }
+
+  div[role="navigation"]:last-child {
+    border-bottom: none;
   }
 }
 
@@ -298,7 +313,7 @@ main {
 #content {
   @media screen and (min-width: @width-breakpoint-tablet) {
     max-width: 70%;
-    margin: auto;
+    margin: 0 auto 40px;
     border: 1px solid @border-color-content;
   }
   @media screen and (max-width: @width-breakpoint-mobile) {
@@ -307,6 +322,7 @@ main {
   max-width: 1200px;
   background-color: @background-color-content;
   position: relative;
+  box-sizing: border-box;
 }
 
 .printfooter {
@@ -328,7 +344,9 @@ main {
 }
 
 .mw-portlet-personal,
-.mw-portlet-cactions {
+.mw-portlet-cactions,
+.mw-portlet-lang,
+.mw-portlet-variants {
   li {
     display: block;
     padding: 0.75em 0.875em;
@@ -384,9 +402,10 @@ main {
   justify-content: space-between;
 }
 
-.mw-portlet-namespaces {
+.mw-portlet-namespaces, .mw-portlet-views, .mw-portlet-cactions, .mw-portlet-lang, .mw-portlet-variants {
   margin-top: 10px;
   border-bottom: 1px solid @color-gray-2;
+  padding-right: 10px;
 
   a {
     font-size: 0.85em;
@@ -396,13 +415,14 @@ main {
     padding-bottom: 6px;
     display: inline-block;
   }
+}
 
+.mw-portlet-namespaces {
   li.selected {
     border-bottom: 2px solid @color-base;
     margin-bottom: -1px;
   }
 }
-
 /* .mw-portlet-views {
   flex-grow: 1;
 
@@ -420,10 +440,6 @@ main {
     background-color: rgba(0,0,0,0.03);
   }
 } */
-
-.mw-portlet-views, .mw-portlet-cactions {
-  .mw-portlet-namespaces();
-}
 
 /*
 .mw-portlet-cactions h3,
@@ -447,13 +463,12 @@ main {
   text-decoration: none;
 }
 
-#p-cactions-label {
+#p-cactions-label, #p-variants-label, #p-lang-label {
   font-size: 0.85em;
   margin: 0 0;
   padding: 0 0 0 0;
   color: #54595d;
   font-weight: bold;
-  padding-bottom: 6px;
   display: inline-block;
 }
 
@@ -586,3 +601,6 @@ body > footer {
   color: inherit;
 }
 
+.visualClear {
+  clear: both;
+}
