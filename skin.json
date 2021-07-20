@@ -14,7 +14,7 @@
   "requires": {
     "MediaWiki": ">= 1.36.0"
   },
-  "license-name": "GPL-2.0-or-later",
+  "license-name": "GPL-3.0-or-later",
   "manifest_version": 2,
   "ValidSkinNames": {
     "lakeus": {
