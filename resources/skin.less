@@ -535,11 +535,12 @@ body > footer {
 }
 
 .toggle-list__list {
-  display: none;
+  transform: translateX(-100%);
+  transition: cubic-bezier(.4,0,.2,1) .2s transform;
 }
 
 .toggle-list__checkbox:checked ~ .toggle-list__list {
-  display: block;
+  transform: translateX(0%)
 }
 
 .toggle-list__checkbox ~ .toggle-list__mask {
@@ -552,6 +553,7 @@ body > footer {
   background: rgba(0,0,0,0.8);
   z-index: 3;
   visibility: hidden;
+  transition: .3s cubic-bezier(.25,.8,.5,1) 1ms;
 }
 
 .toggle-list__checkbox:checked ~ .toggle-list__mask {
