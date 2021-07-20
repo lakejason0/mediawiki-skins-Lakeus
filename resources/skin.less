@@ -113,6 +113,10 @@ a {
   border: 1px solid @border-color-content;
   border-radius: 3px;
   box-shadow: @elevation;
+  
+  :empty {
+    visibility: hidden;
+  }
 }
 
 #p-search {
