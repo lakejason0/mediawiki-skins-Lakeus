@@ -84,7 +84,7 @@ a {
   flex-wrap: wrap;
   align-items: center;
   position: relative;
-  // z-index: 3;
+  z-index: 3;
   justify-content: flex-end;
 }
 
@@ -386,7 +386,20 @@ main {
 .mw-portlet-variants {
   li {
     display: block;
-    padding: 0.2em 0.75em;
+    // padding: 0.2em 0.75em;
+
+    a {
+      padding: 0.2em 0.75em;
+      display: block;
+      border-radius: 3px;
+
+      &:hover {
+        background: #eee;
+      }
+      &:focus {
+        background: #ccc;
+      }
+    }
   }
 
   .mw-portlet-body {
@@ -403,6 +416,7 @@ main {
       box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px @color-gray;
       right: 0;
       min-width: 200px;
+      padding: 0.4em;
     }
   }
 

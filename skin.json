@@ -82,5 +82,10 @@
         "resources/skin.js"
       ]
     }
+  },
+  "ResourceModuleSkinStyles": {
+    "lakeus": {
+      "+ext.uls.pt": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.pt.less"
+    }
   }
 }
