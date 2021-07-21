@@ -1,4 +1,10 @@
 {
+  "@metadata": {
+    "authors": [
+      "Lakejason0",
+      "Winston Sung"
+    ]
+  },
   "skinname-lakeus": "Lakeus",
   "lakeus-skin-desc": "A simple skin by [https://github.com/lakejason0 Lakejason0], which is named after a character in their novels",
   "lakeus.css": "/* All CSS here will be loaded for users of the Lakeus skin */",

@@ -1,6 +1,11 @@
 {
+  "@metadata": {
+    "authors": [
+      "Lakejason0"
+    ]
+  },
   "skinname-lakeus": "{{name}}",
   "lakeus-skin-desc": "{{desc|what=skin|name=Lakeus|url=https://www.mediawiki.org/wiki/Skin:Lakeus}}",
   "lakeus.css": "{{optional}}",
-  "lakeus.js": "{{optional}}",
+  "lakeus.js": "{{optional}}"
 }

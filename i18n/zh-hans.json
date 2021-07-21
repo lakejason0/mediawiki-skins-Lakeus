@@ -1,4 +1,9 @@
 {
+  "@metadata": {
+    "authors": [
+      "Lakejason0"
+    ]
+  },
   "skinname-lakeus": "Lakeus",
   "lakeus-skin-desc": "以作者[https://github.com/lakejason0 Lakejason0]的小说角色命名的简易皮肤",
   "lakeus.css": "/* 这里放置的CSS将影响使用Lakeus皮肤的用户 */",
