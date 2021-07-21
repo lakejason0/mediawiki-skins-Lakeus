@@ -107,7 +107,12 @@ a {
 }
 
 #siteNotice {
-  width: 70%;
+  @media screen and ( max-width: @width-breakpoint-tablet ) {
+    width: 100%;
+  }
+  @media screen and ( min-width: @width-breakpoint-desktop ) {
+    width: 70%;
+  }
   max-width: 1200px;
   margin: 40px auto 10px;
   padding-bottom: 8px;
