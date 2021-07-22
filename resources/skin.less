@@ -292,8 +292,8 @@ a {
 }
 
 .rtl .toggle-list__list {
-  left: initial;
-  right: 0;
+  right: initial; // meant ltr left
+  left: 0; // meant ltr right
   top: 0;
   bottom: 0;
 }
@@ -653,7 +653,7 @@ body > footer {
 }
 
 .rtl .toggle-list__list {
-  transform: translateX( 100% );
+  transform: translateX( -100% ); // meant ltr 100%
 }
 
 .toggle-list__checkbox:checked ~ .toggle-list__list {
