@@ -1,5 +1,7 @@
 # mediawiki-skins-Lakeus
 
+*For the description on MediaWiki.org, see [here](https://mediawiki.org/wiki/Skin:Lakeus).*
+
 My first MediaWiki skin.
 
 ## Description
