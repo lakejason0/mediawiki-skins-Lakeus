@@ -69,7 +69,7 @@ a {
     display: none;
 }
 
-/** HEADER */
+/* HEADER */
 
 .mw-header {
   background-color: @color-header;
@@ -284,7 +284,14 @@ a {
   }
 }
 
-/** CONTENT */
+.rtl .toggle-list__list {
+  left: initial;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/* CONTENT */
 
 .firstHeading {
   display: block;
@@ -632,6 +639,10 @@ body > footer {
 .toggle-list__list {
   transform: translateX( -100% );
   transition: cubic-bezier( 0.4, 0, 0.2, 1 ) 0.2s transform;
+}
+
+.rtl .toggle-list__list {
+  transform: translateX( 100% );
 }
 
 .toggle-list__checkbox:checked ~ .toggle-list__list {
