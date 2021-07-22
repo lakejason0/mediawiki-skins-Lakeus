@@ -86,6 +86,7 @@
   },
   "ResourceModuleSkinStyles": {
     "lakeus": {
+      "+ext.NoTitle": "skinStyles/extensions/NoTitle/ext.NoTitle.css",
       "+ext.uls.pt": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.pt.less"
     }
   }
