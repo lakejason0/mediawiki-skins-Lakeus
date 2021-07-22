@@ -43,6 +43,13 @@ a {
   }
 }
 
+.mw-editsection {
+    margin-left: 5px;
+    vertical-align: baseline;
+    font-size: small;
+    font-weight: 400;
+}
+
 /* GENERAL */
 .mw-portlet {
   position: relative;
@@ -591,6 +598,10 @@ main {
   border: 1px solid @border-color-content;
   border-radius: 3px;
   box-shadow: @elevation;
+  
+  li:first-child {
+    padding-left: 0;
+  }
 }
 
 /* FOOTER */
