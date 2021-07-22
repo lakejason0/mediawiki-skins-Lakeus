@@ -28,7 +28,8 @@
             "sitetitle",
             "search",
             "otherlanguages",
-            "tagline"
+            "tagline",
+            "lakeus-openmainmenu"
           ],
           "styles": [
             "mediawiki.ui.icon",
