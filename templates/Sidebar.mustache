@@ -3,6 +3,13 @@
 	<label for="sidebar-input"
 		class="toggle-list__toggle sidebar__icon" title="{{msg-lakeus-openmainmenu}}">{{msg-lakeus-openmainmenu}}</label>
 	<div class="toggle-list__list">
+		<div class="toggle-list__card">
+			{{#data-logos}}
+				{{#icon}}<img id="toggle-list__logo-image" src="{{.}}">{{/icon}}
+				{{#wordmark}}<img id="toggle-list__logo-wordmark" src="{{src}}" width="{{width}}" height="{{height}}">{{/wordmark}}
+				{{^wordmark}}<span id="toggle-list__logo-text">{{msg-sitetitle}}</span>{{/wordmark}}
+			{{/data-logos}}
+		</div>
 		{{#data-portlets-sidebar}}
 		{{#data-portlets-first}}{{>Portlet}}{{/data-portlets-first}}
 		{{#array-portlets-rest}}{{>Portlet}}{{/array-portlets-rest}}
