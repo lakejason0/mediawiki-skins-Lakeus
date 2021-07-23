@@ -1,17 +1,14 @@
 // @import 'mediawiki.skin.variables.less';
 /* Variables */
 /* Make less variables to CSS ones */
-@width-breakpoint-mobile: 320px;
-@width-breakpoint-tablet: 720px;
-@width-breakpoint-desktop: 1000px;
 :root {
-  --background-color-base: white;
-  --background-color-article: white;
-  --background-color-content: white;
-  --background-color-footer: #eee;
-  --background-color-toggle-list: white;
-  --background-color-portlet-body: white;
-  --background-color-toggle-list-card: #eee;
+  --background-color-base: white; 
+  --background-color-article: white; 
+  --background-color-content: white; 
+  --background-color-footer: #eee; 
+  --background-color-toggle-list: white; 
+  --background-color-portlet-body: white; 
+  --background-color-toggle-list-card: #eee; 
   --border-color-content: #ccc;
   --border-toggle-list: #ddd;
   --subheader-color-toggle-list: rgba( 0, 0, 0, 0.6 );
@@ -23,10 +20,35 @@
   --color-link: #0645ad;
   --color-link--visited: #0b0080;
   --font-family: 'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
-  --width-breakpoint-desktop: @width-breakpoint-desktop;
-  --width-breakpoint-tablet: @width-breakpoint-tablet;
+  --width-breakpoint-desktop: 1000px;
+  --width-breakpoint-tablet: 720px;
   --width-breakpoint-semi-mobile: 500px;
-  --width-breakpoint-mobile: @width-breakpoint-mobile;
+  --width-breakpoint-mobile: 320px;
   --elevation: 0 2px 2px rgba( 0, 0, 0, 10% );
   --mask-opacity: 0.8;
 }
+
+@background-color-base: var( --background-color-base );
+@background-color-article: var( --background-color-article );
+@background-color-content: var( --background-color-content );
+@background-color-footer: var( --background-color-footer );
+@background-color-toggle-list: var( --background-color-toggle-list );
+@background-color-portlet-body: var( --background-color-portlet-body );
+@background-color-toggle-list-card: var( --background-color-toggle-list-card );
+@border-color-content: var( --border-color-content );
+@border-toggle-list: var( --border-toggle-list );
+@subheader-color-toggle-list: var( --subheader-color-toggle-list );
+@logo-text-color-toggle-list: var( --logo-text-color-toggle-list );
+@color-header: var( --color-header );
+@color-base: var( --color-base );
+@color-gray: var( --color-gray );
+@color-gray-2: var( --color-gray-2 );
+@color-link: var( --color-link );
+@color-link--visited: var( --color-link--visited );
+@font-family: var( --font-family );
+@width-breakpoint-desktop: var( --width-breakpoint-desktop );
+@width-breakpoint-tablet: var( --width-breakpoint-tablet );
+@width-breakpoint-semi-mobile: var( --width-breakpoint-semi-mobile );
+@width-breakpoint-mobile: var( --width-breakpoint-mobile );
+@elevation: var( --elevation );
+@mask-opacity: var( --mask-opacity );
