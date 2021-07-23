@@ -2,15 +2,15 @@
 
 /* Styles */
 html {
-  background: var(--background-color-base);
+  background: var( --background-color-base );
   margin: 0;
   //  padding: 0 0 20px;
 }
 
 body {
-  background: var(--background-color-article);
+  background: var( --background-color-article );
   margin: 0 auto;
-  font-family: var(--font-family);
+  font-family: var( --font-family );
 
   > header,
   > main,
@@ -21,18 +21,18 @@ body {
 }
 
 a {
-  color: var(--color-link);
+  color: var( --color-link );
 
   &:visited {
-    color: var(--color-link--visited);
+    color: var( --color-link--visited );
   }
 }
 
 .mw-editsection {
-    margin-left: 5px;
-    vertical-align: baseline;
-    font-size: small;
-    font-weight: 400;
+  margin-left: 5px;
+  vertical-align: baseline;
+  font-size: small;
+  font-weight: 400;
 }
 
 /* GENERAL */
@@ -52,21 +52,21 @@ a {
     margin-right: 0;
   }
 
-  input[ type=checkbox ] {
+  input[ type='checkbox' ] {
     display: none;
   }
 }
 
 .emptyPortlet {
-    display: none;
+  display: none;
 }
 
 /* HEADER */
 
 .mw-header {
-  background-color: var(--color-header);
+  background-color: var( --color-header );
   min-height: 50px;
-  box-shadow: @elevation;
+  box-shadow: var( --elevation );
   top: 0;
   left: 0;
   margin: auto;
@@ -81,7 +81,7 @@ a {
 }
 
 #logo-link {
-  @media screen and ( max-width: var(--width-breakpoint-semi-mobile) ) {
+  @media screen and ( max-width: var( --width-breakpoint-semi-mobile ) ) {
     display: none;
   }
   display: flex;
@@ -99,21 +99,22 @@ a {
 }
 
 #siteNotice {
-  @media screen and ( min-width: var(--width-breakpoint-tablet) ) {
+  @media screen and ( min-width: var( --width-breakpoint-tablet ) ) {
     width: 70%;
   }
-  @media screen and ( max-width: var(--width-breakpoint-tablet) ) {
+
+  @media screen and ( max-width: var( --width-breakpoint-tablet ) ) {
     width: 95%;
   }
   max-width: 1200px;
   margin: 40px auto 10px;
   padding-bottom: 8px;
   box-sizing: border-box;
-  background-color: var(--background-color-content);
-  border: 1px solid var(--border-color-content);
+  background-color: var( --background-color-content );
+  border: 1px solid var( --border-color-content );
   border-radius: 3px;
-  box-shadow: var(--elevation);
-  
+  box-shadow: var( --elevation );
+
   :empty {
     visibility: hidden;
   }
@@ -124,7 +125,7 @@ a {
 }
 
 #p-search {
-  @media screen and ( max-width: var(--width-breakpoint-tablet) ) {
+  @media screen and ( max-width: var( --width-breakpoint-tablet ) ) {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -139,16 +140,16 @@ a {
     background-size: 18px;
     -webkit-appearance: none;
 
-    @media screen and ( max-width: var(--width-breakpoint-tablet) ) {
+    @media screen and ( max-width: var( --width-breakpoint-tablet ) ) {
       width: 100%;
     }
 
-    @media screen and ( min-width: var(--width-breakpoint-desktop) ) {
+    @media screen and ( min-width: var( --width-breakpoint-desktop ) ) {
       max-width: 450px;
     }
     margin-top: 0;
     height: 2.25em;
-    border: solid 1px @color-gray-2;
+    border: solid 1px var( --color-gray-2 );
     border-radius: 2px;
     padding: 7px 0 7px 29px;
     box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.05 );
@@ -216,14 +217,10 @@ a {
     background-repeat: no-repeat;
     height: 100%;
     width: 40px;
-    background-position: center center;
     margin: 0;
     padding: 0;
     background-position: center top;
     overflow: hidden;
-  }
-
-  h3 {
     display: flex;
   }
 
@@ -246,17 +243,19 @@ a {
   top: 0;
   width: 30%;
   bottom: 0;
-  background: var(--background-color-toggle-list);
+  background: var( --background-color-toggle-list );
   z-index: 10;
   height: 100%;
   overflow-y: auto;
   min-width: max-content;
   max-width: 500px;
+  transform: translateX( -100% );
+  transition: cubic-bezier( 0.4, 0, 0.2, 1 ) 0.2s transform;
 
   h3 {
     display: block;
     font-size: 10px;
-    color: var(--subheader-color-toggle-list);
+    color: var( --subheader-color-toggle-list );
     padding: 10px;
   }
 
@@ -264,9 +263,11 @@ a {
     display: block;
     padding: 8px;
     border-radius: 3px;
+
     &:hover {
       background: #eee;
     }
+
     &:focus {
       background: #ccc;
     }
@@ -282,7 +283,7 @@ a {
   }
 
   div[ role='navigation' ] {
-    border-bottom: 1px var(--border-color-toggle-list) solid;
+    border-bottom: 1px var( --border-color-toggle-list ) solid;
 
     &:last-child {
       border-bottom: none;
@@ -291,14 +292,14 @@ a {
 
   .toggle-list__card {
     padding: 15px;
-    background: var(--background-color-toggle-list-card);
+    background: var( --background-color-toggle-list-card );
 
     #toggle-list__logo-text {
       display: block;
       border-bottom: 0;
       padding-bottom: 0;
       font-size: 100%;
-      color: var(--logo-text-color-toggle-list);
+      color: var( --logo-text-color-toggle-list );
     }
 
     #toggle-list__logo-image {
@@ -312,6 +313,7 @@ a {
   left: 0; // meant ltr right
   top: 0;
   bottom: 0;
+  transform: translateX( -100% ); // meant ltr 100%
 }
 
 /* CONTENT */
@@ -322,7 +324,7 @@ a {
 */
 
 main {
-  border-bottom: solid 20px var(--background-color-base);
+  border-bottom: solid 20px var( --background-color-base );
 }
 
 .content {
@@ -356,7 +358,7 @@ main {
 
   &__tagline {
     clear: both;
-    color: @color-base;
+    color: var( --color-base );
     font-size: 0.85em;
     margin-bottom: 12px;
     line-height: 20px;
@@ -364,6 +366,7 @@ main {
     &:empty {
       display: none;
     }
+
     span {
       display: block;
     }
@@ -375,16 +378,16 @@ main {
 }
 
 #content {
-  @media screen and ( min-width: var(--width-breakpoint-tablet) ) {
+  @media screen and ( min-width: var( --width-breakpoint-tablet ) ) {
     max-width: 70%;
     margin: 0 auto 40px;
   }
 
-  @media screen and ( max-width: var(--width-breakpoint-mobile) ) {
+  @media screen and ( max-width: var( --width-breakpoint-mobile ) ) {
     max-width: 100%;
   }
   max-width: 1200px;
-  background-color: var(--background-color-content);
+  background-color: var( --background-color-content );
   position: relative;
   box-sizing: border-box;
 }
@@ -434,6 +437,7 @@ main {
       &:hover {
         background: #eee;
       }
+
       &:focus {
         background: #ccc;
       }
@@ -447,11 +451,11 @@ main {
     animation-duration: 0.2s;
 
     ul {
-      background: var(--background-color-portlet-body);
+      background: var( --background-color-portlet-body );
       position: absolute;
       overflow-y: auto;
       z-index: 2;
-      box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px var(--color-gray);
+      box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px var( --color-gray );
       border-radius: 3px;
       right: 0;
       min-width: 200px;
@@ -498,12 +502,12 @@ main {
 .mw-portlet-lang,
 .mw-portlet-variants {
   margin-top: 10px;
-  border-bottom: 1px solid var(--color-gray-2);
+  border-bottom: 1px solid var( --color-gray-2 );
 
   a {
     font-size: 0.85em;
     margin: 0 5px;
-    color: var(--color-base);
+    color: var( --color-base );
     font-weight: bold;
     padding-bottom: 6px;
     display: inline-block;
@@ -512,7 +516,7 @@ main {
 
 .mw-portlet-namespaces {
   li.selected {
-    border-bottom: 2px solid var(--color-base);
+    border-bottom: 2px solid var( --color-base );
     margin-bottom: -1px;
   }
 }
@@ -562,7 +566,7 @@ main {
 .mw-portlet-cactions h3,
 .mw-portlet-cactions li a,
 .mw-portlet-views li a {
-  color: var(--color-base);
+  color: var( --color-base );
   text-decoration: none;
 }
 
@@ -572,13 +576,13 @@ main {
   font-size: 0.85em;
   margin: 0 5px;
   padding: 0 0 0 0;
-  color: var(--color-base);
+  color: var( --color-base );
   font-weight: bold;
   display: inline-block;
   overflow: visible;
 }
 
-/* CATEGORIES 
+/* CATEGORIES
 #catlinks {
   font-size: 0;
   border: none;
@@ -614,11 +618,11 @@ main {
 #catlinks {
   margin: 10px 0;
   padding: 5px;
-  background-color: var(--background-color-content);
-  border: 1px solid var(--border-color-content);
+  background-color: var( --background-color-content );
+  border: 1px solid var( --border-color-content );
   border-radius: 3px;
-  box-shadow: var(--elevation);
-  
+  box-shadow: var( --elevation );
+
   li:first-child {
     padding-left: 0;
   }
@@ -627,9 +631,9 @@ main {
 /* FOOTER */
 
 body > footer {
-  border-top: solid 20px var(--background-color-footer);
+  border-top: solid 20px var( --background-color-footer );
   padding: 20px 0;
-  background: var(--background-color-footer);
+  background: var( --background-color-footer );
 
   li {
     display: inline-block;
@@ -667,15 +671,6 @@ body > footer {
   opacity: 0;
 }
 
-.toggle-list__list {
-  transform: translateX( -100% );
-  transition: cubic-bezier( 0.4, 0, 0.2, 1 ) 0.2s transform;
-}
-
-.rtl .toggle-list__list {
-  transform: translateX( -100% ); // meant ltr 100%
-}
-
 .toggle-list__checkbox:checked ~ .toggle-list__list {
   transform: translateX( 0% );
 }
@@ -687,7 +682,7 @@ body > footer {
   right: 0;
   opacity: 0;
   bottom: 0;
-  background: rgba( 0, 0, 0, var(--mask-opacity) );
+  background: rgba( 0, 0, 0, var( --mask-opacity ) );
   z-index: 9;
   visibility: hidden;
   transition: 0.3s cubic-bezier( 0.25, 0.8, 0.5, 1 ) 1ms;

@@ -92,7 +92,7 @@
       "+ext.uls.pt": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.pt.less"
     }
   },
-  "AutoloadedClasses": {
+  "AutoloadClasses": {
     "SkinLakeus": "SkinLakeus.php"
   }
 }

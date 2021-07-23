@@ -1,7 +1,9 @@
-@import 'mediawiki.skin.variables.less';
+// @import 'mediawiki.skin.variables.less';
 /* Variables */
 /* Make less variables to CSS ones */
-
+@width-breakpoint-mobile: 320px;
+@width-breakpoint-tablet: 720px;
+@width-breakpoint-desktop: 1000px;
 :root {
   --background-color-base: white;
   --background-color-article: white;
@@ -12,7 +14,7 @@
   --background-color-toggle-list-card: #eee;
   --border-color-content: #ccc;
   --border-toggle-list: #ddd;
-  --subheader-color-toggle-list: rgba(0,0,0,0.6);
+  --subheader-color-toggle-list: rgba( 0, 0, 0, 0.6 );
   --logo-text-color-toggle-list: inherit;
   --color-header: white;
   --color-base: #54595d;
@@ -20,11 +22,11 @@
   --color-gray-2: #eaecf0;
   --color-link: #0645ad;
   --color-link--visited: #0b0080;
-  --font-family: 'Roboto',-apple-system,BlinkMacSystemFont,'Segoe UI','Oxygen','Ubuntu','Cantarell','Helvetica Neue',sans-serif;;
+  --font-family: 'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
   --width-breakpoint-desktop: @width-breakpoint-desktop;
   --width-breakpoint-tablet: @width-breakpoint-tablet;
   --width-breakpoint-semi-mobile: 500px;
   --width-breakpoint-mobile: @width-breakpoint-mobile;
-  --elevation: 0 2px 2px rgba(0, 0, 0, 10%);;
+  --elevation: 0 2px 2px rgba( 0, 0, 0, 10% );
   --mask-opacity: 0.8;
 }
