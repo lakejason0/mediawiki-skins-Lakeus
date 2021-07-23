@@ -9,6 +9,10 @@
 				{{#wordmark}}<img id="toggle-list__logo-wordmark" src="{{src}}" width="{{width}}" height="{{height}}">{{/wordmark}}
 				{{^wordmark}}<span id="toggle-list__logo-text">{{msg-sitetitle}}</span>{{/wordmark}}
 			{{/data-logos}}
+			<div id="toggle-list__article-counter">
+				<span id="toggle-list__article-counter-count">{{html-articlecount}}</span>
+				<span id="toggle-list__article-counter-text">{{msg-lakeus-articlecount}}</span>
+			</div>
 		</div>
 		{{#data-portlets-sidebar}}
 		{{#data-portlets-first}}{{>Portlet}}{{/data-portlets-first}}
