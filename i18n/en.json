@@ -9,5 +9,6 @@
   "lakeus-skin-desc": "A simple skin by [https://github.com/lakejason0 Lakejason0], which is named after a character in their novels",
   "lakeus.css": "/* All CSS here will be loaded for users of the Lakeus skin */",
   "lakeus.js": "/* All JavaScript here will be loaded for users of the Lakeus skin */",
-  "lakeus-openmainmenu": "Open main menu"
+  "lakeus-openmainmenu": "Open main menu",
+  "lakeus-articlecount": "{{PLURAL:$1|Article|Articles}}"
 }

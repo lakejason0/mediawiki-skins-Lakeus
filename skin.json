@@ -19,7 +19,7 @@
   "manifest_version": 2,
   "ValidSkinNames": {
     "lakeus": {
-      "class": "SkinMustache",
+      "class": "SkinLakeus",
       "args": [
         {
           "name": "lakeus",
@@ -29,7 +29,8 @@
             "search",
             "otherlanguages",
             "tagline",
-            "lakeus-openmainmenu"
+            "lakeus-openmainmenu",
+            "lakeus-articlecount"
           ],
           "styles": [
             "mediawiki.ui.icon",
@@ -90,5 +91,8 @@
       "+ext.NoTitle": "skinStyles/extensions/NoTitle/ext.NoTitle.css",
       "+ext.uls.pt": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.pt.less"
     }
+  },
+  "AutoloadedClasses": {
+    "SkinLakeus": "SkinLakeus.php"
   }
 }
