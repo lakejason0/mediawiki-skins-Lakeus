@@ -12,7 +12,7 @@ class SkinLakeus extends SkinMustache {
 
         $data["html-articlecount"] = SiteStats::articles();
         // trying to overwrite
-        $data["msg-lakeus-articlecount"] = wfMessage( 'lakeus-articlecount' )->numParams( SiteStats::articles() )->plain();
+        $data["msg-lakeus-articlecount"] = wfMessage( 'lakeus-articlecount' )->numParams( SiteStats::articles() )->parse();
 
         return $data;
     }
