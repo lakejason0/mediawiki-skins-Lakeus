@@ -10,6 +10,7 @@
 			</div>
 			{{#data-logos}}
 				{{#icon}}<img id="toggle-list__logo-image" src="{{.}}">{{/icon}}
+				{{^icon}}<div id="toggle-list__logo-image"></div>{{/icon}}
 				{{#wordmark}}<img id="toggle-list__logo-wordmark" src="{{src}}" width="{{width}}" height="{{height}}">{{/wordmark}}
 				{{^wordmark}}<span id="toggle-list__logo-text">{{msg-sitetitle}}</span>{{/wordmark}}
 			{{/data-logos}}
