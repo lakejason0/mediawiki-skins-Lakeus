@@ -10,5 +10,6 @@
   "lakeus.css": "/* All CSS here will be loaded for users of the Lakeus skin */",
   "lakeus.js": "/* All JavaScript here will be loaded for users of the Lakeus skin */",
   "lakeus-openmainmenu": "Open main menu",
-  "lakeus-articlecount": "{{PLURAL:$1|Article|Articles}}"
+  "lakeus-articlecount": "{{PLURAL:$1|Article|Articles}}",
+  "lakeus-footermessage": "Powered by Lakeus Skin"
 }

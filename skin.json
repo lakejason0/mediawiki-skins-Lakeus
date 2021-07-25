@@ -94,5 +94,11 @@
   },
   "AutoloadClasses": {
     "SkinLakeus": "SkinLakeus.php"
+  },
+  "Config": {
+    "LakeusShowRepositoryLink": {
+      "value": true,
+      "description": "Whether to show the link to the repository or not."
+    }
   }
 }

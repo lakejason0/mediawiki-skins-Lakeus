@@ -10,5 +10,6 @@
   "lakeus.css": "/* 此處所有的CSS都會在使用者使用Lakeus外觀時載入 */",
   "lakeus.js": "/* 此處所有的JavaScript都會在使用者使用Lakeus外觀時載入 */",
   "lakeus-openmainmenu": "開啟主選單",
-  "lakeus-articlecount": "{{PLURAL:$1|篇文章}}"
+  "lakeus-articlecount": "{{PLURAL:$1|篇文章}}",
+  "lakeus-footermessage": "由Lakeus外觀提供"
 }
