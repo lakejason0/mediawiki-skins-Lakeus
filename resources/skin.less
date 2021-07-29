@@ -398,7 +398,7 @@ main {
 #content {
   @media screen and ( min-width: @width-breakpoint-tablet ) {
     max-width: 70%;
-    margin: 0 auto 40px;
+    margin: 10px auto 40px;
   }
 
   @media screen and ( max-width: @width-breakpoint-mobile ) {
@@ -409,6 +409,18 @@ main {
   position: relative;
   box-sizing: border-box;
   margin-top: 40px;
+}
+
+div.editOptions {
+  padding: 1.25em 1.75em;
+  border: solid @border-color-edit-options 1px;
+  border-top: none;
+  background: @background-color-edit-options;
+
+  // For Extension:TemplateSandbox and the like
+  fieldset {
+    margin-top: 1em;
+  }
 }
 
 .printfooter {
