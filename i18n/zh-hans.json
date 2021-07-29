@@ -1,14 +1,14 @@
 {
-  "@metadata": {
-    "authors": [
-      "Lakejason0"
-    ]
-  },
-  "skinname-lakeus": "Lakeus",
-  "lakeus-skin-desc": "以作者[https://github.com/lakejason0 Lakejason0]的小说角色命名的简易皮肤",
-  "lakeus.css": "/* 这里放置的CSS将影响使用Lakeus皮肤的用户 */",
-  "lakeus.js": "/* 这里的任何JavaScript将为使用Lakeus皮肤的用户加载 */",
-  "lakeus-openmainmenu": "打开主菜单",
-  "lakeus-articlecount": "{{PLURAL:$1|篇文章}}",
-  "lakeus-footermessage": "由Lakeus皮肤提供"
+	"@metadata": {
+		"authors": [
+			"Lakejason0"
+		]
+	},
+	"skinname-lakeus": "Lakeus",
+	"lakeus-skin-desc": "以作者[https://github.com/lakejason0 Lakejason0]的小说角色命名的简易皮肤",
+	"lakeus.css": "/* 这里放置的CSS将影响使用Lakeus皮肤的用户 */",
+	"lakeus.js": "/* 这里的任何JavaScript将为使用Lakeus皮肤的用户加载 */",
+	"lakeus-openmainmenu": "打开主菜单",
+	"lakeus-articlecount": "{{PLURAL:$1|篇文章}}",
+	"lakeus-footermessage": "由Lakeus皮肤提供"
 }

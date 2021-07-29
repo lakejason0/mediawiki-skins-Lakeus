@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"skinname-lakeus": "Lakeus",
+	"lakeus-skin-desc": "Просто руво од [https://github.com/lakejason0 Lakejason0], наречено по лик од нивните романи",
+	"lakeus.css": "/* Сиот тука поставен JavaScript ќе им се вчитува на корисниците што го користат рувото „Lakeus“ */",
+	"lakeus.js": "/* Сиот тука поставен JavaScript ќе им се вчитува на корисниците што го користат рувото „Lakeus“ */",
+	"lakeus-openmainmenu": "Отвори го главното мени",
+	"lakeus-articlecount": "{{PLURAL:$1|Статија|Статии}}",
+	"lakeus-footermessage": "Во рувото Lakeus"
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nike"
+		]
+	},
+	"lakeus.js": "/* Tämän sivun JavaScript-koodi ladataan Lakeus-ulkoasun käyttäjille */",
+	"lakeus-openmainmenu": "Avaa päävalikko"
+}

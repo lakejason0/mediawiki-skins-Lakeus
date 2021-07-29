@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sabelöga"
+		]
+	},
+	"skinname-lakeus": "Lakeus",
+	"lakeus-skin-desc": "Ett enkelt utseende av [https://github.com/lakejason0 Lakejason0], som döpts efter en karaktär i en hens noveller.",
+	"lakeus.css": "/* All CSS här kommer laddas in för användare av Lakeus-utseendet */",
+	"lakeus.js": "/* All JavaScript här kommer laddas in för användare av Lakeus-utseendet */",
+	"lakeus-openmainmenu": "Öppna huvudmenyn",
+	"lakeus-articlecount": "{{PLURAL:$1|Artikel|Artiklar}}",
+	"lakeus-footermessage": "Drivs av Lakeus Skin"
+}
