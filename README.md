@@ -32,3 +32,7 @@ wfLoadSkin( 'Lakeus' );
 ## Live Preview
 
 For a live preview, check it on my own wiki [Project Archive](https://lakeus.xyz/wiki/首页?useskin=lakeus).
+
+## Localization
+
+Translate the skin on [Translatewiki.net](https://translatewiki.net/wiki/Special:Translate?action=translate&group=mwgithub-lakeus)!
