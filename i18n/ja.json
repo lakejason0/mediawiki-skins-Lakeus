@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lakejason0"
+		]
+	},
+	"lakeus.css": "/* ここに記述したCSSはLakeus外装の利用者に影響します */",
+	"lakeus.js": "/* ここにあるすべてのJavaScriptは、Lakeus外装を使用している利用者に対して読み込まれます */",
+	"lakeus-openmainmenu": "メインメニューを開く",
+	"lakeus-articlecount": "{{PLURAL:$1|記事}}",
+	"lakeus-footermessage": "提供：Lakeus外装"
+}

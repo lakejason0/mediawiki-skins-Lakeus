@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"ThisIsACreeper0101"
+		]
+	},
+	"lakeus-skin-desc": "[https://github.com/lakejason0 Lakejason0] द्वारा एक साधारण स्किन, जिसे उसकी कहानियों के एक पात्र का नाम दिया गया है",
+	"lakeus.css": "/* यहाँ रखी CSS Lakeus स्किन के उपयोगकर्ताओं के लिए लोड होगी */",
+	"lakeus.js": "/* यहाँ रखी जावास्क्रिप्ट Lakeus स्किन के उपयोगकर्ताओं के लिए लोड होगी */",
+	"lakeus-openmainmenu": "मुख्य मेनू खोलें",
+	"lakeus-articlecount": "{{PLURAL:$1|लेख}}",
+	"lakeus-footermessage": "Lakeus स्किन द्वारा संचालित"
+}

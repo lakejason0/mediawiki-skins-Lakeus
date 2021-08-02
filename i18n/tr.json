@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda"
+		]
+	},
+	"skinname-lakeus": "Lakeus",
+	"lakeus-skin-desc": "[https://github.com/lakejason0 Lakejason0] tarafından, romanlarındaki bir karakterden adını alan basit bir arayüz",
+	"lakeus.css": "/* Buradaki tüm CSS'ler Lakeus arayüz kullanıcıları için yüklenecek */",
+	"lakeus.js": "/* Buradaki tüm JavaScript, Lakeus arayüz kullanıcıları için yüklenecek */",
+	"lakeus-openmainmenu": "Ana menüyü aç",
+	"lakeus-articlecount": "{{PLURAL:$1|Madde}}",
+	"lakeus-footermessage": "Lakeus Skin tarafından desteklenmektedir"
+}

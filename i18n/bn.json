@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"আফতাবুজ্জামান"
+		]
+	},
+	"skinname-lakeus": "লেকাস",
+	"lakeus-skin-desc": "[https://github.com/lakejason0 লেকজেসন০] কর্তৃক একটি সাধারণ আবরণ, যা তাদের উপন্যাসের একটি চরিত্রের নামে নামকরণ করা হয়েছে",
+	"lakeus-openmainmenu": "প্রধান মেনু খুলুন",
+	"lakeus-articlecount": "টি {{PLURAL:$1|নিবন্ধ}}",
+	"lakeus-footermessage": "লেকাস আবরণ দ্বারা চালিত"
+}

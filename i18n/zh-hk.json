@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lakejason0"
+		]
+	},
+	"lakeus-skin-desc": "以作者[https://github.com/lakejason0 Lakejason0]的小說角色命名的簡易佈景主題",
+	"lakeus.css": "/* 此處所有的CSS都會在用戶使用Lakeus佈景主題時載入 */",
+	"lakeus.js": "/* 此處所有的JavaScript都會在用戶使用Lakeus佈景主題時載入 */",
+	"lakeus-footermessage": "由Lakeus佈景主題提供"
+}
