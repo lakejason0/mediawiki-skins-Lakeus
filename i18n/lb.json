@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"skinname-lakeus": "Lakeus",
+	"lakeus-openmainmenu": "Haaptmenü opmaachen",
+	"lakeus-articlecount": "{{PLURAL:$1|Artikel|Artikelen}}",
+	"lakeus-footermessage": "Erméiglecht duerch de Lakeus Interface"
+}
