@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"DDPAT"
+		]
+	},
+	"skinname-lakeus": "Lakeus",
+	"lakeus-skin-desc": "Простий скін [https://github.com/lakejason0 Lakejason0], названа на честь героя їхніх романів",
+	"lakeus.css": "/* Весь CSS тут буде завантажено для користувачів скіну Lakeus */",
+	"lakeus.js": "/* Весь JavaScript тут буде завантажено для користувачів скіну Lakeus */",
+	"lakeus-openmainmenu": "Відкрийте головне меню",
+	"lakeus-articlecount": "{{PLURAL:$1|Стаття|Статті}}",
+	"lakeus-footermessage": "Працює на основі скіна Lakeus"
+}
