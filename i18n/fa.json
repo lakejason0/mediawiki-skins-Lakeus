@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeeputer"
+		]
+	},
+	"skinname-lakeus": "لاکئوس",
+	"lakeus-openmainmenu": "گشودن منوی اصلی",
+	"lakeus-articlecount": "{{PLURAL:$1|مقاله}}"
+}
