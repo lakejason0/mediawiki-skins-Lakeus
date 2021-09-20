@@ -226,6 +226,7 @@
 					],
 					"scripts": [
 						"skins.lakeus.scripts",
+						"skins.lakeus.search",
 						"skins.lakeus.theme.designer"
 					],
 					"messages": [
@@ -250,6 +251,12 @@
 		"LakeusShowRepositoryLink": {
 			"value": true,
 			"description": "Whether to show the link to the repository or not."
+		},
+		"LakeusWvuiSearchOptions": {
+			"value": {
+				"showThumbnail": true,
+				"showDescription": true
+			}
 		},
 		"LakeusSiteNoticeHasBorder": {
 			"value": false,
