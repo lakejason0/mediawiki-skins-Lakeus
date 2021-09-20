@@ -286,6 +286,13 @@
 			"value": true,
 			"description": "Whether to show the link to the repository or not."
 		},
+		"LakeusSearchHost": {
+			"value": "",
+			"description": "Override default search API. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
+		},
+		"LakeusUseWvuiSearch": {
+			"value": true
+		},
 		"LakeusWvuiSearchOptions": {
 			"value": {
 				"showThumbnail": true,
