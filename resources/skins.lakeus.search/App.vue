@@ -1,6 +1,6 @@
 <template>
   <wvui-typeahead-search
-    id="searchform"
+    id="p-search"
     ref="searchForm"
     :client="getClient"
     :domain="domain"
