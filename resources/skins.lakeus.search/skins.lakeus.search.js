@@ -39,7 +39,7 @@ function initApp(searchForm, search) {
  * @return {void}
  */
 function main(document) {
-  var searchForm = /** @type {HTMLElement} */ (document.querySelector("#searchform")),
+  var searchForm = /** @type {HTMLElement} */ (document.querySelector("#p-search")),
     search = /** @type {HTMLInputElement|null} */ (document.getElementById("searchInput"));
   if (search && searchForm) {
     initApp(searchForm, search);
