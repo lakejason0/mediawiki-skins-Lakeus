@@ -31,6 +31,7 @@ module.exports = {
     // access the element associated with the wvui-typeahead-search component
     // eslint-disable-next-line no-jquery/variable-pattern
     var wvuiSearchForm = this.$refs.searchForm.$el;
+    this.$refs.searchForm.$el = "p-search";
     if (this.autofocusInput) {
       // TODO: The wvui-typeahead-search component accepts an id prop but does not
       // display that value as an HTML attribute on the form element.
