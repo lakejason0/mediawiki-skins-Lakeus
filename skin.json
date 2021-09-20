@@ -240,7 +240,8 @@
 					],
 					"scripts": [
 						"skins.lakeus",
-						"skins.lakeus.designer"
+						"skins.lakeus.designer",
+						"skins.lakeus.search"
 					],
 					"messages": [
 						"sitetitle",
@@ -264,6 +265,12 @@
 		"LakeusShowRepositoryLink": {
 			"value": true,
 			"description": "Whether to show the link to the repository or not."
+		},
+		"LakeusWvuiSearchOptions": {
+			"value": {
+				"showThumbnail": true,
+				"showDescription": true
+			}
 		},
 		"LakeusSiteNoticeHasBorder": {
 			"value": false,
