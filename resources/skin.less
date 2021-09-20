@@ -170,6 +170,32 @@ a {
   }
 }
 
+.suggestions {
+  background: @background-color-search-suggestions;
+  box-shadow: @elevation;
+
+  .suggestions-special {
+    background-color: @background-color-search-suggestions;
+    border: 1px solid @border-color-search-suggestions;
+    padding: 0.75em 2em;
+  }
+
+  .suggestions-results {
+    background-color: @background-color-search-suggestions;
+    border: 1px solid @border-color-search-suggestions;
+  }
+
+  .suggestions-result {
+    color: @color-search-suggestions-text;
+    padding: 0.65em 2em 0.35em;
+  }
+
+  .suggestions-result-current {
+    background-color: @background-color-search-suggestions-current;
+    color: @color-search-suggestions-text-current;
+  }
+}
+
 #p-logo {
   min-width: min-content;
   margin-left: 40px;
