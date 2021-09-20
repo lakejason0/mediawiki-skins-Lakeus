@@ -10,6 +10,8 @@ Lakeus is a simple skin made for MediaWiki by Lakejason0 and other contributors,
 
 The skin covers most of the basic functions of MediaWiki, esp. for `zh` users that I added a separate variant menu.
 
+You can customize this skin through CSS variables; see [Skin:Lakeus on MediaWiki](https://mediawiki.org/wiki/Skin:Lakeus#Customization) for details.
+
 Unfortunately I know nothing of PHP, so the result might not be that amazing to you.
 
 ## Requirements
