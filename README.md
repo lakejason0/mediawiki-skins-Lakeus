@@ -21,9 +21,9 @@ Unfortunately I know nothing of PHP, so the result might not be that amazing to 
 
 To install the skin,
 
-* Download the repository.
-* Make a folder called `Lakeus` in `skins` directory of your MediaWiki.
-* Extract the content of the zipped file to the `Lakeus` folder.
+* Download the repository;
+* Create a folder called `Lakeus` in `skins` directory of your MediaWiki;
+* Extract the archive file contents in the `Lakeus` folder;
 * Put this in your `LocalSettings.php`:
 ```php
 wfLoadSkin( 'Lakeus' );
@@ -31,7 +31,7 @@ wfLoadSkin( 'Lakeus' );
 
 ## Live Preview
 
-For a live preview, check it on my own wiki [Project Archive](https://lakeus.xyz/wiki/首页?useskin=lakeus).
+For a live preview, check it on my own wiki [Project Archive](https://lakeus.xyz/wiki/首页?useskin=lakeus) or [MediaWiki Skins Wiki](https://skins.toolforge.org/index.php?useskin=lakeus).
 
 ## Localization
 
