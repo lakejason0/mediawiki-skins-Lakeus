@@ -4,6 +4,8 @@ See https://github.com/lakejason0/mediawiki-skins-Lakeus/graphs/contributors for
 Translations are done by Lakejason0 (`zh-hans`, `zh-hant`, `zh-hk`), Winston Sung (`zh-hant`), Olvcpr423 (`yue`) and other translators on translatewiki.net.
 See https://translatewiki.net/wiki/Special:MessageGroupStats?group=mwgithub-lakeus&suppressempty=1&x=D for the message group statistics of the skin.
 
+Special thanks to DDElephant helping me with WVUI search bar!
+
 Special thanks to Timeless, Vector, Minerva, FandomMobile and FandomDesktop for inspiration of some features of this skin!
 
 Timeless:
