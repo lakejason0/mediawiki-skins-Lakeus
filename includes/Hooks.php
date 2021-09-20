@@ -14,7 +14,7 @@ class Hooks implements GetPreferencesHook {
 	 * @param Config $config
 	 * @return $wgLakeusWvuiSearchOptions
 	 */
-	public function getSnapwikiskinWvuiSearchResourceLoaderConfig(
+	public function getLakeusWvuiSearchResourceLoaderConfig(
 		ResourceLoaderContext $context,
 		Config $config
 	) {
