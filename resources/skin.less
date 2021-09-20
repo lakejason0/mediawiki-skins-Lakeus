@@ -349,11 +349,14 @@ a {
 }
 
 .rtl .toggle-list__list {
-  right: initial; // meant ltr left
-  left: 0; // meant ltr right
+  /* @noflip */
+  left: initial;
+  /* @noflip */
+  right: 0;
   top: 0;
   bottom: 0;
-  transform: translateX( -100% ); // meant ltr 100%
+  /* @noflip */
+  transform: translateX( 100% );
 }
 
 #pt-anonuserpage {
