@@ -194,6 +194,26 @@
 				"lakeus-theme-designer-text-color-sticky-toc-number",
 				"lakeus-theme-designer-danger-zone"
 			]
+		},
+		"skins.lakeus.search": {
+			"dependencies": [
+				"mediawiki.Uri",
+				"wvui"
+			],
+			"es6": true,
+			"packageFiles": [
+				"resources/skins.lakeus.search/skins.lakeus.search.js",
+				"resources/skins.lakeus.search/App.vue",
+				{
+					"name": "resources/skins.lakeus.search/config.json",
+					"callback": "MediaWiki\\Skins\\Lakeus\\Hooks::getLakeusWvuiSearchResourceLoaderConfig"
+				}
+			],
+			"messages": [
+				"searchbutton",
+				"searchresults",
+				"searchsuggest-containing"
+			]
 		}
 	},
 	"ResourceModuleSkinStyles": {
