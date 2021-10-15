@@ -81,15 +81,15 @@ a {
 }
 
 #logo-link {
-  @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
-    display: none;
-  }
   display: flex;
   align-items: center;
 }
 
 #logo-image {
   height: 45px;
+  @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
+    display: none;
+  }
 }
 
 #logo-text {
