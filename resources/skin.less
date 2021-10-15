@@ -89,13 +89,14 @@ a {
 }
 
 #logo-image {
-  height: 50px;
+  height: 45px;
 }
 
 #logo-text {
   border-bottom: 0;
   padding-bottom: 0;
-  font-size: 160%;
+  margin-left: 5px;
+  font-size: 100%;
 }
 
 #siteNotice {
@@ -106,7 +107,6 @@ a {
   @media screen and ( max-width: @width-breakpoint-tablet ) {
     width: 95%;
   }
-  max-width: 1200px;
   margin: 40px auto 0;
   padding-bottom: 8px;
   box-sizing: border-box;
@@ -281,7 +281,7 @@ a {
 
   h3 {
     display: block;
-    font-size: 10px;
+    font-size: 14px;
     color: @subheader-color-toggle-list;
     padding: 10px;
   }
@@ -696,8 +696,15 @@ div.editOptions {
 /* FOOTER */
 
 body > footer {
-  padding: 20px 0;
   background: @background-color-footer;
+
+  @media screen and ( min-width: @width-breakpoint-tablet ) {
+    padding: 20px 15%;
+  }
+
+  @media screen and ( max-width: @width-breakpoint-mobile ) {
+    padding: 20px 0;
+  }
 
   li {
     display: inline-block;
@@ -709,8 +716,16 @@ body > footer {
   display: block;
 }
 
-#footer-icons {
+.mw-footer #footer-icons {
   float: right;
+  margin: 0 0 0 1em;
+}
+
+#mw-footer #footer-icons {
+  @media screen and (max-width: @width-breakpoint-tablet) {
+    clear: both;
+    margin-bottom: 0.5em;
+  }
 }
 
 #footer-repository-link {
