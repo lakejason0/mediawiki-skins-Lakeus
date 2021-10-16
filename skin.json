@@ -103,6 +103,10 @@
     "LakeusShowRepositoryLink": {
       "value": true,
       "description": "Whether to show the link to the repository or not."
+    },
+    "$wgLakeusSiteNoticeHasBorder": {
+      "value": false,
+      "description": "Whether to add a border to site notice. Useful for plain text notices."
     }
   }
 }
