@@ -1,0 +1,1 @@
+window.Lakeus = window.Lakeus || {};
