@@ -1,0 +1,23 @@
+#lakeus-theme-designer {
+    position: fixed;
+    left: 32px;
+    bottom: 32px;
+    user-select: none;
+    z-index: 199;
+}
+
+#lakeus-theme-designer #lakeus-theme-designer-button {
+    color: #fff;
+    background: #fff;
+    text-align: center;
+    height: 45px;
+    width: 45px;
+    font-size: 20px;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 5px grey;
+    text-shadow: 0 0 2px #4c4c4c;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
