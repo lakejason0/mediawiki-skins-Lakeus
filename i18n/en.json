@@ -11,5 +11,9 @@
   "lakeus.js": "/* All JavaScript here will be loaded for users of the Lakeus skin */",
   "lakeus-openmainmenu": "Open main menu",
   "lakeus-articlecount": "{{PLURAL:$1|Article|Articles}}",
-  "lakeus-footermessage": "Powered by Lakeus Skin"
+  "lakeus-footermessage": "Powered by Lakeus Skin",
+  "lakeus-theme-designer-system-messages-loaded": "Successfully loaded required system messages.",
+  "lakeus-theme-designer-all-loaded": "Theme Designer is loaded.",
+  "lakeus-theme-designer-global": "Global",
+  "lakeus-theme-designer-page-header": "Page Header"
 }
