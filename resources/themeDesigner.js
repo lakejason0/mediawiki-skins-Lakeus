@@ -36,16 +36,22 @@ Lakeus.initThemeDesigner = function() {
             rule: "manual",
             input: "color",
             default: "white",
+            calculate: function(i) {
+                return i;
+            },
         },
         "color-link": {
             fieldset: "lakeus-theme-designer-global",
             rule: "manual",
             input: "color",
             default: "#0645ad",
+            calculate: function(i) {
+                return i;
+            },
         },
         "color-link--visited": {
             fieldset: "lakeus-theme-designer-global",
-            rule: "calculateWhenNeeded",
+            rule: "calculateWhenNotNeeded",
             input: "color",
             default: "#0b0080",
             calculate: function(i) {
@@ -57,91 +63,141 @@ Lakeus.initThemeDesigner = function() {
             rule: "manual",
             input: "text",
             default: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
+            calculate: function(i) {
+                return i;
+            },
         },
         "font-family-serif": {
             fieldset: "lakeus-theme-designer-global",
             rule: "manual",
             input: "text",
             default: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
+            calculate: function(i) {
+                return i;
+            },
         },
         "color-header": {
             fieldset: "lakeus-theme-designer-page-header",
             rule: "manual",
             input: "color",
             default: "white",
+            calculate: function(i) {
+                return i;
+            },
         },
         "background-color-search-suggestions": {
             fieldset: "lakeus-theme-designer-page-header",
             rule: "manual",
             input: "color",
-            default: "#fff"
+            default: "#ffffff",
+            calculate: function(i) {
+                return i;
+            },
         },
         "background-color-search-suggestions-current": {
             fieldset: "lakeus-theme-designer-page-header",
             rule: "manual",
             input: "color",
             default: "#1d5492",
+            calculate: function(i) {
+                return i;
+            },
         },
         "color-search-suggestions-text": {
             fieldset: "lakeus-theme-designer-page-header",
-            rule: "calculateWhenNeeded",
+            rule: "calculateWhenNotNeeded",
             input: "color",
-            default: "#000",
+            default: "#000000",
             calculate: function(i) {
                 return Lakeus.getContrastYIQ(i);
             },
         },
         "color-search-suggestions-text-current": {
             fieldset: "lakeus-theme-designer-page-header",
-            rule: "calculateWhenNeeded",
+            rule: "calculateWhenNotNeeded",
             input: "color",
-            default: "#fff",
+            default: "#ffffff",
             calculate: function(i) {
                 return Lakeus.getContrastYIQ(i);
             },
         },
+
     };
 
     function constructThemeDesignerBody() {
         var fieldsetList = [];
+        var result = '';
         $.each(Lakeus.variablesList, function(k,v){
-            if (!(v.fieldset in fieldsetList) ) {
+            console.log(v);
+            if ( !(fieldsetList.includes(v.fieldset)) ) {
                 fieldsetList.push(v.fieldset);
             }
         })
-        for (fieldset in fieldsetList) {
+        for (fieldset of fieldsetList) {
             var fieldsetElement = '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-' + fieldset + '">';
             var legendElement = '<legend class="lakeus-theme-designer-title">' + mw.message( fieldset ) + '</legend>';
+            var settingsElement = '';
             $.each(Lakeus.variablesList, function(k,v) {
                 if (v.fieldset === fieldset) {
-                    var settingsElement = constructVariableItem(k, v);
+                    settingsElement += constructVariableItem(k, v);
                 } 
-            })
-            
-
+            });
             fieldsetElement += legendElement + settingsElement + '</fieldset>';
+            result += fieldsetElement;
         }
         return result;
     }
 
     function constructVariableItem(variableName, variableContent) {
-        var inputElement = '';
-        if (item.input === 'color') {
-            inputElement = '<input type="color" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />';
-        } else if (item.input === 'text') {
-            inputElement = '<input type="text"name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />';
+        var settingElement = '<p class="lakeus-theme-designer-variable-section" id="lakeus-theme-designer-variable-section-' + variableName + '">';
+        if (variableContent.input === 'color') {
+            settingElement += 
+                '<label>' +
+                    mw.message( 'lakeus-theme-designer-' + variableName ) + 
+                    '<input type="color" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' + 
+                '</label>';
+        } else if (variableContent.input === 'text') {
+            settingElement += 
+                '<label>' + 
+                    mw.message( 'lakeus-theme-designer-' + variableName ) + 
+                    '<input type="text" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' + 
+                '</label>';
+        } else if (variableContent.input === 'textarea') {
+            settingElement += 
+                '<label>' + 
+                    mw.message( 'lakeus-theme-designer-' + variableName ) + 
+                    '<input type="textarea" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' + 
+                '</label>';
         }
-        return inputElement;
+
+        if (variableContent.rule === 'calculateWhenNotNeeded') {
+            settingElement += 
+                '<label>' + 
+                    mw.message( 'lakeus-theme-designer-auto-calculate' ) + 
+                    '<input type="checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' + 
+                '</label>';
+        } else if (variableContent.rule === 'calculateWhenNeeded') {
+            settingElement += 
+                '<label>' + 
+                    mw.message( 'lakeus-theme-designer-auto-calculate' ) + 
+                    '<input checked type="checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' + 
+                '</label>';
+        }
+
+        settingElement += '</p>'
+        return settingElement;
     }
 
     function constructThemeDesigner() {
         $("body").append(
             '<div id="lakeus-theme-designer">' + 
                 '<div id="lakeus-theme-designer-portlet" aria-labelledby="lakeus-theme-designer-modal-button">' +
-                    '<input type="checkbox" aria-labelledby="lakeus-theme-designer-modal-button">' +
+                    '<input type="checkbox" id="lakeus-theme-designer-modal-checkbox-hack" aria-labelledby="lakeus-theme-designer-modal-button">' +
                     '<button id="lakeus-theme-designer-modal-button">🖌️</button>' + 
                     '<form id="lakeus-theme-designer-portlet-body">' +
-                        constructThemeDesignerBody() +
+                        '<div id="lakeus-theme-designer-portlet-body-container">' +
+                            constructThemeDesignerBody() +
+                        '</div>' +
                     '<form>' +
                 '</div>' +
             '</div>'
@@ -154,11 +210,12 @@ Lakeus.initThemeDesigner = function() {
             'lakeus-theme-designer-system-message-loaded', 
             'lakeus-theme-designer-all-loaded',
             'lakeus-theme-designer-page-header',
+            'lakeus-theme-designer-global',
         ] );
     }).then( function() {
         console.log("[Lakeus] " + mw.message( 'lakeus-theme-designer-system-messages-loaded' ) );
         var stylePath = mw.config.get('stylepath');
-        $('head').append('<link rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
+        // $('head').append('<link rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
         constructThemeDesigner();
         console.log("[Lakeus] " + mw.message( 'lakeus-theme-designer-all-loaded' ) );
     });

@@ -10,7 +10,7 @@
     position: relative;
 }
 
-#lakeus-theme-designer-portlet input[type='checkbox'] {
+#lakeus-theme-designer-portlet #lakeus-theme-designer-modal-checkbox-hack {
     display: block;
     position: absolute;
     opacity: 0;
@@ -45,19 +45,35 @@
     }
 }
 
-#lakeus-theme-designer-portlet input:checked ~ #lakeus-theme-designer-portlet-body {
+#lakeus-theme-designer-portlet #lakeus-theme-designer-modal-checkbox-hack:checked ~ #lakeus-theme-designer-portlet-body {
     animation-name: theme-designer-animation-menu-show;
     animation-duration: 0.2s;
+}
+
+#lakeus-theme-designer-portlet #lakeus-theme-designer-modal-checkbox-hack:checked ~ #lakeus-theme-designer-portlet-body #lakeus-theme-designer-portlet-body-container {
+    opacity: 1;
+    visibility: visible;
 }
 
 #lakeus-theme-designer-portlet #lakeus-theme-designer-portlet-body {
     display: block;
     visibility: hidden;
+    bottom: 100%;
+    position: absolute;
     animation-name: theme-designer-animation-menu-hide;
     animation-duration: 0.2s;
 }
 
-#lakeus-theme-designer #lakeus-theme-designer-button {
+#lakeus-theme-designer-portlet-body #lakeus-theme-designer-portlet-body-container {
+    background: white;
+    overflow-y: scroll;
+    box-shadow: 0 5px 17px 0 rgba(0,0,0,0.24),0 0 1px #a2a9b1;
+    border-radius: 3px;
+    padding: 0.4em;
+    min-height: 500px;
+}
+
+#lakeus-theme-designer #lakeus-theme-designer-modal-button {
     color: #fff;
     background: #fff;
     text-align: center;
@@ -71,8 +87,4 @@
     padding: 0;
     margin: 0;
     cursor: pointer;
-}
-
-.lakeus-theme-designer-title {
-    background: linear-gradient(0deg, #ccc 50%, transparent 50%);
 }
