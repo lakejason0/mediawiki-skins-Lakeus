@@ -30,100 +30,106 @@ Lakeus.initThemeDesigner = function() {
         return (yiq >= 128) ? 'black' : 'white';
     }
 
-    Lakeus.variablesList = [
-        {
-            title: "lakeus-theme-designer-global",
-            variables: {
-                "background-color-base": {
-                    rule: "manual",
-                    input: "color",
-                    default: "white",
-                },
-                "color-link": {
-                    rule: "manual",
-                    input: "color",
-                    default: "#0645ad",
-                },
-                "color-link--visited": {
-                    rule: "calculateWhenNeeded",
-                    input: "color",
-                    default: "#0b0080",
-                    calculate: function(i) {
-                        return Lakeus.calculateColorByLuminance(i, 0.8);
-                    },
-                },
-                "font-family": {
-                    rule: "manual",
-                    input: "text",
-                    default: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
-                },
-                "font-family-serif": {
-                    rule: "manual",
-                    input: "text",
-                    default: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
-                },
-            }
+    Lakeus.variablesList = {
+        "background-color-base": {
+            fieldset: "lakeus-theme-designer-global",
+            rule: "manual",
+            input: "color",
+            default: "white",
         },
-        {
-            title: "lakeus-theme-designer-page-header",
-            variables: {
-                "color-header": {
-                    rule: "manual",
-                    input: "color",
-                    default: "white",
-                },
-                "background-color-search-suggestions": {
-                    rule: "manual",
-                    input: "color",
-                    default: "#fff"
-                },
-                "background-color-search-suggestions-current": {
-                    rule: "manual",
-                    input: "color",
-                    default: "#1d5492",
-                },
-                "color-search-suggestions-text": {
-                    rule: "calculateWhenNeeded",
-                    input: "color",
-                    default: "#000",
-                    calculate: function(i) {
-                        return Lakeus.getContrastYIQ(i);
-                    },
-                },
-                "color-search-suggestions-text-current": {
-                    rule: "calculateWhenNeeded",
-                    input: "color",
-                    default: "#fff",
-                    calculate: function(i) {
-                        return Lakeus.getContrastYIQ(i);
-                    },
-                },
+        "color-link": {
+            fieldset: "lakeus-theme-designer-global",
+            rule: "manual",
+            input: "color",
+            default: "#0645ad",
+        },
+        "color-link--visited": {
+            fieldset: "lakeus-theme-designer-global",
+            rule: "calculateWhenNeeded",
+            input: "color",
+            default: "#0b0080",
+            calculate: function(i) {
+                return Lakeus.calculateColorByLuminance(i, 0.8);
             },
         },
-    ];
+        "font-family": {
+            fieldset: "lakeus-theme-designer-global",
+            rule: "manual",
+            input: "text",
+            default: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
+        },
+        "font-family-serif": {
+            fieldset: "lakeus-theme-designer-global",
+            rule: "manual",
+            input: "text",
+            default: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
+        },
+        "color-header": {
+            fieldset: "lakeus-theme-designer-page-header",
+            rule: "manual",
+            input: "color",
+            default: "white",
+        },
+        "background-color-search-suggestions": {
+            fieldset: "lakeus-theme-designer-page-header",
+            rule: "manual",
+            input: "color",
+            default: "#fff"
+        },
+        "background-color-search-suggestions-current": {
+            fieldset: "lakeus-theme-designer-page-header",
+            rule: "manual",
+            input: "color",
+            default: "#1d5492",
+        },
+        "color-search-suggestions-text": {
+            fieldset: "lakeus-theme-designer-page-header",
+            rule: "calculateWhenNeeded",
+            input: "color",
+            default: "#000",
+            calculate: function(i) {
+                return Lakeus.getContrastYIQ(i);
+            },
+        },
+        "color-search-suggestions-text-current": {
+            fieldset: "lakeus-theme-designer-page-header",
+            rule: "calculateWhenNeeded",
+            input: "color",
+            default: "#fff",
+            calculate: function(i) {
+                return Lakeus.getContrastYIQ(i);
+            },
+        },
+    };
 
     function constructThemeDesignerBody() {
-        for (section in Lakeus.variablesList) {
-            var titleElement = '<h3 class="lakeus-theme-designer-title">' + section.title + '</h3>';
-            var settingsElement = constructVariables(section.variables);
-            result += '<div class="lakeus-theme-designer-section">' + titleElement + settingsElement + '</div>';
+        var fieldsetList = [];
+        $.each(Lakeus.variablesList, function(k,v){
+            if (!(v.fieldset in fieldsetList) ) {
+                fieldsetList.push(v.fieldset);
+            }
+        })
+        for (fieldset in fieldsetList) {
+            var fieldsetElement = '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-' + fieldset + '">';
+            var legendElement = '<legend class="lakeus-theme-designer-title">' + mw.message( fieldset ) + '</legend>';
+            $.each(Lakeus.variablesList, function(k,v) {
+                if (v.fieldset === fieldset) {
+                    var settingsElement = constructVariableItem(k, v);
+                } 
+            })
+            
+
+            fieldsetElement += legendElement + settingsElement + '</fieldset>';
         }
         return result;
     }
 
-    function constructVariables(variables) {
-        for (variable in variables.keys()) {
-            result += constructVariableItem(variables.variable);
-        }
-        return result;
-    }
-
-    function constructVariableItem(item) {
+    function constructVariableItem(variableName, variableContent) {
         var inputElement = '';
         if (item.input === 'color') {
-            inputElement = '<input type="color" value="' + item.default + '" />';
+            inputElement = '<input type="color" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />';
         } else if (item.input === 'text') {
-            inputElement = '<input type="text" value="' + item.default + '" />';
+            inputElement = '<input type="text"name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />';
         }
         return inputElement;
     }
