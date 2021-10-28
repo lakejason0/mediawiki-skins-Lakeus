@@ -121,7 +121,24 @@ Lakeus.initThemeDesigner = function() {
                 return Lakeus.getContrastYIQ(i);
             },
         },
-
+        "background-color-search-input": {
+            fieldset: "lakeus-theme-designer-page-header",
+            rule: "manual",
+            input: "color",
+            default: "#ffffff",
+            calculate: function(i) {
+                return i;
+            },
+        },
+        "background-color-toggle-list": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "manual",
+            input: "color",
+            default: "#ffffff",
+            calculate: function(i){
+                return i;
+            },
+        },
     };
 
     function constructThemeDesignerBody() {

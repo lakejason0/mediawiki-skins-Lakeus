@@ -15,5 +15,6 @@
   "lakeus-theme-designer-system-messages-loaded": "Successfully loaded required system messages.",
   "lakeus-theme-designer-all-loaded": "Theme Designer is loaded.",
   "lakeus-theme-designer-global": "Global",
-  "lakeus-theme-designer-page-header": "Page Header"
+  "lakeus-theme-designer-page-header": "Page Header",
+  "lakeus-theme-designer-toggle-list": "Sidebar menu"
 }
