@@ -453,9 +453,9 @@ Lakeus.initThemeDesigner = function () {
                             '<h1 id="lakeus-theme-designer-title">' + mw.message("lakeus-theme-designer") + '</h1>' +
                             constructThemeDesignerBody() +
                             '<div id="lakeus-theme-designer-action-buttons">' +
-                                '<button id="lakeus-theme-designer-copy-theme-button class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-copy-theme") +
-                                '<button id="lakeus-theme-designer-paste-theme-button class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme") +
-                                '<button id="lakeus-theme-designer-test-theme-button class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-test-theme") +
+                                '<button id="lakeus-theme-designer-copy-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-copy-theme") +
+                                '<button id="lakeus-theme-designer-paste-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme") +
+                                '<button id="lakeus-theme-designer-test-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-test-theme") +
                             '</div>' +
                         '</div>' +
                     '</form>' +
@@ -466,6 +466,9 @@ Lakeus.initThemeDesigner = function () {
             var checked = $(this).prop('checked');
             $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', checked);
         });
+        $("#lakeus-theme-designer-copy-theme-button").click( function(e) { e.preventDefault; Lakeus.copyTheme();  });
+        $("#lakeus-theme-designer-paste-theme-button").click( function(e) { e.preventDefault; Lakeus.pasteThemeFromCurrentSettings();  });
+        $("#lakeus-theme-designer-test-theme-button").click( function(e) { e.preventDefault; Lakeus.testTheme();  });
         Lakeus.updateVariablesListFromForm();
     }
 
@@ -538,3 +541,19 @@ Lakeus.updateVariablesListFromForm = function () {
         }
     });
 };
+
+Lakeus.generateTheme = function () {
+    
+}
+
+Lakeus.copyTheme = function () {
+
+}
+
+Lakeus.pasteThemeFromCurrentSettings = function () {
+
+}
+
+Lakeus.testTheme = function () {
+
+}
