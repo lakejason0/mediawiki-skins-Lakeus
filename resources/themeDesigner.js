@@ -454,8 +454,8 @@ Lakeus.initThemeDesigner = function () {
                             constructThemeDesignerBody() +
                             '<div id="lakeus-theme-designer-action-buttons">' +
                                 '<button id="lakeus-theme-designer-copy-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-copy-theme") +
-                                '<button id="lakeus-theme-designer-paste-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme") +
                                 '<button id="lakeus-theme-designer-test-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-test-theme") +
+                                '<button id="lakeus-theme-designer-paste-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme") +
                             '</div>' +
                         '</div>' +
                     '</form>' +
@@ -543,7 +543,7 @@ Lakeus.updateVariablesListFromForm = function () {
 };
 
 Lakeus.generateTheme = function () {
-    
+
 }
 
 Lakeus.copyTheme = function () {
