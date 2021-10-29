@@ -139,6 +139,51 @@ Lakeus.initThemeDesigner = function() {
                 return i;
             },
         },
+        "background-color-toggle-list-card": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "manual",
+            input: "color",
+            default: "#eeeeee",
+            calculate: function(i){
+                return i;
+            },
+        },
+        "background-color-toggle-list-item-hover": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "manual",
+            input: "color",
+            default: "#eeeeee",
+            calculate: function(i){
+                return i;
+            },
+        },
+        "background-color-toggle-list-item-focus": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#cccccc",
+            calculate: function(i){
+                return Lakeus.calculateColorByLuminance(i, 0.8);
+            },
+        },
+        "border-color-toggle-list": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#dddddd",
+            calculate: function(i){
+                return Lakeus.calculateColorByLuminance(i, 0.8);
+            },
+        },
+        "mask-background": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "manual",
+            input: "text",
+            default: "rgba( 0, 0, 0, 0.8 )",
+            calculate: function(i){
+                return i;
+            },
+        }
     };
 
     function constructThemeDesignerBody() {
