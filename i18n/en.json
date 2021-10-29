@@ -15,6 +15,12 @@
   "lakeus-theme-designer-system-messages-loaded": "Successfully loaded required system messages.",
   "lakeus-theme-designer-all-loaded": "Theme Designer is loaded.",
   "lakeus-theme-designer-global": "Global",
+  "lakeus-theme-designer-background-color-base": "Site background color",
+  "lakeus-theme-designer-color-link": "Link color",
+  "lakeus-theme-designer-color-link--visited": "Visited link color",
+  "lakeus-theme-designer-font-family": "Default font family",
+  "lakeus-theme-designer-font-family-serif": "Default font family (Serif)",
   "lakeus-theme-designer-page-header": "Page Header",
+  "lakeus-theme-designer-color-header": "Page header color",
   "lakeus-theme-designer-toggle-list": "Sidebar menu"
 }
