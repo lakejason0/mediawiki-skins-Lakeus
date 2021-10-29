@@ -6,6 +6,13 @@
     z-index: 199;
 }
 
+#lakeus-theme-designer-title {
+    font-size: 100%;
+    font-weight: bold;
+    margin-bottom: 0.6em;
+    border-bottom: 1px solid #a2a9b1;
+}
+
 #lakeus-theme-designer-portlet {
     position: relative;
 }
@@ -87,4 +94,31 @@
     padding: 0;
     margin: 0;
     cursor: pointer;
+}
+
+#lakeus-theme-designer-portlet-body input[type="text"],
+#lakeus-theme-designer-portlet-body input[type="password"],
+#lakeus-theme-designer-portlet-body input[type="email"],
+#lakeus-theme-designer-portlet-body input[type="url"],
+#lakeus-theme-designer-portlet-body input[type="date"],
+#lakeus-theme-designer-portlet-body input[type="month"],
+#lakeus-theme-designer-portlet-body input[type="time"],
+#lakeus-theme-designer-portlet-body input[type="datetime"],
+#lakeus-theme-designer-portlet-body input[type="datetime-local"],
+#lakeus-theme-designer-portlet-body input[type="week"],
+#lakeus-theme-designer-portlet-body input[type="number"],
+#lakeus-theme-designer-portlet-body input[type="search"],
+#lakeus-theme-designer-portlet-body input[type="tel"],
+#lakeus-theme-designer-portlet-body input[type="color"],
+#lakeus-theme-designer-portlet-body input[type="file"],
+#lakeus-theme-designer-portlet-body select,
+#lakeus-theme-designer-portlet-body label,
+#lakeus-theme-designer-portlet-body textarea {
+    display: block;
+    margin: 0.25em 0;
+}
+
+#lakeus-theme-designer-portlet-body input[type="checkbox"],
+#lakeus-theme-designer-portlet-body input[type="radio"] {
+    margin-right: 0.2em;
 }

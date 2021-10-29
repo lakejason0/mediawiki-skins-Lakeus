@@ -298,11 +298,20 @@ Lakeus.initThemeDesigner = function () {
                 return i;
             },
         },
+        "font-family-headings": {
+            fieldset: "lakeus-theme-designer-body",
+            rule: "manual",
+            input: "text",
+            default: "var(--font-family-serif)",
+            calculate: function (i) {
+                return i;
+            },
+        },
         "background-color-edit-options": {
             fieldset: "lakeus-theme-designer-body",
             rule: "manual",
             input: "color",
-            default: "#eee",
+            default: "#eeeeee",
             calculate: function (i) {
                 return i;
             },
@@ -358,6 +367,15 @@ Lakeus.initThemeDesigner = function () {
                 return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, 0.8);
             },
         },
+        "background-color-footer": {
+            fieldset: "lakeus-theme-designer-footer",
+            rule: "manual",
+            input: "color",
+            default: "#eeeeee",
+            calculate: function (i) {
+                return i;
+            }
+        }
     };
 
     function constructThemeDesignerBody() {
@@ -409,14 +427,14 @@ Lakeus.initThemeDesigner = function () {
         if (variableContent.rule === 'calculateWhenNotNeeded') {
             settingElement +=
                 '<label>' +
-                    mw.message('lakeus-theme-designer-auto-calculate') +
                     '<input type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
+                    mw.message('lakeus-theme-designer-auto-calculate') +
                 '</label>';
         } else if (variableContent.rule === 'calculateWhenNeeded') {
             settingElement +=
                 '<label>' +
-                    mw.message('lakeus-theme-designer-auto-calculate') +
                     '<input checked type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
+                    mw.message('lakeus-theme-designer-auto-calculate') +
                 '</label>';
         }
 
@@ -432,6 +450,7 @@ Lakeus.initThemeDesigner = function () {
                     '<button id="lakeus-theme-designer-modal-button">🖌️</button>' +
                     '<form id="lakeus-theme-designer-portlet-body">' +
                         '<div id="lakeus-theme-designer-portlet-body-container">' +
+                            '<h1 id="lakeus-theme-designer-title">' + mw.message("lakeus-theme-designer") + '</h1>' +
                             constructThemeDesignerBody() +
                         '</div>' +
                     '</form>' +
@@ -448,10 +467,48 @@ Lakeus.initThemeDesigner = function () {
     console.log("[Lakeus] Theme Designer is loading...");
     $.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg']), $.ready).then(function () {
         return new mw.Api().loadMessagesIfMissing([
-            'lakeus-theme-designer-system-message-loaded',
-            'lakeus-theme-designer-all-loaded',
-            'lakeus-theme-designer-page-header',
-            'lakeus-theme-designer-global',
+            "lakeus-theme-designer",
+            "lakeus-theme-designer-system-messages-loaded",
+            "lakeus-theme-designer-all-loaded",
+            "lakeus-theme-designer-auto-calculate",
+            "lakeus-theme-designer-global",
+            "lakeus-theme-designer-background-color-base",
+            "lakeus-theme-designer-color-link",
+            "lakeus-theme-designer-color-link--visited",
+            "lakeus-theme-designer-elevation",
+            "lakeus-theme-designer-font-family",
+            "lakeus-theme-designer-font-family-serif",
+            "lakeus-theme-designer-page-header",
+            "lakeus-theme-designer-color-header",
+            "lakeus-theme-designer-background-color-search-suggestions",
+            "lakeus-theme-designer-border-color-search-suggestions",
+            "lakeus-theme-designer-color-search-suggestions-text",
+            "lakeus-theme-designer-background-color-search-suggestions-current",
+            "lakeus-theme-designer-color-search-suggestions-text-current",
+            "lakeus-theme-designer-background-color-search-input",
+            "lakeus-theme-designer-toggle-list",
+            "lakeus-theme-designer-background-color-toggle-list",
+            "lakeus-theme-designer-background-color-toggle-list-card",
+            "lakeus-theme-designer-logo-text-color-toggle-list",
+            "lakeus-theme-designer-background-color-toggle-list-item-hover",
+            "lakeus-theme-designer-background-color-toggle-list-item-focus",
+            "lakeus-theme-designer-border-color-toggle-list",
+            "lakeus-theme-designer-subheader-color-toggle-list",
+            "lakeus-theme-designer-mask-background",
+            "lakeus-theme-designer-body",
+            "lakeus-theme-designer-background-color-content",
+            "lakeus-theme-designer-background-color-article",
+            "lakeus-theme-designer-border-color-content",
+            "lakeus-theme-designer-color-accent-header-tab",
+            "lakeus-theme-designer-border-color-header-tab",
+            "lakeus-theme-designer-color-tagline",
+            "lakeus-theme-designer-background-color-edit-options",
+            "lakeus-theme-designer-border-color-edit-options",
+            "lakeus-theme-designer-portlet",
+            "lakeus-theme-designer-background-color-portlet-body",
+            "lakeus-theme-designer-background-color-portlet-item-hover",
+            "lakeus-theme-designer-background-color-portlet-item-focus",
+            "lakeus-theme-designer-border-color-portlet-body",
         ]);
     }).then(function () {
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));
