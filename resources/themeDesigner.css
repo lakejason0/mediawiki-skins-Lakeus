@@ -70,7 +70,7 @@
     box-shadow: 0 5px 17px 0 rgba(0,0,0,0.24),0 0 1px #a2a9b1;
     border-radius: 3px;
     padding: 0.4em;
-    min-height: 500px;
+    max-height: 500px;
 }
 
 #lakeus-theme-designer #lakeus-theme-designer-modal-button {
