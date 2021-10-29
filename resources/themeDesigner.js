@@ -452,6 +452,11 @@ Lakeus.initThemeDesigner = function () {
                         '<div id="lakeus-theme-designer-portlet-body-container">' +
                             '<h1 id="lakeus-theme-designer-title">' + mw.message("lakeus-theme-designer") + '</h1>' +
                             constructThemeDesignerBody() +
+                            '<div id="lakeus-theme-designer-action-buttons">' +
+                                '<button id="lakeus-theme-designer-copy-theme-button class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-copy-theme") +
+                                '<button id="lakeus-theme-designer-paste-theme-button class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme") +
+                                '<button id="lakeus-theme-designer-test-theme-button class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-test-theme") +
+                            '</div>' +
                         '</div>' +
                     '</form>' +
                 '</div>' +
@@ -471,6 +476,9 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-system-messages-loaded",
             "lakeus-theme-designer-all-loaded",
             "lakeus-theme-designer-auto-calculate",
+            "lakeus-theme-designer-copy-theme",
+            "lakeus-theme-designer-paste-theme",
+            "lakeus-theme-designer-test-theme",
             "lakeus-theme-designer-global",
             "lakeus-theme-designer-background-color-base",
             "lakeus-theme-designer-color-link",
@@ -502,6 +510,7 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-color-accent-header-tab",
             "lakeus-theme-designer-border-color-header-tab",
             "lakeus-theme-designer-color-tagline",
+            "lakeus-theme-designer-font-family-headings",
             "lakeus-theme-designer-background-color-edit-options",
             "lakeus-theme-designer-border-color-edit-options",
             "lakeus-theme-designer-portlet",
@@ -509,6 +518,8 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-background-color-portlet-item-hover",
             "lakeus-theme-designer-background-color-portlet-item-focus",
             "lakeus-theme-designer-border-color-portlet-body",
+            "lakeus-theme-designer-footer",
+            "lakeus-theme-designer-background-color-footer",
         ]);
     }).then(function () {
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));

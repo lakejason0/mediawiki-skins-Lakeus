@@ -122,3 +122,29 @@
 #lakeus-theme-designer-portlet-body input[type="radio"] {
     margin-right: 0.2em;
 }
+
+#lakeus-theme-designer-portlet-body #lakeus-theme-designer-action-buttons {
+    position: sticky;
+    background: #fff;
+    bottom: 0;
+    margin-top: -1px;
+    border-top: 1px solid #c8ccd1;
+    padding: 1em 0;
+    box-shadow: 0 -4px 4px -4px rgb(0 0 0 / 25%);
+}
+
+#lakeus-theme-designer-portlet-body .lakeus-theme-designer-action-button {
+    padding: 0.35em;
+    margin: 0.25em;
+    background-color: #fff;
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+}
+
+#lakeus-theme-designer-copy-theme-button {
+    background-color: #36c;
+    border-color: #36c;
+    color: white;
+}
