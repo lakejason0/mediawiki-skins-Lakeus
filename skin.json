@@ -41,7 +41,8 @@
             "skins.lakeus.styles"
           ],
           "scripts": [
-            "skins.lakeus"
+            "skins.lakeus",
+            "skins.lakeus.designer"
           ],
           "responsive": true
         }
