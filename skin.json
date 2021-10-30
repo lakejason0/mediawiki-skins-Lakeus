@@ -92,6 +92,7 @@
       ]
     },
     "skins.lakeus.designer": {
+      "es6": true,
       "targets": [
         "desktop",
         "mobile"
