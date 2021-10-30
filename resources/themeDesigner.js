@@ -455,10 +455,14 @@ Lakeus.initThemeDesigner = function () {
                             '<div id="lakeus-theme-designer-result">' +
                             '</div>' +
                             '<div id="lakeus-theme-designer-action-buttons">' +
-                                '<button id="lakeus-theme-designer-copy-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-copy-theme") +
-                                '<button id="lakeus-theme-designer-test-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-test-theme") +
-                                '<button id="lakeus-theme-designer-paste-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme") +
-                                '<button disabled id="lakeus-theme-designer-clear-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-clear-theme") +
+                                '<button type="button" id="lakeus-theme-designer-copy-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-copy-theme") +
+                                '</button>'+
+                                '<button type="button" id="lakeus-theme-designer-test-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-test-theme") +
+                                '</button>'+
+                                '<button type="button" id="lakeus-theme-designer-paste-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme") +
+                                '</button>'+
+                                '<button type="button" disabled id="lakeus-theme-designer-clear-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-clear-theme") +
+                                '</button>'+
                             '</div>' +
                         '</div>' +
                     '</form>' +
@@ -570,6 +574,7 @@ Lakeus.generateTheme = function () {
 }
 
 Lakeus.copyTheme = function () {
+    Lakeus.updateVariablesListFromForm();
     generatedCode = Lakeus.generateTheme();
     if (navigator.clipboard) {
         navigator.clipboard.writeText(generatedCode).then(function() {
@@ -595,15 +600,16 @@ Lakeus.copyTheme = function () {
 Lakeus.pasteThemeFromCurrentSettings = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         if (v.input === 'color') {
-            Lakeus.variablesList[k].value = Lakeus.colorNameToHex(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k));
+            Lakeus.variablesList[k].value = Lakeus.colorNameToHex(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k) || v.default);
         } else {
-            Lakeus.variablesList[k].value = window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k);
+            Lakeus.variablesList[k].value = window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k) || v.default;
         }
     })
     Lakeus.updateFormFromVariablesList();
 }
 
 Lakeus.testTheme = function () {
+    Lakeus.updateVariablesListFromForm();
     $("body").attr("testing", "true");
     $("#lakeus-theme-designer-test-theme-button").prop('disabled', true);
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', false);
@@ -647,8 +653,14 @@ Lakeus.colorNameToHex = function(color) {
     "wheat":"#f5deb3","white":"#ffffff","whitesmoke":"#f5f5f5",
     "yellow":"#ffff00","yellowgreen":"#9acd32"};
 
-    if (typeof colors[color.toLowerCase()] != 'undefined')
+    console.log(color);
+
+    if (typeof colors[color.toLowerCase()] != 'undefined') {
         return colors[color.toLowerCase()];
+    } else if (String(color).replace(/[^0-9a-f]/gi, '').length < 6) {
+        hex = String(color).replace(/[^0-9a-f]/gi, '');
+        color = "#" + hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
 
     return color;
 }
