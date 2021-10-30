@@ -538,7 +538,7 @@ Lakeus.initThemeDesigner = function () {
     }).then(function () {
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));
         var stylePath = mw.config.get('stylepath');
-        // $('head').append('<link rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
         constructThemeDesigner();
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-all-loaded'));
     });
@@ -663,4 +663,8 @@ Lakeus.colorNameToHex = function(color) {
     }
 
     return color;
+}
+
+if (mw.user.options.get( 'lakeus-enable-theme-designer' )) {
+    Lakeus.initThemeDesigner();
 }

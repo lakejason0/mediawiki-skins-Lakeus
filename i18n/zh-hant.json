@@ -12,6 +12,8 @@
 	"lakeus-openmainmenu": "開啟主選單",
 	"lakeus-articlecount": "{{PLURAL:$1|篇文章}}",
 	"lakeus-footermessage": "由Lakeus外觀提供",
+	"lakeus-preferences-enable-theme-designer": "啟用主題設計器",
+	"lakeus-preferences-enable-theme-designer-desc": "在每個頁面上啟用Lakeus主題設計器。",
 	"lakeus-theme-designer": "Lakeus主題設計器",
 	"lakeus-theme-designer-system-messages-loaded": "已成功載入所需的系統訊息。",
 	"lakeus-theme-designer-all-loaded": "已載入主題設計器。",

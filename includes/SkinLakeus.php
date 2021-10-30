@@ -1,6 +1,6 @@
 <?php
 
-// use SiteStats;
+use SiteStats;
 
 class SkinLakeus extends SkinMustache {
     /**

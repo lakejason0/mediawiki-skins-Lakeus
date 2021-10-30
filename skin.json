@@ -30,7 +30,9 @@
             "otherlanguages",
             "tagline",
             "lakeus-openmainmenu",
-            "lakeus-articlecount"
+            "lakeus-articlecount",
+            "lakeus-preferences-enable-theme-designer",
+            "lakeus-preferences-enable-theme-designer-desc"
           ],
           "styles": [
             "mediawiki.ui.icon",
@@ -87,6 +89,68 @@
       "packageFiles": [
         "resources/skin.js"
       ]
+    },
+    "skins.lakeus.designer": {
+      "targets": [
+        "desktop",
+        "mobile"
+      ],
+      "messages": [
+        "lakeus-theme-designer",
+        "lakeus-theme-designer-system-messages-loaded",
+        "lakeus-theme-designer-all-loaded",
+        "lakeus-theme-designer-auto-calculate",
+        "lakeus-theme-designer-copy-theme",
+        "lakeus-theme-designer-paste-theme",
+        "lakeus-theme-designer-test-theme",
+        "lakeus-theme-designer-clear-theme",
+        "lakeus-theme-designer-copied",
+        "lakeus-theme-designer-copy-failed",
+        "lakeus-theme-designer-global",
+        "lakeus-theme-designer-background-color-base",
+        "lakeus-theme-designer-color-link",
+        "lakeus-theme-designer-color-link--visited",
+        "lakeus-theme-designer-elevation",
+        "lakeus-theme-designer-font-family",
+        "lakeus-theme-designer-font-family-serif",
+        "lakeus-theme-designer-page-header",
+        "lakeus-theme-designer-color-header",
+        "lakeus-theme-designer-background-color-search-suggestions",
+        "lakeus-theme-designer-border-color-search-suggestions",
+        "lakeus-theme-designer-color-search-suggestions-text",
+        "lakeus-theme-designer-background-color-search-suggestions-current",
+        "lakeus-theme-designer-color-search-suggestions-text-current",
+        "lakeus-theme-designer-background-color-search-input",
+        "lakeus-theme-designer-toggle-list",
+        "lakeus-theme-designer-background-color-toggle-list",
+        "lakeus-theme-designer-background-color-toggle-list-card",
+        "lakeus-theme-designer-logo-text-color-toggle-list",
+        "lakeus-theme-designer-background-color-toggle-list-item-hover",
+        "lakeus-theme-designer-background-color-toggle-list-item-focus",
+        "lakeus-theme-designer-border-color-toggle-list",
+        "lakeus-theme-designer-subheader-color-toggle-list",
+        "lakeus-theme-designer-mask-background",
+        "lakeus-theme-designer-body",
+        "lakeus-theme-designer-background-color-content",
+        "lakeus-theme-designer-background-color-article",
+        "lakeus-theme-designer-border-color-content",
+        "lakeus-theme-designer-color-accent-header-tab",
+        "lakeus-theme-designer-border-color-header-tab",
+        "lakeus-theme-designer-color-tagline",
+        "lakeus-theme-designer-font-family-headings",
+        "lakeus-theme-designer-background-color-edit-options",
+        "lakeus-theme-designer-border-color-edit-options",
+        "lakeus-theme-designer-portlet",
+        "lakeus-theme-designer-background-color-portlet-body",
+        "lakeus-theme-designer-background-color-portlet-item-hover",
+        "lakeus-theme-designer-background-color-portlet-item-focus",
+        "lakeus-theme-designer-border-color-portlet-body",
+        "lakeus-theme-designer-footer",
+        "lakeus-theme-designer-background-color-footer"
+      ],
+      "packageFiles": [
+        "resources/themeDesigner.js"
+      ]
     }
   },
   "ResourceModuleSkinStyles": {
@@ -97,8 +161,17 @@
     }
   },
   "AutoloadClasses": {
-    "SkinLakeus": "SkinLakeus.php"
+    "SkinLakeus": "includes/SkinLakeus.php"
   },
+  "AutoloadNamespaces": {
+    "Lakeus\\": "includes/"
+  },
+  "Hooks": {
+    "GetPreferences": "Lakeus\\Hooks::onGetPreferences"
+  },
+	"DefaultUserOptions": {
+		"lakeus-enable-theme-designer": 0
+	},
   "config": {
     "LakeusShowRepositoryLink": {
       "value": true,

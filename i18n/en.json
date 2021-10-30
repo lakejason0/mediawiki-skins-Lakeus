@@ -12,6 +12,8 @@
   "lakeus-openmainmenu": "Open main menu",
   "lakeus-articlecount": "{{PLURAL:$1|Article|Articles}}",
   "lakeus-footermessage": "Powered by Lakeus Skin",
+  "lakeus-preferences-enable-theme-designer": "Enable Theme Designer",
+  "lakeus-preferences-enable-theme-designer-desc": "Enable Lakeus Theme Designer on every pages.",
   "lakeus-theme-designer": "Lakeus Theme Designer",
   "lakeus-theme-designer-system-messages-loaded": "Successfully loaded required system messages.",
   "lakeus-theme-designer-all-loaded": "Theme Designer is loaded.",
