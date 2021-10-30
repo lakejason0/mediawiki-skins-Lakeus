@@ -150,6 +150,11 @@
       ],
       "packageFiles": [
         "resources/themeDesigner.js"
+      ],
+      "dependencies": [
+        "mediawiki.api",
+        "mediawiki.jqueryMsg",
+        "user.defaults"
       ]
     }
   },

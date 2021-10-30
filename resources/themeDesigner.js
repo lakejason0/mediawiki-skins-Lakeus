@@ -665,6 +665,8 @@ Lakeus.colorNameToHex = function(color) {
     return color;
 }
 
-if (mw.user.options.get( 'lakeus-enable-theme-designer' )) {
-    Lakeus.initThemeDesigner();
-}
+$.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg', 'user.defaults']), $.ready).then( function (){
+    if (mw.user.options.get( 'lakeus-enable-theme-designer' )) {
+        Lakeus.initThemeDesigner();
+    }
+});
