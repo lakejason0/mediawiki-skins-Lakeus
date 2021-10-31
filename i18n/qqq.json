@@ -49,7 +49,7 @@
 	"lakeus-theme-designer-mask-background": "A label of a setting. The sidebar menu mask (by default the dimmed part) background.",
 	"lakeus-theme-designer-body": "A form section title. Settings in this section will affect the page body.",
 	"lakeus-theme-designer-background-color-content": "A label of a setting. Body background color, or the background color of the <code>&lt;body&gt;</code> element.",
-	"lakeus-theme-designer-background-color-article": "A label of a setting. The background color of the content area, including site notice, the actual page content, categories and so on.",
+	"lakeus-theme-designer-background-color-body": "A label of a setting. The background color of the content area, including site notice, the actual page content, categories and so on.",
 	"lakeus-theme-designer-border-color-content": "A label of a setting. The bordor color of some skin elements in the content area, including site notice and categories.",
 	"lakeus-theme-designer-color-accent-header-tab": "A label of a setting. The text color of the action header tabs.",
 	"lakeus-theme-designer-border-color-header-tab": "A label of a setting. The border color of the action header tabs.",

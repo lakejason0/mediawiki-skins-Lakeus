@@ -55,10 +55,11 @@ Lakeus.initThemeDesigner = function () {
             input: "color",
             default: "#0b0080",
             calculateFrom: [
-                "color-link"
+                "color-link",
+                "background-color-content",
             ],
             calculate: function (i) {
-                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, 0.8);
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
             },
         },
         "elevation": {
@@ -97,6 +98,18 @@ Lakeus.initThemeDesigner = function () {
                 return i;
             },
         },
+        "text-color-header": {
+            fieldset: "lakeus-theme-designer-page-header",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#000000",
+            calculateFrom: [
+                "color-header"
+            ],
+            calculate: function (i) {
+                return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+            },
+        },
         "background-color-search-suggestions": {
             fieldset: "lakeus-theme-designer-page-header",
             rule: "manual",
@@ -112,10 +125,11 @@ Lakeus.initThemeDesigner = function () {
             input: "color",
             default: "#c8ccd1",
             calculateFrom: [
-                "background-color-search-suggestions"
+                "background-color-search-suggestions",
+                "color-header"
             ],
             calculate: function (i) {
-                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, 0.8);
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
             },
         },
         "background-color-search-suggestions-current": {
@@ -160,6 +174,19 @@ Lakeus.initThemeDesigner = function () {
                 return i;
             },
         },
+        "border-color-search-bar": {
+            fieldset: "lakeus-theme-designer-page-header",
+            rule: "manual",
+            input: "color",
+            default: "#eaecf0",
+            calculateFrom: [
+                "background-color-search-input",
+                "color-header",
+            ],
+            calculate: function (i) {
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.95,1.05));
+            },
+        },
         "background-color-toggle-list": {
             fieldset: "lakeus-theme-designer-toggle-list",
             rule: "manual",
@@ -178,6 +205,18 @@ Lakeus.initThemeDesigner = function () {
                 return i;
             },
         },
+        "text-color-toggle-list-item": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#1c1c1c",
+            calculateFrom: [
+                "background-color-toggle-list"
+            ],
+            calculate: function (i) {
+                return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+            },
+        },
         "background-color-toggle-list-item-hover": {
             fieldset: "lakeus-theme-designer-toggle-list",
             rule: "manual",
@@ -187,16 +226,41 @@ Lakeus.initThemeDesigner = function () {
                 return i;
             },
         },
+        "text-color-toggle-list-item-hover": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#3a3a3a",
+            calculateFrom: [
+                "background-color-toggle-list-item-hover"
+            ],
+            calculate: function (i) {
+                return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+            },
+        },
         "background-color-toggle-list-item-focus": {
             fieldset: "lakeus-theme-designer-toggle-list",
             rule: "calculateWhenNotNeeded",
             input: "color",
             default: "#cccccc",
             calculateFrom: [
-                "background-color-toggle-list-item-hover"
+                "background-color-toggle-list-item-hover",
+                "background-color-toggle-list",
             ],
             calculate: function (i) {
-                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, 0.8);
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
+            },
+        },
+        "text-color-toggle-list-item-focus": {
+            fieldset: "lakeus-theme-designer-toggle-list",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#3a3a3a",
+            calculateFrom: [
+                "background-color-toggle-list-item-focus"
+            ],
+            calculate: function (i) {
+                return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
             },
         },
         "border-color-toggle-list": {
@@ -205,19 +269,23 @@ Lakeus.initThemeDesigner = function () {
             input: "color",
             default: "#dddddd",
             calculateFrom: [
-                "background-color-toggle-list"
+                "background-color-toggle-list",
+                "background-color-toggle-list",
             ],
             calculate: function (i) {
-                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, 0.8);
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
             },
         },
         "subheader-color-toggle-list": {
             fieldset: "lakeus-theme-designer-toggle-list",
             rule: "manual",
-            input: "text",
-            default: "rgba( 0, 0, 0, 0.6 )",
+            input: "color",
+            default: "#909aa1",
+            calculateFrom: [
+                "background-color-toggle-list-card"
+            ],
             calculate: function (i) {
-                return i;
+                return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value,"#6a6a6a","#c3c3c3");
             },
         },
         "logo-text-color-toggle-list": {
@@ -250,7 +318,19 @@ Lakeus.initThemeDesigner = function () {
                 return i;
             },
         },
-        "background-color-article": {
+        "text-color-content": {
+            fieldset: "lakeus-theme-designer-body",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#000000",
+            calculateFrom: [
+                "background-color-content"
+            ],
+            calculate: function (i) {
+                return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+            },
+        },
+        "background-color-body": {
             fieldset: "lakeus-theme-designer-body",
             rule: "manual",
             input: "color",
@@ -259,16 +339,29 @@ Lakeus.initThemeDesigner = function () {
                 return i;
             },
         },
+        "text-color-body": {
+            fieldset: "lakeus-theme-designer-body",
+            rule: "calculateWhenNeeded",
+            input: "color",
+            default: "#000000",
+            calculateFrom: [
+                "background-color-body"
+            ],
+            calculate: function (i) {
+                return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+            },
+        },
         "border-color-content": {
             fieldset: "lakeus-theme-designer-body",
             rule: "calculateWhenNotNeeded",
             input: "color",
             default: "#cccccc",
             calculateFrom: [
-                "background-color-content"
+                "background-color-content",
+                "background-color-content",
             ],
             calculate: function (i) {
-                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, 0.6);
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.6,1.4));
             },
         },
         "color-accent-header-tab": {
@@ -278,6 +371,32 @@ Lakeus.initThemeDesigner = function () {
             default: "#54595d",
             calculate: function (i) {
                 return i;
+            },
+        },
+        "color-accent-header-tab-selected": {
+            fieldset: "lakeus-theme-designer-body",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#0b0080",
+            calculateFrom: [
+                "color-accent-header-tab",
+                "background-color-content"
+            ],
+            calculate: function (i) {
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.6,1.4));
+            },
+        },
+        "color-accent-header-tab-new": {
+            fieldset: "lakeus-theme-designer-body",
+            rule: "calculateWhenNotNeeded",
+            input: "color",
+            default: "#54595d",
+            calculateFrom: [
+                "color-accent-header-tab",
+                "background-color-content"
+            ],
+            calculate: function (i) {
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.6,1.4));
             },
         },
         "border-color-header-tab": {
@@ -349,10 +468,11 @@ Lakeus.initThemeDesigner = function () {
             input: "color",
             default: "#cccccc",
             calculateFrom: [
-                "background-color-portlet-item-hover"
+                "background-color-portlet-item-hover",
+                "background-color-portlet"
             ],
             calculate: function (i) {
-                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, 0.8);
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
             },
         },
         "border-color-portlet-body": {
@@ -361,10 +481,11 @@ Lakeus.initThemeDesigner = function () {
             input: "color",
             default: "#a2a9b1",
             calculateFrom: [
-                "background-color-portlet-body"
+                "background-color-portlet-body",
+                "background-color-content"
             ],
             calculate: function (i) {
-                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, 0.8);
+                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
             },
         },
         "background-color-footer": {
@@ -519,7 +640,7 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-mask-background",
             "lakeus-theme-designer-body",
             "lakeus-theme-designer-background-color-content",
-            "lakeus-theme-designer-background-color-article",
+            "lakeus-theme-designer-background-color-body",
             "lakeus-theme-designer-border-color-content",
             "lakeus-theme-designer-color-accent-header-tab",
             "lakeus-theme-designer-border-color-header-tab",
@@ -537,10 +658,12 @@ Lakeus.initThemeDesigner = function () {
         ]);
     }).then(function () {
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));
-        var stylePath = mw.config.get('stylepath');
-        $('head').append('<link rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
-        constructThemeDesigner();
-        console.log("[Lakeus] " + mw.message('lakeus-theme-designer-all-loaded'));
+        $.getScript("https://cdn.jsdelivr.net/npm/chroma-js@2.1.2/chroma.min.js", function(){
+            var stylePath = mw.config.get('stylepath');
+            $('head').append('<link rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
+            constructThemeDesigner();
+            console.log("[Lakeus] " + mw.message('lakeus-theme-designer-all-loaded'));
+        });
     });
 };
 

@@ -3,7 +3,7 @@
 /* Make less variables to CSS ones */
 :root {
   --background-color-base: white;
-  --background-color-article: white;
+  --background-color-body: white;
   --background-color-content: white;
   --background-color-footer: #eee;
   --background-color-toggle-list: white;
@@ -24,12 +24,20 @@
   --border-color-search-bar: var(--color-gray-2);
   --border-color-portlet-body: var(--color-gray);
   --border-color-header-tab: var(--color-gray-2);
-  --subheader-color-toggle-list: rgba( 0, 0, 0, 0.6 );
+  --subheader-color-toggle-list: #6a6a6a;
   --logo-text-color-toggle-list: inherit;
+  --text-color-toggle-list-item: #1c1c1c;
+  --text-color-toggle-list-item-hover: #3a3a3a;
+  --text-color-toggle-list-item-focus: #3a3a3a;
+  --text-color-content: inherit;
+  --text-color-header: inherit;
+  --text-color-body: inherit;
   --color-search-suggestions-text: #000;
   --color-search-suggestions-text-current: #fff;
   --color-tagline: var(--color-base);
   --color-accent-header-tab: var(--color-base);
+  --color-accent-header-tab-selected: #0b0080;
+  --color-accent-header-tab-new: #54595d;
   --color-header: white;
   --color-base: #54595d;
   --color-gray: #a2a9b1;
@@ -44,7 +52,7 @@
 }
 
 @background-color-base: var( --background-color-base );
-@background-color-article: var( --background-color-article );
+@background-color-body: var( --background-color-body );
 @background-color-content: var( --background-color-content );
 @background-color-footer: var( --background-color-footer );
 @background-color-toggle-list: var( --background-color-toggle-list );
@@ -67,10 +75,18 @@
 @border-color-header-tab: var( --border-color-header-tab );
 @subheader-color-toggle-list: var( --subheader-color-toggle-list );
 @logo-text-color-toggle-list: var( --logo-text-color-toggle-list );
+@text-color-content: var( --text-color-content );
+@text-color-header: var( --text-color-header );
+@text-color-toggle-list-item: var( --text-color-toggle-list-item );
+@text-color-toggle-list-item-hover: var( --text-color-toggle-list-item-hover );
+@text-color-toggle-list-item-focus: var( --text-color-toggle-list-item-focus );
+@text-color-body: var( --text-color-body );
 @color-search-suggestions-text: var( --color-search-suggestions-text );
 @color-search-suggestions-text-current: var( --color-search-suggestions-text-current );
 @color-tagline: var( --color-tagline );
 @color-accent-header-tab: var( --color-accent-header-tab );
+@color-accent-header-tab-selected: var( --color-accent-header-tab-selected );
+@color-accent-header-tab-new: var( --color-accent-header-tab-new );
 @color-header: var( --color-header );
 @color-base: var( --color-base );
 @color-gray: var( --color-gray );
