@@ -64,12 +64,12 @@
 	"lakeus-theme-designer-border-color-portlet-body": "A label of a setting. The border color of dropdown menus.",
 	"lakeus-theme-designer-footer": "A form section title. Settings in this section will affect the footer",
 	"lakeus-theme-designer-background-color-footer": "A label of a setting. The background color of the footer.",
-	"lakeus-theme-designer-text-color-toggle-list-item": "A label of a setting. Sidebar menu items text color.",
-	"lakeus-theme-designer-text-color-toggle-list-item-hover": "A label of a setting. Sidebar menu items hover text color",
-	"lakeus-theme-designer-text-color-toggle-list-item-focus": "A label of a setting. Sidebar menu items clicked text color",
-	"lakeus-theme-designer-text-color-content": "A label of a setting. Content text color",
-	"lakeus-theme-designer-text-color-header": "A label of a setting. Header text color",
-	"lakeus-theme-designer-text-color-body": "A label of a setting. Body text color",
-	"lakeus-theme-designer-color-accent-header-tab-selected": "A label of a setting. Action header selected tab text color",
-	"lakeus-theme-designer-color-accent-header-tab-new": "A label of a setting. Action header new tab text color"
+	"lakeus-theme-designer-text-color-toggle-list-item": "A label of a setting. The text color of sidebar menu items.",
+	"lakeus-theme-designer-text-color-toggle-list-item-hover": "A label of a setting. The text color of sidebar menu items hovered on.",
+	"lakeus-theme-designer-text-color-toggle-list-item-focus": "A label of a setting. The text color of sidebar menu items clicked.",
+	"lakeus-theme-designer-text-color-content": "A label of a setting. The text color of the content area.",
+	"lakeus-theme-designer-text-color-header": "A label of a setting. The text color of the header.",
+	"lakeus-theme-designer-text-color-body": "A label of a setting. The text color of the body.",
+	"lakeus-theme-designer-color-accent-header-tab-selected": "A label of a setting. The text color of a selected tab in the action header.",
+	"lakeus-theme-designer-color-accent-header-tab-new": "A label of a setting. The text color of a red link tab in the action header."
 }
