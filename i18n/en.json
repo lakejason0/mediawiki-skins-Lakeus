@@ -43,8 +43,8 @@
   "lakeus-theme-designer-background-color-toggle-list": "Sidebar menu background color",
   "lakeus-theme-designer-background-color-toggle-list-card": "Sidebar menu card background color",
   "lakeus-theme-designer-logo-text-color-toggle-list": "Sidebar menu card logo & article counter text color",
-  "lakeus-theme-designer-background-color-toggle-list-item-hover": "Sidebar menu items hover color",
-  "lakeus-theme-designer-background-color-toggle-list-item-focus": "Sidebar menu items clicked color",
+  "lakeus-theme-designer-background-color-toggle-list-item-hover": "Sidebar menu items hover background color",
+  "lakeus-theme-designer-background-color-toggle-list-item-focus": "Sidebar menu items clicked background color",
   "lakeus-theme-designer-border-color-toggle-list": "Sidebar menu sections border color",
   "lakeus-theme-designer-subheader-color-toggle-list": "Sidebar menu subheader text color",
   "lakeus-theme-designer-mask-background": "Sidebar menu mask background",
@@ -64,5 +64,13 @@
   "lakeus-theme-designer-background-color-portlet-item-focus": "Dropdown menu items clicked color",
   "lakeus-theme-designer-border-color-portlet-body": "Dropdown menu border color",
   "lakeus-theme-designer-footer": "Footer",
-  "lakeus-theme-designer-background-color-footer": "Footer background color"
+  "lakeus-theme-designer-background-color-footer": "Footer background color",
+  "lakeus-theme-designer-text-color-toggle-list-item": "Sidebar menu items text color",
+  "lakeus-theme-designer-text-color-toggle-list-item-hover": "Sidebar menu items hover text color",
+  "lakeus-theme-designer-text-color-toggle-list-item-focus": "Sidebar menu items clicked text color",
+  "lakeus-theme-designer-text-color-content": "Content text color",
+  "lakeus-theme-designer-text-color-header": "Header text color",
+  "lakeus-theme-designer-text-color-body": "Body text color",
+  "lakeus-theme-designer-color-accent-header-tab-selected": "Action header selected tab text color",
+  "lakeus-theme-designer-color-accent-header-tab-new": "Action header new tab text color"
 }
