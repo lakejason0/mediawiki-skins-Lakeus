@@ -2,6 +2,7 @@ window.Lakeus = window.Lakeus || {};
 
 Lakeus.initThemeDesigner = function () {
 
+    /* Deprecated */
     Lakeus.calculateColorByLuminance = function (hex, lum) {
         // validate hex string
         hex = String(hex).replace(/[^0-9a-f]/gi, '');
@@ -21,6 +22,7 @@ Lakeus.initThemeDesigner = function () {
         return rgb;
     }
 
+    /* Deprecated */
     Lakeus.getContrastYIQ = function (hexcolor, black, white) {
         hexcolor = hexcolor.replace("#", "");
         var r = parseInt(hexcolor.substr(0, 2), 16);
@@ -59,7 +61,7 @@ Lakeus.initThemeDesigner = function () {
                 "background-color-content",
             ],
             calculate: function (i) {
-                return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
+                return i || chroma(Lakeus.variablesList[this.calculateFrom[0]].value).hex('rgb');
             },
         },
         "elevation": {
@@ -723,7 +725,7 @@ Lakeus.copyTheme = function () {
 Lakeus.pasteThemeFromCurrentSettings = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         if (v.input === 'color') {
-            Lakeus.variablesList[k].value = Lakeus.colorNameToHex(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k) || v.default);
+            Lakeus.variablesList[k].value = chroma(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k) || v.default);
         } else {
             Lakeus.variablesList[k].value = window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k) || v.default;
         }
@@ -750,6 +752,8 @@ Lakeus.clearTheme = function () {
     });
 }
 
+
+/* Deprecated */
 Lakeus.colorNameToHex = function(color) {
     var colors = {"aliceblue":"#f0f8ff","antiquewhite":"#faebd7","aqua":"#00ffff","aquamarine":"#7fffd4","azure":"#f0ffff",
     "beige":"#f5f5dc","bisque":"#ffe4c4","black":"#000000","blanchedalmond":"#ffebcd","blue":"#0000ff","blueviolet":"#8a2be2","brown":"#a52a2a","burlywood":"#deb887",
@@ -786,6 +790,10 @@ Lakeus.colorNameToHex = function(color) {
     }
 
     return color;
+}
+
+Lakeus.validateContrast = function(color1, color2, contrast) {
+    return (chroma.contrast(color1,color2) >= (contrast || 4.5) ? true : false)
 }
 
 $.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg', 'user.defaults']), $.ready).then( function (){
