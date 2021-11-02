@@ -1,5 +1,13 @@
 window.Lakeus = window.Lakeus || {};
 
+/*
+    TODO List:
+    1. Use chroma("color") in Lakeus.variablesList for default and value;
+    2. Use function.prototype.bind to replace each calculate property in Lakeus.variablesList;
+    3. Remove deprecated functions and their calls;
+    4. Test it out.
+*/
+
 Lakeus.initThemeDesigner = function () {
 
     console.log("[Lakeus] Theme Designer is loading...");
