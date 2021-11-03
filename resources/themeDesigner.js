@@ -598,6 +598,7 @@ Lakeus.initThemeDesigner = function () {
                     '<label>' +
                         mw.message('lakeus-theme-designer-' + variableName) +
                         '<input type="color" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
+                        '<input type="number" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + 1 + '" />' +
                     '</label>';
             } else if (variableContent.input === 'text') {
                 settingElement +=
@@ -661,6 +662,7 @@ Lakeus.initThemeDesigner = function () {
             $(".lakeus-theme-designer-auto-calculate-checkbox").on('change', function () {
                 var checked = $(this).prop('checked');
                 $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', checked);
+                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', checked);
             });
             $("#lakeus-theme-designer-copy-theme-button").click( function(e) { e.preventDefault; Lakeus.copyTheme();  });
             $("#lakeus-theme-designer-paste-theme-button").click( function(e) { e.preventDefault; Lakeus.pasteThemeFromCurrentSettings();  });
