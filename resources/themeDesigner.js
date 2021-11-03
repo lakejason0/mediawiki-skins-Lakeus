@@ -99,6 +99,7 @@ Lakeus.initThemeDesigner = function () {
             return (yiq >= 128) ? (black ? black : '#000000') : (white ? white : '#ffffff');
         }
 
+        /* CSS Variables List */
         Lakeus.variablesList = {
             "background-color-base": {
                 fieldset: "lakeus-theme-designer-global",
@@ -679,6 +680,8 @@ Lakeus.initThemeDesigner = function () {
     });
 };
 
+/* Moving these functions into the init function */
+
 Lakeus.updateVariablesListFromForm = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
@@ -762,6 +765,9 @@ Lakeus.clearTheme = function () {
     });
 }
 
+Lakeus.validateContrast = function(color1, color2, contrast) {
+    return (chroma.contrast(color1,color2) >= (contrast || 4.5) ? true : false)
+}
 
 /* Deprecated */
 Lakeus.colorNameToHex = function(color) {
@@ -802,9 +808,7 @@ Lakeus.colorNameToHex = function(color) {
     return color;
 }
 
-Lakeus.validateContrast = function(color1, color2, contrast) {
-    return (chroma.contrast(color1,color2) >= (contrast || 4.5) ? true : false)
-}
+/* Load Theme Designer when enabled in user's preferences */
 
 $.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg', 'user.defaults']), $.ready).then( function (){
     if (mw.user.options.get( 'lakeus-enable-theme-designer' )) {
