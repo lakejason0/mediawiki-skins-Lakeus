@@ -7,6 +7,7 @@ window.Lakeus = window.Lakeus || {};
     3. Remove deprecated functions and their calls;
     4. Add a "reset" button to the form;
     5. Implement Alpha channel next to the color input;
+        5.1. This also requires to implement a field in the variables list for the alpha channel;
     6. Test it out.
 */
 
