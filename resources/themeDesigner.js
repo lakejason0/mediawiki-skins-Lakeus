@@ -720,13 +720,10 @@ Lakeus.generateTheme = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         if (v.input === 'color') {
             if (v.value.alpha() < 1) {
-                result += '    ' + '--' + k + '-hex' + ': ' + v.value.hex() + ';\n';
-                result += '    ' + '--' + k + '-alpha' + ': ' + v.value.alpha() + ';\n';
-                result += '    ' + '--' + k + ': ' + ': ' + 'rgba( var( --' + k + '-hex' + ' ), var( --' + k + '-alpha' + ' ) )' + ';\n';
+                result += '    ' + k + ': ' + v.value.css() + ';\n';
             } else {
-                result += '    ' + '--' + k + ': ' + v.value.hex() + ';\n';
+                result += '    ' + k + ': ' + v.value.hex() + ';\n';
             }
-            
         } else {
             result += '    ' + '--' + k + ': ' + v.value + ';\n';
         }
@@ -779,13 +776,10 @@ Lakeus.testTheme = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         if (v.input === 'color') {
             if (v.value.alpha() < 1) {
-                document.querySelector('html').style.setProperty('--' + k + '-hex', v.value.hex());
-                document.querySelector('html').style.setProperty('--' + k + '-alpha', v.value.alpha());
-                document.querySelector('html').style.setProperty('--' + k, 'rgba( var( --' + k + '-hex' + ' ), var( --' + k + '-alpha' + ' ) )');
+                document.querySelector('html').style.setProperty('--' + k, v.value.css());
             } else {
                 document.querySelector('html').style.setProperty("--" + k, v.value.hex());
             }
-            
         } else {
             document.querySelector('html').style.setProperty("--" + k, v.value);
         }
@@ -798,10 +792,6 @@ Lakeus.clearTheme = function () {
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', true);
     $(".lakeus-theme-designer-fieldset").prop('disabled', false);
     $.each(Lakeus.variablesList, function (k, v) {
-        if (v.input === 'color') {
-            document.querySelector('html').style.removeProperty("--" + k + '-hex');
-            document.querySelector('html').style.removeProperty("--" + k + '-alpha');
-        }
         document.querySelector('html').style.removeProperty("--" + k);
     });
 }
