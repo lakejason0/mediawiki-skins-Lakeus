@@ -775,6 +775,7 @@ Lakeus.testTheme = function () {
     $("body").attr("testing", "true");
     $("#lakeus-theme-designer-test-theme-button").prop('disabled', true);
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', false);
+    $(".lakeus-theme-designer-fieldset").prop('disabled', true);
     $.each(Lakeus.variablesList, function (k, v) {
         if (v.input === 'color') {
             if (v.value.alpha() < 1) {
@@ -795,6 +796,7 @@ Lakeus.clearTheme = function () {
     $("body").attr("testing", "false");
     $("#lakeus-theme-designer-test-theme-button").prop('disabled', false);
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', true);
+    $(".lakeus-theme-designer-fieldset").prop('disabled', false);
     $.each(Lakeus.variablesList, function (k, v) {
         if (v.input === 'color') {
             document.querySelector('html').style.removeProperty("--" + k + '-hex');
