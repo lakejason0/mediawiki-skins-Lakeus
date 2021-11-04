@@ -602,7 +602,7 @@ Lakeus.initThemeDesigner = function () {
                 settingElement +=
                     '<label>' +
                         mw.message('lakeus-theme-designer-' + variableName) +
-                        '<input type="color" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
+                        '<input type="color" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex('rgb') + '" />' +
                         '<input type="number" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' +
                     '</label>';
             } else if (variableContent.input === 'text') {
@@ -706,7 +706,7 @@ Lakeus.updateFormFromVariablesList = function () {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
         if (v.value) {
             if (v.input === 'color') {
-                inputElement.val(v.value.hex());
+                inputElement.val(v.value.hex('rgb'));
                 $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.value.alpha());
             } else {
                 inputElement.val(v.value);
