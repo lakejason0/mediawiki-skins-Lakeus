@@ -376,8 +376,8 @@ Lakeus.initThemeDesigner = function () {
             "mask-background": {
                 fieldset: "lakeus-theme-designer-toggle-list",
                 rule: "manual",
-                input: "text",
-                default: "rgba( 0, 0, 0, 0.8 )",
+                input: "color",
+                default: chroma("rgba( 0, 0, 0, 0.8 )"),
                 calculate: function (i) {
                     return i;
                 },
@@ -603,7 +603,7 @@ Lakeus.initThemeDesigner = function () {
                     '<label>' +
                         mw.message('lakeus-theme-designer-' + variableName) +
                         '<input type="color" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
-                        '<input type="number" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + 1 + '" />' +
+                        '<input type="number" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.alpha() + '" />' +
                     '</label>';
             } else if (variableContent.input === 'text') {
                 settingElement +=
@@ -689,7 +689,12 @@ Lakeus.updateVariablesListFromForm = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
         if (!(inputElement.prop('disable'))) {
-            Lakeus.variablesList[k].value = inputElement.val();
+            if(inputElement.attr('type') === 'color') {
+                var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
+                Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha(inputElementAlpha.val());
+            } else {
+                Lakeus.variablesList[k].value = inputElement.val();
+            }
         } else {
             Lakeus.variablesList[k].value = v.calculate(undefined);
         }
