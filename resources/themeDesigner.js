@@ -705,7 +705,12 @@ Lakeus.updateFormFromVariablesList = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
         if (v.value) {
-            inputElement.val(v.value);
+            if (v.input === 'color') {
+                inputElement.val(v.value.hex());
+                $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.value.alpha());
+            } else {
+                inputElement.val(v.value);
+            }
         }
     })
 }
@@ -713,7 +718,18 @@ Lakeus.updateFormFromVariablesList = function () {
 Lakeus.generateTheme = function () {
     var result = ':root {\n';
     $.each(Lakeus.variablesList, function (k, v) {
-        result += '    ' + '--' + k + ': ' + v.value + ';\n';
+        if (v.input === 'color') {
+            if (v.value.alpha() < 1) {
+                result += '    ' + '--' + k + '-hex' + ': ' + v.value.hex() + ';\n';
+                result += '    ' + '--' + k + '-alpha' + ': ' + v.value.alpha() + ';\n';
+                result += '    ' + '--' + k + ': ' + ': ' + 'rgba( var( --' + k + '-hex' + ' ), var( --' + k + '-alpha' + ' ) )' + ';\n';
+            } else {
+                result += '    ' + '--' + k + ': ' + v.value.hex() + ';\n';
+            }
+            
+        } else {
+            result += '    ' + '--' + k + ': ' + v.value + ';\n';
+        }
     });
     result += '}\n';
     return result;
