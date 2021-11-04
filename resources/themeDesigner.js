@@ -603,7 +603,7 @@ Lakeus.initThemeDesigner = function () {
                     '<label>' +
                         mw.message('lakeus-theme-designer-' + variableName) +
                         '<input type="color" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex('rgb') + '" />' +
-                        '<input type="number" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' +
+                        '<input type="number" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' +
                     '</label>';
             } else if (variableContent.input === 'text') {
                 settingElement +=
@@ -691,7 +691,8 @@ Lakeus.updateVariablesListFromForm = function () {
         if (!(inputElement.prop('disable'))) {
             if(inputElement.attr('type') === 'color') {
                 var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
-                Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha(inputElementAlpha.val());
+                console.log(inputElementAlpha.val());
+                Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha(Number(inputElementAlpha.val()));
             } else {
                 Lakeus.variablesList[k].value = inputElement.val();
             }
@@ -774,6 +775,7 @@ Lakeus.testTheme = function () {
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', false);
     $(".lakeus-theme-designer-fieldset").prop('disabled', true);
     $.each(Lakeus.variablesList, function (k, v) {
+        console.log(v);
         if (v.input === 'color') {
             if (v.value.alpha() < 1) {
                 document.querySelector('html').style.setProperty('--' + k, v.value.css());
