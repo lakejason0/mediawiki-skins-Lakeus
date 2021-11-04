@@ -377,7 +377,7 @@ Lakeus.initThemeDesigner = function () {
                 fieldset: "lakeus-theme-designer-toggle-list",
                 rule: "manual",
                 input: "color",
-                default: chroma("rgba( 0, 0, 0, 0.8 )"),
+                default: chroma("#000000").alpha(0.8),
                 calculate: function (i) {
                     return i;
                 },
