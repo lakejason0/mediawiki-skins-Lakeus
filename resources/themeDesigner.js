@@ -673,6 +673,7 @@ Lakeus.initThemeDesigner = function () {
             $("#lakeus-theme-designer-paste-theme-button").click( function(e) { e.preventDefault; Lakeus.pasteThemeFromCurrentSettings();  });
             $("#lakeus-theme-designer-test-theme-button").click( function(e) { e.preventDefault; Lakeus.testTheme();  });
             $("#lakeus-theme-designer-clear-theme-button").click( function(e) { e.preventDefault; Lakeus.clearTheme();  });
+            $("#lakeus-theme-designer-portlet-body").submit( function(e) { e.preventDefault; });
             Lakeus.updateVariablesListFromForm();
         }
             var stylePath = mw.config.get('stylepath');
