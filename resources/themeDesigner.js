@@ -693,7 +693,7 @@ Lakeus.updateVariablesListFromForm = function () {
             if(inputElement.attr('type') === 'color') {
                 var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
                 console.log(inputElementAlpha.val());
-                Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha(Number(inputElementAlpha.val()));
+                Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha((Number(inputElementAlpha.val()) <= 1 && Number(inputElementAlpha.val()) >= 0) ? Number(inputElementAlpha.val()) : 1);
             } else {
                 Lakeus.variablesList[k].value = inputElement.val();
             }
@@ -735,7 +735,10 @@ Lakeus.generateTheme = function () {
 }
 
 Lakeus.copyTheme = function () {
-    Lakeus.updateVariablesListFromForm();
+    if(!($("body").attr("testing") === 'true')) {
+        Lakeus.updateVariablesListFromForm();
+    }
+    
     generatedCode = Lakeus.generateTheme();
     if (navigator.clipboard) {
         navigator.clipboard.writeText(generatedCode).then(function() {
