@@ -717,6 +717,18 @@ Lakeus.updateFormFromVariablesList = function () {
     })
 }
 
+Lakeus.resetFormFromVariablesList = function () {
+    $.each(Lakeus.variablesList, function (k, v) {
+        var inputElement = $("#lakeus-theme-designer-input-" + k);
+        if (v.input === 'color') {
+            inputElement.val(v.default.hex('rgb'));
+            $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.default.alpha());
+        } else {
+            inputElement.val(v.default);
+        }
+    })
+}
+
 Lakeus.generateTheme = function () {
     var result = ':root {\n';
     $.each(Lakeus.variablesList, function (k, v) {
