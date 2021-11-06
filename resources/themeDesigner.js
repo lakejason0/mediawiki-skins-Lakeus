@@ -383,6 +383,7 @@ Lakeus.initThemeDesigner = function () {
                     value: chroma("#dddddd"),
                     calculateFrom: [
                         "background-color-toggle-list",
+                        "background-color-toggle-list",
                     ],
                     calculate: function (i) {
                         return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.2, 0.2);
