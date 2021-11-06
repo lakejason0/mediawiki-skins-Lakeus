@@ -102,6 +102,10 @@ Lakeus.initThemeDesigner = function () {
             return (yiq >= 128) ? (black ? black : '#000000') : (white ? white : '#ffffff');
         }
 
+        Lakeus.changeColorBrightnessByContrast = function (foregroundColor, backgroundColor, brightenCoefficient, darkenCoefficient) {
+            return (Lakeus.getContrastYIQ(backgroundColor.hex(),"black","white") === "white" ? foregroundColor.brighten(brightenCoefficient) : foregroundColor.darken(darkenCoefficient));
+        }
+
         /* CSS Variables List */
         Lakeus.variablesList = {
             "background-color-base": {
@@ -132,7 +136,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-content",
                 ],
                 calculate: function (i) {
-                    return i || chroma(Lakeus.variablesList[this.calculateFrom[0]].value).hex('rgb');
+                    return i || Lakeus.changeColorBrightnessByContrast(this.value, Lakeus.variablesList[this.calculateFrom[0]].value, 0.2, 0.2);
                 },
             },
             "elevation": {
@@ -202,7 +206,7 @@ Lakeus.initThemeDesigner = function () {
                     "color-header"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
+                    return i || Lakeus.changeColorBrightnessByContrast(this.value, Lakeus.variablesList[this.calculateFrom[0]].value, 0.2, 0.2);
                 },
             },
             "background-color-search-suggestions-current": {
@@ -257,7 +261,7 @@ Lakeus.initThemeDesigner = function () {
                     "color-header",
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.95,1.05));
+                    return i || Lakeus.changeColorBrightnessByContrast(this.value, Lakeus.variablesList[this.calculateFrom[0]].value, 0.05, 0.05);
                 },
             },
             "background-color-toggle-list": {
@@ -294,7 +298,7 @@ Lakeus.initThemeDesigner = function () {
                 fieldset: "lakeus-theme-designer-toggle-list",
                 rule: "manual",
                 input: "color",
-                default: chroma("#eeeeee"),
+                default: chroma("#eeeeee").alpha(0.1),
                 calculate: function (i) {
                     return i;
                 },
@@ -315,13 +319,13 @@ Lakeus.initThemeDesigner = function () {
                 fieldset: "lakeus-theme-designer-toggle-list",
                 rule: "calculateWhenNotNeeded",
                 input: "color",
-                default: chroma("#cccccc"),
+                default: chroma("#eeeeee").alpha(0.2),
                 calculateFrom: [
                     "background-color-toggle-list-item-hover",
                     "background-color-toggle-list",
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
+                    return i || Lakeus.changeColorBrightnessByContrast(this.value, Lakeus.variablesList[this.calculateFrom[0]].value, 0.2, 0.2);
                 },
             },
             "text-color-toggle-list-item-focus": {
@@ -343,10 +347,9 @@ Lakeus.initThemeDesigner = function () {
                 default: chroma("#dddddd"),
                 calculateFrom: [
                     "background-color-toggle-list",
-                    "background-color-toggle-list",
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
+                    return i || Lakeus.changeColorBrightnessByContrast(this.value, Lakeus.variablesList[this.calculateFrom[0]].value, 0.2, 0.2);
                 },
             },
             "subheader-color-toggle-list": {
@@ -431,10 +434,9 @@ Lakeus.initThemeDesigner = function () {
                 default: chroma("#cccccc"),
                 calculateFrom: [
                     "background-color-content",
-                    "background-color-content",
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.6,1.4));
+                    return i || Lakeus.changeColorBrightnessByContrast(this.value, Lakeus.variablesList[this.calculateFrom[0]].value, 0.4, 0.4);
                 },
             },
             "color-accent-header-tab": {
@@ -456,7 +458,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-content"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.6,1.4));
+                    return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.4,0.4));
                 },
             },
             "color-accent-header-tab-new": {
@@ -469,7 +471,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-content"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.6,1.4));
+                    return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.4,0.4));
                 },
             },
             "border-color-header-tab": {
@@ -545,7 +547,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-portlet"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
+                    return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.2,0.2));
                 },
             },
             "border-color-portlet-body": {
@@ -558,7 +560,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-content"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.calculateColorByLuminance(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.8,1.2));
+                    return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value,0.2,0.2));
                 },
             },
             "background-color-footer": {
