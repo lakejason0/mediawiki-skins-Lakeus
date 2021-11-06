@@ -21,6 +21,7 @@
 	"lakeus-theme-designer-paste-theme": "粘贴当前设置",
 	"lakeus-theme-designer-test-theme": "测试主题",
 	"lakeus-theme-designer-clear-theme": "结束测试",
+	"lakeus-theme-designer-reset-theme": "重置",
 	"lakeus-theme-designer-copied": "主题代码已复制到您的剪贴板中。",
 	"lakeus-theme-designer-copy-failed": "无法将主题代码复制到您的剪贴板中。结果将显示在设计器底部。",
 	"lakeus-theme-designer-alpha-channel": "Alpha（透明度）",

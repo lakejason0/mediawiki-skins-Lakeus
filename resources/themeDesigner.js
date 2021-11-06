@@ -658,6 +658,8 @@ Lakeus.initThemeDesigner = function () {
                                     '</button>'+
                                     '<button type="button" disabled id="lakeus-theme-designer-clear-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-clear-theme") +
                                     '</button>'+
+                                    '<button type="button" id="lakeus-theme-designer-reset-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-reset-theme") +
+                                    '</button>'+
                                 '</div>' +
                             '</div>' +
                         '</form>' +
@@ -673,6 +675,7 @@ Lakeus.initThemeDesigner = function () {
             $("#lakeus-theme-designer-paste-theme-button").click( function(e) { e.preventDefault; Lakeus.pasteThemeFromCurrentSettings();  });
             $("#lakeus-theme-designer-test-theme-button").click( function(e) { e.preventDefault; Lakeus.testTheme();  });
             $("#lakeus-theme-designer-clear-theme-button").click( function(e) { e.preventDefault; Lakeus.clearTheme();  });
+            $("#lakeus-theme-designer-reset-theme-button").click( function(e) { e.preventDefault; Lakeus.resetFormFromVariablesList();  });
             $("#lakeus-theme-designer-portlet-body").submit( function(e) { e.preventDefault; });
             Lakeus.updateVariablesListFromForm();
         }

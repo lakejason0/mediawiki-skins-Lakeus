@@ -21,6 +21,7 @@
 	"lakeus-theme-designer-paste-theme": "A form button. Click it to paste current settings to the form.",
 	"lakeus-theme-designer-test-theme": "A form button. Click it to test the theme out.",
 	"lakeus-theme-designer-clear-theme": "A form button. Click it to end testing.",
+	"lakeus-theme-designer-reset-theme": "A form button. Click it to reset the form.",
 	"lakeus-theme-designer-copied": "A notification text. Shows when theme code is successfully copied to the clipboard.",
 	"lakeus-theme-designer-copy-failed": "A notification text. Shows when theme code fails to be copied to the clipboard, instead going into the &lt;pre&gt; element at the end of the designer.",
 	"lakeus-theme-designer-alpha-channel": "A form input placeholder for alpha channel (opacity). It's probably a good idea to keep Alpha as-is, but don't if your language's grammar is against it.",

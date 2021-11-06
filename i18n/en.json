@@ -22,6 +22,7 @@
   "lakeus-theme-designer-paste-theme": "Paste current settings",
   "lakeus-theme-designer-test-theme": "Test theme",
   "lakeus-theme-designer-clear-theme": "End testing",
+  "lakeus-theme-designer-reset-theme": "Reset",
   "lakeus-theme-designer-copied": "Theme code has been copied to your clipboard.",
   "lakeus-theme-designer-copy-failed": "Failed to copy the theme code to your clipboard; result is at the end of the designer.",
   "lakeus-theme-designer-alpha-channel": "Alpha (Opacity)",
