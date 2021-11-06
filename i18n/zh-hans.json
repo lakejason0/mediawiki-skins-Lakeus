@@ -41,6 +41,7 @@
 	"lakeus-theme-designer-background-color-search-suggestions-current": "选中的搜索建议背景颜色",
 	"lakeus-theme-designer-color-search-suggestions-text-current": "选中的搜索建议文本颜色",
 	"lakeus-theme-designer-background-color-search-input": "搜索栏背景颜色",
+	"lakeus-theme-designer-background-border-color-search-bar": "搜索栏边框颜色",
 	"lakeus-theme-designer-toggle-list": "侧边栏菜单",
 	"lakeus-theme-designer-background-color-toggle-list": "侧边栏菜单背景颜色",
 	"lakeus-theme-designer-background-color-toggle-list-card": "侧边栏菜单卡片背景颜色",
@@ -67,5 +68,13 @@
 	"lakeus-theme-designer-border-color-portlet-body": "下拉式菜单边框颜色",
 	"lakeus-theme-designer-footer": "页尾",
 	"lakeus-theme-designer-background-color-footer": "页尾背景颜色",
+	"lakeus-theme-designer-text-color-toggle-list-item": "侧边栏菜单项文本颜色",
+	"lakeus-theme-designer-text-color-toggle-list-item-hover": "侧边栏菜单项悬停文本颜色",
+	"lakeus-theme-designer-text-color-toggle-list-item-focus": "侧边栏菜单项选中文本颜色",
+	"lakeus-theme-designer-text-color-content": "内容文本颜色",
+	"lakeus-theme-designer-text-color-header": "页眉文本暗色",
+	"lakeus-theme-designer-text-color-body": "页面主体文本颜色",
+	"lakeus-theme-designer-color-accent-header-tab-selected": "标记为已选择的操作栏选项文本颜色",
+	"lakeus-theme-designer-color-accent-header-tab-new": "标记为未创建的操作栏选项文本颜色",
 	"lakeus-theme-designer-danger-zone": "危险区"
 }

@@ -42,6 +42,7 @@
 	"lakeus-theme-designer-background-color-search-suggestions-current": "選中的搜尋建議背景顏色",
 	"lakeus-theme-designer-color-search-suggestions-text-current": "選中的搜尋建議文字顏色",
 	"lakeus-theme-designer-background-color-search-input": "搜尋欄背景顏色",
+	"lakeus-theme-designer-background-border-color-search-bar": "搜尋欄邊框顏色",
 	"lakeus-theme-designer-toggle-list": "側邊欄選單",
 	"lakeus-theme-designer-background-color-toggle-list": "側邊欄選單背景顏色",
 	"lakeus-theme-designer-background-color-toggle-list-card": "側邊欄選單卡片背景顏色",
@@ -68,5 +69,13 @@
 	"lakeus-theme-designer-border-color-portlet-body": "下拉式選單邊框顏色",
 	"lakeus-theme-designer-footer": "頁尾",
 	"lakeus-theme-designer-background-color-footer": "頁尾背景顏色",
+	"lakeus-theme-designer-text-color-toggle-list-item": "側邊欄選單項文字顏色",
+	"lakeus-theme-designer-text-color-toggle-list-item-hover": "側邊欄選單項懸停文字顏色",
+	"lakeus-theme-designer-text-color-toggle-list-item-focus": "側邊欄選單項選中文字顏色",
+	"lakeus-theme-designer-text-color-content": "內容文字顏色",
+	"lakeus-theme-designer-text-color-header": "頁首文字暗色",
+	"lakeus-theme-designer-text-color-body": "頁面主體文字顏色",
+	"lakeus-theme-designer-color-accent-header-tab-selected": "標記為已選擇的操作欄選項文字顏色",
+	"lakeus-theme-designer-color-accent-header-tab-new": "標記為未建立的操作欄選項文字顏色",
 	"lakeus-theme-designer-danger-zone": "危險區"
 }

@@ -184,7 +184,7 @@ Lakeus.initThemeDesigner = function () {
                     "color-header"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "background-color-search-suggestions": {
@@ -227,7 +227,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-search-suggestions"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "color-search-suggestions-text-current": {
@@ -239,7 +239,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-search-suggestions-current"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "background-color-search-input": {
@@ -253,7 +253,7 @@ Lakeus.initThemeDesigner = function () {
             },
             "border-color-search-bar": {
                 fieldset: "lakeus-theme-designer-page-header",
-                rule: "manual",
+                rule: "calculateWhenNotNeeded",
                 input: "color",
                 default: chroma("#eaecf0"),
                 calculateFrom: [
@@ -291,14 +291,14 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-toggle-list"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "background-color-toggle-list-item-hover": {
                 fieldset: "lakeus-theme-designer-toggle-list",
                 rule: "manual",
                 input: "color",
-                default: chroma("#eeeeee").alpha(0.1),
+                default: chroma("#000000").alpha(0.1),
                 calculate: function (i) {
                     return i;
                 },
@@ -312,14 +312,14 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-toggle-list-item-hover"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "background-color-toggle-list-item-focus": {
                 fieldset: "lakeus-theme-designer-toggle-list",
                 rule: "calculateWhenNotNeeded",
                 input: "color",
-                default: chroma("#eeeeee").alpha(0.2),
+                default: chroma("#000000").alpha(0.2),
                 calculateFrom: [
                     "background-color-toggle-list-item-hover",
                     "background-color-toggle-list",
@@ -337,7 +337,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-toggle-list-item-focus"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "border-color-toggle-list": {
@@ -361,7 +361,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-toggle-list-card"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value,"#6a6a6a","#c3c3c3");
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value,"#6a6a6a","#c3c3c3"));
                 },
             },
             "logo-text-color-toggle-list": {
@@ -373,7 +373,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-toggle-list-card"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "mask-background": {
@@ -403,7 +403,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-content"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "background-color-body": {
@@ -424,7 +424,7 @@ Lakeus.initThemeDesigner = function () {
                     "background-color-body"
                 ],
                 calculate: function (i) {
-                    return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value);
+                    return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                 },
             },
             "border-color-content": {
@@ -532,7 +532,7 @@ Lakeus.initThemeDesigner = function () {
                 fieldset: "lakeus-theme-designer-portlet",
                 rule: "manual",
                 input: "color",
-                default: chroma("#eeeeee"),
+                default: chroma("#000000").alpha(0.1),
                 calculate: function (i) {
                     return i;
                 },
@@ -541,7 +541,7 @@ Lakeus.initThemeDesigner = function () {
                 fieldset: "lakeus-theme-designer-portlet",
                 rule: "calculateWhenNotNeeded",
                 input: "color",
-                default: chroma("#cccccc"),
+                default: chroma("#000000").alpha(0.2),
                 calculateFrom: [
                     "background-color-portlet-item-hover",
                     "background-color-portlet"
@@ -786,8 +786,10 @@ Lakeus.copyTheme = function () {
 
 Lakeus.pasteThemeFromCurrentSettings = function () {
     $.each(Lakeus.variablesList, function (k, v) {
+        console.log(k, v);
+        console.log(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k));
         if (v.input === 'color') {
-            Lakeus.variablesList[k].value = chroma(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k) || v.default);
+            Lakeus.variablesList[k].value = chroma(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k)) || v.default;
         } else {
             Lakeus.variablesList[k].value = window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k) || v.default;
         }

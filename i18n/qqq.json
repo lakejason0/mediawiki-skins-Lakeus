@@ -41,6 +41,7 @@
 	"lakeus-theme-designer-background-color-search-suggestions-current": "A label of a setting. The background color of the selected (hovered) search suggestion.",
 	"lakeus-theme-designer-color-search-suggestions-text-current": "A label of a setting.  text color of the selected (hovered) search suggestion.",
 	"lakeus-theme-designer-background-color-search-input": "A label of a setting. The background color of the search bar.",
+	"lakeus-theme-designer-background-border-color-search-bar": "A label of a setting. The border color of the search bar.",
 	"lakeus-theme-designer-toggle-list": "A form section title. Settings in this section will affect the sidebar menu.",
 	"lakeus-theme-designer-background-color-toggle-list": "A label of a setting. The background color of the sidebar menu.",
 	"lakeus-theme-designer-background-color-toggle-list-card": "A label of a setting. The background color of the card at the top of the sidebar menu.",
