@@ -106,8 +106,11 @@
         "lakeus-theme-designer-paste-theme",
         "lakeus-theme-designer-test-theme",
         "lakeus-theme-designer-clear-theme",
+        "lakeus-theme-designer-reset-theme",
         "lakeus-theme-designer-copied",
         "lakeus-theme-designer-copy-failed",
+        "lakeus-theme-designer-reload",
+        "lakeus-theme-designer-alpha-channel",
         "lakeus-theme-designer-global",
         "lakeus-theme-designer-background-color-base",
         "lakeus-theme-designer-color-link",
@@ -148,7 +151,16 @@
         "lakeus-theme-designer-background-color-portlet-item-focus",
         "lakeus-theme-designer-border-color-portlet-body",
         "lakeus-theme-designer-footer",
-        "lakeus-theme-designer-background-color-footer"
+        "lakeus-theme-designer-background-color-footer",
+        "lakeus-theme-designer-text-color-toggle-list-item",
+        "lakeus-theme-designer-text-color-toggle-list-item-hover",
+        "lakeus-theme-designer-text-color-toggle-list-item-focus",
+        "lakeus-theme-designer-text-color-content",
+        "lakeus-theme-designer-text-color-header",
+        "lakeus-theme-designer-text-color-body",
+        "lakeus-theme-designer-color-accent-header-tab-selected",
+        "lakeus-theme-designer-color-accent-header-tab-new",
+        "lakeus-theme-designer-danger-zone"
       ],
       "packageFiles": [
         "resources/themeDesigner.js"
