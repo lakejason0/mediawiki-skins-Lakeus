@@ -24,8 +24,11 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-paste-theme",
             "lakeus-theme-designer-test-theme",
             "lakeus-theme-designer-clear-theme",
+            "lakeus-theme-designer-reset-theme",
             "lakeus-theme-designer-copied",
             "lakeus-theme-designer-copy-failed",
+            "lakeus-theme-designer-reload",
+            "lakeus-theme-designer-alpha-channel",
             "lakeus-theme-designer-global",
             "lakeus-theme-designer-background-color-base",
             "lakeus-theme-designer-color-link",
@@ -41,6 +44,7 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-background-color-search-suggestions-current",
             "lakeus-theme-designer-color-search-suggestions-text-current",
             "lakeus-theme-designer-background-color-search-input",
+            "lakeus-theme-designer-border-color-search-bar",
             "lakeus-theme-designer-toggle-list",
             "lakeus-theme-designer-background-color-toggle-list",
             "lakeus-theme-designer-background-color-toggle-list-card",
@@ -67,6 +71,15 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-border-color-portlet-body",
             "lakeus-theme-designer-footer",
             "lakeus-theme-designer-background-color-footer",
+            "lakeus-theme-designer-text-color-toggle-list-item",
+            "lakeus-theme-designer-text-color-toggle-list-item-hover",
+            "lakeus-theme-designer-text-color-toggle-list-item-focus",
+            "lakeus-theme-designer-text-color-content",
+            "lakeus-theme-designer-text-color-header",
+            "lakeus-theme-designer-text-color-body",
+            "lakeus-theme-designer-color-accent-header-tab-selected",
+            "lakeus-theme-designer-color-accent-header-tab-new",
+            "lakeus-theme-designer-danger-zone"
         ]);
     }).then(function () {
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));
@@ -354,7 +367,7 @@ Lakeus.initThemeDesigner = function () {
             },
             "subheader-color-toggle-list": {
                 fieldset: "lakeus-theme-designer-toggle-list",
-                rule: "manual",
+                rule: "calculateWhenNotNeeded",
                 input: "color",
                 default: chroma("#909aa1"),
                 calculateFrom: [
@@ -417,7 +430,7 @@ Lakeus.initThemeDesigner = function () {
             },
             "text-color-body": {
                 fieldset: "lakeus-theme-designer-body",
-                rule: "calculateWhenNeeded",
+                rule: "calculateWhenNotNeeded",
                 input: "color",
                 default: chroma("#000000"),
                 calculateFrom: [
@@ -552,7 +565,7 @@ Lakeus.initThemeDesigner = function () {
             },
             "border-color-portlet-body": {
                 fieldset: "lakeus-theme-designer-portlet",
-                rule: "manual",
+                rule: "calculateWhenNotNeeded",
                 input: "color",
                 default: chroma("#a2a9b1"),
                 calculateFrom: [
@@ -624,13 +637,13 @@ Lakeus.initThemeDesigner = function () {
             if (variableContent.rule === 'calculateWhenNotNeeded') {
                 settingElement +=
                     '<label>' +
-                        '<input type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
+                        '<input checked type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
                         mw.message('lakeus-theme-designer-auto-calculate') +
                     '</label>';
             } else if (variableContent.rule === 'calculateWhenNeeded') {
                 settingElement +=
                     '<label>' +
-                        '<input checked type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
+                        '<input type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
                         mw.message('lakeus-theme-designer-auto-calculate') +
                     '</label>';
             }
@@ -677,6 +690,10 @@ Lakeus.initThemeDesigner = function () {
                 var checked = $(this).prop('checked');
                 $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', checked);
                 $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', checked);
+            });
+            $(".lakeus-theme-designer-auto-calculate-checkbox:checked").each( function () {
+                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', true);
+                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', true);
             });
             $("#lakeus-theme-designer-copy-theme-button").click( function(e) { e.preventDefault; Lakeus.copyTheme();  });
             $("#lakeus-theme-designer-paste-theme-button").click( function(e) { e.preventDefault; Lakeus.pasteThemeFromCurrentSettings();  });
