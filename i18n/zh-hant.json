@@ -23,6 +23,7 @@
 	"lakeus-theme-designer-test-theme": "測試主題",
 	"lakeus-theme-designer-clear-theme": "結束測試",
 	"lakeus-theme-designer-reset-theme": "復位",
+	"lakeus-theme-designer-reload": "重新載入",
 	"lakeus-theme-designer-copied": "主題CSS已複製到您的剪貼簿中。",
 	"lakeus-theme-designer-copy-failed": "無法將主題CSS複製到您的剪貼簿中。結果將顯示在設計器底部。",
 	"lakeus-theme-designer-alpha-channel": "Alpha（不透明度）",
@@ -66,5 +67,6 @@
 	"lakeus-theme-designer-background-color-portlet-item-focus": "下拉式選單項選中顏色",
 	"lakeus-theme-designer-border-color-portlet-body": "下拉式選單邊框顏色",
 	"lakeus-theme-designer-footer": "頁尾",
-	"lakeus-theme-designer-background-color-footer": "頁尾背景顏色"
+	"lakeus-theme-designer-background-color-footer": "頁尾背景顏色",
+	"lakeus-theme-designer-danger-zone": "危險區"
 }

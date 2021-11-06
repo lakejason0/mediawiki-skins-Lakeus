@@ -24,6 +24,7 @@
 	"lakeus-theme-designer-reset-theme": "A form button. Click it to reset the form.",
 	"lakeus-theme-designer-copied": "A notification text. Shows when theme code is successfully copied to the clipboard.",
 	"lakeus-theme-designer-copy-failed": "A notification text. Shows when theme code fails to be copied to the clipboard, instead going into the &lt;pre&gt; element at the end of the designer.",
+	"lakeus-theme-designer-reload": "A form button. Click it to reload the designer.",
 	"lakeus-theme-designer-alpha-channel": "A form input placeholder for alpha channel (opacity). It's probably a good idea to keep Alpha as-is, but don't if your language's grammar is against it.",
 	"lakeus-theme-designer-global": "A form section title. Settings in this section will affect the whole page.",
 	"lakeus-theme-designer-background-color-base": "HTML background color, or the background color of the <code>&lt;html&gt;</code> element.",
@@ -73,5 +74,6 @@
 	"lakeus-theme-designer-text-color-header": "A label of a setting. The text color of the header.",
 	"lakeus-theme-designer-text-color-body": "A label of a setting. The text color of the body.",
 	"lakeus-theme-designer-color-accent-header-tab-selected": "A label of a setting. The text color of a selected tab in the action header.",
-	"lakeus-theme-designer-color-accent-header-tab-new": "A label of a setting. The text color of a red link tab in the action header."
+	"lakeus-theme-designer-color-accent-header-tab-new": "A label of a setting. The text color of a red link tab in the action header.",
+	"lakeus-theme-designer-danger-zone": "A form section title. Settings in this section will affect the current input in the form."
 }

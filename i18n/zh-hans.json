@@ -22,6 +22,7 @@
 	"lakeus-theme-designer-test-theme": "测试主题",
 	"lakeus-theme-designer-clear-theme": "结束测试",
 	"lakeus-theme-designer-reset-theme": "重置",
+	"lakeus-theme-designer-reload": "重新加载",
 	"lakeus-theme-designer-copied": "主题代码已复制到您的剪贴板中。",
 	"lakeus-theme-designer-copy-failed": "无法将主题代码复制到您的剪贴板中。结果将显示在设计器底部。",
 	"lakeus-theme-designer-alpha-channel": "Alpha（透明度）",
@@ -65,5 +66,6 @@
 	"lakeus-theme-designer-background-color-portlet-item-focus": "下拉式菜单项选中颜色",
 	"lakeus-theme-designer-border-color-portlet-body": "下拉式菜单边框颜色",
 	"lakeus-theme-designer-footer": "页尾",
-	"lakeus-theme-designer-background-color-footer": "页尾背景颜色"
+	"lakeus-theme-designer-background-color-footer": "页尾背景颜色",
+	"lakeus-theme-designer-danger-zone": "危险区"
 }

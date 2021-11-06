@@ -148,3 +148,15 @@
     border-color: #36c;
     color: white;
 }
+
+#lakeus-theme-designer-portlet-body .lakeus-theme-designer-action-button-progressive {
+    background-color: #36c;
+    border-color: #36c;
+    color: white;
+}
+
+#lakeus-theme-designer-portlet-body .lakeus-theme-designer-action-button-danger {
+    background-color: #d33;
+    border-color: #d33;
+    color: white;
+}

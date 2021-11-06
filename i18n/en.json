@@ -25,6 +25,7 @@
   "lakeus-theme-designer-reset-theme": "Reset",
   "lakeus-theme-designer-copied": "Theme code has been copied to your clipboard.",
   "lakeus-theme-designer-copy-failed": "Failed to copy the theme code to your clipboard; result is at the end of the designer.",
+  "lakeus-theme-designer-reload": "Reload",
   "lakeus-theme-designer-alpha-channel": "Alpha (Opacity)",
   "lakeus-theme-designer-global": "Global",
   "lakeus-theme-designer-background-color-base": "HTML background color",
@@ -74,5 +75,6 @@
   "lakeus-theme-designer-text-color-header": "Header text color",
   "lakeus-theme-designer-text-color-body": "Body text color",
   "lakeus-theme-designer-color-accent-header-tab-selected": "Action header selected tab text color",
-  "lakeus-theme-designer-color-accent-header-tab-new": "Action header new tab text color"
+  "lakeus-theme-designer-color-accent-header-tab-new": "Action header new tab text color",
+  "lakeus-theme-designer-danger-zone": "Danger zone"
 }

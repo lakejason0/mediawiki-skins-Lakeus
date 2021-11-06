@@ -647,6 +647,13 @@ Lakeus.initThemeDesigner = function () {
                             '<div id="lakeus-theme-designer-portlet-body-container">' +
                                 '<h1 id="lakeus-theme-designer-title">' + mw.message("lakeus-theme-designer") + '</h1>' +
                                 constructThemeDesignerBody() +
+                                '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-danger-zone">' +
+                                    '<legend class="lakeus-theme-designer-title">' + mw.message("lakeus-theme-designer-danger-zone") + '</legend>' +
+                                    '<button type="button" id="lakeus-theme-designer-reset-theme-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-reset-theme") +
+                                    '</button>' +
+                                    '<button type="button" id="lakeus-theme-designer-reload-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-reload") +
+                                    '</button>' +
+                                '</fieldset>' +
                                 '<div id="lakeus-theme-designer-result">' +
                                 '</div>' +
                                 '<div id="lakeus-theme-designer-action-buttons">' +
@@ -657,8 +664,6 @@ Lakeus.initThemeDesigner = function () {
                                     '<button type="button" id="lakeus-theme-designer-paste-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme") +
                                     '</button>'+
                                     '<button type="button" disabled id="lakeus-theme-designer-clear-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-clear-theme") +
-                                    '</button>'+
-                                    '<button type="button" id="lakeus-theme-designer-reset-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-reset-theme") +
                                     '</button>'+
                                 '</div>' +
                             '</div>' +
@@ -676,11 +681,12 @@ Lakeus.initThemeDesigner = function () {
             $("#lakeus-theme-designer-test-theme-button").click( function(e) { e.preventDefault; Lakeus.testTheme();  });
             $("#lakeus-theme-designer-clear-theme-button").click( function(e) { e.preventDefault; Lakeus.clearTheme();  });
             $("#lakeus-theme-designer-reset-theme-button").click( function(e) { e.preventDefault; Lakeus.resetFormFromVariablesList();  });
+            $("#lakeus-theme-designer-reload-button").click( function(e) { e.preventDefault; Lakeus.reloadThemeDesigner(); } );
             $("#lakeus-theme-designer-portlet-body").submit( function(e) { e.preventDefault; });
             Lakeus.updateVariablesListFromForm();
         }
             var stylePath = mw.config.get('stylepath');
-            $('head').append('<link rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
+            $('head').append('<link id="lakeus-theme-designer-style" rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
             constructThemeDesigner();
             console.log("[Lakeus] " + mw.message('lakeus-theme-designer-all-loaded'));
         });
@@ -815,6 +821,12 @@ Lakeus.clearTheme = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         document.querySelector('html').style.removeProperty("--" + k);
     });
+}
+
+Lakeus.reloadThemeDesigner = function () {
+    $("#lakeus-theme-designer").remove();
+    $("#lakeus-theme-designer-style").remove();
+    Lakeus.initThemeDesigner();
 }
 
 Lakeus.validateContrast = function(color1, color2, contrast) {
