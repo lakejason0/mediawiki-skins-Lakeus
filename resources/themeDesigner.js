@@ -478,6 +478,7 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#cccccc"),
                     value: chroma("#cccccc"),
                     calculateFrom: [
+                        "border-color-content",
                         "background-color-content",
                     ],
                     calculate: function (i) {
