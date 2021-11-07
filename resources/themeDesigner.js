@@ -115,6 +115,29 @@ Lakeus.initThemeDesigner = function () {
                 return (yiq >= 128) ? (black ? black : '#000000') : (white ? white : '#ffffff');
             }
 
+            Lakeus.calculateRGBAActualValue = function (frontRGBA, backgroundRGB){
+
+                var rtrn = {};
+                //allows the function to just accept a front colour and assume the background is a plain white.
+                backgroundRGB = backgroundRGB || chroma([255, 255, 255]);
+                
+                //allows a RGB value to be passed in assuming full alpha channel.
+                frontRGBA.alpha(frontRGBA.alpha() || 1);
+                
+                //normalise the alpha channel across the foreground and background.
+                rtrn.r = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.r")) + (frontRGBA.alpha() * frontRGBA.get("rgb.r"));
+                rtrn.g = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.g")) + (frontRGBA.alpha() * frontRGBA.get("rgb.g"));
+                rtrn.b = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.b")) + (frontRGBA.alpha() * frontRGBA.get("rgb.b"));
+                
+                //just check that we don't end up with a value greater than 255 for any channel.
+                rtrn.r = (rtrn.r > 255) ? 255 : rtrn.r;
+                rtrn.g = (rtrn.g > 255) ? 255 : rtrn.g;
+                rtrn.b = (rtrn.b > 255) ? 255 : rtrn.b;
+                
+                return chroma(rtrn);
+                
+            }
+
             Lakeus.changeColorBrightnessByContrast = function (foregroundColor, backgroundColor, brightenCoefficient, darkenCoefficient) {
                 return (Lakeus.getContrastYIQ(backgroundColor.hex(), "black", "white") === "white" ? foregroundColor.brighten(brightenCoefficient) : foregroundColor.darken(darkenCoefficient));
             }
@@ -152,7 +175,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.2, 0.2);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 1, 1);
                     },
                 },
                 "elevation": {
@@ -359,7 +382,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-toggle-list",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.2, 0.2);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.2, 0.2).alpha(0.2);
                     },
                 },
                 "text-color-toggle-list-item-focus": {
@@ -618,7 +641,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content"
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0.2, 0.2));
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 2, 2));
                     },
                 },
                 "background-color-footer": {
@@ -892,9 +915,13 @@ Lakeus.clearTheme = function () {
     });
 }
 
-Lakeus.reloadThemeDesigner = function () {
+Lakeus.unloadThemeDesigner = function () {
     $("#lakeus-theme-designer").remove();
     $("#lakeus-theme-designer-style").remove();
+}
+
+Lakeus.reloadThemeDesigner = function () {
+    Lakeus.unloadThemeDesigner();
     Lakeus.initThemeDesigner();
 }
 
