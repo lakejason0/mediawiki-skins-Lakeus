@@ -506,7 +506,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content"
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb'), 0.4, 0.4));
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0.4, 0.4));
                     },
                 },
                 "color-accent-header-tab-new": {
@@ -520,7 +520,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content"
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb'), 0.4, 0.4));
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0.4, 0.4));
                     },
                 },
                 "border-color-header-tab": {
@@ -601,10 +601,10 @@ Lakeus.initThemeDesigner = function () {
                     value: chroma("#000000").alpha(0.2),
                     calculateFrom: [
                         "background-color-portlet-item-hover",
-                        "background-color-portlet"
+                        "background-color-portlet-body"
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb'), 0.2, 0.2));
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0.2, 0.2));
                     },
                 },
                 "border-color-portlet-body": {
@@ -618,7 +618,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content"
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb'), 0.2, 0.2));
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0.2, 0.2));
                     },
                 },
                 "background-color-footer": {
