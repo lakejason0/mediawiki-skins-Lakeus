@@ -33,6 +33,7 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-background-color-base",
             "lakeus-theme-designer-color-link",
             "lakeus-theme-designer-color-link--visited",
+            "lakeus-theme-designer-color-link--active",
             "lakeus-theme-designer-elevation",
             "lakeus-theme-designer-font-family",
             "lakeus-theme-designer-font-family-serif",
@@ -176,6 +177,16 @@ Lakeus.initThemeDesigner = function () {
                     ],
                     calculate: function (i) {
                         return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 1, 1);
+                    },
+                },
+                "color-link--active": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "manual",
+                    input: "color",
+                    default: chroma("#faa700"),
+                    value: chroma("#faa700"),
+                    calculate: function (i) {
+                        return i;
                     },
                 },
                 "elevation": {

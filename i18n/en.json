@@ -31,6 +31,7 @@
   "lakeus-theme-designer-background-color-base": "HTML background color",
   "lakeus-theme-designer-color-link": "Link color",
   "lakeus-theme-designer-color-link--visited": "Visited link color",
+  "lakeus-theme-designer-color-link--active": "Active link color",
   "lakeus-theme-designer-elevation": "Elevation",
   "lakeus-theme-designer-font-family": "Default font family",
   "lakeus-theme-designer-font-family-serif": "Default font family (Serif)",

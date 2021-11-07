@@ -30,6 +30,7 @@
 	"lakeus-theme-designer-background-color-base": "HTML背景颜色",
 	"lakeus-theme-designer-color-link": "链接颜色",
 	"lakeus-theme-designer-color-link--visited": "访问过的链接颜色",
+	"lakeus-theme-designer-color-link--active": "活跃的链接颜色",
 	"lakeus-theme-designer-elevation": "抬升阴影",
 	"lakeus-theme-designer-font-family": "默认字体",
 	"lakeus-theme-designer-font-family-serif": "默认字体（衬线体）",

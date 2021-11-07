@@ -30,6 +30,7 @@
 	"lakeus-theme-designer-background-color-base": "HTML background color, or the background color of the <code>&lt;html&gt;</code> element.",
 	"lakeus-theme-designer-color-link": "A label of a setting. The color of normal links.",
 	"lakeus-theme-designer-color-link--visited": "A label of a setting. The color of visited links.",
+	"lakeus-theme-designer-color-link--active": "A label of a setting. The color of active links.",
 	"lakeus-theme-designer-elevation": "A label of a setting. Shadow setting that is used by several elements.",
 	"lakeus-theme-designer-font-family": "A label of a setting. Default font family that is applied to the whole page.",
 	"lakeus-theme-designer-font-family-serif": "A label of a setting. Default serif font family. Could be applied to the headings.",
