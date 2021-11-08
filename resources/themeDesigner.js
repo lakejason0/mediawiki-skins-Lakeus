@@ -511,7 +511,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 1, 1);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.5, 0.5);
                     },
                 },
                 "color-accent-header-tab": {
