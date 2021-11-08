@@ -373,7 +373,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-toggle-list",
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]], Lakeus.variablesList[this.calculateFrom[1]]).value.hex('rgb')));
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
                     },
                 },
                 "background-color-toggle-list-item-focus": {
@@ -401,7 +401,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-toggle-list",
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]], Lakeus.variablesList[this.calculateFrom[1]]).value.hex('rgb')));
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
                     },
                 },
                 "border-color-toggle-list": {
@@ -666,7 +666,6 @@ Lakeus.initThemeDesigner = function () {
                 var fieldsetList = [];
                 var result = '';
                 $.each(Lakeus.variablesList, function (k, v) {
-                    console.log(v);
                     if (!(fieldsetList.includes(v.fieldset))) {
                         fieldsetList.push(v.fieldset);
                     }
@@ -805,11 +804,9 @@ Lakeus.initThemeDesigner = function () {
 Lakeus.updateVariablesListFromForm = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
-        console.log("Disabled: ", inputElement.prop('disabled'));
         if (!(inputElement.prop('disabled'))) {
             if (inputElement.attr('type') === 'color') {
                 var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
-                console.log(inputElementAlpha.val());
                 Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha((Number(inputElementAlpha.val()) <= 1 && Number(inputElementAlpha.val()) >= 0) ? Number(inputElementAlpha.val()) : 1);
             } else {
                 Lakeus.variablesList[k].value = inputElement.val();
@@ -892,8 +889,6 @@ Lakeus.copyTheme = function () {
 
 Lakeus.pasteThemeFromCurrentSettings = function () {
     $.each(Lakeus.variablesList, function (k, v) {
-        console.log(k, v);
-        console.log(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k));
         if (v.input === 'color') {
             Lakeus.variablesList[k].value = chroma(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k)) || v.default;
         } else {
@@ -911,7 +906,6 @@ Lakeus.testTheme = function () {
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', false);
     $(".lakeus-theme-designer-fieldset").prop('disabled', true);
     $.each(Lakeus.variablesList, function (k, v) {
-        console.log(v);
         if (v.input === 'color') {
             if (v.value.alpha() < 1) {
                 document.querySelector('html').style.setProperty('--' + k, v.value.css());
