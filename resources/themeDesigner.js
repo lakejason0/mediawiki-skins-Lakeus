@@ -154,9 +154,10 @@ Lakeus.initThemeDesigner = function () {
                     calculateFrom: [
                         "color-link",
                         "background-color-content",
+                        "background-color-body",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 1, 1);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 1, 1);
                     },
                 },
                 "color-link--active": {
@@ -250,10 +251,11 @@ Lakeus.initThemeDesigner = function () {
                     value: chroma("#c8ccd1"),
                     calculateFrom: [
                         "background-color-search-suggestions",
-                        "color-header"
+                        "color-header",
+                        "background-color-body",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 2, 2);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 2, 2);
                     },
                 },
                 "background-color-search-suggestions-current": {
@@ -311,9 +313,10 @@ Lakeus.initThemeDesigner = function () {
                     calculateFrom: [
                         "background-color-search-input",
                         "color-header",
+                        "background-color-body"
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 2, 2);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 2, 2);
                     },
                 },
                 "background-color-toggle-list": {
@@ -366,10 +369,11 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
-                        "background-color-toggle-list-item-hover"
+                        "background-color-toggle-list-item-hover",
+                        "background-color-toggle-list",
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]], Lakeus.variablesList[this.calculateFrom[1]]).value.hex('rgb')));
                     },
                 },
                 "background-color-toggle-list-item-focus": {
@@ -393,10 +397,11 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
-                        "background-color-toggle-list-item-focus"
+                        "background-color-toggle-list-item-focus",
+                        "background-color-toggle-list",
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]], Lakeus.variablesList[this.calculateFrom[1]]).value.hex('rgb')));
                     },
                 },
                 "border-color-toggle-list": {
