@@ -229,6 +229,16 @@ Lakeus.initThemeDesigner = function () {
                         return i;
                     },
                 },
+                "header-elevation": {
+                    fieldset: "lakeus-theme-designer-page-header",
+                    rule: "manual",
+                    input: "text",
+                    default: "var(--elevation)",
+                    value: "var(--elevation)",
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
                 "text-color-header": {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "calculateWhenNotNeeded",

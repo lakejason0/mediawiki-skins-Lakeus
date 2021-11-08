@@ -35,6 +35,7 @@
 	"lakeus-theme-designer-font-family": "A label of a setting. Default font family that is applied to the whole page.",
 	"lakeus-theme-designer-font-family-serif": "A label of a setting. Default serif font family. Could be applied to the headings.",
 	"lakeus-theme-designer-page-header": "A form section title. Settings in this section will affect the page header.",
+	"lakeus-theme-designer-header-elevation": "A label of a setting. Shadow setting that is used by the header.",
 	"lakeus-theme-designer-color-header": "A label of a setting. The background color of the header.",
 	"lakeus-theme-designer-background-color-search-suggestions": "A label of a setting. The background color of these search suggestions that would pop up below the search bar.",
 	"lakeus-theme-designer-border-color-search-suggestions": "A label of a setting. The border color of the search suggestion panel that would pop up below the search bar.",
