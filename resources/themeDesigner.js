@@ -86,26 +86,6 @@ Lakeus.initThemeDesigner = function () {
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));
         $.getScript("https://cdn.jsdelivr.net/npm/chroma-js@2.1.2/chroma.min.js", function () {
 
-            /* Deprecated; use chroma(color).darken and chroma(color).brighten */
-            Lakeus.calculateColorByLuminance = function (hex, lum) {
-                // validate hex string
-                hex = String(hex).replace(/[^0-9a-f]/gi, '');
-                if (hex.length < 6) {
-                    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-                }
-                lum = lum || 0;
-
-                // convert to decimal and change luminosity
-                var rgb = "#", c, i;
-                for (i = 0; i < 3; i++) {
-                    c = parseInt(hex.substr(i * 2, 2), 16);
-                    c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
-                    rgb += ("00" + c).substr(c.length);
-                }
-
-                return rgb;
-            }
-
             /* Leaving it as-is since 50% contrast method works differently */
             Lakeus.getContrastYIQ = function (hexcolor, black, white) {
                 hexcolor = hexcolor.replace("#", "");
