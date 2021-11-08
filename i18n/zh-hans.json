@@ -70,6 +70,7 @@
 	"lakeus-theme-designer-border-color-portlet-body": "下拉式菜单边框颜色",
 	"lakeus-theme-designer-footer": "页尾",
 	"lakeus-theme-designer-background-color-footer": "页尾背景颜色",
+	"lakeus-theme-designer-text-color-footer": "页尾文本颜色",
 	"lakeus-theme-designer-text-color-toggle-list-item": "侧边栏菜单项文本颜色",
 	"lakeus-theme-designer-text-color-toggle-list-item-hover": "侧边栏菜单项悬停文本颜色",
 	"lakeus-theme-designer-text-color-toggle-list-item-focus": "侧边栏菜单项选中文本颜色",

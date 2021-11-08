@@ -71,6 +71,7 @@
   "lakeus-theme-designer-border-color-portlet-body": "Dropdown menu border color",
   "lakeus-theme-designer-footer": "Footer",
   "lakeus-theme-designer-background-color-footer": "Footer background color",
+  "lakeus-theme-designer-text-color-footer": "Footer text color",
   "lakeus-theme-designer-text-color-toggle-list-item": "Sidebar menu items text color",
   "lakeus-theme-designer-text-color-toggle-list-item-hover": "Sidebar menu items hover text color",
   "lakeus-theme-designer-text-color-toggle-list-item-focus": "Sidebar menu items clicked text color",

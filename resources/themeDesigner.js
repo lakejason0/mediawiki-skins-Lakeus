@@ -511,7 +511,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 2, 2);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 1, 1);
                     },
                 },
                 "color-accent-header-tab": {
@@ -659,7 +659,21 @@ Lakeus.initThemeDesigner = function () {
                     calculate: function (i) {
                         return i;
                     }
-                }
+                },
+                "text-color-footer": {
+                    fieldset: "lakeus-theme-designer-footer",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    default: chroma("#000000"),
+                    value: chroma("#000000"),
+                    calculateFrom: [
+                        "background-color-footer",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
+                    },
+                },
             };
 
             function constructThemeDesignerBody() {
