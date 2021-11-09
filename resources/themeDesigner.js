@@ -705,20 +705,20 @@ Lakeus.initThemeDesigner = function () {
                     settingElement +=
                         '<label>' +
                             mw.message('lakeus-theme-designer-' + variableName) +
-                            '<input type="color" list="'+ (variableContent.datalist ? variableContent.datalist : "lakeus-theme-designer-preset-colors") +'" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex('rgb') + '" />' +
+                            '<input type="color" class="lakeus-theme-designer-input-color" list="'+ (variableContent.datalist ? variableContent.datalist : "lakeus-theme-designer-preset-colors") +'" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex('rgb') + '" />' +
                             '<input type="number" placeholder="' + mw.message("") + '" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' +
                         '</label>';
                 } else if (variableContent.input === 'text') {
                     settingElement +=
                         '<label>' +
                             mw.message('lakeus-theme-designer-' + variableName) +
-                            '<input type="text" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
+                            '<input type="text" class="lakeus-theme-designer-input-text" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
                         '</label>';
                 } else if (variableContent.input === 'textarea') {
                     settingElement +=
                         '<label>' +
                             mw.message('lakeus-theme-designer-' + variableName) +
-                            '<input type="textarea" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
+                            '<input type="textarea" class="lakeus-theme-designer-input-textarea" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
                         '</label>';
                 }
 
