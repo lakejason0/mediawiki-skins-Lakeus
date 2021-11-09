@@ -25,6 +25,7 @@
 	"lakeus-theme-designer-copied": "A notification text. Shows when theme code is successfully copied to the clipboard.",
 	"lakeus-theme-designer-copy-failed": "A notification text. Shows when theme code fails to be copied to the clipboard, instead going into the &lt;pre&gt; element at the end of the designer.",
 	"lakeus-theme-designer-reload": "A form button. Click it to reload the designer.",
+	"lakeus-theme-designer-color-picker-fallback": "A checkbox label. Checking it will change color pickers to text inputs for fallback use.",
 	"lakeus-theme-designer-alpha-channel": "A form input placeholder for alpha channel (opacity). It's probably a good idea to keep Alpha as-is, but don't if your language's grammar is against it.",
 	"lakeus-theme-designer-global": "A form section title. Settings in this section will affect the whole page.",
 	"lakeus-theme-designer-background-color-base": "HTML background color, or the background color of the <code>&lt;html&gt;</code> element.",

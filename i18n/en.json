@@ -26,6 +26,7 @@
   "lakeus-theme-designer-copied": "Theme code has been copied to your clipboard.",
   "lakeus-theme-designer-copy-failed": "Failed to copy the theme code to your clipboard; result is at the end of the designer.",
   "lakeus-theme-designer-reload": "Reload",
+  "lakeus-theme-designer-color-picker-fallback": "Use text input for color pickers",
   "lakeus-theme-designer-alpha-channel": "Alpha (Opacity)",
   "lakeus-theme-designer-global": "Global",
   "lakeus-theme-designer-background-color-base": "HTML background color",

@@ -769,6 +769,10 @@ Lakeus.initThemeDesigner = function () {
                                         '</button>' +
                                         '<button type="button" id="lakeus-theme-designer-reload-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-reload") +
                                         '</button>' +
+                                        '<label>' +
+                                            '<input type="checkbox" id="lakeus-theme-designer-color-picker-fallback-checkbox">' +
+                                            mw.message("lakeus-theme-designer-color-picker-fallback") +
+                                        '</label>' +
                                     '</fieldset>' +
                                     '<div id="lakeus-theme-designer-result">' +
                                     '</div>' +
@@ -795,6 +799,10 @@ Lakeus.initThemeDesigner = function () {
                 $(".lakeus-theme-designer-auto-calculate-checkbox:checked").each(function () {
                     $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', true);
                     $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', true);
+                });
+                $("#lakeus-theme-designer-color-picker-fallback-checkbox").on('change', function () {
+                    var checked = $(this).prop('checked');
+                    $(".lakeus-theme-designer-input-color").attr("type", (checked ? "text" : "color"));
                 });
                 $("#lakeus-theme-designer-copy-theme-button").click(function (e) { e.preventDefault; Lakeus.copyTheme(); });
                 $("#lakeus-theme-designer-paste-theme-button").click(function (e) { e.preventDefault; Lakeus.pasteThemeFromCurrentSettings(); });
