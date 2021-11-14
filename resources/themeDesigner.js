@@ -235,6 +235,20 @@ Lakeus.initThemeDesigner = function () {
                         return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                     },
                 },
+                "icon-filter-header": {
+                    fieldset: "lakeus-theme-designer-page-header",
+                    rule: "calculateWhenNotNeeded",
+                    input: "text",
+                    default: "unset",
+                    value: "unset",
+                    calculateFrom: [
+                        "color-header",
+                        "background-color-content"
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb'), "unset", "invert(1) hue-rotate(180deg)");
+                    }
+                },
                 "background-color-search-suggestions": {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "manual",
