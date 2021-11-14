@@ -597,13 +597,16 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-accent-header-tab": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: true,
                     default: chroma("#54595d"),
                     value: chroma("#54595d"),
+                    calculateFrom: [
+                        "color-primary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "color-accent-header-tab-selected": {
@@ -611,8 +614,8 @@ Lakeus.initThemeDesigner = function () {
                     rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: true,
-                    default: chroma("#0b0080"),
-                    value: chroma("#0b0080"),
+                    default: chroma("#54595d"),
+                    value: chroma("#54595d"),
                     calculateFrom: [
                         "color-accent-header-tab",
                         "background-color-content"
