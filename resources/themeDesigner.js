@@ -8,7 +8,8 @@ window.Lakeus = window.Lakeus || {};
     4. ~~ Add a "reset" button to the form; ~~
     5. ~~ Implement Alpha channel next to the color input; ~~
         5.1. ~~ This also requires to implement a field in the variables list for the alpha channel; ~~
-    6. Test it out.
+    6. Reimplement the function of calculating actual values of the RGBA colors into the variables list;
+    7. Test it out.
 */
 
 Lakeus.initThemeDesigner = function () {
@@ -230,10 +231,11 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
-                        "color-header"
+                        "color-header",
+                        "background-color-body"
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
                     },
                 },
                 "icon-filter-header": {
@@ -244,7 +246,7 @@ Lakeus.initThemeDesigner = function () {
                     value: "unset",
                     calculateFrom: [
                         "color-header",
-                        "background-color-content"
+                        "background-color-body"
                     ],
                     calculate: function (i) {
                         return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb'), "unset", "invert(1) hue-rotate(180deg)");
