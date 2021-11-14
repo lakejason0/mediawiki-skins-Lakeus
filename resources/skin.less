@@ -11,6 +11,9 @@ body {
   background: @background-color-body;
   margin: 0 auto;
   font-family: @font-family;
+  display:flex;
+  flex-direction: column;
+  height:100vh;
 
   > header,
   > main,
@@ -73,7 +76,7 @@ a, body a {
   box-shadow: @header-elevation;
   top: 0;
   left: 0;
-  margin: auto;
+  /* margin: auto; */
   height: 0;
   padding: 0 20px 20px 20px;
   display: flex;
@@ -680,6 +683,7 @@ div.editOptions {
 body > footer {
   background: @background-color-footer;
   color: @text-color-footer;
+  flex-grow: 1;
 
   @media screen and ( min-width: @width-breakpoint-desktop ) {
     padding: 20px 15%;
