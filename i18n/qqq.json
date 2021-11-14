@@ -38,6 +38,7 @@
 	"lakeus-theme-designer-page-header": "A form section title. Settings in this section will affect the page header.",
 	"lakeus-theme-designer-header-elevation": "A label of a setting. Shadow setting that is used by the header.",
 	"lakeus-theme-designer-color-header": "A label of a setting. The background color of the header.",
+	"lakeus-theme-designer-icon-filter-header": "A label of a setting. The filter of the header icons.",
 	"lakeus-theme-designer-background-color-search-suggestions": "A label of a setting. The background color of these search suggestions that would pop up below the search bar.",
 	"lakeus-theme-designer-border-color-search-suggestions": "A label of a setting. The border color of the search suggestion panel that would pop up below the search bar.",
 	"lakeus-theme-designer-color-search-suggestions-text": "A label of a setting. The text color of these search suggestions that would pop up below the search bar.",
