@@ -164,7 +164,8 @@
         "lakeus-theme-designer-text-color-body",
         "lakeus-theme-designer-color-accent-header-tab-selected",
         "lakeus-theme-designer-color-accent-header-tab-new",
-        "lakeus-theme-designer-danger-zone"
+        "lakeus-theme-designer-danger-zone",
+        "lakeus-theme-designer-color-picker-fallback"
       ],
       "packageFiles": [
         "resources/themeDesigner.js"

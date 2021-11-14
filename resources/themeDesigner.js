@@ -84,7 +84,8 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-text-color-body",
             "lakeus-theme-designer-color-accent-header-tab-selected",
             "lakeus-theme-designer-color-accent-header-tab-new",
-            "lakeus-theme-designer-danger-zone"
+            "lakeus-theme-designer-danger-zone",
+            "lakeus-theme-designer-color-picker-fallback",
         ]);
     }).then(function () {
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));
@@ -133,6 +134,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-global",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -143,6 +145,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-global",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#0645ad"),
                     value: chroma("#0645ad"),
                     calculate: function (i) {
@@ -153,6 +156,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-global",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#0b0080"),
                     value: chroma("#0b0080"),
                     calculateFrom: [
@@ -168,6 +172,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-global",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#faa700"),
                     value: chroma("#faa700"),
                     calculate: function (i) {
@@ -208,6 +213,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -228,6 +234,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -256,6 +263,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -266,6 +274,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#c8ccd1"),
                     value: chroma("#c8ccd1"),
                     calculateFrom: [
@@ -281,6 +290,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#1d5492"),
                     value: chroma("#1d5492"),
                     calculate: function (i) {
@@ -291,6 +301,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -304,6 +315,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculateFrom: [
@@ -317,6 +329,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -327,6 +340,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#eaecf0"),
                     value: chroma("#eaecf0"),
                     calculateFrom: [
@@ -342,6 +356,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -352,6 +367,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#eeeeee"),
                     value: chroma("#eeeeee"),
                     calculate: function (i) {
@@ -362,6 +378,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#1c1c1c"),
                     value: chroma("#1c1c1c"),
                     calculateFrom: [
@@ -375,6 +392,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000").alpha(0.1),
                     value: chroma("#000000").alpha(0.1),
                     calculate: function (i) {
@@ -385,6 +403,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
@@ -399,6 +418,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000").alpha(0.2),
                     value: chroma("#000000").alpha(0.2),
                     calculateFrom: [
@@ -413,6 +433,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
@@ -427,6 +448,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#dddddd"),
                     value: chroma("#dddddd"),
                     calculateFrom: [
@@ -441,6 +463,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#909aa1"),
                     value: chroma("#909aa1"),
                     calculateFrom: [
@@ -454,6 +477,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -467,6 +491,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000").alpha(0.8),
                     value: chroma("#000000").alpha(0.8),
                     calculate: function (i) {
@@ -477,6 +502,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -487,6 +513,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -500,6 +527,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -510,6 +538,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -523,6 +552,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#cccccc"),
                     value: chroma("#cccccc"),
                     calculateFrom: [
@@ -537,6 +567,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#54595d"),
                     value: chroma("#54595d"),
                     calculate: function (i) {
@@ -547,6 +578,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#0b0080"),
                     value: chroma("#0b0080"),
                     calculateFrom: [
@@ -561,6 +593,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#54595d"),
                     value: chroma("#54595d"),
                     calculateFrom: [
@@ -575,6 +608,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#eaecf0"),
                     value: chroma("#eaecf0"),
                     calculate: function (i) {
@@ -585,6 +619,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#54595d"),
                     value: chroma("#54595d"),
                     calculate: function (i) {
@@ -605,6 +640,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#eeeeee"),
                     value: chroma("#eeeeee"),
                     calculate: function (i) {
@@ -615,6 +651,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-body",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#c8ccd1"),
                     value: chroma("#c8ccd1"),
                     calculate: function (i) {
@@ -625,6 +662,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-portlet",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -635,6 +673,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-portlet",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000").alpha(0.1),
                     value: chroma("#000000").alpha(0.1),
                     calculate: function (i) {
@@ -645,6 +684,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-portlet",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000").alpha(0.2),
                     value: chroma("#000000").alpha(0.2),
                     calculateFrom: [
@@ -659,6 +699,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-portlet",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#a2a9b1"),
                     value: chroma("#a2a9b1"),
                     calculateFrom: [
@@ -673,6 +714,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-footer",
                     rule: "manual",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#eeeeee"),
                     value: chroma("#eeeeee"),
                     calculate: function (i) {
@@ -683,6 +725,7 @@ Lakeus.initThemeDesigner = function () {
                     fieldset: "lakeus-theme-designer-footer",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
+                    allowAlpha: true,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -725,7 +768,7 @@ Lakeus.initThemeDesigner = function () {
                         '<label>' +
                             mw.message('lakeus-theme-designer-' + variableName) +
                             '<input type="color" class="lakeus-theme-designer-input-color" list="'+ (variableContent.datalist ? variableContent.datalist : "lakeus-theme-designer-preset-colors") +'" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex('rgb') + '" />' +
-                            '<input type="number" placeholder="' + mw.message("") + '" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' +
+                            (variableContent.allowAlpha ? '<input type="number" placeholder="' + mw.message("") + '" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' : "") +
                         '</label>';
                 } else if (variableContent.input === 'text') {
                     settingElement +=
