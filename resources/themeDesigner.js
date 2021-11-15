@@ -652,13 +652,16 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-tagline": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: true,
-                    default: chroma("#54595d"),
-                    value: chroma("#54595d"),
+                    default: chroma("#000000").alpha(0.5),
+                    value: chroma("#000000").alpha(0.5),
+                    calculateFrom: [
+                        "background-color-body"
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'))).alpha(0.5);
                     },
                 },
                 "font-family-headings": {
