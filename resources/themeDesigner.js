@@ -2,14 +2,15 @@ window.Lakeus = window.Lakeus || {};
 
 /*
     TODO List:
-    1. ~~ Use chroma("color") in Lakeus.variablesList for default and value ~~;
-    2. Use function.prototype.bind to replace each calculate property in Lakeus.variablesList;
+    1. [X] Use chroma("color") in Lakeus.variablesList for default and value;
+    2. [X] Use function.prototype.bind to replace each calculate property in Lakeus.variablesList;
     3. Remove deprecated functions and their calls;
-    4. ~~ Add a "reset" button to the form; ~~
-    5. ~~ Implement Alpha channel next to the color input; ~~
-        5.1. ~~ This also requires to implement a field in the variables list for the alpha channel; ~~
-    6. Reimplement the function of calculating actual values of the RGBA colors into the variables list;
-    7. Test it out.
+    4. [X] Add a "reset" button to the form;
+    5. [X] Implement Alpha channel next to the color input;
+        5.1. [X] This also requires to implement a field in the variables list for the alpha channel;
+    6. [ ] Reimplement the function of calculating actual values of the RGBA colors into the variables list;
+    7. [ ] Implement variables for TOC;
+    8. Test it out.
 */
 
 Lakeus.initThemeDesigner = function () {
