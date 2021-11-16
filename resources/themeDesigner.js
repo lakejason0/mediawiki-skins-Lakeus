@@ -739,7 +739,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content",
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')),);
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb'), chroma("#000000").brighten(0.2), chroma("#ffffff").darken(0.2));
                     },
                 },
                 "background-color-portlet-body": {
@@ -817,7 +817,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-body",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb'), chroma("#000000").brighten(0.2), chroma("#ffffff").darken(0.2));
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
                     },
                 },
             };
