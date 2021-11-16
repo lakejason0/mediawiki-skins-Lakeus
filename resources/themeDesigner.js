@@ -9,8 +9,9 @@ window.Lakeus = window.Lakeus || {};
     5. [X] Implement Alpha channel next to the color input;
         5.1. [X] This also requires to implement a field in the variables list for the alpha channel;
     6. [ ] Reimplement the function of calculating actual values of the RGBA colors into the variables list;
-    7. [ ] Implement variables for TOC;
-    8. Test it out.
+    7. [X] Implement variables for TOC;
+    8. [ ] Implement variables for feature `interface-message-box`;
+    9. Test it out.
 */
 
 Lakeus.initThemeDesigner = function () {
