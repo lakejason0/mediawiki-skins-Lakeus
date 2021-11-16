@@ -697,6 +697,51 @@ Lakeus.initThemeDesigner = function () {
                         return i;
                     },
                 },
+                "background-color-toc": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#f8f9fa"),
+                    value: chroma("#f8f9fa"),
+                    calculateFrom: [
+                        "background-color-body",
+                        "background-color-content",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.5, 0.5);
+                    },
+                },
+                "border-color-toc": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#a2a9b1"),
+                    value: chroma("#a2a9b1"),
+                    calculateFrom: [
+                        "background-color-toc",
+                        "background-color-content",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 1, 1);
+                    },
+                },
+                "color-toc-number": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#202122"),
+                    value: chroma("#202122"),
+                    calculateFrom: [
+                        "background-color-toc",
+                        "background-color-content",
+                    ],
+                    calculate: function (i) {
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')),);
+                    },
+                },
                 "background-color-portlet-body": {
                     fieldset: "lakeus-theme-designer-portlet",
                     rule: "manual",
@@ -772,7 +817,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-body",
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb'), chroma("#000000").brighten(0.2), chroma("#ffffff").darken(0.2));
                     },
                 },
             };
