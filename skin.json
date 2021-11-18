@@ -68,6 +68,7 @@
         "content-links": true,
         "content-media": true,
         "content-thumbnails": true,
+        "interface": true,
         "interface-category": true,
         "interface-message-box": true,
         "i18n-ordered-lists": true,
