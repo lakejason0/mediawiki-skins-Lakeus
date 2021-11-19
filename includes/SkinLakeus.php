@@ -3,6 +3,20 @@
 use SiteStats;
 
 class SkinLakeus extends SkinMustache {
+
+    public const TEMPLATE_DIR = __DIR__ . '/templates';
+
+	/**
+	 * @param BagOStuff $localServerObjectCache
+	 * @param array $options
+	 */
+	public function __construct( BagOStuff $localServerObjectCache, array $options ) {
+		$options['templatedirectory'] = self::TEMPLATE_DIR;
+		parent::__construct( $options );
+
+		$this->templateParser = new TemplateParser( $this->options['templateDirectory'], $localServerObjectCache );
+	}
+
     /**
      * Extends the getTemplateData function to add a template key 'html-myskin-hello-world'
      * which can be rendered in skin.mustache using {{{html-myskin-hello-world}}}

@@ -20,10 +20,12 @@
   "ValidSkinNames": {
     "lakeus": {
       "class": "SkinLakeus",
+      "services": [
+        "LocalServerObjectCache"	
+      ],
       "args": [
         {
           "name": "lakeus",
-          "templateDirectory": "skins/Lakeus/templates/",
           "messages": [
             "sitetitle",
             "search",
