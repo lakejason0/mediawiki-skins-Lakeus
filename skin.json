@@ -20,10 +20,12 @@
   "ValidSkinNames": {
     "lakeus": {
       "class": "SkinLakeus",
+      "services": [
+        "LocalServerObjectCache"	
+      ],
       "args": [
         {
           "name": "lakeus",
-          "templateDirectory": "skins/Lakeus/templates/",
           "messages": [
             "sitetitle",
             "search",
@@ -63,6 +65,7 @@
         "elements": true,
         "content-tables": true,
         "content-links": true,
+        "content-media": true,
         "content-thumbnails": true,
         "interface-category": true,
         "interface-message-box": true,
@@ -97,7 +100,10 @@
     }
   },
   "AutoloadClasses": {
-    "SkinLakeus": "SkinLakeus.php"
+    "SkinLakeus": "includes/SkinLakeus.php"
+  },
+  "AutoloadNamespaces": {
+    "Lakeus\\": "includes/"
   },
   "config": {
     "LakeusShowRepositoryLink": {
