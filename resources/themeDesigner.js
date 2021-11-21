@@ -12,7 +12,8 @@ window.Lakeus = window.Lakeus || {};
     7. [X] Implement variables for TOC;
     8. [X] Implement variables for feature `interface-message-box`;
     9. [X] Implement variables for feature `content-table`;
-    10. Test it out.
+    10. [ ] Implement variables for <code> and its alike;
+    11. Test it out.
 */
 
 Lakeus.initThemeDesigner = function () {
