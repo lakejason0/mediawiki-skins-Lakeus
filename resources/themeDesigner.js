@@ -10,8 +10,9 @@ window.Lakeus = window.Lakeus || {};
         5.1. [X] This also requires to implement a field in the variables list for the alpha channel;
     6. [ ] Reimplement the function of calculating actual values of the RGBA colors into the variables list;
     7. [X] Implement variables for TOC;
-    8. [ ] Implement variables for feature `interface-message-box`;
-    9. Test it out.
+    8. [X] Implement variables for feature `interface-message-box`;
+    9. [X] Implement variables for feature `content-table`;
+    10. Test it out.
 */
 
 Lakeus.initThemeDesigner = function () {
@@ -167,13 +168,16 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "manual",
+                    rule: "calculateWhenNeeded",
                     input: "color",
                     allowAlpha: false,
                     default: chroma("#0645ad"),
                     value: chroma("#0645ad"),
+                    calculateFrom: [
+                        "color-primary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "background-color-base": {
@@ -190,7 +194,6 @@ Lakeus.initThemeDesigner = function () {
                         return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
-                
                 "color-link--visited": {
                     fieldset: "lakeus-theme-designer-global",
                     rule: "calculateWhenNotNeeded",
@@ -216,6 +219,96 @@ Lakeus.initThemeDesigner = function () {
                     value: chroma("#faa700"),
                     calculateFrom: [
                         "color-link",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1);
+                    },
+                },
+                "color-link-new": {
+                    fieldset: "lakeus-theme-designer-basic",
+                    rule: "calculateWhenNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#d33"),
+                    value: chroma("#d33"),
+                    calculateFrom: [
+                        "color-primary",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value.set('hsl.h', '+180') || this.default;
+                    },
+                },
+                "color-link-new--visited": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#a55858"),
+                    value: chroma("#a55858"),
+                    calculateFrom: [
+                        "color-link-new",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 1, 1);
+                    },
+                },
+                "color-link-new--active": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#faa700"),
+                    value: chroma("#faa700"),
+                    calculateFrom: [
+                        "color-link-new",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1);
+                    },
+                },
+                "color-link-external": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#36b"),
+                    value: chroma("#36b"),
+                    calculateFrom: [
+                        "color-link",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 0.2, 0.2);
+                    },
+                },
+                "color-link-external--visited": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#636"),
+                    value: chroma("#636"),
+                    calculateFrom: [
+                        "color-link-external",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 1, 1);
+                    },
+                },
+                "color-link-external--active": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#b63"),
+                    value: chroma("#b63"),
+                    calculateFrom: [
+                        "color-link-external",
                     ],
                     calculate: function (i) {
                         return i || Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1);
@@ -559,13 +652,16 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-body": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
-                    allowAlpha: true,
+                    allowAlpha: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
+                    calculateFrom: [
+                        "color-secondary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "text-color-body": {
@@ -594,7 +690,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.5, 0.5);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.3, 0.3);
                     },
                 },
                 "color-accent-header-tab": {
@@ -623,7 +719,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-content"
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0.4, 0.4));
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0, 0.4));
                     },
                 },
                 "color-accent-header-tab-new": {
@@ -743,6 +839,284 @@ Lakeus.initThemeDesigner = function () {
                         return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb'), chroma("#000000").brighten(0.2), chroma("#ffffff").darken(0.2));
                     },
                 },
+                "border-color-interface-message-box-neutral": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "manual",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#a2a9b1"),
+                    value: chroma("#a2a9b1"),
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
+                "background-color-interface-message-box-neutral": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#eaecf0"),
+                    value: chroma("#eaecf0"),
+                    calculateFrom: [
+                        "border-color-interface-message-box-neutral",
+                        "background-color-content",
+                        "background-color-body"
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb'), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.8), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.1));
+                    },
+                },
+                "text-color-interface-message-box-neutral": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#000000"),
+                    value: chroma("#000000"),
+                    calculateFrom: [
+                        "background-color-interface-message-box-neutral",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value), Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb')));
+                    },
+                },
+                "border-color-interface-message-box-warning": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "manual",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#ffcc33"),
+                    value: chroma("#ffcc33"),
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
+                "background-color-interface-message-box-warning": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#fef6e7"),
+                    value: chroma("#fef6e7"),
+                    calculateFrom: [
+                        "border-color-interface-message-box-warning",
+                        "background-color-content",
+                        "background-color-body"
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb'), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.8), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.1));
+                    },
+                },
+                "text-color-interface-message-box-warning": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#000000"),
+                    value: chroma("#000000"),
+                    calculateFrom: [
+                        "background-color-interface-message-box-warning",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value), Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb')));
+                    },
+                },
+                "border-color-interface-message-box-error": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "manual",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#dd3333"),
+                    value: chroma("#dd3333"),
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
+                "background-color-interface-message-box-error": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#fee7e6"),
+                    value: chroma("#fee7e6"),
+                    calculateFrom: [
+                        "border-color-interface-message-box-error",
+                        "background-color-content",
+                        "background-color-body"
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb'), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.8), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.1));
+                    },
+                },
+                "text-color-interface-message-box-error": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#000000"),
+                    value: chroma("#000000"),
+                    calculateFrom: [
+                        "background-color-interface-message-box-error",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value), Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb')));
+                    },
+                },
+                "border-color-interface-message-box-success": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "manual",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#14866d"),
+                    value: chroma("#14866d"),
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
+                "background-color-interface-message-box-success": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#d5fdf4"),
+                    value: chroma("#d5fdf4"),
+                    calculateFrom: [
+                        "border-color-interface-message-box-success",
+                        "background-color-content",
+                        "background-color-body"
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb'), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.8), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.1));
+                    },
+                },
+                "text-color-interface-message-box-success": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#000000"),
+                    value: chroma("#000000"),
+                    calculateFrom: [
+                        "background-color-interface-message-box-success",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value), Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb')));
+                    },
+                },
+                "border-color-user-message": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "manual",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#ffa500"),
+                    value: chroma("#ffa500"),
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
+                "background-color-user-message": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#ffce7b"),
+                    value: chroma("#ffce7b"),
+                    calculateFrom: [
+                        "border-color-user-message",
+                        "background-color-content",
+                        "background-color-body"
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb'), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.8), Lakeus.variablesList[this.calculateFrom[0]].value.luminance(0.1));
+                    },
+                },
+                "text-color-user-message": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#000000"),
+                    value: chroma("#000000"),
+                    calculateFrom: [
+                        "background-color-user-message",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value), Lakeus.variablesList[this.calculateFrom[2]].value).hex('rgb')));
+                    },
+                },
+                "background-color-wikitable": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#f8f9fa"),
+                    value: chroma("#f8f9fa"),
+                    calculateFrom: [
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value)), Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value)), 0.1, 0.1);
+                    },
+                },
+                "text-color-wikitable": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#202122"),
+                    value: chroma("#202122"),
+                    calculateFrom: [
+                        "background-color-wikitable",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value)).hex('rgb'), chroma("#000000").brighten(0.05), chroma("#ffffff").darken(0.05));
+                    },
+                },
+                "border-color-wikitable": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#a2a9b1"),
+                    value: chroma("#a2a9b1"),
+                    calculateFrom: [
+                        "background-color-wikitable",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 1, 1.5);
+                    },
+                },
+                "background-color-wikitable-table-head": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: true,
+                    default: chroma("#eaecf0"),
+                    value: chroma("#eaecf0"),
+                    calculateFrom: [
+                        "background-color-wikitable",
+                        "background-color-content",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 1, 0.2);
+                    },
+                },
                 "background-color-portlet-body": {
                     fieldset: "lakeus-theme-designer-portlet",
                     rule: "manual",
@@ -797,13 +1171,16 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-footer": {
                     fieldset: "lakeus-theme-designer-footer",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: true,
                     default: chroma("#eeeeee"),
                     value: chroma("#eeeeee"),
+                    calculateFrom: [
+                        "background-color-body",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[0]].value, 0.4, 0.4);
                     }
                 },
                 "text-color-footer": {
@@ -819,6 +1196,50 @@ Lakeus.initThemeDesigner = function () {
                     ],
                     calculate: function (i) {
                         return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
+                    },
+                },
+                "color-footer-link": {
+                    fieldset: "lakeus-theme-designer-basic",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#0645ad"),
+                    value: chroma("#0645ad"),
+                    calculateFrom: [
+                        "color-link",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value;
+                    },
+                },
+                "color-footer-link--visited": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#0b0080"),
+                    value: chroma("#0b0080"),
+                    calculateFrom: [
+                        "color-footer-link",
+                        "background-color-footer",
+                        "background-color-body",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 1, 1);
+                    },
+                },
+                "color-footer-link--active": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "calculateWhenNotNeeded",
+                    input: "color",
+                    allowAlpha: false,
+                    default: chroma("#faa700"),
+                    value: chroma("#faa700"),
+                    calculateFrom: [
+                        "color-footer-link",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1);
                     },
                 },
             };
@@ -853,7 +1274,7 @@ Lakeus.initThemeDesigner = function () {
                         '<label>' +
                             mw.message('lakeus-theme-designer-' + variableName) +
                             '<input type="color" class="lakeus-theme-designer-input-color" list="'+ (variableContent.datalist ? variableContent.datalist : "lakeus-theme-designer-preset-colors") +'" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex('rgb') + '" />' +
-                            (variableContent.allowAlpha ? '<input type="number" placeholder="' + mw.message("") + '" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' : "") +
+                            (variableContent.allowAlpha ? '<input type="number" placeholder="' + mw.message("lakeus-theme-designer-alpha-channel") + '" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' : "") +
                         '</label>';
                 } else if (variableContent.input === 'text') {
                     settingElement +=

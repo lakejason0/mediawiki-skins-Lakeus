@@ -23,6 +23,8 @@
   --background-color-interface-message-box-warning: #fef6e7;
   --background-color-interface-message-box-success: #d5fdf4;
   --background-color-user-message: #ffce7b;
+  --background-color-wikitable: #f8f9fa;
+  --background-color-wikitable-table-head: #eaecf0;
   --border-color-edit-options: #c8ccd1;
   --border-color-content: #ccc;
   --border-color-toggle-list: #ddd;
@@ -36,6 +38,7 @@
   --border-color-interface-message-box-warning: #fc3;
   --border-color-interface-message-box-success: #14866d;
   --border-color-user-message: #ffa500;
+  --border-color-wikitable: #a2a9b1;
   --subheader-color-toggle-list: #6a6a6a;
   --logo-text-color-toggle-list: #000000;
   --text-color-toggle-list-item: #1c1c1c;
@@ -50,6 +53,7 @@
   --text-color-interface-message-box-warning: #000000;
   --text-color-interface-message-box-success: #000000;
   --text-color-user-message: #000000;
+  --text-color-wikitable: #202122;
   --icon-filter-header: unset;
   --color-search-suggestions-text: #000;
   --color-search-suggestions-text-current: #fff;
@@ -64,6 +68,15 @@
   --color-link: #0645ad;
   --color-link--visited: #0b0080;
   --color-link--active: #faa700;
+  --color-link-new: #d33;
+  --color-link-new--visited: #a55858;
+  --color-link-new--active: #faa700;
+  --color-link-external: #36b;
+  --color-link-external--visited: #636;
+  --color-link-external--active: #b63;
+  --color-footer-link: #0645ad;
+  --color-footer-link--visited: #0b0080;
+  --color-footer-link--active: #faa700;
   --color-toc-number: #202122;
   --font-family: 'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
   --font-family-serif: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
@@ -92,6 +105,8 @@
 @background-color-interface-message-box-warning: var( --background-color-interface-message-box-warning );
 @background-color-interface-message-box-success: var( --background-color-interface-message-box-success );
 @background-color-user-message: var( --background-color-user-message );
+@background-color-wikitable: var( --background-color-wikitable );
+@background-color-wikitable-table-head: var( --background-color-wikitable-table-head );
 @border-color-edit-options: var( --border-color-edit-options );
 @background-color-portlet-item-hover: var( --background-color-portlet-item-hover );
 @background-color-portlet-item-focus: var( --background-color-portlet-item-focus );
@@ -107,6 +122,7 @@
 @border-color-interface-message-box-warning: var( --border-color-interface-message-box-warning );
 @border-color-interface-message-box-success: var( --border-color-interface-message-box-success );
 @border-color-user-message: var( --border-color-user-message );
+@border-color-wikitable: var( --border-color-wikitable );
 @subheader-color-toggle-list: var( --subheader-color-toggle-list );
 @logo-text-color-toggle-list: var( --logo-text-color-toggle-list );
 @text-color-content: var( --text-color-content );
@@ -121,6 +137,7 @@
 @text-color-interface-message-box-warning: var( --text-color-interface-message-box-warning );
 @text-color-interface-message-box-success: var( --text-color-interface-message-box-success );
 @text-color-user-message: var( --text-color-user-message );
+@text-color-wikitable: var( --text-color-wikitable );
 @icon-filter-header: var( --icon-filter-header );
 @color-search-suggestions-text: var( --color-search-suggestions-text );
 @color-search-suggestions-text-current: var( --color-search-suggestions-text-current );
@@ -135,6 +152,15 @@
 @color-link: var( --color-link );
 @color-link--visited: var( --color-link--visited );
 @color-link--active: var( --color-link--active );
+@color-link-new: var( --color-link-new );
+@color-link-new--visited: var( --color-link-new--visited );
+@color-link-new--active: var( --color-link-new--active );
+@color-link-external: var( --color-link-external );
+@color-link-external--visited: var( --color-link-external--visited );
+@color-link-external--active: var( --color-link-external--active );
+@color-footer-link: var( --color-footer-link );
+@color-footer-link--visited: var( --color-footer-link--visited );
+@color-footer-link--active: var( --color-footer-link--active );
 @color-toc-number: var( --color-toc-number );
 @font-family: var( --font-family );
 @font-family-headings: var( --font-family-headings );

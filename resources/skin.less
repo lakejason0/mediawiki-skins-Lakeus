@@ -23,6 +23,8 @@ body {
   }
 }
 
+/* Links */
+
 a, body a {
   color: @color-link;
 
@@ -33,6 +35,34 @@ a, body a {
   &:active {
     color: @color-link--active;
   }
+}
+
+a.new, body a.new,
+#p-personal a.new, body #p-personal a.new {
+  color: @color-link-new;
+}
+
+a.new:visited, body a.new:visited {
+  color: @color-link-new--visited;
+}
+
+a.new:active, body a.new:active {
+  color: @color-link-new--active;
+}
+
+.mw-parser-output a.extiw, body .mw-parser-output a.extiw,
+.mw-parser-output a.external, body .mw-parser-output a.external {
+  color: @color-link-external;
+}
+
+.mw-parser-output a.extiw:visited, body .mw-parser-output a.extiw:visited,
+.mw-parser-output a.external:visited, body .mw-parser-output a.external:visited {
+  color: @color-link-external--visited;
+}
+
+.mw-parser-output a.extiw:active, body .mw-parser-output a.extiw:active,
+.mw-parser-output a.external:active, body .mw-parser-output a.external:active {
+  color: @color-link-external--active;
 }
 
 .mw-editsection {
@@ -717,6 +747,25 @@ div.editOptions {
   vertical-align: middle;
 }
 
+/* TABLES */
+.wikitable, body .wikitable {
+  background-color: @background-color-wikitable;
+  color: @text-color-wikitable;
+  border-color: @border-color-wikitable;
+
+  > tr > th,
+  > tr > td,
+  > * > tr > th,
+  > * > tr > td {
+    border-color: @border-color-wikitable;
+  }
+
+  > tr > th,
+  > * > tr > th {
+    background-color: @background-color-wikitable-table-head;
+  }
+}
+
 /* CATEGORIES */
 
 #catlinks {
@@ -750,6 +799,18 @@ body > footer {
   li {
     display: inline-block;
     margin-right: 5px;
+  }
+
+  a {
+    color: @color-footer-link;
+
+    &:active {
+      color: @color-footer-link--active;
+    }
+
+    &:visited {
+      color: @color-footer-link--visited;
+    }
   }
 }
 
