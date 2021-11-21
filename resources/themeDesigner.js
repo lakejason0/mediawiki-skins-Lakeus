@@ -180,6 +180,36 @@ Lakeus.initThemeDesigner = function () {
                         return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
+                "font-family": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "manual",
+                    input: "text",
+                    default: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
+                    value: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
+                "font-family-serif": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "manual",
+                    input: "text",
+                    default: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
+                    value: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
+                "elevation": {
+                    fieldset: "lakeus-theme-designer-global",
+                    rule: "manual",
+                    input: "text",
+                    default: "0 2px 2px rgba( 0, 0, 0, 10% )",
+                    value: "0 2px 2px rgba( 0, 0, 0, 10% )",
+                    calculate: function (i) {
+                        return i;
+                    },
+                },
                 "background-color-base": {
                     fieldset: "lakeus-theme-designer-global",
                     rule: "calculateWhenNotNeeded",
@@ -225,7 +255,7 @@ Lakeus.initThemeDesigner = function () {
                     },
                 },
                 "color-link-new": {
-                    fieldset: "lakeus-theme-designer-basic",
+                    fieldset: "lakeus-theme-designer-global",
                     rule: "calculateWhenNeeded",
                     input: "color",
                     allowAlpha: false,
@@ -314,36 +344,6 @@ Lakeus.initThemeDesigner = function () {
                         return i || Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1);
                     },
                 },
-                "elevation": {
-                    fieldset: "lakeus-theme-designer-global",
-                    rule: "manual",
-                    input: "text",
-                    default: "0 2px 2px rgba( 0, 0, 0, 10% )",
-                    value: "0 2px 2px rgba( 0, 0, 0, 10% )",
-                    calculate: function (i) {
-                        return i;
-                    },
-                },
-                "font-family": {
-                    fieldset: "lakeus-theme-designer-global",
-                    rule: "manual",
-                    input: "text",
-                    default: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
-                    value: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
-                    calculate: function (i) {
-                        return i;
-                    },
-                },
-                "font-family-serif": {
-                    fieldset: "lakeus-theme-designer-global",
-                    rule: "manual",
-                    input: "text",
-                    default: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
-                    value: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
-                    calculate: function (i) {
-                        return i;
-                    },
-                },
                 "header-elevation": {
                     fieldset: "lakeus-theme-designer-page-header",
                     rule: "manual",
@@ -385,13 +385,16 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-search-suggestions": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
-                    allowAlpha: true,
+                    allowAlpha: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
+                    calculateFrom: [
+                        "color-secondary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "border-color-search-suggestions": {
@@ -412,13 +415,16 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-search-suggestions-current": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: true,
                     default: chroma("#1d5492"),
                     value: chroma("#1d5492"),
+                    calculateFrom: [
+                        "color-primary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "color-search-suggestions-text": {
@@ -451,13 +457,16 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-search-input": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
-                    allowAlpha: true,
+                    allowAlpha: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
+                    calculateFrom: [
+                        "color-secondary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "border-color-search-bar": {
@@ -478,24 +487,30 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-toggle-list": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
-                    allowAlpha: true,
+                    allowAlpha: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
+                    calculateFrom: [
+                        "color-secondary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "background-color-toggle-list-card": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "manual",
+                    rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: true,
                     default: chroma("#eeeeee"),
                     value: chroma("#eeeeee"),
+                    calculateFrom: [
+                        "color-primary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "text-color-toggle-list-item": {
@@ -594,7 +609,7 @@ Lakeus.initThemeDesigner = function () {
                         "background-color-toggle-list-card"
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'), "#6a6a6a", "#c3c3c3"));
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'), Lakeus.variablesList[this.calculateFrom[0]].value.brighten(0.4), Lakeus.variablesList[this.calculateFrom[0]].value.darken(0.4)));
                     },
                 },
                 "logo-text-color-toggle-list": {
@@ -1337,6 +1352,8 @@ Lakeus.initThemeDesigner = function () {
                                         '</button>' +
                                         '<button type="button" id="lakeus-theme-designer-reload-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-reload") +
                                         '</button>' +
+                                        '<button type="button" id="lakeus-theme-designer-invert-auto-calculate-selection-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-invert-auto-calculate-selection") +
+                                        '</button>' +
                                         '<label>' +
                                             '<input type="checkbox" id="lakeus-theme-designer-color-picker-fallback-checkbox">' +
                                             mw.message("lakeus-theme-designer-color-picker-fallback") +
@@ -1378,6 +1395,7 @@ Lakeus.initThemeDesigner = function () {
                 $("#lakeus-theme-designer-clear-theme-button").click(function (e) { e.preventDefault; Lakeus.clearTheme(); });
                 $("#lakeus-theme-designer-reset-theme-button").click(function (e) { e.preventDefault; Lakeus.resetFormFromVariablesList(); });
                 $("#lakeus-theme-designer-reload-button").click(function (e) { e.preventDefault; Lakeus.reloadThemeDesigner(); });
+                $("#lakeus-theme-designer-invert-auto-calculate-selection-button").click(function (e) { e.preventDefault; Lakeus.invertAutoCalculateSelection(); });
                 $("#lakeus-theme-designer-portlet-body").submit(function (e) { e.preventDefault; });
                 Lakeus.updateVariablesListFromForm();
             }
@@ -1515,6 +1533,13 @@ Lakeus.clearTheme = function () {
     $(".lakeus-theme-designer-fieldset").prop('disabled', false);
     $.each(Lakeus.variablesList, function (k, v) {
         document.querySelector('html').style.removeProperty("--" + k);
+    });
+}
+
+Lakeus.invertAutoCalculateSelection = function () {
+    $(".lakeus-theme-designer-auto-calculate-checkbox").each(function () {
+        var checked = $(this).prop('checked');
+        $(this).prop('checked', !checked).trigger('change');
     });
 }
 
