@@ -1251,7 +1251,7 @@ Lakeus.initThemeDesigner = function () {
                     },
                 },
                 "color-footer-link": {
-                    fieldset: "lakeus-theme-designer-basic",
+                    fieldset: "lakeus-theme-designer-footer",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: false,
@@ -1265,7 +1265,7 @@ Lakeus.initThemeDesigner = function () {
                     },
                 },
                 "color-footer-link--visited": {
-                    fieldset: "lakeus-theme-designer-global",
+                    fieldset: "lakeus-theme-designer-footer",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: false,
@@ -1281,7 +1281,7 @@ Lakeus.initThemeDesigner = function () {
                     },
                 },
                 "color-footer-link--active": {
-                    fieldset: "lakeus-theme-designer-global",
+                    fieldset: "lakeus-theme-designer-footer",
                     rule: "calculateWhenNotNeeded",
                     input: "color",
                     allowAlpha: false,
