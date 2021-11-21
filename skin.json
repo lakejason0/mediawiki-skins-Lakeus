@@ -21,7 +21,7 @@
     "lakeus": {
       "class": "SkinLakeus",
       "services": [
-        "LocalServerObjectCache"	
+        "LocalServerObjectCache"
       ],
       "args": [
         {
@@ -110,20 +110,35 @@
         "lakeus-theme-designer-test-theme",
         "lakeus-theme-designer-clear-theme",
         "lakeus-theme-designer-reset-theme",
+        "lakeus-theme-designer-invert-auto-calculate-selection",
         "lakeus-theme-designer-copied",
         "lakeus-theme-designer-copy-failed",
         "lakeus-theme-designer-reload",
+        "lakeus-theme-designer-color-picker-fallback",
         "lakeus-theme-designer-alpha-channel",
+        "lakeus-theme-designer-basic",
+        "lakeus-theme-designer-color-primary",
+        "lakeus-theme-designer-color-secondary",
         "lakeus-theme-designer-global",
         "lakeus-theme-designer-background-color-base",
         "lakeus-theme-designer-color-link",
         "lakeus-theme-designer-color-link--visited",
+        "lakeus-theme-designer-color-link--active",
+        "lakeus-theme-designer-color-link-new",
+        "lakeus-theme-designer-color-link-new--visited",
+        "lakeus-theme-designer-color-link-new--active",
+        "lakeus-theme-designer-color-link-footer",
+        "lakeus-theme-designer-color-link-footer--visited",
+        "lakeus-theme-designer-color-link-footer--active",
+        "lakeus-theme-designer-color-link-external",
+        "lakeus-theme-designer-color-link-external--visited",
+        "lakeus-theme-designer-color-link-external--active",
         "lakeus-theme-designer-elevation",
-        "lakeus-theme-designer-header-elevation",
         "lakeus-theme-designer-font-family",
         "lakeus-theme-designer-font-family-serif",
         "lakeus-theme-designer-page-header",
         "lakeus-theme-designer-color-header",
+        "lakeus-theme-designer-header-elevation",
         "lakeus-theme-designer-icon-filter-header",
         "lakeus-theme-designer-background-color-search-suggestions",
         "lakeus-theme-designer-border-color-search-suggestions",
@@ -151,6 +166,28 @@
         "lakeus-theme-designer-font-family-headings",
         "lakeus-theme-designer-background-color-edit-options",
         "lakeus-theme-designer-border-color-edit-options",
+        "lakeus-theme-designer-background-color-toc",
+        "lakeus-theme-designer-border-color-toc",
+        "lakeus-theme-designer-color-toc-number",
+        "lakeus-theme-designer-border-color-interface-message-box-neutral",
+        "lakeus-theme-designer-background-color-interface-message-box-neutral",
+        "lakeus-theme-designer-text-color-interface-message-box-neutral",
+        "lakeus-theme-designer-border-color-interface-message-box-warning",
+        "lakeus-theme-designer-background-color-interface-message-box-warning",
+        "lakeus-theme-designer-text-color-interface-message-box-warning",
+        "lakeus-theme-designer-border-color-interface-message-box-error",
+        "lakeus-theme-designer-background-color-interface-message-box-error",
+        "lakeus-theme-designer-text-color-interface-message-box-error",
+        "lakeus-theme-designer-border-color-interface-message-box-success",
+        "lakeus-theme-designer-background-color-interface-message-box-success",
+        "lakeus-theme-designer-text-color-interface-message-box-success",
+        "lakeus-theme-designer-border-color-user-message",
+        "lakeus-theme-designer-background-color-user-message",
+        "lakeus-theme-designer-text-color-user-message",
+        "lakeus-theme-designer-background-color-wikitable",
+        "lakeus-theme-designer-border-color-wikitable",
+        "lakeus-theme-designer-background-color-wikitable-table-head",
+        "lakeus-theme-designer-text-color-wikitable",
         "lakeus-theme-designer-portlet",
         "lakeus-theme-designer-background-color-portlet-body",
         "lakeus-theme-designer-background-color-portlet-item-hover",
@@ -167,8 +204,7 @@
         "lakeus-theme-designer-text-color-body",
         "lakeus-theme-designer-color-accent-header-tab-selected",
         "lakeus-theme-designer-color-accent-header-tab-new",
-        "lakeus-theme-designer-danger-zone",
-        "lakeus-theme-designer-color-picker-fallback"
+        "lakeus-theme-designer-danger-zone"
       ],
       "packageFiles": [
         "resources/themeDesigner.js"
@@ -196,9 +232,9 @@
   "Hooks": {
     "GetPreferences": "Lakeus\\Hooks::onGetPreferences"
   },
-	"DefaultUserOptions": {
-		"lakeus-enable-theme-designer": 0
-	},
+  "DefaultUserOptions": {
+    "lakeus-enable-theme-designer": 0
+  },
   "config": {
     "LakeusShowRepositoryLink": {
       "value": true,
