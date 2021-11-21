@@ -6,7 +6,81 @@
     z-index: 199;
 }
 
-#lakeus-theme-designer #lakeus-theme-designer-button {
+#lakeus-theme-designer-title {
+    font-size: 100%;
+    font-weight: bold;
+    margin-bottom: 0.6em;
+    border-bottom: 1px solid #a2a9b1;
+}
+
+#lakeus-theme-designer-portlet {
+    position: relative;
+}
+
+#lakeus-theme-designer-portlet #lakeus-theme-designer-modal-checkbox-hack {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes theme-designer-animation-menu-show {
+    from {
+        opacity: 0;
+    }
+  
+    to {
+        opacity: 1;
+    }
+  }
+  
+@keyframes theme-designer-animation-menu-hide {
+    from {
+      opacity: 1;
+      visibility: visible;
+    }
+  
+    to {
+      opacity: 0;
+    }
+}
+
+#lakeus-theme-designer-portlet #lakeus-theme-designer-modal-checkbox-hack:checked ~ #lakeus-theme-designer-portlet-body {
+    animation-name: theme-designer-animation-menu-show;
+    animation-duration: 0.2s;
+}
+
+#lakeus-theme-designer-portlet #lakeus-theme-designer-modal-checkbox-hack:checked ~ #lakeus-theme-designer-portlet-body #lakeus-theme-designer-portlet-body-container {
+    opacity: 1;
+    visibility: visible;
+}
+
+#lakeus-theme-designer-portlet #lakeus-theme-designer-portlet-body {
+    display: block;
+    visibility: hidden;
+    bottom: 100%;
+    position: absolute;
+    animation-name: theme-designer-animation-menu-hide;
+    animation-duration: 0.2s;
+}
+
+#lakeus-theme-designer-portlet-body #lakeus-theme-designer-portlet-body-container {
+    background: white;
+    overflow-y: scroll;
+    box-shadow: 0 5px 17px 0 rgba(0,0,0,0.24),0 0 1px #a2a9b1;
+    border-radius: 3px;
+    padding: 0.4em;
+    max-height: 600px;
+}
+
+#lakeus-theme-designer #lakeus-theme-designer-modal-button {
     color: #fff;
     background: #fff;
     text-align: center;
@@ -20,4 +94,69 @@
     padding: 0;
     margin: 0;
     cursor: pointer;
+}
+
+#lakeus-theme-designer-portlet-body input[type="text"],
+#lakeus-theme-designer-portlet-body input[type="password"],
+#lakeus-theme-designer-portlet-body input[type="email"],
+#lakeus-theme-designer-portlet-body input[type="url"],
+#lakeus-theme-designer-portlet-body input[type="date"],
+#lakeus-theme-designer-portlet-body input[type="month"],
+#lakeus-theme-designer-portlet-body input[type="time"],
+#lakeus-theme-designer-portlet-body input[type="datetime"],
+#lakeus-theme-designer-portlet-body input[type="datetime-local"],
+#lakeus-theme-designer-portlet-body input[type="week"],
+#lakeus-theme-designer-portlet-body input[type="number"],
+#lakeus-theme-designer-portlet-body input[type="search"],
+#lakeus-theme-designer-portlet-body input[type="tel"],
+#lakeus-theme-designer-portlet-body input[type="color"],
+#lakeus-theme-designer-portlet-body input[type="file"],
+#lakeus-theme-designer-portlet-body select,
+#lakeus-theme-designer-portlet-body label,
+#lakeus-theme-designer-portlet-body textarea {
+    display: block;
+    margin: 0.25em 0;
+}
+
+#lakeus-theme-designer-portlet-body input[type="checkbox"],
+#lakeus-theme-designer-portlet-body input[type="radio"] {
+    margin-right: 0.2em;
+}
+
+#lakeus-theme-designer-portlet-body #lakeus-theme-designer-action-buttons {
+    position: sticky;
+    background: #fff;
+    bottom: 0;
+    margin-top: -1px;
+    border-top: 1px solid #c8ccd1;
+    padding: 1em 0;
+    box-shadow: 0 -4px 4px -4px rgb(0 0 0 / 25%);
+}
+
+#lakeus-theme-designer-portlet-body .lakeus-theme-designer-action-button {
+    padding: 0.35em;
+    margin: 0.25em;
+    background-color: #fff;
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+}
+
+#lakeus-theme-designer-action-buttons #lakeus-theme-designer-copy-theme-button {
+    background-color: #36c;
+    border-color: #36c;
+    color: white;
+}
+
+#lakeus-theme-designer-portlet-body .lakeus-theme-designer-action-button-progressive {
+    background-color: #36c;
+    border-color: #36c;
+    color: white;
+}
+
+#lakeus-theme-designer-portlet-body .lakeus-theme-designer-action-button-danger {
+    background-color: #d33;
+    border-color: #d33;
+    color: white;
 }

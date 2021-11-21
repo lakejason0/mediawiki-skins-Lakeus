@@ -1,7 +1,4 @@
 <?php
-
-// use SiteStats;
-
 class SkinLakeus extends SkinMustache {
 
     public const TEMPLATE_DIR = __DIR__ . '/templates';
