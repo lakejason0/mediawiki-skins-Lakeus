@@ -738,11 +738,12 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#cccccc"),
                     value: chroma("#cccccc"),
                     calculateFrom: [
-                        "border-color-content",
                         "background-color-content",
+                        "background-color-content",
+                        "background-color-body"
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value, 0.3, 0.3);
+                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 2, 1);
                     },
                 },
                 "color-accent-header-tab": {
