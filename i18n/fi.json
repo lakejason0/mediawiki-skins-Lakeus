@@ -1,9 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
+			"MITO",
 			"Nike"
 		]
 	},
 	"lakeus.js": "/* Tämän sivun JavaScript-koodi ladataan Lakeus-ulkoasun käyttäjille */",
-	"lakeus-openmainmenu": "Avaa päävalikko"
+	"lakeus-openmainmenu": "Avaa päävalikko",
+	"lakeus-theme-designer-copy-theme": "Kopioi teema",
+	"lakeus-theme-designer-test-theme": "Kokeile teemaa",
+	"lakeus-theme-designer-clear-theme": "Lopeta testaus",
+	"lakeus-theme-designer-reset-theme": "Nollaa",
+	"lakeus-theme-designer-reload": "Päivitä",
+	"lakeus-theme-designer-basic": "Normaali",
+	"lakeus-theme-designer-global": "Järjestelmänlaajuinen",
+	"lakeus-theme-designer-color-link": "Linkin väri",
+	"lakeus-theme-designer-color-link--visited": "Vieraillun linkin väri",
+	"lakeus-theme-designer-color-link--active": "Aktiivisen linkin väri",
+	"lakeus-theme-designer-color-link-new": "Uusi linkin väri",
+	"lakeus-theme-designer-color-link-external": "Ulkoisen linkin väri",
+	"lakeus-theme-designer-background-color-content": "Sisällön taustan väri",
+	"lakeus-theme-designer-portlet": "Pudotusvalikot",
+	"lakeus-theme-designer-footer": "Alatunniste",
+	"lakeus-theme-designer-background-color-footer": "Alatunnisteen taustan väri",
+	"lakeus-theme-designer-text-color-content": "Sisällön tekstin väri"
 }
