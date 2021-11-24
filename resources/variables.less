@@ -2,6 +2,8 @@
 /* Variables */
 /* Make less variables to CSS ones */
 :root {
+  --color-primary: #3366cc;
+  --color-secondary: #ffffff;
   --background-color-base: white;
   --background-color-body: white;
   --background-color-content: white;
@@ -55,6 +57,7 @@
   --text-color-user-message: #000000;
   --text-color-wikitable: #202122;
   --icon-filter-header: unset;
+  --icon-filter-ooui-icon: unset;
   --color-search-suggestions-text: #000;
   --color-search-suggestions-text-current: #fff;
   --color-tagline: var(--color-base);
@@ -86,6 +89,8 @@
   --mask-background: rgba( 0, 0, 0, 0.8 );
 }
 
+@color-primary: var(--color-primary);
+@color-secondary: var(--color-secondary);
 @background-color-base: var( --background-color-base );
 @background-color-body: var( --background-color-body );
 @background-color-content: var( --background-color-content );
@@ -139,6 +144,7 @@
 @text-color-user-message: var( --text-color-user-message );
 @text-color-wikitable: var( --text-color-wikitable );
 @icon-filter-header: var( --icon-filter-header );
+@icon-filter-ooui-icon: var( --icon-filter-ooui-icon );
 @color-search-suggestions-text: var( --color-search-suggestions-text );
 @color-search-suggestions-text-current: var( --color-search-suggestions-text-current );
 @color-tagline: var( --color-tagline );

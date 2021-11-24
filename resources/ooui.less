@@ -1,3 +1,5 @@
+@import 'variables.less';
+
 .skin-lakeus .oo-ui-windowManager-modal > .oo-ui-dialog,
 .skin-lakeus .ve-ui-overlay-global {
     z-index: 101;
@@ -7,4 +9,27 @@ body > .oo-ui-windowManager,
 .oo-ui-defaultOverlay {
     z-index: 101;
     font-size: 0.95em;
+}
+
+body .mw-pulsating-dot:before, body .mw-pulsating-dot:after {
+    background-color: @color-primary;
+}
+
+/* Icons */
+.skin-lakeus {
+    .oo-ui-iconElement-icon,
+    .oo-ui-indicatorElement-indicator {
+        filter: @icon-filter-ooui-icon;
+    }
+}
+
+.oo-ui-iconElement-icon.oo-ui-iconElement-noIcon {
+    visibility:hidden;
+}
+
+body .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover > .oo-ui-iconElement-icon:not(.oo-ui-image-invert), 
+body .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover > .oo-ui-indicatorElement-indicator:not(.oo-ui-image-invert),
+body .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon:not(.oo-ui-image-invert), 
+body .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator:not(.oo-ui-image-invert) {
+    opacity:1;
 }
