@@ -78,7 +78,6 @@ a.new:active, body a.new:active {
 
   h3 {
     display: none;
-    font-family: @font-family;
   }
 
   li {
@@ -490,10 +489,6 @@ main {
     &:empty {
       display: none;
     }
-
-    span {
-      display: block;
-    }
   }
 
   &__actions {
@@ -575,17 +570,30 @@ div.editOptions {
       padding: 0.2em 0.75em;
       display: block;
       border-radius: 3px;
+      color: @text-color-portlet-item;
 
       &:hover {
         background: @background-color-portlet-item-hover;
+        color: @text-color-portlet-item-hover;
       }
 
       &:focus {
         background: @background-color-portlet-item-focus;
+        color: @text-color-portlet-item-focus;
+      }
+
+      &:visited {
+        color: @text-color-portlet-item;
       }
       
-      &:visited {
-        color: inherit;
+      &:visited:hover {
+        background: @background-color-portlet-item-hover;
+        color: @text-color-portlet-item-hover;
+      }
+
+      &:visited:focus {
+        background: @background-color-portlet-item-focus;
+        color: @text-color-portlet-item-focus;
       }
     }
   }
@@ -681,6 +689,12 @@ div.editOptions {
   li.selected {
     display: none;
   }
+
+  .mw-portlet-cactions {
+    li a {
+      color: @text-color-portlet-body;
+    }
+  }
 }
 
 .mw-portlet-variants .mw-portlet-body ul {
@@ -688,7 +702,6 @@ div.editOptions {
 }
 
 .mw-portlet-cactions h3,
-.mw-portlet-cactions li a,
 .mw-portlet-views li a {
   color: @color-accent-header-tab;
   text-decoration: none;
