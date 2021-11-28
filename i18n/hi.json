@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abijeet Patro",
 			"ThisIsACreeper0101"
 		]
 	},
@@ -9,5 +10,7 @@
 	"lakeus.js": "/* यहाँ रखी जावास्क्रिप्ट Lakeus स्किन के उपयोगकर्ताओं के लिए लोड होगी */",
 	"lakeus-openmainmenu": "मुख्य मेनू खोलें",
 	"lakeus-articlecount": "{{PLURAL:$1|लेख}}",
-	"lakeus-footermessage": "Lakeus स्किन द्वारा संचालित"
+	"lakeus-footermessage": "Lakeus स्किन द्वारा संचालित",
+	"lakeus-theme-designer-reset-theme": "रीसेट करें",
+	"lakeus-theme-designer-global": "वैश्विक"
 }

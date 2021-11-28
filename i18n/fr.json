@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Gomoko"
 		]
 	},
@@ -10,5 +11,8 @@
 	"lakeus.js": "/* Tous les JavaScript ici seront chargés pour les utilisateurs de l’habillage Lakeus */",
 	"lakeus-openmainmenu": "Ouvrir le menu principal",
 	"lakeus-articlecount": "{{PLURAL:$1|Article|Articles}}",
-	"lakeus-footermessage": "Provenant de l’habillage Lakeus"
+	"lakeus-footermessage": "Provenant de l’habillage Lakeus",
+	"lakeus-theme-designer-reset-theme": "Réinitialiser",
+	"lakeus-theme-designer-global": "Global",
+	"lakeus-theme-designer-footer": "Pied de page"
 }
