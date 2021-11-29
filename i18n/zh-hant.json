@@ -28,7 +28,7 @@
 	"lakeus-theme-designer-copied": "主題CSS已複製到您的剪貼簿中。",
 	"lakeus-theme-designer-copy-failed": "無法將主題CSS複製到您的剪貼簿中。結果將顯示在設計器底部。",
 	"lakeus-theme-designer-reload": "重新載入",
-	"lakeus-theme-designer-color-picker-fallback": "為拾色器使用文字欄",
+	"lakeus-theme-designer-color-picker-fallback": "為拾色器使用文字列",
 	"lakeus-theme-designer-alpha-channel": "Alpha（不透明度）",
 	"lakeus-theme-designer-basic": "基本",
 	"lakeus-theme-designer-color-primary": "主要顏色（前景）",
