@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"MITO",
-			"Nike"
+			"Nike",
+			"Rönttönen"
 		]
 	},
 	"lakeus.js": "/* Tämän sivun JavaScript-koodi ladataan Lakeus-ulkoasun käyttäjille */",
@@ -26,8 +27,10 @@
 	"lakeus-theme-designer-color-link-external--visited": "Vieraillun ulkoisen linkin väri",
 	"lakeus-theme-designer-color-link-external--active": "Aktiivisen ulkoisen linkin väri",
 	"lakeus-theme-designer-font-family": "Oletus fontti",
+	"lakeus-theme-designer-font-family-serif": "Oletuskirjasinperhe (pääteviivallinen)",
 	"lakeus-theme-designer-color-header": "Sivun otsikon väri",
 	"lakeus-theme-designer-background-color-content": "Sisällön taustan väri",
+	"lakeus-theme-designer-background-color-body": "Sisällön taustan väri",
 	"lakeus-theme-designer-background-color-wikitable": "Taulukon taustan väri",
 	"lakeus-theme-designer-border-color-wikitable": "Taulukon rajan väri",
 	"lakeus-theme-designer-text-color-wikitable": "Taulukon tekstin väri",
@@ -38,5 +41,6 @@
 	"lakeus-theme-designer-background-color-footer": "Alatunnisteen taustan väri",
 	"lakeus-theme-designer-text-color-footer": "Alapalkin tekstin väri",
 	"lakeus-theme-designer-text-color-content": "Sisällön tekstin väri",
-	"lakeus-theme-designer-text-color-header": "Otsikon tekstin väri"
+	"lakeus-theme-designer-text-color-header": "Otsikon tekstin väri",
+	"lakeus-theme-designer-danger-zone": "Vaaravyöhyke"
 }
