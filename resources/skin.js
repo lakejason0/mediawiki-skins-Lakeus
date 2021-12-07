@@ -3,8 +3,10 @@ window.Lakeus = window.Lakeus || {};
 Lakeus.portletOutsideClose = function (id) {
     $(document).on('click', function (event) {
         var container = document.getElementById(id);
-        if (container !== event.target && !container.contains(event.target)) {
-            $('#' + id + ' input[type="checkbox"]').prop('checked', false);
+        if (container) {
+            if (container !== event.target && !container.contains(event.target)) {
+                $('#' + id + ' input[type="checkbox"]').prop('checked', false);
+            }
         }
     })
 }
