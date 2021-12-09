@@ -172,9 +172,13 @@ Lakeus.initThemeDesigner = function () {
             Lakeus.variablesList = {
                 "color-primary": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#36c"),
                     value: chroma("#36c"),
                     calculate: function (i) {
@@ -183,9 +187,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-secondary": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -194,9 +202,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-neutral": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#a2a9b1"),
                     value: chroma("#a2a9b1"),
                     calculate: function (i) {
@@ -205,9 +217,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-warning": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffcc33"),
                     value: chroma("#ffcc33"),
                     calculate: function (i) {
@@ -216,9 +232,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-error": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#dd3333"),
                     value: chroma("#dd3333"),
                     calculate: function (i) {
@@ -227,9 +247,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-success": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#14866d"),
                     value: chroma("#14866d"),
                     calculate: function (i) {
@@ -238,9 +262,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-header": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -249,9 +277,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link": {
                     fieldset: "lakeus-theme-designer-basic",
-                    rule: "calculateWhenNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#0645ad"),
                     value: chroma("#0645ad"),
                     calculateFrom: [
@@ -261,9 +293,48 @@ Lakeus.initThemeDesigner = function () {
                         return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
+                "color-secondary--derived": {
+                    fieldset: "lakeus-theme-designer-basic-derived",
+                    rule: {
+                        autoCalculate: "calculateWhenNeeded",
+                        generateByDefault: true,
+                    },
+                    input: "color",
+                    allowAlpha: false,
+                    skipped: false,
+                    default: chroma("#f8f9fa"),
+                    value: chroma("#f8f9fa"),
+                    calculateFrom: [
+                        "color-secondary",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[0]].value.darken(0.1), Lakeus.variablesList[this.calculateFrom[0]].value.brighten(0.1));
+                    },
+                },
+                "border-color-secoundary--derived": {
+                    fieldset: "lakeus-theme-designer-basic-derived",
+                    rule: {
+                        autoCalculate: "calculateWhenNeeded",
+                        generateByDefault: true,
+                    },
+                    input: "color",
+                    allowAlpha: false,
+                    skipped: false,
+                    default: chroma("#a2a9b1"),
+                    value: chroma("#a2a9b1"),
+                    calculateFrom: [
+                        "color-secondary",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[0]].value.darken(1), Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1.5));
+                    },
+                },
                 "font-family": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "text",
                     default: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
                     value: "'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif",
@@ -273,7 +344,10 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "font-family-serif": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "text",
                     default: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
                     value: "'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif",
@@ -283,7 +357,10 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "elevation": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "text",
                     default: "0 2px 2px rgba( 0, 0, 0, 10% )",
                     value: "0 2px 2px rgba( 0, 0, 0, 10% )",
@@ -293,9 +370,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-base": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculateFrom: [
@@ -307,9 +388,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link--visited": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#0b0080"),
                     value: chroma("#0b0080"),
                     calculateFrom: [
@@ -323,9 +408,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link--active": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#faa700"),
                     value: chroma("#faa700"),
                     calculateFrom: [
@@ -337,9 +426,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link-new": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#d33"),
                     value: chroma("#d33"),
                     calculateFrom: [
@@ -351,9 +444,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link-new--visited": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#a55858"),
                     value: chroma("#a55858"),
                     calculateFrom: [
@@ -367,9 +464,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link-new--active": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#faa700"),
                     value: chroma("#faa700"),
                     calculateFrom: [
@@ -381,9 +482,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link-external": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#36b"),
                     value: chroma("#36b"),
                     calculateFrom: [
@@ -397,9 +502,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link-external--visited": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#636"),
                     value: chroma("#636"),
                     calculateFrom: [
@@ -413,9 +522,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-link-external--active": {
                     fieldset: "lakeus-theme-designer-global",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#b63"),
                     value: chroma("#b63"),
                     calculateFrom: [
@@ -427,7 +540,10 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "header-elevation": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "text",
                     default: "var(--elevation)",
                     value: "var(--elevation)",
@@ -437,9 +553,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-header": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -452,7 +572,10 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "icon-filter-header": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "text",
                     default: "unset",
                     value: "unset",
@@ -466,9 +589,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-search-suggestions": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculateFrom: [
@@ -480,9 +607,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-search-suggestions": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#c8ccd1"),
                     value: chroma("#c8ccd1"),
                     calculateFrom: [
@@ -496,9 +627,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-search-suggestions-current": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#1d5492"),
                     value: chroma("#1d5492"),
                     calculateFrom: [
@@ -510,9 +645,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-search-suggestions-text": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -524,9 +663,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-search-suggestions-text-current": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculateFrom: [
@@ -538,9 +681,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-search-input": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculateFrom: [
@@ -552,9 +699,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-search-bar": {
                     fieldset: "lakeus-theme-designer-page-header",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#eaecf0"),
                     value: chroma("#eaecf0"),
                     calculateFrom: [
@@ -568,9 +719,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-toggle-list": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculateFrom: [
@@ -582,9 +737,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-toggle-list-card": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#eeeeee"),
                     value: chroma("#eeeeee"),
                     calculateFrom: [
@@ -596,9 +755,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-toggle-list-item": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#1c1c1c"),
                     value: chroma("#1c1c1c"),
                     calculateFrom: [
@@ -610,9 +773,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-toggle-list-item-hover": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000").alpha(0.1),
                     value: chroma("#000000").alpha(0.1),
                     calculate: function (i) {
@@ -621,9 +788,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-toggle-list-item-hover": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
@@ -636,9 +807,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-toggle-list-item-focus": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000").alpha(0.2),
                     value: chroma("#000000").alpha(0.2),
                     calculateFrom: [
@@ -651,9 +826,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-toggle-list-item-focus": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
@@ -666,9 +845,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-toggle-list": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#dddddd"),
                     value: chroma("#dddddd"),
                     calculateFrom: [
@@ -681,9 +864,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "subheader-color-toggle-list": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#909aa1"),
                     value: chroma("#909aa1"),
                     calculateFrom: [
@@ -695,9 +882,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "logo-text-color-toggle-list": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -709,9 +900,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "mask-background": {
                     fieldset: "lakeus-theme-designer-toggle-list",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000").alpha(0.8),
                     value: chroma("#000000").alpha(0.8),
                     calculate: function (i) {
@@ -720,9 +915,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-content": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculateFrom: [
@@ -734,9 +933,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-content": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -748,9 +951,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-body": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculateFrom: [
@@ -762,9 +969,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-body": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -776,9 +987,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-content": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#cccccc"),
                     value: chroma("#cccccc"),
                     calculateFrom: [
@@ -792,9 +1007,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-accent-header-tab": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#54595d"),
                     value: chroma("#54595d"),
                     calculateFrom: [
@@ -806,9 +1025,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-accent-header-tab-selected": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#54595d"),
                     value: chroma("#54595d"),
                     calculateFrom: [
@@ -820,24 +1043,31 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-accent-header-tab-new": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#54595d"),
                     value: chroma("#54595d"),
                     calculateFrom: [
-                        "color-accent-header-tab",
-                        "background-color-content"
+                        "color-primary",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0.4, 0.4));
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "border-color-header-tab": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#eaecf0"),
                     value: chroma("#eaecf0"),
                     calculate: function (i) {
@@ -846,9 +1076,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-tagline": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000").alpha(0.5),
                     value: chroma("#000000").alpha(0.5),
                     calculateFrom: [
@@ -860,7 +1094,10 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "font-family-headings": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "text",
                     default: "var(--font-family-serif)",
                     value: "var(--font-family-serif)",
@@ -870,9 +1107,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-edit-options": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#eeeeee"),
                     value: chroma("#eeeeee"),
                     calculate: function (i) {
@@ -881,9 +1122,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-edit-options": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#c8ccd1"),
                     value: chroma("#c8ccd1"),
                     calculate: function (i) {
@@ -892,9 +1137,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-toc": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#f8f9fa"),
                     value: chroma("#f8f9fa"),
                     calculateFrom: [
@@ -907,9 +1156,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-toc": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#a2a9b1"),
                     value: chroma("#a2a9b1"),
                     calculateFrom: [
@@ -922,9 +1175,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-toc-number": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#202122"),
                     value: chroma("#202122"),
                     calculateFrom: [
@@ -937,9 +1194,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-interface-message-box-neutral": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#a2a9b1"),
                     value: chroma("#a2a9b1"),
                     calculateFrom: [
@@ -951,9 +1212,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-interface-message-box-neutral": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#eaecf0"),
                     value: chroma("#eaecf0"),
                     calculateFrom: [
@@ -967,9 +1232,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-interface-message-box-neutral": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -983,9 +1252,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-interface-message-box-warning": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffcc33"),
                     value: chroma("#ffcc33"),
                     calculateFrom: [
@@ -997,9 +1270,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-interface-message-box-warning": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#fef6e7"),
                     value: chroma("#fef6e7"),
                     calculateFrom: [
@@ -1013,9 +1290,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-interface-message-box-warning": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -1029,9 +1310,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-interface-message-box-error": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#dd3333"),
                     value: chroma("#dd3333"),
                     calculateFrom: [
@@ -1043,9 +1328,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-interface-message-box-error": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#fee7e6"),
                     value: chroma("#fee7e6"),
                     calculateFrom: [
@@ -1059,9 +1348,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-interface-message-box-error": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -1075,9 +1368,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-interface-message-box-success": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#14866d"),
                     value: chroma("#14866d"),
                     calculateFrom: [
@@ -1089,9 +1386,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-interface-message-box-success": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#d5fdf4"),
                     value: chroma("#d5fdf4"),
                     calculateFrom: [
@@ -1105,9 +1406,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-interface-message-box-success": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -1121,9 +1426,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-user-message": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#ffa500"),
                     value: chroma("#ffa500"),
                     calculate: function (i) {
@@ -1132,9 +1441,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-user-message": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#ffce7b"),
                     value: chroma("#ffce7b"),
                     calculateFrom: [
@@ -1148,9 +1461,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-user-message": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -1164,9 +1481,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-wikitable": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#f8f9fa"),
                     value: chroma("#f8f9fa"),
                     calculateFrom: [
@@ -1179,9 +1500,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-wikitable": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#202122"),
                     value: chroma("#202122"),
                     calculateFrom: [
@@ -1195,9 +1520,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-wikitable": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#a2a9b1"),
                     value: chroma("#a2a9b1"),
                     calculateFrom: [
@@ -1211,9 +1540,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-wikitable-table-head": {
                     fieldset: "lakeus-theme-designer-body",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#eaecf0"),
                     value: chroma("#eaecf0"),
                     calculateFrom: [
@@ -1227,9 +1560,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-portlet-body": {
                     fieldset: "lakeus-theme-designer-portlet",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#ffffff"),
                     value: chroma("#ffffff"),
                     calculate: function (i) {
@@ -1238,9 +1575,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-portlet-item-hover": {
                     fieldset: "lakeus-theme-designer-portlet",
-                    rule: "manual",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000").alpha(0.1),
                     value: chroma("#000000").alpha(0.1),
                     calculate: function (i) {
@@ -1249,9 +1590,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-portlet-item-focus": {
                     fieldset: "lakeus-theme-designer-portlet",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000").alpha(0.2),
                     value: chroma("#000000").alpha(0.2),
                     calculateFrom: [
@@ -1264,9 +1609,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "border-color-portlet-body": {
                     fieldset: "lakeus-theme-designer-portlet",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#a2a9b1"),
                     value: chroma("#a2a9b1"),
                     calculateFrom: [
@@ -1279,9 +1628,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "background-color-footer": {
                     fieldset: "lakeus-theme-designer-footer",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#eeeeee"),
                     value: chroma("#eeeeee"),
                     calculateFrom: [
@@ -1293,9 +1646,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "text-color-footer": {
                     fieldset: "lakeus-theme-designer-footer",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: true,
+                    skipped: false,
                     default: chroma("#000000"),
                     value: chroma("#000000"),
                     calculateFrom: [
@@ -1308,9 +1665,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-footer-link": {
                     fieldset: "lakeus-theme-designer-footer",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#0645ad"),
                     value: chroma("#0645ad"),
                     calculateFrom: [
@@ -1322,9 +1683,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-footer-link--visited": {
                     fieldset: "lakeus-theme-designer-footer",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#0b0080"),
                     value: chroma("#0b0080"),
                     calculateFrom: [
@@ -1338,9 +1703,13 @@ Lakeus.initThemeDesigner = function () {
                 },
                 "color-footer-link--active": {
                     fieldset: "lakeus-theme-designer-footer",
-                    rule: "calculateWhenNotNeeded",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
                     input: "color",
                     allowAlpha: false,
+                    skipped: false,
                     default: chroma("#faa700"),
                     value: chroma("#faa700"),
                     calculateFrom: [
@@ -1398,17 +1767,31 @@ Lakeus.initThemeDesigner = function () {
                         '</label>';
                 }
 
-                if (variableContent.rule === 'calculateWhenNotNeeded') {
+                if (variableContent.rule["autoCalculate"] === 'calculateWhenNotNeeded') {
                     settingElement +=
                         '<label>' +
                             '<input checked type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
                             mw.message('lakeus-theme-designer-auto-calculate') +
                         '</label>';
-                } else if (variableContent.rule === 'calculateWhenNeeded') {
+                } else if (variableContent.rule["autoCalculate"] === 'calculateWhenNeeded') {
                     settingElement +=
                         '<label>' +
                             '<input type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
                             mw.message('lakeus-theme-designer-auto-calculate') +
+                        '</label>';
+                }
+
+                if (!variableContent.rule["generateByDefault"]) {
+                    settingElement +=
+                        '<label>' +
+                            '<input checked type="checkbox" class="lakeus-theme-designer-do-not-generate-checkbox" name="' + 'do-not-generate-' + variableName + '" id="lakeus-theme-designer-input-do-not-generate-' + variableName + '">' +
+                            mw.message('lakeus-theme-designer-do-not-generate') +
+                        '</label>';
+                } else if (variableContent.rule["generateByDefault"]) {
+                    settingElement +=
+                        '<label>' +
+                            '<input type="checkbox" class="lakeus-theme-designer-do-not-generate-checkbox" name="' + 'do-not-generate-' + variableName + '" id="lakeus-theme-designer-input-do-not-generate-' + variableName + '">' +
+                            mw.message('lakeus-theme-designer-do-not-generate') +
                         '</label>';
                 }
 
@@ -1447,6 +1830,8 @@ Lakeus.initThemeDesigner = function () {
                                         '</button>' +
                                         '<button type="button" id="lakeus-theme-designer-invert-auto-calculate-selection-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-invert-auto-calculate-selection") +
                                         '</button>' +
+                                        '<button type="button" id="lakeus-theme-designer-unselect-do-not-generate-selection-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-unselect-do-not-generate-selection") +
+                                        '</button>' +
                                         '<label>' +
                                             '<input type="checkbox" id="lakeus-theme-designer-color-picker-fallback-checkbox">' +
                                             mw.message("lakeus-theme-designer-color-picker-fallback") +
@@ -1478,6 +1863,17 @@ Lakeus.initThemeDesigner = function () {
                     $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', true);
                     $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', true);
                 });
+                $(".lakeus-theme-designer-do-not-generate-checkbox").on('change', function() {
+                    var checked = $(this).prop('checked');
+                    $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-")).data('skipped', checked);
+                    $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-") + "-alpha").data('skipped', checked);
+                    $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-auto-calculate-")).data('skipped', checked);
+                });
+                $(".lakeus-theme-designer-do-not-generate-checkbox:checked").each(function () {
+                    $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-")).data('skipped', true);
+                    $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-") + "-alpha").data('skipped', true);
+                    $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-auto-calculate-")).data('skipped', true);
+                });
                 $("#lakeus-theme-designer-color-picker-fallback-checkbox").on('change', function () {
                     var checked = $(this).prop('checked');
                     $(".lakeus-theme-designer-input-color").attr("type", (checked ? "text" : "color"));
@@ -1489,6 +1885,7 @@ Lakeus.initThemeDesigner = function () {
                 $("#lakeus-theme-designer-reset-theme-button").click(function (e) { e.preventDefault; Lakeus.resetFormFromVariablesList(); });
                 $("#lakeus-theme-designer-reload-button").click(function (e) { e.preventDefault; Lakeus.reloadThemeDesigner(); });
                 $("#lakeus-theme-designer-invert-auto-calculate-selection-button").click(function (e) { e.preventDefault; Lakeus.invertAutoCalculateSelection(); });
+                $("#lakeus-theme-designer-unselect-do-not-generate-selection-button").click(function (e) { e.preventDefault; Lakeus.unselectDoNotGenerateSelection(); });
                 $("#lakeus-theme-designer-portlet-body").submit(function (e) { e.preventDefault; });
                 Lakeus.updateVariablesListFromForm();
             }
@@ -1505,15 +1902,19 @@ Lakeus.initThemeDesigner = function () {
 Lakeus.updateVariablesListFromForm = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
-        if (!(inputElement.prop('disabled'))) {
-            if (inputElement.attr('type') === 'color') {
-                var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
-                Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha((Number(inputElementAlpha.val()) <= 1 && Number(inputElementAlpha.val()) >= 0) ? Number(inputElementAlpha.val()) : 1);
+        if (!(inputElement.data('skipped'))) {
+            if (!(inputElement.prop('disabled'))) {
+                if (inputElement.attr('type') === 'color') {
+                    var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
+                    Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha((Number(inputElementAlpha.val()) <= 1 && Number(inputElementAlpha.val()) >= 0) ? Number(inputElementAlpha.val()) : 1);
+                } else {
+                    Lakeus.variablesList[k].value = inputElement.val();
+                }
             } else {
-                Lakeus.variablesList[k].value = inputElement.val();
+                Lakeus.variablesList[k].value = Lakeus.variablesList[k].calculate(undefined);
             }
         } else {
-            Lakeus.variablesList[k].value = Lakeus.variablesList[k].calculate(undefined);
+            Lakeus.variablesList[k].skipped = true;
         }
     });
 };
@@ -1521,12 +1922,14 @@ Lakeus.updateVariablesListFromForm = function () {
 Lakeus.updateFormFromVariablesList = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
-        if (v.value) {
-            if (v.input === 'color') {
-                inputElement.val(v.value.hex('rgb'));
-                $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.value.alpha());
-            } else {
-                inputElement.val(v.value);
+        if (!v.skipped) {
+            if (v.value) {
+                if (v.input === 'color') {
+                    inputElement.val(v.value.hex('rgb'));
+                    $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.value.alpha());
+                } else {
+                    inputElement.val(v.value);
+                }
             }
         }
     })
@@ -1547,14 +1950,16 @@ Lakeus.resetFormFromVariablesList = function () {
 Lakeus.generateTheme = function () {
     var result = ':root {\n';
     $.each(Lakeus.variablesList, function (k, v) {
-        if (v.input === 'color') {
-            if (v.value.alpha() < 1) {
-                result += '    ' + k + ': ' + v.value.css() + ';\n';
+        if (!v.skipped) {
+            if (v.input === 'color') {
+                if (v.value.alpha() < 1) {
+                    result += '    ' + k + ': ' + v.value.css() + ';\n';
+                } else {
+                    result += '    ' + k + ': ' + v.value.hex() + ';\n';
+                }
             } else {
-                result += '    ' + k + ': ' + v.value.hex() + ';\n';
+                result += '    ' + '--' + k + ': ' + v.value + ';\n';
             }
-        } else {
-            result += '    ' + '--' + k + ': ' + v.value + ';\n';
         }
     });
     result += '}\n';
@@ -1633,6 +2038,15 @@ Lakeus.invertAutoCalculateSelection = function () {
     $(".lakeus-theme-designer-auto-calculate-checkbox").each(function () {
         var checked = $(this).prop('checked');
         $(this).prop('checked', !checked).trigger('change');
+    });
+}
+
+Lakeus.unselectDoNotGenerateSelection = function () {
+    $(".lakeus-theme-designer-do-not-generate-checkbox").each(function () {
+        var checked = $(this).prop('checked');
+        if (checked) {
+            $(this).prop('checked', false).trigger('change');
+        }
     });
 }
 

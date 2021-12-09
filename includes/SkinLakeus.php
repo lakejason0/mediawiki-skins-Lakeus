@@ -31,6 +31,12 @@ class SkinLakeus extends SkinMustache {
             $data["is-repository-link-shown"] = true;
         }
         $data["is-notice-with-border"] = $config->get( 'LakeusSiteNoticeHasBorder' );
+
+        $pageToolsKey = array_search('p-tb' , array_column( $data["data-portlets-sidebar"]["array-portlets-rest"], 'id' ) );
+        $data["data-portlets"]["data-page-tools"] = $data["data-portlets-sidebar"]["array-portlets-rest"][$pageToolsKey];
+        unset($data["data-portlets-sidebar"]["array-portlets-rest"][$pageToolsKey]);
+        $data["data-portlets-sidebar"]["array-portlets-rest"] = array_values($data["data-portlets-sidebar"]["array-portlets-rest"]);
+
         return $data;
     }
 }
