@@ -134,6 +134,10 @@ a.new:active, body a.new:active {
   padding-bottom: 0;
   margin-left: 5px;
   font-size: 100%;
+  white-space: nowrap;
+  @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
+    max-width: calc(100vw - 170px);    
+  }
 }
 
 #siteNotice {
