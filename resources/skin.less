@@ -350,6 +350,20 @@ a.new:active, body a.new:active {
       background: @background-color-toggle-list-item-focus;
       color: @text-color-toggle-list-item-focus;
     }
+
+    &:visited {
+      color: @text-color-toggle-list-item;
+
+      &:hover {
+        background: @background-color-toggle-list-item-hover;
+        color: @text-color-toggle-list-item-hover;
+      }
+
+      &:focus {
+        background: @background-color-toggle-list-item-focus;
+        color: @text-color-toggle-list-item-focus;
+      }
+    }
   }
 
   .mw-portlet-body li {
