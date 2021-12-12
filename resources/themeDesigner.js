@@ -1953,9 +1953,9 @@ Lakeus.generateTheme = function () {
         if (!v.skipped) {
             if (v.input === 'color') {
                 if (v.value.alpha() < 1) {
-                    result += '    ' + k + ': ' + v.value.css() + ';\n';
+                    result += '    ' + '--' + k + ': ' + v.value.css() + ';\n';
                 } else {
-                    result += '    ' + k + ': ' + v.value.hex() + ';\n';
+                    result += '    ' + '--' + k + ': ' + v.value.hex() + ';\n';
                 }
             } else {
                 result += '    ' + '--' + k + ': ' + v.value + ';\n';
