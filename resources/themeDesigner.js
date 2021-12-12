@@ -774,7 +774,7 @@ Lakeus.initThemeDesigner = function () {
                 "background-color-toggle-list-item-hover": {
                     fieldset: "lakeus-theme-designer-toggle-list",
                     rule: {
-                        autoCalculate: "manual",
+                        autoCalculate: "calculateWhenNotNeeded",
                         generateByDefault: true,
                     },
                     input: "color",
@@ -782,8 +782,11 @@ Lakeus.initThemeDesigner = function () {
                     skipped: false,
                     default: chroma("#000000").alpha(0.1),
                     value: chroma("#000000").alpha(0.1),
+                    calculateFrom: [
+                        "color-primary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value.alpha(0.1) || this.default;
                     },
                 },
                 "text-color-toggle-list-item-hover": {
@@ -1576,7 +1579,7 @@ Lakeus.initThemeDesigner = function () {
                 "background-color-portlet-item-hover": {
                     fieldset: "lakeus-theme-designer-portlet",
                     rule: {
-                        autoCalculate: "manual",
+                        autoCalculate: "calculateWhenNotNeeded",
                         generateByDefault: true,
                     },
                     input: "color",
@@ -1584,8 +1587,11 @@ Lakeus.initThemeDesigner = function () {
                     skipped: false,
                     default: chroma("#000000").alpha(0.1),
                     value: chroma("#000000").alpha(0.1),
+                    calculateFrom: [
+                        "color-primary",
+                    ],
                     calculate: function (i) {
-                        return i;
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value.alpha(0.1) || this.default;
                     },
                 },
                 "background-color-portlet-item-focus": {
