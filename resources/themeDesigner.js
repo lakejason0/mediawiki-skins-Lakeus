@@ -1913,6 +1913,7 @@ Lakeus.updateVariablesListFromForm = function () {
             } else {
                 Lakeus.variablesList[k].value = Lakeus.variablesList[k].calculate(undefined);
             }
+            Lakeus.variablesList[k].skipped = false;
         } else {
             Lakeus.variablesList[k].skipped = true;
         }
