@@ -14,7 +14,8 @@ window.Lakeus = window.Lakeus || {};
     9. [X] Implement variables for feature `content-table`;
     10. [ ] Implement variables for <code> and its alike;
     11. [ ] Implement variables for OOUI;
-    12. Test it out.
+    12. [ ] Complete variables for texts (portlets, toggle list);
+    13. Test it out.
 */
 
 Lakeus.initThemeDesigner = function () {
