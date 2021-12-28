@@ -15,6 +15,8 @@ window.Lakeus = window.Lakeus || {};
     10. [ ] Implement variables for <code> and its alike;
     11. [ ] Implement variables for OOUI;
     12. [ ] Complete variables for texts (portlets, toggle list);
+        12.1. Lack in `variables.less`: ["color-neutral","color-warning","color-error","color-success","color-secondary--derived","border-color-secoundary--derived"]
+        12.2. Lack in here: ["text-color-portlet-item","text-color-portlet-item-hover","text-color-portlet-item-focus","icon-filter-ooui-icon","color-base","color-gray","color-gray-2","font-family-action-bar"]
     13. Test it out.
 */
 
