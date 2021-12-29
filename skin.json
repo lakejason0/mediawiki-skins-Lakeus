@@ -105,6 +105,7 @@
         "lakeus-theme-designer-system-messages-loaded",
         "lakeus-theme-designer-all-loaded",
         "lakeus-theme-designer-auto-calculate",
+        "lakeus-theme-designer-do-not-generate",
         "lakeus-theme-designer-copy-theme",
         "lakeus-theme-designer-paste-theme",
         "lakeus-theme-designer-test-theme",
