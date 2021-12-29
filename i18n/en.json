@@ -18,6 +18,7 @@
   "lakeus-theme-designer-system-messages-loaded": "Successfully loaded required system messages.",
   "lakeus-theme-designer-all-loaded": "Theme Designer is loaded.",
   "lakeus-theme-designer-auto-calculate": "Auto calculate",
+  "lakeus-theme-designer-do-not-generate": "Do not generate this time",
   "lakeus-theme-designer-copy-theme": "Copy theme",
   "lakeus-theme-designer-paste-theme": "Paste current settings",
   "lakeus-theme-designer-test-theme": "Test theme",

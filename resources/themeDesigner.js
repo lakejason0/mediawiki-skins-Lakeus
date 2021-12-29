@@ -29,6 +29,7 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-system-messages-loaded",
             "lakeus-theme-designer-all-loaded",
             "lakeus-theme-designer-auto-calculate",
+            "lakeus-theme-designer-do-not-generate",
             "lakeus-theme-designer-copy-theme",
             "lakeus-theme-designer-paste-theme",
             "lakeus-theme-designer-test-theme",
@@ -768,7 +769,7 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#1c1c1c"),
                     value: chroma("#1c1c1c"),
                     calculateFrom: [
-                        "background-color-toggle-list"
+                        "background-color-toggle-list",
                     ],
                     calculate: function (i) {
                         return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
@@ -804,11 +805,10 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
-                        "background-color-toggle-list-item-hover",
-                        "background-color-toggle-list",
+                        "color-primary",
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "background-color-toggle-list-item-focus": {
@@ -842,11 +842,10 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
-                        "background-color-toggle-list-item-focus",
-                        "background-color-toggle-list",
+                        "text-color-toggle-list-item-hover",
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[1]].value).hex('rgb')));
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "border-color-toggle-list": {
@@ -1009,6 +1008,19 @@ Lakeus.initThemeDesigner = function () {
                     ],
                     calculate: function (i) {
                         return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.calculateRGBAActualValue(Lakeus.variablesList[this.calculateFrom[1]].value, Lakeus.variablesList[this.calculateFrom[2]].value), 2, 1);
+                    },
+                },
+                "font-family-action-bar": {
+                    fieldset: "lakeus-theme-designer-body",
+                    rule: {
+                        autoCalculate: "manual",
+                        generateByDefault: true,
+                    },
+                    input: "text",
+                    default: "var(--font-family)",
+                    value: "var(--font-family)",
+                    calculate: function (i) {
+                        return i;
                     },
                 },
                 "color-accent-header-tab": {
@@ -1579,6 +1591,24 @@ Lakeus.initThemeDesigner = function () {
                         return i;
                     },
                 },
+                "text-color-portlet-item": {
+                    fieldset: "lakeus-theme-designer-portlet",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
+                    input: "color",
+                    allowAlpha: false,
+                    skipped: false,
+                    default: chroma("#1c1c1c"),
+                    value: chroma("#1c1c1c"),
+                    calculateFrom: [
+                        "color-primary",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
+                    },
+                },
                 "background-color-portlet-item-hover": {
                     fieldset: "lakeus-theme-designer-portlet",
                     rule: {
@@ -1595,6 +1625,24 @@ Lakeus.initThemeDesigner = function () {
                     ],
                     calculate: function (i) {
                         return i || Lakeus.variablesList[this.calculateFrom[0]].value.alpha(0.1) || this.default;
+                    },
+                },
+                "text-color-portlet-item-hover": {
+                    fieldset: "lakeus-theme-designer-portlet",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
+                    input: "color",
+                    allowAlpha: false,
+                    skipped: false,
+                    default: chroma("#3a3a3a"),
+                    value: chroma("#3a3a3a"),
+                    calculateFrom: [
+                        "text-color-portlet-item",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "background-color-portlet-item-focus": {
@@ -1614,6 +1662,24 @@ Lakeus.initThemeDesigner = function () {
                     ],
                     calculate: function (i) {
                         return i || Lakeus.changeColorBrightnessByContrast(Lakeus.variablesList[this.calculateFrom[0]].value, chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[1]].value.hex('rgb')), 0.2, 0.2));
+                    },
+                },
+                "text-color-portlet-item-focus": {
+                    fieldset: "lakeus-theme-designer-portlet",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
+                    input: "color",
+                    allowAlpha: false,
+                    skipped: false,
+                    default: chroma("#3a3a3a"),
+                    value: chroma("#3a3a3a"),
+                    calculateFrom: [
+                        "text-color-portlet-item-hover",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
                     },
                 },
                 "border-color-portlet-body": {
