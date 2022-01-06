@@ -6,5 +6,9 @@
 	},
 	"skinname-lakeus": "لاکئوس",
 	"lakeus-openmainmenu": "گشودن منوی اصلی",
-	"lakeus-articlecount": "{{PLURAL:$1|مقاله}}"
+	"lakeus-articlecount": "{{PLURAL:$1|مقاله}}",
+	"lakeus-theme-designer-color-neutral": "رنگ خنثی",
+	"lakeus-theme-designer-color-warning": "رنگ هشدار",
+	"lakeus-theme-designer-color-error": "رنگ خطا",
+	"lakeus-theme-designer-color-success": "رنگ موفق"
 }
