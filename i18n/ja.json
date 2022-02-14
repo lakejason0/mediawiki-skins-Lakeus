@@ -2,15 +2,42 @@
 	"@metadata": {
 		"authors": [
 			"Lakejason0",
+			"MirukuPC",
 			"RYOUMA1117"
 		]
 	},
+	"skinname-lakeus": "Lakeus",
+	"lakeus-skin-desc": "[https://github.com/lakejason0 Lakejason0]によるシンプルなスキンで、彼らの小説の登場人物にちなんだものです",
 	"lakeus.css": "/* ここに記述したCSSはLakeus外装の利用者に影響します */",
 	"lakeus.js": "/* ここにあるすべてのJavaScriptは、Lakeus外装を使用している利用者に対して読み込まれます */",
 	"lakeus-openmainmenu": "メインメニューを開く",
 	"lakeus-articlecount": "{{PLURAL:$1|記事}}",
 	"lakeus-footermessage": "提供：Lakeus外装",
+	"lakeus-preferences-enable-theme-designer": "テーマデザイナーの有効化",
+	"lakeus-preferences-enable-theme-designer-desc": "すべてのページでLakeusテーマデザイナーを有効にします。",
+	"lakeus-theme-designer": "Lakeusテーマデザイナー",
+	"lakeus-theme-designer-system-messages-loaded": "必要なシステムメッセージの読み込みに成功しました。",
+	"lakeus-theme-designer-all-loaded": "テーマデザイナーが読み込まれます。",
+	"lakeus-theme-designer-auto-calculate": "自動計算",
+	"lakeus-theme-designer-do-not-generate": "今回は生成しない",
+	"lakeus-theme-designer-copy-theme": "コピーテーマ",
+	"lakeus-theme-designer-paste-theme": "現在の設定を貼り付ける",
+	"lakeus-theme-designer-test-theme": "テストテーマ",
+	"lakeus-theme-designer-clear-theme": "テストを終了します",
+	"lakeus-theme-designer-reset-theme": "リセット",
+	"lakeus-theme-designer-invert-auto-calculate-selection": "自動計算の選択を反転させる",
+	"lakeus-theme-designer-unselect-do-not-generate-selection": "非選択では選択を生成しない",
+	"lakeus-theme-designer-copied": "テーマコードがクリップボードにコピーされました。",
+	"lakeus-theme-designer-copy-failed": "テーマコードをクリップボードにコピーするのに失敗しました。結果はデザイナーの末尾にあります。",
 	"lakeus-theme-designer-color-warning": "警告色",
 	"lakeus-theme-designer-color-error": "エラー色",
-	"lakeus-theme-designer-color-success": "成功色"
+	"lakeus-theme-designer-color-success": "成功色",
+	"lakeus-theme-designer-global": "グローバル",
+	"lakeus-theme-designer-background-color-base": "HTML背景色",
+	"lakeus-theme-designer-color-link": "リンクカラー",
+	"lakeus-theme-designer-color-link--visited": "訪問したリンクの色",
+	"lakeus-theme-designer-color-link-new": "新しいリンクカラー",
+	"lakeus-theme-designer-color-link-new--visited": "訪問した新しいリンクの色",
+	"lakeus-theme-designer-color-link-new--active": "アクティブな新しいリンクの色",
+	"lakeus-theme-designer-color-footer-link": "フッターリンクの色"
 }
