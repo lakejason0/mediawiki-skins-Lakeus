@@ -1,12 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mainframe98"
+			"Mainframe98",
+			"Romaine"
 		]
 	},
 	"lakeus-skin-desc": "Een simpele vormgeving van [https://github.com/lakejason0 Lakejason0], vernoemd naar een personage in hun romans",
 	"lakeus.css": "/* Alle hier geplaatste CSS-code wordt geladen voor gebruikers van de vormgeving Lakeus */",
 	"lakeus.js": "/* Alle hier geplaatste JavaScript-code wordt geladen voor gebruikers van de vormgeving Lakeus */",
 	"lakeus-openmainmenu": "Hoofdmenu openen",
-	"lakeus-articlecount": "{{PLURAL:$1|Artikel|Artikelen}}"
+	"lakeus-articlecount": "{{PLURAL:$1|Artikel|Artikelen}}",
+	"lakeus-theme-designer-color-primary": "Primaire kleur (voorgrond)",
+	"lakeus-theme-designer-color-secondary": "Secundaire kleur (achtergrond)",
+	"lakeus-theme-designer-color-neutral": "Neutrale kleur",
+	"lakeus-theme-designer-color-warning": "Waarschuwingskleur",
+	"lakeus-theme-designer-color-error": "Foutkleur",
+	"lakeus-theme-designer-color-success": "Succeskleur"
 }
