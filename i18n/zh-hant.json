@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kly",
 			"Lakejason0",
 			"Weather Top Wizard",
 			"Winston Sung"
@@ -26,6 +27,7 @@
 	"lakeus-theme-designer-clear-theme": "結束測試",
 	"lakeus-theme-designer-reset-theme": "復位",
 	"lakeus-theme-designer-invert-auto-calculate-selection": "反向選擇自動計算核取方塊",
+	"lakeus-theme-designer-unselect-do-not-generate-selection": "取消選擇不產生選擇",
 	"lakeus-theme-designer-copied": "主題CSS已複製到您的剪貼簿中。",
 	"lakeus-theme-designer-copy-failed": "無法將主題CSS複製到您的剪貼簿中。結果將顯示在設計器底部。",
 	"lakeus-theme-designer-reload": "重新載入",
@@ -34,6 +36,13 @@
 	"lakeus-theme-designer-basic": "基本",
 	"lakeus-theme-designer-color-primary": "主要顏色（前景）",
 	"lakeus-theme-designer-color-secondary": "次要顏色（背景）",
+	"lakeus-theme-designer-color-neutral": "中和顏色",
+	"lakeus-theme-designer-color-warning": "警告顏色",
+	"lakeus-theme-designer-color-error": "錯誤顏色",
+	"lakeus-theme-designer-color-success": "成功顏色",
+	"lakeus-theme-designer-basic-derived": "基本衍生",
+	"lakeus-theme-designer-color-secondary--derived": "次要顏色衍生",
+	"lakeus-theme-designer-border-color-secondary--derived": "次要邊框顏色衍生",
 	"lakeus-theme-designer-global": "全域",
 	"lakeus-theme-designer-background-color-base": "HTML背景顏色",
 	"lakeus-theme-designer-color-link": "連結顏色",
