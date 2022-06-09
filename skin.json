@@ -220,7 +220,7 @@
       "dependencies": [
         "mediawiki.api",
         "mediawiki.jqueryMsg",
-        "user.defaults"
+        "user.options"
       ]
     }
   },
