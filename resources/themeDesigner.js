@@ -2151,7 +2151,7 @@ Lakeus.validateContrast = function (color1, color2, contrast) {
 
 /* Load Theme Designer when enabled in user's preferences */
 
-$.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg', 'user.defaults']), $.ready).then(function () {
+$.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg', 'user.options']), $.ready).then(function () {
     if (mw.user.options.get('lakeus-enable-theme-designer')) {
         Lakeus.initThemeDesigner();
     }
