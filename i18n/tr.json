@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Can",
 			"Hedda"
 		]
 	},
@@ -10,5 +11,10 @@
 	"lakeus.js": "/* Buradaki tüm JavaScript, Lakeus arayüz kullanıcıları için yüklenecek */",
 	"lakeus-openmainmenu": "Ana menüyü aç",
 	"lakeus-articlecount": "{{PLURAL:$1|Madde}}",
-	"lakeus-footermessage": "Lakeus Skin tarafından desteklenmektedir"
+	"lakeus-footermessage": "Lakeus Skin tarafından desteklenmektedir",
+	"lakeus-theme-designer-do-not-generate": "Bu zamanı oluşturma",
+	"lakeus-theme-designer-color-neutral": "Nötr renk",
+	"lakeus-theme-designer-color-warning": "Uyarı rengi",
+	"lakeus-theme-designer-color-error": "Hata rengi",
+	"lakeus-theme-designer-color-success": "Başarı rengi"
 }
