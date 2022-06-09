@@ -69,7 +69,6 @@
         "content-tables": true,
         "content-links": true,
         "content-media": true,
-        "content-thumbnails": true,
         "interface-category": true,
         "interface-message-box": true,
         "i18n-ordered-lists": true,
