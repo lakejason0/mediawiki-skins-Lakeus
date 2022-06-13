@@ -80,9 +80,14 @@
         "desktop",
         "mobile"
       ],
-      "styles": [
-        "resources/skin.less"
-      ]
+      "styles": {
+        "resources/skin.less": {
+          "media": "screen"
+        },
+        "resources/print.less": {
+          "media": "print"
+        }
+      }
     },
     "skins.lakeus": {
       "targets": [
