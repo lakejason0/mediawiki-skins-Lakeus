@@ -81,9 +81,7 @@
         "mobile"
       ],
       "styles": {
-        "resources/skin.less": {
-          "media": "screen"
-        },
+        "0": "resources/skin.less",
         "resources/print.less": {
           "media": "print"
         }
