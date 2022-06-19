@@ -1,10 +1,7 @@
+{{>JumpToContentLink}}
 <header class="mw-header">
 	{{>Logo}}
-	<div id="p-user-tools">
-        {{>Notifications}}
-		{{#data-portlets.data-user-interface-preferences}}{{>Portlet}}{{/data-portlets.data-user-interface-preferences}}
-	    {{>PersonalMenu}}
-	</div>
+	{{>UserTools}}
 	{{>Search}}
 	{{>Sidebar}}
 </header>
@@ -14,10 +11,7 @@
 		{{>ContentIndicators}}
 		{{>ContentHeading}}
 		{{>ContentTagline}}
-		<div class="content__header-tabs">
-			{{>ContentNamespaces}}
-			{{>ContentActions}}
-		</div>
+		{{>ContentTabs}}
 	</header>
 	{{>ContentBody}}
 </main>
