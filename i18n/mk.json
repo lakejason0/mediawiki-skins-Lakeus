@@ -9,6 +9,7 @@
 	"lakeus.css": "/* Сиот тука поставен JavaScript ќе им се вчитува на корисниците што го користат рувото „Lakeus“ */",
 	"lakeus.js": "/* Сиот тука поставен JavaScript ќе им се вчитува на корисниците што го користат рувото „Lakeus“ */",
 	"lakeus-openmainmenu": "Отвори го главното мени",
+	"lakeus-jumptocontent": "Прејди на содржината",
 	"lakeus-articlecount": "{{PLURAL:$1|Статија|Статии}}",
 	"lakeus-footermessage": "Во рувото Lakeus",
 	"lakeus-preferences-enable-theme-designer": "Овозможи го Ликовниот уредник",
