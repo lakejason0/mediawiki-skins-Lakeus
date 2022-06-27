@@ -8,6 +8,7 @@
 	},
 	"lakeus.js": "/* Tämän sivun JavaScript-koodi ladataan Lakeus-ulkoasun käyttäjille */",
 	"lakeus-openmainmenu": "Avaa päävalikko",
+	"lakeus-jumptocontent": "Siirry sisältöön",
 	"lakeus-theme-designer-copy-theme": "Kopioi teema",
 	"lakeus-theme-designer-paste-theme": "Liitä nykyiset asetukset",
 	"lakeus-theme-designer-test-theme": "Kokeile teemaa",
