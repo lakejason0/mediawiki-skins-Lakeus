@@ -28,7 +28,7 @@
 	"lakeus-theme-designer-clear-theme": "結束測試",
 	"lakeus-theme-designer-reset-theme": "復位",
 	"lakeus-theme-designer-invert-auto-calculate-selection": "反向選擇自動計算核取方塊",
-	"lakeus-theme-designer-unselect-do-not-generate-selection": "取消選擇不產生選擇",
+	"lakeus-theme-designer-unselect-do-not-generate-selection": "取消選擇不產生核取方塊",
 	"lakeus-theme-designer-copied": "主題CSS已複製到您的剪貼簿中。",
 	"lakeus-theme-designer-copy-failed": "無法將主題CSS複製到您的剪貼簿中。結果將顯示在設計器底部。",
 	"lakeus-theme-designer-reload": "重新載入",
