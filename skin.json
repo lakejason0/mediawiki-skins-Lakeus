@@ -256,6 +256,10 @@
     "LakeusSiteNoticeHasBorder": {
       "value": false,
       "description": "Whether to add a border to site notice. Useful for plain text notices."
+    },
+    "LakeusShouldAnimatePortlets": {
+      "value": false,
+      "description": "Whether to animate portlets. May cause visual artifacts when enabled due to z-index issues."
     }
   }
 }

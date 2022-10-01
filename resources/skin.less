@@ -645,8 +645,11 @@ div.editOptions {
   .mw-portlet-body {
     display: block;
     visibility: hidden;
-    animation-name: animation-menu-hide;
-    animation-duration: 0.2s;
+
+    &.should-animate {
+      animation-name: animation-menu-hide;
+      animation-duration: 0.2s;
+    }
 
     ul {
       background: @background-color-portlet-body;
@@ -681,7 +684,7 @@ div.editOptions {
       visibility: visible;
     }
 
-    ~ .mw-portlet-body {
+    ~ .mw-portlet-body.should-animate {
       animation-name: animation-menu-show;
       animation-duration: 0.2s;
     }
