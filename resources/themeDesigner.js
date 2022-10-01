@@ -15,7 +15,7 @@ window.Lakeus = window.Lakeus || {};
     10. [ ] Implement variables for <code> and its alike;
     11. [ ] Implement variables for OOUI;
     12. [ ] Complete variables for texts (portlets, toggle list);
-        12.1. Lack in `variables.less`: ["color-neutral","color-warning","color-error","color-success","color-secondary--derived","border-color-secoundary--derived"]
+        12.1. Lack in `variables.less`: ["color-neutral","color-warning","color-error","color-success","color-secondary--derived","border-color-secondary--derived"]
         12.2. Lack in here: ["text-color-portlet-item","text-color-portlet-item-hover","text-color-portlet-item-focus","icon-filter-ooui-icon","color-base","color-gray","color-gray-2","font-family-action-bar"]
     13. Test it out.
 */
@@ -45,7 +45,6 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-basic",
             "lakeus-theme-designer-color-primary",
             "lakeus-theme-designer-color-secondary",
-            "lakeus-theme-designer-unselect-do-not-generate-selection",
             "lakeus-theme-designer-color-neutral",
             "lakeus-theme-designer-color-warning",
             "lakeus-theme-designer-color-error",
@@ -70,6 +69,7 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-elevation",
             "lakeus-theme-designer-font-family",
             "lakeus-theme-designer-font-family-serif",
+            "lakeus-theme-designer-font-family-action-bar",
             "lakeus-theme-designer-page-header",
             "lakeus-theme-designer-color-header",
             "lakeus-theme-designer-header-elevation",
@@ -124,8 +124,11 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-text-color-wikitable",
             "lakeus-theme-designer-portlet",
             "lakeus-theme-designer-background-color-portlet-body",
+            "lakeus-theme-designer-text-color-portlet-item",
             "lakeus-theme-designer-background-color-portlet-item-hover",
+            "lakeus-theme-designer-text-color-portlet-item-hover",
             "lakeus-theme-designer-background-color-portlet-item-focus",
+            "lakeus-theme-designer-text-color-portlet-item-focus",
             "lakeus-theme-designer-border-color-portlet-body",
             "lakeus-theme-designer-footer",
             "lakeus-theme-designer-background-color-footer",
@@ -324,7 +327,7 @@ Lakeus.initThemeDesigner = function () {
                         return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[0]].value.darken(0.1), Lakeus.variablesList[this.calculateFrom[0]].value.brighten(0.1));
                     },
                 },
-                "border-color-secoundary--derived": {
+                "border-color-secondary--derived": {
                     fieldset: "lakeus-theme-designer-basic-derived",
                     rule: {
                         autoCalculate: "calculateWhenNeeded",
