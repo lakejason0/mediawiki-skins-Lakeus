@@ -10,10 +10,21 @@ Lakeus.portletOutsideClose = function (id) {
         }
     })
 }
+Lakeus.stickyTOCOutsideClose = function () {
+    $(document).on('click', function (event) {
+        var container = document.getElementById('#lakeus-sticky-toc');
+        if (container) {
+            if(!$(event.target).closest('#lakeus-sticky-toc').length && !$(event.target).is('#lakeus-sticky-toc') || $(event.target).is('.lakeus-sticky-toc-anchor') ) {
+                $('#lakeus-sticky-toc input[type="checkbox"]').prop('checked', false);
+            }
+        }
+    })
+}
 $(function () {
     Lakeus.portletOutsideClose('p-personal');
     Lakeus.portletOutsideClose('p-cactions');
     Lakeus.portletOutsideClose('p-lang');
     Lakeus.portletOutsideClose('p-variants');
     Lakeus.portletOutsideClose('p-tb');
+    Lakeus.stickyTOCOutsideClose();
 });
