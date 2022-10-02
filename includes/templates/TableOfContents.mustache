@@ -4,7 +4,7 @@
         <label id="lakeus-sticky-toc-modal-button" for="lakeus-sticky-toc-modal-checkbox-hack">{{msg-toc}}</label>
         <div id="lakeus-sticky-toc-portlet-body">
             <div id="lakeus-sticky-toc-portlet-body-container"{{#is-portlet-animated}} class="should-animate"{{/is-portlet-animated}}>
-                <h1>{{msg-toc}}</h1>
+                <div id="lakeus-sticky-toc-title">{{msg-toc}}</div>
                 <ul>
                 {{#array-sections}}
                 {{>TableOfContents__line}}

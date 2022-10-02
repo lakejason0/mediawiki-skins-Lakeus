@@ -1004,9 +1004,26 @@ body > footer {
       z-index: 2;
       box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px @border-color-portlet-body; /* TODO: Variablize */
       border-radius: 3px;
-      right: 0;
+      right: 40px;
       min-width: 200px;
       padding: 0.4em;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+      }
+
+      & > ul {
+        margin: 0.3em 0.3em;
+      }
+
+      #lakeus-sticky-toc-title {
+        text-align: center;
+        font-size: 100%;
+        font-weight: bold;
+      }
+
     }
   }
 
@@ -1037,6 +1054,7 @@ body > footer {
   }
 
   #lakeus-sticky-toc-modal-button {
+    display: block;
     background-color: @background-color-toc-button;
     text-align: center;
     height: 45px;
@@ -1048,6 +1066,8 @@ body > footer {
     padding: 0;
     margin: 0;
     cursor: pointer;
+    overflow: hidden;
+    color: transparent;
 
     &:before {
       content: '';
@@ -1056,6 +1076,9 @@ body > footer {
       display: block;
       filter: @icon-filter-toc-button;
       background-image: url( 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224px%22%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M0%200h24v24H0V0zm0%200h24v24H0V0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M3%209h14V7H3v2zm0%204h14v-2H3v2zm0%204h14v-2H3v2zm16%200h2v-2h-2v2zm0-10v2h2V7h-2zm0%206h2v-2h-2v2z%22%2F%3E%3C%2Fsvg%3E' );
+      position: absolute;
+      top: 10px;
+      left: 5px;
     }
   }
 }
