@@ -1,0 +1,16 @@
+<div id="lakeus-sticky-toc">
+    <div id="lakeus-sticky-toc-portlet" aria-labelledby="lakeus-sticky-toc-modal-button">
+        <input type="checkbox" id="lakeus-sticky-toc-modal-checkbox-hack" aria-labelledby="lakeus-sticky-toc-modal-button">
+        <label id="lakeus-sticky-toc-modal-button" for="lakeus-sticky-toc-modal-checkbox-hack">{{msg-toc}}</label>
+        <div id="lakeus-sticky-toc-portlet-body">
+            <div id="lakeus-sticky-toc-portlet-body-container"{{#is-portlet-animated}} class="should-animate"{{/is-portlet-animated}}>
+                <h1>{{msg-toc}}</h1>
+                <ul>
+                {{#array-sections}}
+                {{>TableOfContents__line}}
+                {{/array-sections}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

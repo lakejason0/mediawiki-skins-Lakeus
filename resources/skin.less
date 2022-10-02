@@ -975,3 +975,87 @@ body > footer {
 .visualClear {
   clear: both;
 }
+
+/* Sticky TOC */
+#lakeus-sticky-toc {
+  position: fixed;
+  top: 90px;
+  right: -12px;
+  user-select: none;
+  z-index: 199;
+}
+
+#lakeus-sticky-toc-portlet {
+  position: relative;
+
+  #lakeus-sticky-toc-portlet-body {
+    display: block;
+    visibility: hidden;
+
+    &.should-animate {
+      animation-name: animation-menu-hide;
+      animation-duration: 0.2s;
+    }
+
+    #lakeus-sticky-toc-portlet-body-container {
+      background: @background-color-portlet-body;
+      position: absolute;
+      overflow-y: auto;
+      z-index: 2;
+      box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px @border-color-portlet-body; /* TODO: Variablize */
+      border-radius: 3px;
+      right: 0;
+      min-width: 200px;
+      padding: 0.4em;
+    }
+  }
+
+  input[ type='checkbox' ] {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  input:checked {
+    ~ #lakeus-sticky-toc-portlet-body #lakeus-sticky-toc-portlet-body-container {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    ~ #lakeus-sticky-toc-portlet-body.should-animate {
+      animation-name: animation-menu-show;
+      animation-duration: 0.2s;
+    }
+  }
+
+  #lakeus-sticky-toc-modal-button {
+    background-color: @background-color-toc-button;
+    text-align: center;
+    height: 45px;
+    width: 45px;
+    font-size: 20px;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 5px grey;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      width: 24px;
+      height: 24px;
+      display: block;
+      filter: @icon-filter-toc-button;
+      background-image: url( 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224px%22%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M0%200h24v24H0V0zm0%200h24v24H0V0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M3%209h14V7H3v2zm0%204h14v-2H3v2zm0%204h14v-2H3v2zm16%200h2v-2h-2v2zm0-10v2h2V7h-2zm0%206h2v-2h-2v2z%22%2F%3E%3C%2Fsvg%3E' );
+    }
+  }
+}

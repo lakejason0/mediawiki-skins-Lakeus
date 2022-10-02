@@ -16,7 +16,7 @@ window.Lakeus = window.Lakeus || {};
     11. [ ] Implement variables for OOUI;
     12. [ ] Complete variables for texts (portlets, toggle list);
         12.1. Lack in `variables.less`: ["color-neutral","color-warning","color-error","color-success","color-secondary--derived","border-color-secondary--derived"]
-        12.2. Lack in here: ["text-color-portlet-item","text-color-portlet-item-hover","text-color-portlet-item-focus","icon-filter-ooui-icon","color-base","color-gray","color-gray-2","font-family-action-bar"]
+        12.2. Lack in here: ["icon-filter-ooui-icon","color-base","color-gray","color-gray-2"]
     13. Test it out.
 */
 
@@ -1113,13 +1113,13 @@ Lakeus.initThemeDesigner = function () {
                     input: "color",
                     allowAlpha: true,
                     skipped: false,
-                    default: chroma("#000000").alpha(0.5),
-                    value: chroma("#000000").alpha(0.5),
+                    default: chroma("#000000").alpha(0.7),
+                    value: chroma("#000000").alpha(0.7),
                     calculateFrom: [
                         "background-color-body"
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'))).alpha(0.5);
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'))).alpha(0.7);
                     },
                 },
                 "font-family-headings": {
