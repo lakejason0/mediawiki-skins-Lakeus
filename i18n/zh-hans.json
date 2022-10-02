@@ -130,5 +130,8 @@
 	"lakeus-theme-designer-text-color-body": "页面主体文本颜色",
 	"lakeus-theme-designer-color-accent-header-tab-selected": "标记为已选择的操作栏选项文本颜色",
 	"lakeus-theme-designer-color-accent-header-tab-new": "标记为红链的操作栏选项文本颜色",
+	"lakeus-theme-designer-sticky-toc": "浮动目录",
+	"lakeus-theme-designer-background-color-toc-button": "目录按钮背景颜色",
+	"lakeus-theme-designer-icon-filter-toc-button": "目录按钮图标滤镜",
 	"lakeus-theme-designer-danger-zone": "危险区"
 }

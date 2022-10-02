@@ -131,5 +131,8 @@
   "lakeus-theme-designer-text-color-body": "Body text color",
   "lakeus-theme-designer-color-accent-header-tab-selected": "Action header selected tab text color",
   "lakeus-theme-designer-color-accent-header-tab-new": "Action header new tab text color",
+  "lakeus-theme-designer-sticky-toc": "Sticky table of contents",
+  "lakeus-theme-designer-background-color-toc-button": "Table of contents button background color",
+  "lakeus-theme-designer-icon-filter-toc-button": "Table of contents button icon filter",
   "lakeus-theme-designer-danger-zone": "Danger zone"
 }

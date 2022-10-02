@@ -141,6 +141,9 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-text-color-body",
             "lakeus-theme-designer-color-accent-header-tab-selected",
             "lakeus-theme-designer-color-accent-header-tab-new",
+            "lakeus-theme-designer-sticky-toc",
+            "lakeus-theme-designer-background-color-toc-button",
+            "lakeus-theme-designer-icon-filter-toc-button",
             "lakeus-theme-designer-danger-zone",
         ]);
     }).then(function () {
@@ -1805,6 +1808,40 @@ Lakeus.initThemeDesigner = function () {
                     calculate: function (i) {
                         return i || Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1);
                     },
+                },
+                "background-color-toc-button": {
+                    fieldset: "lakeus-theme-designer-sticky-toc",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
+                    input: "color",
+                    allowAlpha: false,
+                    skipped: false,
+                    default: chroma("#ffffff"),
+                    value: chroma("#ffffff"),
+                    calculateFrom: [
+                        "color-secondary",
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
+                    },
+                },
+                "icon-filter-toc-button": {
+                    fieldset: "lakeus-theme-designer-sticky-toc",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
+                    input: "text",
+                    default: "unset",
+                    value: "unset",
+                    calculateFrom: [
+                        "background-color-toc-button"
+                    ],
+                    calculate: function (i) {
+                        return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'), "unset", "invert(1) hue-rotate(180deg)");
+                    }
                 },
             };
 

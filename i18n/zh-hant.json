@@ -129,5 +129,8 @@
 	"lakeus-theme-designer-text-color-body": "頁面主體文字顏色",
 	"lakeus-theme-designer-color-accent-header-tab-selected": "標記為已選擇的操作欄選項文字顏色",
 	"lakeus-theme-designer-color-accent-header-tab-new": "標記為未建立的操作欄選項文字顏色",
+	"lakeus-theme-designer-sticky-toc": "浮動目次",
+	"lakeus-theme-designer-background-color-toc-button": "目次按鈕背景顏色",
+	"lakeus-theme-designer-icon-filter-toc-button": "目次按鈕圖示濾鏡",
 	"lakeus-theme-designer-danger-zone": "危險區"
 }
