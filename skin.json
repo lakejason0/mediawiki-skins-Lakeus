@@ -220,6 +220,9 @@
         "lakeus-theme-designer-text-color-body",
         "lakeus-theme-designer-color-accent-header-tab-selected",
         "lakeus-theme-designer-color-accent-header-tab-new",
+        "lakeus-theme-designer-sticky-toc",
+        "lakeus-theme-designer-background-color-toc-button",
+        "lakeus-theme-designer-icon-filter-toc-button",
         "lakeus-theme-designer-danger-zone"
       ],
       "packageFiles": [
