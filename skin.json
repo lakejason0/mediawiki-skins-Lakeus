@@ -267,6 +267,10 @@
     "LakeusShouldAnimatePortlets": {
       "value": false,
       "description": "Whether to animate portlets. May cause visual artifacts when enabled due to z-index issues."
+    },
+    "LakeusShowStickyTOC": {
+      "value": false,
+      "description": "Whether to show sticky TOC."
     }
   }
 }

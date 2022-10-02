@@ -33,6 +33,7 @@ class SkinLakeus extends SkinMustache {
         }
         $data["is-notice-with-border"] = $config->get( 'LakeusSiteNoticeHasBorder' );
         $data["is-portlet-animated"] = $config->get( 'LakeusShouldAnimatePortlets' );
+        $data["is-sticky-toc-shown"] = $config->get( 'LakeusShowStickyTOC' );
 
         $pageToolsKey = array_search('p-tb' , array_column( $data["data-portlets-sidebar"]["array-portlets-rest"], 'id' ) );
         $data["data-portlets"]["data-page-tools"] = $data["data-portlets-sidebar"]["array-portlets-rest"][$pageToolsKey];

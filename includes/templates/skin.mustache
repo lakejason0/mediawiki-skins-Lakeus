@@ -14,6 +14,6 @@
 		{{>ContentTabs}}
 	</header>
 	{{>ContentBody}}
-	{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
+	{{#is-sticky-toc-shown}}{{#data-toc}}{{>TableOfContents}}{{/data-toc}}{{#is-sticky-toc-shown}}
 </main>
 {{>Footer}}
