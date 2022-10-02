@@ -17,6 +17,9 @@ Lakeus.stickyTOCOutsideClose = function () {
             if(!$(event.target).closest('#lakeus-sticky-toc').length && !$(event.target).is('#lakeus-sticky-toc') || $(event.target).is('.lakeus-sticky-toc-anchor') ) {
                 $('#lakeus-sticky-toc input[type="checkbox"]').prop('checked', false);
             }
+            if(!$('#lakeus-sticky-toc-portlet-body-container > ul').find("*")) {
+                $('#lakeus-sticky-toc').remove();
+            }
         }
     })
 }
