@@ -12,7 +12,7 @@ Lakeus.portletOutsideClose = function (id) {
 }
 Lakeus.stickyTOCOutsideClose = function () {
     $(document).on('click', function (event) {
-        var container = document.getElementById('#lakeus-sticky-toc');
+        var container = document.getElementById('lakeus-sticky-toc');
         if (container) {
             if(!$(event.target).closest('#lakeus-sticky-toc').length && !$(event.target).is('#lakeus-sticky-toc') || $(event.target).is('.lakeus-sticky-toc-anchor') ) {
                 $('#lakeus-sticky-toc input[type="checkbox"]').prop('checked', false);
