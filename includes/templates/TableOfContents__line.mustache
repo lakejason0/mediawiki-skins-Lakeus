@@ -1,5 +1,8 @@
 <li>
-    <span class="lakeus-sticky-toc-tocnumber">{{number}}</span> <a href="#{{anchor}}" class="lakeus-sticky-toc-anchor">{{line}}</a>
+    <a href="#{{anchor}}" class="lakeus-sticky-toc-anchor">
+        <span class="lakeus-sticky-toc-tocnumber">{{number}}</span>
+        <span class="lakeus-sticky-toc-toctext">{{line}}<span>
+    </a>
     <ul>
     {{#array-sections}}
     {{>TableOfContents__line}}
