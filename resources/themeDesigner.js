@@ -1859,7 +1859,7 @@ Lakeus.initThemeDesigner = function () {
                         "text-color-portlet-item"
                     ],
                     calculate: function (i) {
-                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'))).alpha(0.7);
+                        return i || Lakeus.variablesList[this.calculateFrom[0]].value.alpha(0.7);
                     },
                 },
             };
