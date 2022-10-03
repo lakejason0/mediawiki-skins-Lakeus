@@ -14,7 +14,7 @@ Lakeus.stickyTOCOutsideClose = function () {
     $(document).on('click', function (event) {
         var container = document.getElementById('lakeus-sticky-toc');
         if (container) {
-            if(!$(event.target).closest('#lakeus-sticky-toc').length && !$(event.target).is('#lakeus-sticky-toc') || $(event.target).is('.lakeus-sticky-toc-anchor') ) {
+            if ( !$(event.target).closest('#lakeus-sticky-toc').length && !$(event.target).is('#lakeus-sticky-toc') || $(event.target).is('.lakeus-sticky-toc-anchor') || $(event.target).is('.lakeus-sticky-toc-tocnumber') | $(event.target).is('.lakeus-sticky-toc-toctext') ) {
                 $('#lakeus-sticky-toc input[type="checkbox"]').prop('checked', false);
             }
         }
