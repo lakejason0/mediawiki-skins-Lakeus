@@ -1013,40 +1013,63 @@ body > footer {
         list-style: none;
         padding: 0;
         text-align: left;
-        
+
         li {
           display: block;
-          // padding: 0.2em 0.75em;
           font-weight: 500;
       
           a {
-            padding: 0.2em 0.75em;
+            padding: 0.2em 0.4em;
             display: block;
             border-radius: 3px;
             color: @text-color-portlet-item;
+
+            .lakeus-sticky-toc-tocnumber {
+              color: @text-color-sticky-toc-number;
+            }
       
             &:hover {
               background: @background-color-portlet-item-hover;
               color: @text-color-portlet-item-hover;
+
+              .lakeus-sticky-toc-tocnumber {
+                color: @text-color-portlet-item-hover;
+              }
             }
       
             &:focus {
               background: @background-color-portlet-item-focus;
               color: @text-color-portlet-item-focus;
+
+              .lakeus-sticky-toc-tocnumber {
+                color: @text-color-portlet-item-focus;
+              }
             }
       
             &:visited {
               color: @text-color-portlet-item;
+
+              .lakeus-sticky-toc-tocnumber {
+                color: @text-color-sticky-toc-number;
+              }
             }
             
             &:visited:hover {
               background: @background-color-portlet-item-hover;
               color: @text-color-portlet-item-hover;
+
+              .lakeus-sticky-toc-tocnumber {
+                color: @text-color-portlet-item-hover;
+              }
             }
       
             &:visited:focus {
               background: @background-color-portlet-item-focus;
               color: @text-color-portlet-item-focus;
+
+              .lakeus-sticky-toc-tocnumber {
+                color: @text-color-portlet-item-focus;
+              }
             }
           }
         }

@@ -223,6 +223,7 @@
         "lakeus-theme-designer-sticky-toc",
         "lakeus-theme-designer-background-color-toc-button",
         "lakeus-theme-designer-icon-filter-toc-button",
+        "lakeus-theme-designer-text-color-sticky-toc-number",
         "lakeus-theme-designer-danger-zone"
       ],
       "packageFiles": [

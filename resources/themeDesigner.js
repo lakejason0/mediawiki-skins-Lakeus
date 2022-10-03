@@ -144,6 +144,7 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-sticky-toc",
             "lakeus-theme-designer-background-color-toc-button",
             "lakeus-theme-designer-icon-filter-toc-button",
+            "lakeus-theme-designer-text-color-sticky-toc-number",
             "lakeus-theme-designer-danger-zone",
         ]);
     }).then(function () {
@@ -1842,6 +1843,24 @@ Lakeus.initThemeDesigner = function () {
                     calculate: function (i) {
                         return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'), "unset", "invert(1) hue-rotate(180deg)");
                     }
+                },
+                "text-color-sticky-toc-number": {
+                    fieldset: "lakeus-theme-designer-sticky-toc",
+                    rule: {
+                        autoCalculate: "calculateWhenNotNeeded",
+                        generateByDefault: true,
+                    },
+                    input: "color",
+                    allowAlpha: true,
+                    skipped: false,
+                    default: chroma("#000000").alpha(0.7),
+                    value: chroma("#000000").alpha(0.7),
+                    calculateFrom: [
+                        "text-color-portlet-item"
+                    ],
+                    calculate: function (i) {
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'))).alpha(0.7);
+                    },
                 },
             };
 
