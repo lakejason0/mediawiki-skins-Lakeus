@@ -25,7 +25,6 @@ class SkinLakeus extends SkinMustache {
         $data["html-articlecount"] = SiteStats::articles();
         // trying to overwrite
         $data["msg-lakeus-articlecount"] = $this->msg( 'lakeus-articlecount' )->numParams( SiteStats::articles() )->parse();
-        $data["msg-toc"] = $this->msg( 'toc' )->plain();
         $wgLakeusShowRepositoryLink = $config->get( 'LakeusShowRepositoryLink' );
         if ($wgLakeusShowRepositoryLink) {
             $data["html-repository-link"] = '<a href="https://github.com/lakejason0/mediawiki-skins-Lakeus">' . $this->msg( 'lakeus-footermessage' )->plain() . '</a>'; 
