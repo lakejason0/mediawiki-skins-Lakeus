@@ -35,7 +35,9 @@
             "lakeus-jumptocontent",
             "lakeus-articlecount",
             "lakeus-preferences-enable-theme-designer",
-            "lakeus-preferences-enable-theme-designer-desc"
+            "lakeus-preferences-enable-theme-designer-desc",
+            "lakeus-preferences-sticky-toc-donot-auto-collapse",
+            "lakeus-preferences-sticky-toc-donot-auto-collapse-desc"
           ],
           "styles": [
             "mediawiki.ui.icon",
