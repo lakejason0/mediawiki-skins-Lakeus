@@ -14,7 +14,12 @@ Lakeus.stickyTOCOutsideClose = function () {
     $(document).on('click', function (event) {
         var container = document.getElementById('lakeus-sticky-toc');
         if (container) {
-            if ( !$(event.target).closest('#lakeus-sticky-toc').length && !$(event.target).is('#lakeus-sticky-toc') || $(event.target).is('.lakeus-sticky-toc-anchor') || $(event.target).is('.lakeus-sticky-toc-tocnumber') | $(event.target).is('.lakeus-sticky-toc-toctext') ) {
+            if ( Lakeus.isStickyTOCAutoCollapse ) {
+                if ( $(event.target).is('.lakeus-sticky-toc-anchor') || $(event.target).is('.lakeus-sticky-toc-tocnumber') || $(event.target).is('.lakeus-sticky-toc-toctext') ) {
+                    $('#lakeus-sticky-toc input[type="checkbox"]').prop('checked', false);
+                }
+            }
+            if ( !$(event.target).closest('#lakeus-sticky-toc').length && !$(event.target).is('#lakeus-sticky-toc') ) {
                 $('#lakeus-sticky-toc input[type="checkbox"]').prop('checked', false);
             }
         }
@@ -30,4 +35,7 @@ $(function () {
     Lakeus.portletOutsideClose('p-variants');
     Lakeus.portletOutsideClose('p-tb');
     Lakeus.stickyTOCOutsideClose();
+});
+$.when(mw.loader.using(['user.options']), $.ready).then(function () {
+    Lakeus.isStickyTOCAutoCollapse = !mw.user.options.get('lakeus-sticky-toc-donot-auto-collapse');
 });

@@ -254,7 +254,8 @@
     "GetPreferences": "Lakeus\\Hooks::onGetPreferences"
   },
   "DefaultUserOptions": {
-    "lakeus-enable-theme-designer": 0
+    "lakeus-enable-theme-designer": 0,
+    "lakeus-sticky-toc-donot-auto-collapse": 0
   },
   "config": {
     "LakeusShowRepositoryLink": {

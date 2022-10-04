@@ -19,5 +19,13 @@ class Hooks
             'section' => 'rendering/skin/skin-prefs',
             'hide-if' => [ '!==', 'wpskin', 'lakeus' ],
         ];
+
+        $preferences['lakeus-sticky-toc-donot-auto-collapse'] = [
+            'type' => 'check',
+            'label-message' => 'lakeus-preferences-sticky-toc-donot-auto-collapse',
+            'help-message' => 'lakeus-preferences-sticky-toc-donot-auto-collapse-desc',
+            'section' => 'rendering/skin/skin-prefs',
+            'hide-if' => [ '!==', 'wpskin', 'lakeus' ],
+        ];
     }
 }
