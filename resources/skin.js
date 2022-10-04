@@ -10,7 +10,7 @@ Lakeus.portletOutsideClose = function (id) {
         }
     })
 }
-Lakeus.stickyTOCOutsideClose = function () {
+Lakeus.stickyTOCAutoCollapse = function () {
     $(document).on('click', function (event) {
         var container = document.getElementById('lakeus-sticky-toc');
         if (container) {
@@ -34,7 +34,7 @@ $(function () {
     Lakeus.portletOutsideClose('p-lang');
     Lakeus.portletOutsideClose('p-variants');
     Lakeus.portletOutsideClose('p-tb');
-    Lakeus.stickyTOCOutsideClose();
+    Lakeus.stickyTOCAutoCollapse();
 });
 $.when(mw.loader.using(['user.options']), $.ready).then(function () {
     Lakeus.isStickyTOCAutoCollapse = !mw.user.options.get('lakeus-sticky-toc-donot-auto-collapse');
