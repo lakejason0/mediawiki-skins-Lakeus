@@ -96,6 +96,7 @@
         "desktop",
         "mobile"
       ],
+      "styles": "resources/skin.js.less",
       "packageFiles": [
         "resources/skin.js"
       ]

@@ -1,3 +1,23 @@
 The Lakeus skin is written by Lakejason0, Light beacon, Dianliang233, Winston Sung and other contributors to the skin. See https://github.com/lakejason0/mediawiki-skins-Lakeus/graphs/contributors for the list of all contributors.
 
 Translations are done by Lakejason0 (`zh-hans`, `zh-hant`, `zh-hk`), Winston Sung (`zh-hant`), Olvcpr423 (`yue`) and other translators on Translatewiki.net. See https://translatewiki.net/wiki/Special:MessageGroupStats?group=mwgithub-lakeus&suppressempty=1&x=D for the message group statistics of the skin.
+
+Special thanks to Timeless, Vector, Minerva, FandomMobile and FandomDesktop for inspiration of some features of this skin!
+
+Timeless:
+* WikiEditor fields optimization
+* Overflowing table scrolling (borrowed; related code under their license (GPL-2.0-or-later))
+
+Vector:
+* Sticky TOC
+* Overall Mustache usage
+
+Minerva:
+* Action bar
+
+Fandom skins:
+* Sticky TOC
+* Portlet designs
+* "Theme designer" (concept; not open sourced anyway)
+
+This project uses Material icons; These icons are under their license (Apache License 2.0) as well.
