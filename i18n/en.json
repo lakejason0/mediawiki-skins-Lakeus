@@ -16,7 +16,7 @@
   "lakeus-preferences-enable-theme-designer": "Enable Theme Designer",
   "lakeus-preferences-enable-theme-designer-desc": "Enable Lakeus Theme Designer on every page.",
   "lakeus-preferences-sticky-toc-donot-auto-collapse": "Do not close sticky TOC when clicking on sticky TOC anchors",
-  "lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "When clicking on links in sticky TOC, do no close sticky TOC. Still closes when clicking outside sticky TOC.",
+  "lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "When clicking on links in sticky TOC, do not close sticky TOC. Still closes when clicking outside sticky TOC.",
   "lakeus-theme-designer": "Lakeus Theme Designer",
   "lakeus-theme-designer-system-messages-loaded": "Successfully loaded required system messages.",
   "lakeus-theme-designer-all-loaded": "Theme Designer is loaded.",
