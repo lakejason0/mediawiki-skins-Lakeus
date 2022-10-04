@@ -24,9 +24,6 @@ Lakeus.stickyTOCAutoCollapse = function () {
             }
         }
     })
-    if(!$('#lakeus-sticky-toc-portlet-body-container > ul').find("*").length) {
-        $('#lakeus-sticky-toc').remove();
-    }
 }
 $(function () {
     Lakeus.portletOutsideClose('p-personal');

@@ -39,6 +39,10 @@ class SkinLakeus extends SkinMustache {
         unset($data["data-portlets-sidebar"]["array-portlets-rest"][$pageToolsKey]);
         $data["data-portlets-sidebar"]["array-portlets-rest"] = array_values($data["data-portlets-sidebar"]["array-portlets-rest"]);
 
+        if ( empty($data["data-toc"]["array-sections"]) ) {
+            unset($data["data-toc"]);
+        }
+
         return $data;
     }
 }
