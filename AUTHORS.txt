@@ -7,6 +7,7 @@ Special thanks to Timeless, Vector, Minerva, FandomMobile and FandomDesktop for 
 Timeless:
 * WikiEditor fields optimization
 * Overflowing table scrolling (borrowed; related code under their license (GPL-2.0-or-later))
+* Image overflowing
 
 Vector:
 * Sticky TOC
