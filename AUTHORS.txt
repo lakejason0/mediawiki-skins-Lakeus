@@ -22,3 +22,5 @@ Fandom skins:
 * "Theme designer" (concept; not open sourced anyway)
 
 This project uses Material icons; These icons are under their license (Apache License 2.0) as well.
+
+This project uses OOUI icons; These icons are under their license (MIT) as well.
