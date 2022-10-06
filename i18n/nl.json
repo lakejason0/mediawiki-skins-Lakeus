@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Mainframe98",
+			"McDutchie",
 			"Romaine"
 		]
 	},
@@ -15,5 +16,9 @@
 	"lakeus-theme-designer-color-neutral": "Neutrale kleur",
 	"lakeus-theme-designer-color-warning": "Waarschuwingskleur",
 	"lakeus-theme-designer-color-error": "Foutkleur",
-	"lakeus-theme-designer-color-success": "Succeskleur"
+	"lakeus-theme-designer-color-success": "Succeskleur",
+	"lakeus-theme-designer-sticky-toc": "Sticky inhoudsopgave",
+	"lakeus-theme-designer-background-color-toc-button": "Achtergrondkleur knop inhoudsopgave",
+	"lakeus-theme-designer-icon-filter-toc-button": "Icoonfilter knop inhoudsopgave",
+	"lakeus-theme-designer-text-color-sticky-toc-number": "Tekstkleur nummering sticky inhoudsopgasve"
 }
