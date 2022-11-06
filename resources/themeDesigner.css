@@ -1,3 +1,9 @@
+@media print {
+    #lakeus-theme-designer {
+        display: none;
+    }
+}
+
 #lakeus-theme-designer {
     position: fixed;
     left: 32px;
