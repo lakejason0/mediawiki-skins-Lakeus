@@ -27,5 +27,13 @@ class Hooks
             'section' => 'rendering/skin/skin-prefs',
             'hide-if' => [ '!==', 'wpskin', 'lakeus' ],
         ];
+
+        $preferences['lakeus-smooth-scroll-behavior'] = [
+            'type' => 'check',
+            'label-message' => 'lakeus-preferences-smooth-scroll-behavior',
+            'help-message' => 'lakeus-preferences-smooth-scroll-behavior-desc',
+            'section' => 'rendering/skin/skin-prefs',
+            'hide-if' => [ '!==', 'wpskin', 'lakeus' ],
+        ];
     }
 }

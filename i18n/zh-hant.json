@@ -19,6 +19,8 @@
 	"lakeus-preferences-enable-theme-designer-desc": "在每個頁面上啟用Lakeus主題設計器。",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "點選浮動目次錨點不關閉浮動目次",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "透過浮動目次內的連結跳到段落時不再關閉浮動目次。點擊浮動目次以外的內容仍會自動關閉浮動目次。",
+	"lakeus-preferences-smooth-scroll-behavior": "啟用平滑捲動",
+	"lakeus-preferences-smooth-scroll-behavior-desc": "捲動頁面時，例如透過目次跳到段落時啟用動畫。",
 	"lakeus-theme-designer": "Lakeus主題設計器",
 	"lakeus-theme-designer-system-messages-loaded": "已成功載入所需的系統訊息。",
 	"lakeus-theme-designer-all-loaded": "已載入主題設計器。",

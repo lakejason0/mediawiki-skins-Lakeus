@@ -16,6 +16,8 @@
 	"lakeus-preferences-enable-theme-designer-desc": "在每个页面上启用Lakeus主题设计器。",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "点击浮动目录锚点时不关闭浮动目录",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "点击浮动目录内的链接时不再关闭浮动目录。点击浮动目录以外的内容时仍会自动关闭浮动目录。",
+	"lakeus-preferences-smooth-scroll-behavior": "启用平滑滚动",
+	"lakeus-preferences-smooth-scroll-behavior-desc": "为页面滚动，例如通过目录跳转到段落时启用动画。",
 	"lakeus-theme-designer": "Lakeus主题设计器",
 	"lakeus-theme-designer-system-messages-loaded": "已成功加载所需的系统消息。",
 	"lakeus-theme-designer-all-loaded": "已加载主题设计器。",

@@ -36,6 +36,10 @@ $(function () {
 
 $.when(mw.loader.using(['user.options']), $.ready).then(function () {
     Lakeus.isStickyTOCAutoCollapse = !mw.user.options.get('lakeus-sticky-toc-donot-auto-collapse');
+
+	if (mw.user.options.get('lakeus-smooth-scroll-behavior')) {
+		$("html, body").addClass('lakeus-smooth-scrolling');
+	}
 });
 
 /* Experimental overflowing table scrolling, borrowed from Timeless */
