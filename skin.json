@@ -259,7 +259,8 @@
   },
   "DefaultUserOptions": {
     "lakeus-enable-theme-designer": 0,
-    "lakeus-sticky-toc-donot-auto-collapse": 0
+    "lakeus-sticky-toc-donot-auto-collapse": 0,
+    "lakeus-smooth-scroll-behavior": 1
   },
   "config": {
     "LakeusShowRepositoryLink": {
