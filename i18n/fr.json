@@ -18,6 +18,8 @@
 	"lakeus-preferences-enable-theme-designer-desc": "Activer le concepteur de thèmes Lakeus sur chaque page.",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "Ne pas fermer la table des matières collante lors du clic sur un titre ancré dans la table des matières",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "Lorsque vous cliquez sur le lien d’un titre de la table des matières collante, ne pas fermer la table des matières. La table des matières collante est cependant fermée en cliquant à l’extérieur.",
+	"lakeus-preferences-smooth-scroll-behavior": "Activer le comportement de défilement fluide",
+	"lakeus-preferences-smooth-scroll-behavior-desc": "Activer une animation fluide lors du défilement de la page, par exemple lors de la navigation vers une section spécifique depuis la table des matières.",
 	"lakeus-theme-designer": "Concepteur de thèmes Lakeus",
 	"lakeus-theme-designer-system-messages-loaded": "Chargement réussi des messages système nécessaires.",
 	"lakeus-theme-designer-all-loaded": "Le concepteur de thèmes est chargé.",
