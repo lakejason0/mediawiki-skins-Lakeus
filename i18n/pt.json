@@ -16,6 +16,8 @@
 	"lakeus-preferences-enable-theme-designer-desc": "Ativar o desenhador de variantes Lakeus em todas as páginas.",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "Não fechar o índice flutuante ao clicar nas respetivas âncoras",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "Ao clicar nas hiperligações do índice flutuante, deixar o índice aberto. Ele continuará a ser fechado ao clicar fora do índice flutuante.",
+	"lakeus-preferences-smooth-scroll-behavior": "Ativar o comportamento de deslizamento fluido",
+	"lakeus-preferences-smooth-scroll-behavior-desc": "Ativar a animação fluida no deslizamento das páginas, por exemplo, ao navegar para um parágrafo específico através da tabela de índice.",
 	"lakeus-theme-designer": "Desenhador de variantes Lakeus",
 	"lakeus-theme-designer-system-messages-loaded": "As mensagens de sistema necessárias foram carregadas.",
 	"lakeus-theme-designer-all-loaded": "O desenhador de variantes foi carregado.",

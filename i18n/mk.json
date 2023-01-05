@@ -16,6 +16,8 @@
 	"lakeus-preferences-enable-theme-designer-desc": "Овозможи го Ликовниот уредник на Lakeus на секоја страница.",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "Не го затворај лепливиот преглед на содржини при стискање на неговите котви",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "Стискајќи на врските од лепливиот преглед на содржини, не го затворај. Но затворај кога ќе се стисне некаде вон него.",
+	"lakeus-preferences-smooth-scroll-behavior": "Овозможи мазно лизгање",
+	"lakeus-preferences-smooth-scroll-behavior-desc": "Овозможи мазна анимација при лизгање по страницата, на пр. кога преоѓате на извесен пасус преку прегледот на содржини.",
 	"lakeus-theme-designer": "Ликовен уредник на Lakeus",
 	"lakeus-theme-designer-system-messages-loaded": "Успешно се вчитаа потребните системски пораки.",
 	"lakeus-theme-designer-all-loaded": "Ликовниот уредник е вчитан.",
