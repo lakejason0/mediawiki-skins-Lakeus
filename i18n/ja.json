@@ -19,6 +19,8 @@
 	"lakeus-preferences-enable-theme-designer-desc": "すべてのページでLakeusテーマデザイナーを有効にします。",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "浮動目次のリンクをクリックしたときに浮動目次を閉じない",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "浮動目次のリンクをクリックするときは、浮動目次を閉じない。だが、浮動目次の外側をクリックすると、まだ閉じます。",
+	"lakeus-preferences-smooth-scroll-behavior": "スムーズ スクロールの有効化",
+	"lakeus-preferences-smooth-scroll-behavior-desc": "目次から特定の段落に移動するときなど、ページのスクロール時にスムーズなアニメーションを有効にします。",
 	"lakeus-theme-designer": "Lakeusテーマデザイナー",
 	"lakeus-theme-designer-system-messages-loaded": "必要なシステムメッセージの読み込みに成功しました。",
 	"lakeus-theme-designer-all-loaded": "テーマデザイナーが読み込まれます。",
