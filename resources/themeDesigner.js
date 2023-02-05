@@ -1619,10 +1619,10 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#1c1c1c"),
                     value: chroma("#1c1c1c"),
                     calculateFrom: [
-                        "color-primary",
+                        "background-color-portlet-body",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
+                        return i || chroma(Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb')));
                     },
                 },
                 "background-color-portlet-item-hover": {
