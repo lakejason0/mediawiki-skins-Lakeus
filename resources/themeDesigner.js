@@ -1655,7 +1655,7 @@ Lakeus.initThemeDesigner = function () {
                     default: chroma("#3a3a3a"),
                     value: chroma("#3a3a3a"),
                     calculateFrom: [
-                        "text-color-portlet-item",
+                        "color-primary",
                     ],
                     calculate: function (i) {
                         return i || Lakeus.variablesList[this.calculateFrom[0]].value || this.default;
