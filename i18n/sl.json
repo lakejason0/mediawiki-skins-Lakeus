@@ -4,6 +4,7 @@
 			"Eleassar"
 		]
 	},
+	"lakeus-openmainmenu": "Odprtje glavnega menija",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "Ne zapri kazala vsebine ob kliku lepljivih sider kazal vsebine",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "Ob kliku povezav v lepljivem kazalu vsebine ne zapri lepljivega kazala vsebine. Še vedno se zapre ob kliku zunaj lepljivega kazala vsebine.",
 	"lakeus-preferences-smooth-scroll-behavior": "Omogoči gladko drsenje",
@@ -47,9 +48,11 @@
 	"lakeus-theme-designer-text-color-wikitable": "Barva besedila tabele",
 	"lakeus-theme-designer-background-color-portlet-body": "Barva ozadja spustnega menija",
 	"lakeus-theme-designer-text-color-portlet-item": "Barva besedila elementov spustnega menija",
+	"lakeus-theme-designer-background-color-portlet-item-hover": "Barva elementov spustnega menija ob pomiku nanje",
 	"lakeus-theme-designer-text-color-portlet-item-hover": "Barva besedila elementov spustnega menijo ob pomiku nanje",
 	"lakeus-theme-designer-background-color-portlet-item-focus": "Barva kliknjenih elementov spustnega menija",
 	"lakeus-theme-designer-text-color-portlet-item-focus": "Barva besedila elementov spustnega menija ob kliku",
+	"lakeus-theme-designer-border-color-portlet-body": "Barva obrobe spustnega menija",
 	"lakeus-theme-designer-background-color-footer": "Barva ozadja noge",
 	"lakeus-theme-designer-text-color-footer": "Barva besedila noge",
 	"lakeus-theme-designer-text-color-toggle-list-item": "Barva besedila elementov stranske letvice",
