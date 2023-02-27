@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ajeje Brazorf",
-			"Lakejason0"
+			"Lakejason0",
+			"Verdy p"
 		]
 	},
 	"skinname-lakeus": "{{name}}",
@@ -46,7 +47,7 @@
 	"lakeus-theme-designer-basic-derived": "A form section title. Settings in this section are the derivation of basic settings.",
 	"lakeus-theme-designer-color-secondary--derived": "A label of a setting. The derivation of the Secondary color.",
 	"lakeus-theme-designer-border-color-secondary--derived": "A label of a setting. The derivation of the Secondary color used in borders.",
-	"lakeus-theme-designer-global": "A form section title. Settings in this section will affect the whole page.",
+	"lakeus-theme-designer-global": "A form section title. Settings in this section will affect the whole page.\n{{Identical|Global}}",
 	"lakeus-theme-designer-background-color-base": "HTML background color, or the background color of the <code>&lt;html&gt;</code> element.",
 	"lakeus-theme-designer-color-link": "A label of a setting. The color of normal links.",
 	"lakeus-theme-designer-color-link--visited": "A label of a setting. The color of visited links.",
