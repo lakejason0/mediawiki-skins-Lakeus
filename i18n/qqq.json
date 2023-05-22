@@ -3,13 +3,14 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Lakejason0",
+			"Shirayuki",
 			"Verdy p"
 		]
 	},
 	"skinname-lakeus": "{{name}}",
 	"lakeus-skin-desc": "{{desc|what=skin|name=Lakeus|url=https://www.mediawiki.org/wiki/Skin:Lakeus}}",
-	"lakeus.css": "{{optional}}",
-	"lakeus.js": "{{optional}}",
+	"lakeus.css": "{{optional}}\n{{related/css}}",
+	"lakeus.js": "{{optional}}\n{{related/js}}",
 	"lakeus-openmainmenu": "The title and label for the sidebar menu.",
 	"lakeus-jumptocontent": "The “Jump to content” link's text that is only accessible via the keyboard.",
 	"lakeus-articlecount": "Article counter in the sidebar menu, e.g. 1 Article, 2 Articles. For languages (e.g. Chinese) that needs a delimiter/quantifier (e.g. in Chinese it's smoother to say 1篇文章), be sure to add it.",
