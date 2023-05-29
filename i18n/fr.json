@@ -6,7 +6,6 @@
 			"Verdy p"
 		]
 	},
-	"skinname-lakeus": "Lakeus",
 	"lakeus-skin-desc": "Un habillage simple par [https://github.com/lakejason0 Lakejason0], qui est nommé d’après un personnage de leurs nouvelles.",
 	"lakeus.css": "/* Tous les CSS ici seront chargés pour les utilisateurs de l’habillage Lakeus */",
 	"lakeus.js": "/* Tout code JavaScript placé ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Lakeus */",

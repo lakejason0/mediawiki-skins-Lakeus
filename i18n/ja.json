@@ -7,7 +7,6 @@
 			"RYOUMA1117"
 		]
 	},
-	"skinname-lakeus": "Lakeus",
 	"lakeus-skin-desc": "[https://github.com/lakejason0 Lakejason0]によるシンプルなスキンで、彼らの小説の登場人物にちなんだものです",
 	"lakeus.css": "/* ここに記述したCSSはLakeus外装の利用者に影響します */",
 	"lakeus.js": "/* ここにあるすべてのJavaScriptは、Lakeus外装を使用している利用者に対して読み込まれます */",

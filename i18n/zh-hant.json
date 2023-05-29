@@ -7,7 +7,6 @@
 			"Winston Sung"
 		]
 	},
-	"skinname-lakeus": "Lakeus",
 	"lakeus-skin-desc": "以作者[https://github.com/lakejason0 Lakejason0]的小說角色命名的簡易外觀",
 	"lakeus.css": "/* 此處所有的CSS都會在使用者使用Lakeus外觀時載入 */",
 	"lakeus.js": "/* 此處所有的JavaScript都會在使用者使用Lakeus外觀時載入 */",

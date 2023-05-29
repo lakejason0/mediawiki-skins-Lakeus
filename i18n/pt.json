@@ -4,7 +4,6 @@
 			"Hamilton Abreu"
 		]
 	},
-	"skinname-lakeus": "Lakeus",
 	"lakeus-skin-desc": "Um tema simples de [https://github.com/lakejason0 Lakejason0], cujo nome deriva de uma personagem dos seus romances",
 	"lakeus.css": "/* Todo o código CSS colocado aqui será carregado para os utilizadores do tema Lakeus */",
 	"lakeus.js": "/* Todo o código Javascript colocado aqui será carregado para os utilizadores do tema Lakeus */",
