@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"YaronSh"
+		]
+	},
+	"lakeus-articlecount": "{{PLURAL:$1|ערך|ערכים}}",
+	"lakeus-footermessage": "מופעל בעיצוב Lakeus",
+	"lakeus-preferences-enable-theme-designer": "הפעלת מעצב ערכות נושא",
+	"lakeus-preferences-enable-theme-designer-desc": "הפעלת מעצב ערכות נושא של Lakeus בכל דף.",
+	"lakeus-preferences-sticky-toc-donot-auto-collapse": "לא לסגור תוכן עניינים דביק בעת לחיצה על עוגני תוכן עניינים דביקים",
+	"lakeus-theme-designer-auto-calculate": "חישוב אוטומטי",
+	"lakeus-theme-designer-do-not-generate": "לא לייצר הפעם",
+	"lakeus-theme-designer-copy-theme": "העתקת ערכת נושא",
+	"lakeus-theme-designer-paste-theme": "הדבקת הגדרות נוכחיות",
+	"lakeus-theme-designer-test-theme": "בדיקת ערכת נושא",
+	"lakeus-theme-designer-clear-theme": "סיום בדיקה",
+	"lakeus-theme-designer-reset-theme": "אתחול",
+	"lakeus-theme-designer-reload": "רענון",
+	"lakeus-theme-designer-basic": "בסיסי",
+	"lakeus-theme-designer-color-primary": "צבע ראשי (קדמה)",
+	"lakeus-theme-designer-color-secondary": "צבע משני (רקע)",
+	"lakeus-theme-designer-color-neutral": "צבע ניטרלי",
+	"lakeus-theme-designer-color-warning": "צבע אזהרה",
+	"lakeus-theme-designer-color-error": "צבע שגיאה",
+	"lakeus-theme-designer-color-success": "צבע הצלחה",
+	"lakeus-theme-designer-global": "גלובלי",
+	"lakeus-theme-designer-color-link": "צבע קישור",
+	"lakeus-theme-designer-color-link--visited": "צבע קישור שנצפה",
+	"lakeus-theme-designer-color-link--active": "צבע קישור פעיל",
+	"lakeus-theme-designer-background-color-content": "צבע רקע של תוכן",
+	"lakeus-theme-designer-background-color-body": "צבע רקע של גוף",
+	"lakeus-theme-designer-border-color-content": "צבע הגבול של רכיבי עיצוב של אזור תוכן",
+	"lakeus-theme-designer-color-accent-header-tab": "צבע טקסט של לשונית כותרת פעולה",
+	"lakeus-theme-designer-border-color-header-tab": "צבע גבול של לשונית כותרת פעולה",
+	"lakeus-theme-designer-color-tagline": "צבע טקסט של סיסמת האתר",
+	"lakeus-theme-designer-font-family-headings": "גופן כותרות",
+	"lakeus-theme-designer-background-color-edit-options": "צבע רקע אפשרויות עריכה",
+	"lakeus-theme-designer-border-color-edit-options": "צבע גבול אפשרויות עריכה",
+	"lakeus-theme-designer-footer": "כותרת תחתונה"
+}
