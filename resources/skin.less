@@ -524,6 +524,7 @@ main {
 .content {
   &__header {
     position: relative;
+    z-index: 1;
   }
 
   &__heading {
@@ -684,7 +685,7 @@ div.editOptions {
       background: @background-color-portlet-body;
       position: absolute;
       overflow-y: auto;
-      z-index: 2;
+      z-index: 10;
       box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px @border-color-portlet-body; /* TODO: Variablize */
       border-radius: 3px;
       right: 0;
@@ -704,7 +705,7 @@ div.editOptions {
     cursor: pointer;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 9;
     width: 100%;
     height: 100%;
     margin: 0;
