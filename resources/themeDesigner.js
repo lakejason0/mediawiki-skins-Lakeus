@@ -21,7 +21,10 @@ window.Lakeus = window.Lakeus || {};
 */
 
 Lakeus.initThemeDesigner = function () {
-
+    if (!$('body').hasClass('skin-lakeus')) {
+        console.log("[Lakeus] Do not load Lakeus Theme Designer when not using Lakeus skin.");
+        return;
+    }
     console.log("[Lakeus] Theme Designer is loading...");
     $.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg']), $.ready).then(function () {
         return new mw.Api().loadMessagesIfMissing([
