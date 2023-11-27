@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lakejason0"
+			"Lakejason0",
+			"阿南之人"
 		]
 	},
 	"lakeus-skin-desc": "以作者[https://github.com/lakejason0 Lakejason0]的小说角色命名的简易皮肤",
@@ -44,7 +45,7 @@
 	"lakeus-theme-designer-basic-derived": "基本派生",
 	"lakeus-theme-designer-color-secondary--derived": "次要色派生",
 	"lakeus-theme-designer-border-color-secondary--derived": "次要色边框颜色派生",
-	"lakeus-theme-designer-global": "全局",
+	"lakeus-theme-designer-global": "全域",
 	"lakeus-theme-designer-background-color-base": "HTML背景颜色",
 	"lakeus-theme-designer-color-link": "链接颜色",
 	"lakeus-theme-designer-color-link--visited": "访问过的链接颜色",
