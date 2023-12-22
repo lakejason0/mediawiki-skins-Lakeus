@@ -41,8 +41,6 @@
             "lakeus-preferences-sticky-toc-donot-auto-collapse-desc"
           ],
           "styles": [
-            "mediawiki.ui.icon",
-            "mediawiki.ui.button",
             "mediawiki.hlist",
             "skins.lakeus.styles"
           ],
