@@ -1,8 +1,8 @@
 {
-  "extends": "stylelint-config-wikimedia",
-  "rules": {
-    "selector-max-id": null,
-    "no-descending-specificity": null,
-    "indentation": 2
-  }
+	"extends": "stylelint-config-wikimedia",
+	"rules": {
+		"selector-max-id": null,
+		"no-descending-specificity": null,
+		"indentation": 2
+	}
 }
