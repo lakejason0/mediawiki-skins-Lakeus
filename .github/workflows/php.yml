@@ -1,0 +1,24 @@
+name: PHP build
+on:
+  [ pull_request, push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ 7.4, 8.0, 8.1, 8.2 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --ansi
+
+      - name: Running phpcs
+        run: composer run-script cs

@@ -1,282 +1,279 @@
 {
-  "name": "Lakeus",
-  "version": "1.1.16",
-  "namemsg": "skinname-lakeus",
-  "descriptionmsg": "lakeus-skin-desc",
-  "url": "https://github.com/lakejason0/mediawiki-skins-Lakeus",
-  "author": [
-    "[https://github.com/lakejason0 Lakejason0]",
-    "Light beacon",
-    "Dianliang233",
-    "Winston Sung",
-    "..."
-  ],
-  "type": "skin",
-  "requires": {
-    "MediaWiki": ">= 1.36.0"
-  },
-  "license-name": "GPL-3.0-or-later",
-  "manifest_version": 2,
-  "ValidSkinNames": {
-    "lakeus": {
-      "class": "SkinLakeus",
-      "services": [
-        "LocalServerObjectCache"
-      ],
-      "args": [
-        {
-          "name": "lakeus",
-          "messages": [
-            "sitetitle",
-            "search",
-            "otherlanguages",
-            "tagline",
-            "toc",
-            "lakeus-openmainmenu",
-            "lakeus-jumptocontent",
-            "lakeus-articlecount",
-            "lakeus-preferences-enable-theme-designer",
-            "lakeus-preferences-enable-theme-designer-desc",
-            "lakeus-preferences-sticky-toc-donot-auto-collapse",
-            "lakeus-preferences-sticky-toc-donot-auto-collapse-desc"
-          ],
-          "styles": [
-            "mediawiki.hlist",
-            "skins.lakeus.styles"
-          ],
-          "scripts": [
-            "skins.lakeus",
-            "skins.lakeus.designer"
-          ],
-          "responsive": true
-        }
-      ]
-    }
-  },
-  "MessagesDirs": {
-    "Lakeus": [
-      "i18n"
-    ]
-  },
-  "ResourceFileModulePaths": {
-    "localBasePath": "",
-    "remoteSkinPath": "Lakeus"
-  },
-  "ResourceModules": {
-    "skins.lakeus.styles": {
-      "class": "ResourceLoaderSkinModule",
-      "features": {
-        "normalize": true,
-        "elements": true,
-        "content-tables": true,
-        "content-links": true,
-        "content-media": true,
-        "interface-category": true,
-        "interface-message-box": true,
-        "i18n-ordered-lists": true,
-        "i18n-all-lists-margins": true,
-        "i18n-headings": true,
-        "toc": true
-      },
-      "targets": [
-        "desktop",
-        "mobile"
-      ],
-      "styles": {
-        "0": "resources/skin.less",
-        "resources/print.less": {
-          "media": "print"
-        }
-      }
-    },
-    "skins.lakeus": {
-      "targets": [
-        "desktop",
-        "mobile"
-      ],
-      "styles": "resources/skin.js.less",
-      "packageFiles": [
-        "resources/skin.js"
-      ]
-    },
-    "skins.lakeus.designer": {
-      "es6": true,
-      "targets": [
-        "desktop",
-        "mobile"
-      ],
-      "messages": [
-        "lakeus-theme-designer",
-        "lakeus-theme-designer-system-messages-loaded",
-        "lakeus-theme-designer-all-loaded",
-        "lakeus-theme-designer-auto-calculate",
-        "lakeus-theme-designer-do-not-generate",
-        "lakeus-theme-designer-copy-theme",
-        "lakeus-theme-designer-paste-theme",
-        "lakeus-theme-designer-test-theme",
-        "lakeus-theme-designer-clear-theme",
-        "lakeus-theme-designer-reset-theme",
-        "lakeus-theme-designer-invert-auto-calculate-selection",
-        "lakeus-theme-designer-unselect-do-not-generate-selection",
-        "lakeus-theme-designer-copied",
-        "lakeus-theme-designer-copy-failed",
-        "lakeus-theme-designer-reload",
-        "lakeus-theme-designer-color-picker-fallback",
-        "lakeus-theme-designer-alpha-channel",
-        "lakeus-theme-designer-basic",
-        "lakeus-theme-designer-color-primary",
-        "lakeus-theme-designer-color-secondary",
-        "lakeus-theme-designer-color-neutral",
-        "lakeus-theme-designer-color-warning",
-        "lakeus-theme-designer-color-error",
-        "lakeus-theme-designer-color-success",
-        "lakeus-theme-designer-basic-derived",
-        "lakeus-theme-designer-color-secondary--derived",
-        "lakeus-theme-designer-border-color-secondary--derived",
-        "lakeus-theme-designer-global",
-        "lakeus-theme-designer-background-color-base",
-        "lakeus-theme-designer-color-link",
-        "lakeus-theme-designer-color-link--visited",
-        "lakeus-theme-designer-color-link--active",
-        "lakeus-theme-designer-color-link-new",
-        "lakeus-theme-designer-color-link-new--visited",
-        "lakeus-theme-designer-color-link-new--active",
-        "lakeus-theme-designer-color-footer-link",
-        "lakeus-theme-designer-color-footer-link--visited",
-        "lakeus-theme-designer-color-footer-link--active",
-        "lakeus-theme-designer-color-link-external",
-        "lakeus-theme-designer-color-link-external--visited",
-        "lakeus-theme-designer-color-link-external--active",
-        "lakeus-theme-designer-elevation",
-        "lakeus-theme-designer-font-family",
-        "lakeus-theme-designer-font-family-serif",
-        "lakeus-theme-designer-font-family-action-bar",
-        "lakeus-theme-designer-page-header",
-        "lakeus-theme-designer-color-header",
-        "lakeus-theme-designer-header-elevation",
-        "lakeus-theme-designer-icon-filter-header",
-        "lakeus-theme-designer-background-color-search-suggestions",
-        "lakeus-theme-designer-border-color-search-suggestions",
-        "lakeus-theme-designer-color-search-suggestions-text",
-        "lakeus-theme-designer-background-color-search-suggestions-current",
-        "lakeus-theme-designer-color-search-suggestions-text-current",
-        "lakeus-theme-designer-background-color-search-input",
-        "lakeus-theme-designer-border-color-search-bar",
-        "lakeus-theme-designer-toggle-list",
-        "lakeus-theme-designer-background-color-toggle-list",
-        "lakeus-theme-designer-background-color-toggle-list-card",
-        "lakeus-theme-designer-logo-text-color-toggle-list",
-        "lakeus-theme-designer-background-color-toggle-list-item-hover",
-        "lakeus-theme-designer-background-color-toggle-list-item-focus",
-        "lakeus-theme-designer-border-color-toggle-list",
-        "lakeus-theme-designer-subheader-color-toggle-list",
-        "lakeus-theme-designer-mask-background",
-        "lakeus-theme-designer-body",
-        "lakeus-theme-designer-background-color-content",
-        "lakeus-theme-designer-background-color-body",
-        "lakeus-theme-designer-border-color-content",
-        "lakeus-theme-designer-color-accent-header-tab",
-        "lakeus-theme-designer-border-color-header-tab",
-        "lakeus-theme-designer-color-tagline",
-        "lakeus-theme-designer-font-family-headings",
-        "lakeus-theme-designer-background-color-edit-options",
-        "lakeus-theme-designer-border-color-edit-options",
-        "lakeus-theme-designer-background-color-toc",
-        "lakeus-theme-designer-border-color-toc",
-        "lakeus-theme-designer-color-toc-number",
-        "lakeus-theme-designer-border-color-interface-message-box-neutral",
-        "lakeus-theme-designer-background-color-interface-message-box-neutral",
-        "lakeus-theme-designer-text-color-interface-message-box-neutral",
-        "lakeus-theme-designer-border-color-interface-message-box-warning",
-        "lakeus-theme-designer-background-color-interface-message-box-warning",
-        "lakeus-theme-designer-text-color-interface-message-box-warning",
-        "lakeus-theme-designer-border-color-interface-message-box-error",
-        "lakeus-theme-designer-background-color-interface-message-box-error",
-        "lakeus-theme-designer-text-color-interface-message-box-error",
-        "lakeus-theme-designer-border-color-interface-message-box-success",
-        "lakeus-theme-designer-background-color-interface-message-box-success",
-        "lakeus-theme-designer-text-color-interface-message-box-success",
-        "lakeus-theme-designer-border-color-user-message",
-        "lakeus-theme-designer-background-color-user-message",
-        "lakeus-theme-designer-text-color-user-message",
-        "lakeus-theme-designer-background-color-wikitable",
-        "lakeus-theme-designer-border-color-wikitable",
-        "lakeus-theme-designer-background-color-wikitable-table-head",
-        "lakeus-theme-designer-text-color-wikitable",
-        "lakeus-theme-designer-portlet",
-        "lakeus-theme-designer-background-color-portlet-body",
-        "lakeus-theme-designer-text-color-portlet-item",
-        "lakeus-theme-designer-background-color-portlet-item-hover",
-        "lakeus-theme-designer-text-color-portlet-item-hover",
-        "lakeus-theme-designer-background-color-portlet-item-focus",
-        "lakeus-theme-designer-text-color-portlet-item-focus",
-        "lakeus-theme-designer-border-color-portlet-body",
-        "lakeus-theme-designer-footer",
-        "lakeus-theme-designer-background-color-footer",
-        "lakeus-theme-designer-text-color-footer",
-        "lakeus-theme-designer-text-color-toggle-list-item",
-        "lakeus-theme-designer-text-color-toggle-list-item-hover",
-        "lakeus-theme-designer-text-color-toggle-list-item-focus",
-        "lakeus-theme-designer-text-color-content",
-        "lakeus-theme-designer-text-color-header",
-        "lakeus-theme-designer-text-color-body",
-        "lakeus-theme-designer-color-accent-header-tab-selected",
-        "lakeus-theme-designer-color-accent-header-tab-new",
-        "lakeus-theme-designer-sticky-toc",
-        "lakeus-theme-designer-background-color-toc-button",
-        "lakeus-theme-designer-icon-filter-toc-button",
-        "lakeus-theme-designer-text-color-sticky-toc-number",
-        "lakeus-theme-designer-danger-zone"
-      ],
-      "packageFiles": [
-        "resources/themeDesigner.js"
-      ],
-      "dependencies": [
-        "mediawiki.api",
-        "mediawiki.jqueryMsg",
-        "user.options"
-      ]
-    }
-  },
-  "ResourceModuleSkinStyles": {
-    "lakeus": {
-      "+oojs-ui-core.styles": "resources/ooui.less",
-      "+ext.NoTitle": "skinStyles/extensions/NoTitle/ext.NoTitle.css",
-      "+ext.uls.pt": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.pt.less",
-      "+ext.visualEditor.desktopArticleTarget.init": "skinStyles/extensions/VisualEditor/ext.visualEditor.desktopArticleTarget.init.less",
-      "+ext.echo.styles.badge": "skinStyles/extensions/Echo/ext.echo.styles.badge.less"
-    }
-  },
-  "AutoloadClasses": {
-    "SkinLakeus": "includes/SkinLakeus.php"
-  },
-  "AutoloadNamespaces": {
-    "Lakeus\\": "includes/"
-  },
-  "Hooks": {
-    "GetPreferences": "Lakeus\\Hooks::onGetPreferences"
-  },
-  "DefaultUserOptions": {
-    "lakeus-enable-theme-designer": 0,
-    "lakeus-sticky-toc-donot-auto-collapse": 0,
-    "lakeus-smooth-scroll-behavior": 1
-  },
-  "config": {
-    "LakeusShowRepositoryLink": {
-      "value": true,
-      "description": "Whether to show the link to the repository or not."
-    },
-    "LakeusSiteNoticeHasBorder": {
-      "value": false,
-      "description": "Whether to add a border to site notice. Useful for plain text notices."
-    },
-    "LakeusShouldAnimatePortlets": {
-      "value": false,
-      "description": "Whether to animate portlets. May cause visual artifacts when enabled due to z-index issues."
-    },
-    "LakeusShowStickyTOC": {
-      "value": false,
-      "description": "Whether to show sticky TOC."
-    }
-  }
+	"name": "Lakeus",
+	"version": "1.1.17",
+	"namemsg": "skinname-lakeus",
+	"descriptionmsg": "lakeus-skin-desc",
+	"url": "https://github.com/lakejason0/mediawiki-skins-Lakeus",
+	"author": [
+		"[https://github.com/lakejason0 Lakejason0]",
+		"Light beacon",
+		"Dianliang233",
+		"Winston Sung",
+		"..."
+	],
+	"type": "skin",
+	"requires": {
+		"MediaWiki": ">= 1.36.0"
+	},
+	"license-name": "GPL-3.0-or-later",
+	"manifest_version": 2,
+	"ValidSkinNames": {
+		"lakeus": {
+			"class": "MediaWiki\\Skins\\Lakeus\\SkinLakeus",
+			"services": [
+				"LocalServerObjectCache"
+			],
+			"args": [
+				{
+					"name": "lakeus",
+					"messages": [
+						"sitetitle",
+						"search",
+						"otherlanguages",
+						"tagline",
+						"toc",
+						"lakeus-openmainmenu",
+						"lakeus-jumptocontent",
+						"lakeus-articlecount",
+						"lakeus-preferences-enable-theme-designer",
+						"lakeus-preferences-enable-theme-designer-desc",
+						"lakeus-preferences-sticky-toc-donot-auto-collapse",
+						"lakeus-preferences-sticky-toc-donot-auto-collapse-desc"
+					],
+					"styles": [
+						"mediawiki.hlist",
+						"skins.lakeus.styles"
+					],
+					"scripts": [
+						"skins.lakeus",
+						"skins.lakeus.designer"
+					],
+					"responsive": true
+				}
+			]
+		}
+	},
+	"MessagesDirs": {
+		"Lakeus": [
+			"i18n"
+		]
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteSkinPath": "Lakeus"
+	},
+	"ResourceModules": {
+		"skins.lakeus.styles": {
+			"class": "ResourceLoaderSkinModule",
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"content-tables": true,
+				"content-links": true,
+				"content-media": true,
+				"interface-category": true,
+				"interface-message-box": true,
+				"i18n-ordered-lists": true,
+				"i18n-all-lists-margins": true,
+				"i18n-headings": true,
+				"toc": true
+			},
+			"targets": [
+				"desktop",
+				"mobile"
+			],
+			"styles": {
+				"0": "resources/skin.less",
+				"resources/print.less": {
+					"media": "print"
+				}
+			}
+		},
+		"skins.lakeus": {
+			"targets": [
+				"desktop",
+				"mobile"
+			],
+			"styles": "resources/skin.js.less",
+			"packageFiles": [
+				"resources/skin.js"
+			]
+		},
+		"skins.lakeus.designer": {
+			"es6": true,
+			"targets": [
+				"desktop",
+				"mobile"
+			],
+			"messages": [
+				"lakeus-theme-designer",
+				"lakeus-theme-designer-system-messages-loaded",
+				"lakeus-theme-designer-all-loaded",
+				"lakeus-theme-designer-auto-calculate",
+				"lakeus-theme-designer-do-not-generate",
+				"lakeus-theme-designer-copy-theme",
+				"lakeus-theme-designer-paste-theme",
+				"lakeus-theme-designer-test-theme",
+				"lakeus-theme-designer-clear-theme",
+				"lakeus-theme-designer-reset-theme",
+				"lakeus-theme-designer-invert-auto-calculate-selection",
+				"lakeus-theme-designer-unselect-do-not-generate-selection",
+				"lakeus-theme-designer-copied",
+				"lakeus-theme-designer-copy-failed",
+				"lakeus-theme-designer-reload",
+				"lakeus-theme-designer-color-picker-fallback",
+				"lakeus-theme-designer-alpha-channel",
+				"lakeus-theme-designer-basic",
+				"lakeus-theme-designer-color-primary",
+				"lakeus-theme-designer-color-secondary",
+				"lakeus-theme-designer-color-neutral",
+				"lakeus-theme-designer-color-warning",
+				"lakeus-theme-designer-color-error",
+				"lakeus-theme-designer-color-success",
+				"lakeus-theme-designer-basic-derived",
+				"lakeus-theme-designer-color-secondary--derived",
+				"lakeus-theme-designer-border-color-secondary--derived",
+				"lakeus-theme-designer-global",
+				"lakeus-theme-designer-background-color-base",
+				"lakeus-theme-designer-color-link",
+				"lakeus-theme-designer-color-link--visited",
+				"lakeus-theme-designer-color-link--active",
+				"lakeus-theme-designer-color-link-new",
+				"lakeus-theme-designer-color-link-new--visited",
+				"lakeus-theme-designer-color-link-new--active",
+				"lakeus-theme-designer-color-footer-link",
+				"lakeus-theme-designer-color-footer-link--visited",
+				"lakeus-theme-designer-color-footer-link--active",
+				"lakeus-theme-designer-color-link-external",
+				"lakeus-theme-designer-color-link-external--visited",
+				"lakeus-theme-designer-color-link-external--active",
+				"lakeus-theme-designer-elevation",
+				"lakeus-theme-designer-font-family",
+				"lakeus-theme-designer-font-family-serif",
+				"lakeus-theme-designer-font-family-action-bar",
+				"lakeus-theme-designer-page-header",
+				"lakeus-theme-designer-color-header",
+				"lakeus-theme-designer-header-elevation",
+				"lakeus-theme-designer-icon-filter-header",
+				"lakeus-theme-designer-background-color-search-suggestions",
+				"lakeus-theme-designer-border-color-search-suggestions",
+				"lakeus-theme-designer-color-search-suggestions-text",
+				"lakeus-theme-designer-background-color-search-suggestions-current",
+				"lakeus-theme-designer-color-search-suggestions-text-current",
+				"lakeus-theme-designer-background-color-search-input",
+				"lakeus-theme-designer-border-color-search-bar",
+				"lakeus-theme-designer-toggle-list",
+				"lakeus-theme-designer-background-color-toggle-list",
+				"lakeus-theme-designer-background-color-toggle-list-card",
+				"lakeus-theme-designer-logo-text-color-toggle-list",
+				"lakeus-theme-designer-background-color-toggle-list-item-hover",
+				"lakeus-theme-designer-background-color-toggle-list-item-focus",
+				"lakeus-theme-designer-border-color-toggle-list",
+				"lakeus-theme-designer-subheader-color-toggle-list",
+				"lakeus-theme-designer-mask-background",
+				"lakeus-theme-designer-body",
+				"lakeus-theme-designer-background-color-content",
+				"lakeus-theme-designer-background-color-body",
+				"lakeus-theme-designer-border-color-content",
+				"lakeus-theme-designer-color-accent-header-tab",
+				"lakeus-theme-designer-border-color-header-tab",
+				"lakeus-theme-designer-color-tagline",
+				"lakeus-theme-designer-font-family-headings",
+				"lakeus-theme-designer-background-color-edit-options",
+				"lakeus-theme-designer-border-color-edit-options",
+				"lakeus-theme-designer-background-color-toc",
+				"lakeus-theme-designer-border-color-toc",
+				"lakeus-theme-designer-color-toc-number",
+				"lakeus-theme-designer-border-color-interface-message-box-neutral",
+				"lakeus-theme-designer-background-color-interface-message-box-neutral",
+				"lakeus-theme-designer-text-color-interface-message-box-neutral",
+				"lakeus-theme-designer-border-color-interface-message-box-warning",
+				"lakeus-theme-designer-background-color-interface-message-box-warning",
+				"lakeus-theme-designer-text-color-interface-message-box-warning",
+				"lakeus-theme-designer-border-color-interface-message-box-error",
+				"lakeus-theme-designer-background-color-interface-message-box-error",
+				"lakeus-theme-designer-text-color-interface-message-box-error",
+				"lakeus-theme-designer-border-color-interface-message-box-success",
+				"lakeus-theme-designer-background-color-interface-message-box-success",
+				"lakeus-theme-designer-text-color-interface-message-box-success",
+				"lakeus-theme-designer-border-color-user-message",
+				"lakeus-theme-designer-background-color-user-message",
+				"lakeus-theme-designer-text-color-user-message",
+				"lakeus-theme-designer-background-color-wikitable",
+				"lakeus-theme-designer-border-color-wikitable",
+				"lakeus-theme-designer-background-color-wikitable-table-head",
+				"lakeus-theme-designer-text-color-wikitable",
+				"lakeus-theme-designer-portlet",
+				"lakeus-theme-designer-background-color-portlet-body",
+				"lakeus-theme-designer-text-color-portlet-item",
+				"lakeus-theme-designer-background-color-portlet-item-hover",
+				"lakeus-theme-designer-text-color-portlet-item-hover",
+				"lakeus-theme-designer-background-color-portlet-item-focus",
+				"lakeus-theme-designer-text-color-portlet-item-focus",
+				"lakeus-theme-designer-border-color-portlet-body",
+				"lakeus-theme-designer-footer",
+				"lakeus-theme-designer-background-color-footer",
+				"lakeus-theme-designer-text-color-footer",
+				"lakeus-theme-designer-text-color-toggle-list-item",
+				"lakeus-theme-designer-text-color-toggle-list-item-hover",
+				"lakeus-theme-designer-text-color-toggle-list-item-focus",
+				"lakeus-theme-designer-text-color-content",
+				"lakeus-theme-designer-text-color-header",
+				"lakeus-theme-designer-text-color-body",
+				"lakeus-theme-designer-color-accent-header-tab-selected",
+				"lakeus-theme-designer-color-accent-header-tab-new",
+				"lakeus-theme-designer-sticky-toc",
+				"lakeus-theme-designer-background-color-toc-button",
+				"lakeus-theme-designer-icon-filter-toc-button",
+				"lakeus-theme-designer-text-color-sticky-toc-number",
+				"lakeus-theme-designer-danger-zone"
+			],
+			"packageFiles": [
+				"resources/themeDesigner.js"
+			],
+			"dependencies": [
+				"mediawiki.api",
+				"mediawiki.jqueryMsg",
+				"user.options"
+			]
+		}
+	},
+	"ResourceModuleSkinStyles": {
+		"lakeus": {
+			"+oojs-ui-core.styles": "resources/ooui.less",
+			"+ext.NoTitle": "skinStyles/extensions/NoTitle/ext.NoTitle.css",
+			"+ext.uls.pt": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.pt.less",
+			"+ext.visualEditor.desktopArticleTarget.init": "skinStyles/extensions/VisualEditor/ext.visualEditor.desktopArticleTarget.init.less",
+			"+ext.echo.styles.badge": "skinStyles/extensions/Echo/ext.echo.styles.badge.less"
+		}
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Skins\\Lakeus\\": "includes/"
+	},
+	"Hooks": {
+		"GetPreferences": "MediaWiki\\Skins\\Lakeus\\Hooks::onGetPreferences"
+	},
+	"DefaultUserOptions": {
+		"lakeus-enable-theme-designer": 0,
+		"lakeus-sticky-toc-donot-auto-collapse": 0,
+		"lakeus-smooth-scroll-behavior": 1
+	},
+	"config": {
+		"LakeusShowRepositoryLink": {
+			"value": true,
+			"description": "Whether to show the link to the repository or not."
+		},
+		"LakeusSiteNoticeHasBorder": {
+			"value": false,
+			"description": "Whether to add a border to site notice. Useful for plain text notices."
+		},
+		"LakeusShouldAnimatePortlets": {
+			"value": false,
+			"description": "Whether to animate portlets. May cause visual artifacts when enabled due to z-index issues."
+		},
+		"LakeusShowStickyTOC": {
+			"value": false,
+			"description": "Whether to show sticky TOC."
+		}
+	}
 }
