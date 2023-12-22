@@ -1,6 +1,8 @@
-The Lakeus skin is written by Lakejason0, Light beacon, Dianliang233, Winston Sung and other contributors to the skin. See https://github.com/lakejason0/mediawiki-skins-Lakeus/graphs/contributors for the list of all contributors.
+The Lakeus skin is written by Lakejason0, Light beacon, Dianliang233, Winston Sung and other contributors to the skin.
+See https://github.com/lakejason0/mediawiki-skins-Lakeus/graphs/contributors for the list of all contributors.
 
-Translations are done by Lakejason0 (`zh-hans`, `zh-hant`, `zh-hk`), Winston Sung (`zh-hant`), Olvcpr423 (`yue`) and other translators on Translatewiki.net. See https://translatewiki.net/wiki/Special:MessageGroupStats?group=mwgithub-lakeus&suppressempty=1&x=D for the message group statistics of the skin.
+Translations are done by Lakejason0 (`zh-hans`, `zh-hant`, `zh-hk`), Winston Sung (`zh-hant`), Olvcpr423 (`yue`) and other translators on translatewiki.net.
+See https://translatewiki.net/wiki/Special:MessageGroupStats?group=mwgithub-lakeus&suppressempty=1&x=D for the message group statistics of the skin.
 
 Special thanks to Timeless, Vector, Minerva, FandomMobile and FandomDesktop for inspiration of some features of this skin!
 
