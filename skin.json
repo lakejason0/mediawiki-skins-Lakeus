@@ -1,9 +1,7 @@
 {
 	"name": "Lakeus",
-	"version": "1.1.17",
 	"namemsg": "skinname-lakeus",
-	"descriptionmsg": "lakeus-skin-desc",
-	"url": "https://github.com/lakejason0/mediawiki-skins-Lakeus",
+	"type": "skin",
 	"author": [
 		"[https://github.com/lakejason0 Lakejason0]",
 		"Light beacon",
@@ -11,52 +9,12 @@
 		"Winston Sung",
 		"..."
 	],
-	"type": "skin",
+	"version": "1.1.17",
+	"url": "https://github.com/lakejason0/mediawiki-skins-Lakeus",
+	"descriptionmsg": "lakeus-skin-desc",
+	"license-name": "GPL-3.0-or-later",
 	"requires": {
 		"MediaWiki": ">= 1.36.0"
-	},
-	"license-name": "GPL-3.0-or-later",
-	"manifest_version": 2,
-	"ValidSkinNames": {
-		"lakeus": {
-			"class": "MediaWiki\\Skins\\Lakeus\\SkinLakeus",
-			"services": [
-				"LocalServerObjectCache"
-			],
-			"args": [
-				{
-					"name": "lakeus",
-					"messages": [
-						"sitetitle",
-						"search",
-						"otherlanguages",
-						"tagline",
-						"toc",
-						"lakeus-openmainmenu",
-						"lakeus-jumptocontent",
-						"lakeus-articlecount",
-						"lakeus-preferences-enable-theme-designer",
-						"lakeus-preferences-enable-theme-designer-desc",
-						"lakeus-preferences-sticky-toc-donot-auto-collapse",
-						"lakeus-preferences-sticky-toc-donot-auto-collapse-desc"
-					],
-					"styles": [
-						"mediawiki.hlist",
-						"skins.lakeus.styles"
-					],
-					"scripts": [
-						"skins.lakeus",
-						"skins.lakeus.designer"
-					],
-					"responsive": true
-				}
-			]
-		}
-	},
-	"MessagesDirs": {
-		"Lakeus": [
-			"i18n"
-		]
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
@@ -104,6 +62,14 @@
 			"targets": [
 				"desktop",
 				"mobile"
+			],
+			"dependencies": [
+				"mediawiki.api",
+				"mediawiki.jqueryMsg",
+				"user.options"
+			],
+			"packageFiles": [
+				"resources/themeDesigner.js"
 			],
 			"messages": [
 				"lakeus-theme-designer",
@@ -227,14 +193,6 @@
 				"lakeus-theme-designer-icon-filter-toc-button",
 				"lakeus-theme-designer-text-color-sticky-toc-number",
 				"lakeus-theme-designer-danger-zone"
-			],
-			"packageFiles": [
-				"resources/themeDesigner.js"
-			],
-			"dependencies": [
-				"mediawiki.api",
-				"mediawiki.jqueryMsg",
-				"user.options"
 			]
 		}
 	},
@@ -247,6 +205,16 @@
 			"+ext.echo.styles.badge": "skinStyles/extensions/Echo/ext.echo.styles.badge.less"
 		}
 	},
+	"DefaultUserOptions": {
+		"lakeus-enable-theme-designer": 0,
+		"lakeus-sticky-toc-donot-auto-collapse": 0,
+		"lakeus-smooth-scroll-behavior": 1
+	},
+	"MessagesDirs": {
+		"Lakeus": [
+			"i18n"
+		]
+	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Skins\\Lakeus\\": "includes/"
 	},
@@ -258,10 +226,41 @@
 	"Hooks": {
 		"GetPreferences": "LakeusHooks"
 	},
-	"DefaultUserOptions": {
-		"lakeus-enable-theme-designer": 0,
-		"lakeus-sticky-toc-donot-auto-collapse": 0,
-		"lakeus-smooth-scroll-behavior": 1
+	"ValidSkinNames": {
+		"lakeus": {
+			"class": "MediaWiki\\Skins\\Lakeus\\SkinLakeus",
+			"services": [
+				"LocalServerObjectCache"
+			],
+			"args": [
+				{
+					"name": "lakeus",
+					"responsive": true,
+					"styles": [
+						"mediawiki.hlist",
+						"skins.lakeus.styles"
+					],
+					"scripts": [
+						"skins.lakeus",
+						"skins.lakeus.designer"
+					],
+					"messages": [
+						"sitetitle",
+						"search",
+						"otherlanguages",
+						"tagline",
+						"toc",
+						"lakeus-openmainmenu",
+						"lakeus-jumptocontent",
+						"lakeus-articlecount",
+						"lakeus-preferences-enable-theme-designer",
+						"lakeus-preferences-enable-theme-designer-desc",
+						"lakeus-preferences-sticky-toc-donot-auto-collapse",
+						"lakeus-preferences-sticky-toc-donot-auto-collapse-desc"
+					]
+				}
+			]
+		}
 	},
 	"config": {
 		"LakeusShowRepositoryLink": {
@@ -280,5 +279,6 @@
 			"value": false,
 			"description": "Whether to show sticky TOC."
 		}
-	}
+	},
+	"manifest_version": 2
 }
