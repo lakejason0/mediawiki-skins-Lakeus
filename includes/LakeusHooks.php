@@ -18,7 +18,7 @@ class LakeusHooks implements GetPreferencesHook {
 			'label-message' => 'lakeus-preferences-enable-theme-designer',
 			'help-message' => 'lakeus-preferences-enable-theme-designer-desc',
 			'section' => 'rendering/skin/skin-prefs',
-			'hide-if' => [ '!==', 'wpskin', 'lakeus' ],
+			'hide-if' => [ '!==', 'skin', 'lakeus' ],
 		];
 
 		$preferences['lakeus-sticky-toc-donot-auto-collapse'] = [
@@ -26,7 +26,7 @@ class LakeusHooks implements GetPreferencesHook {
 			'label-message' => 'lakeus-preferences-sticky-toc-donot-auto-collapse',
 			'help-message' => 'lakeus-preferences-sticky-toc-donot-auto-collapse-desc',
 			'section' => 'rendering/skin/skin-prefs',
-			'hide-if' => [ '!==', 'wpskin', 'lakeus' ],
+			'hide-if' => [ '!==', 'skin', 'lakeus' ],
 		];
 
 		$preferences['lakeus-smooth-scroll-behavior'] = [
@@ -34,7 +34,7 @@ class LakeusHooks implements GetPreferencesHook {
 			'label-message' => 'lakeus-preferences-smooth-scroll-behavior',
 			'help-message' => 'lakeus-preferences-smooth-scroll-behavior-desc',
 			'section' => 'rendering/skin/skin-prefs',
-			'hide-if' => [ '!==', 'wpskin', 'lakeus' ],
+			'hide-if' => [ '!==', 'skin', 'lakeus' ],
 		];
 	}
 }
