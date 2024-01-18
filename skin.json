@@ -251,7 +251,7 @@
 		"MediaWiki\\Skins\\Lakeus\\": "includes/"
 	},
 	"Hooks": {
-		"GetPreferences": "MediaWiki\\Skins\\Lakeus\\Hooks::onGetPreferences"
+		"GetPreferences": "MediaWiki\\Skins\\Lakeus\\LakeusHooks::onGetPreferences"
 	},
 	"DefaultUserOptions": {
 		"lakeus-enable-theme-designer": 0,

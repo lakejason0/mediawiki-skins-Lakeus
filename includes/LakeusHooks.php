@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Skins\Lakeus;
 
-class Hooks {
+class LakeusHooks {
 	/**
 	 * @see https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Hooks/GetPreferences
 	 * @param User $user
