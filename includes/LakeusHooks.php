@@ -2,13 +2,15 @@
 
 namespace MediaWiki\Skins\Lakeus;
 
-class LakeusHooks {
+use MediaWiki\Preferences\Hook\GetPreferencesHook;
+
+class LakeusHooks implements GetPreferencesHook {
 	/**
 	 * @see https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Hooks/GetPreferences
 	 * @param User $user
 	 * @param array &$preferences
 	 */
-	public static function onGetPreferences( $user, &$preferences ) {
+	public function onGetPreferences( $user, &$preferences ) {
 		// A checkbox
 		$preferences['lakeus-enable-theme-designer'] = [
 			'type' => 'check',
