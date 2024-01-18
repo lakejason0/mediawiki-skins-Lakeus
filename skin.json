@@ -220,7 +220,7 @@
 	},
 	"HookHandlers": {
 		"LakeusHooks": {
-			"class": "MediaWiki\\Skins\\Lakeus\\LakeusHooks"
+			"class": "MediaWiki\\Skins\\Lakeus\\Hooks"
 		}
 	},
 	"Hooks": {

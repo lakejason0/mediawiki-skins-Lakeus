@@ -4,7 +4,7 @@ namespace MediaWiki\Skins\Lakeus;
 
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 
-class LakeusHooks implements GetPreferencesHook {
+class Hooks implements GetPreferencesHook {
 	/**
 	 * @see https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Hooks/GetPreferences
 	 * @param User $user
