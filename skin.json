@@ -250,8 +250,13 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Skins\\Lakeus\\": "includes/"
 	},
+	"HookHandlers": {
+		"LakeusHooks": {
+			"class": "MediaWiki\\Skins\\Lakeus\\LakeusHooks"
+		}
+	},
 	"Hooks": {
-		"GetPreferences": "MediaWiki\\Skins\\Lakeus\\LakeusHooks::onGetPreferences"
+		"GetPreferences": "LakeusHooks"
 	},
 	"DefaultUserOptions": {
 		"lakeus-enable-theme-designer": 0,
