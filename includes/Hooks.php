@@ -12,13 +12,13 @@ class Hooks implements GetPreferencesHook {
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @param Config $config
-	 * @return $wgLakeusWvuiSearchOptions
+	 * @return $wgLakeusSearchOptions
 	 */
-	public function getLakeusWvuiSearchResourceLoaderConfig(
+	public function getLakeusSearchResourceLoaderConfig(
 		ResourceLoaderContext $context,
 		Config $config
 	) {
-		return $config->get( 'LakeusWvuiSearchOptions' );
+		return $config->get( 'LakeusSearchOptions' );
 	}
 
 	/**
