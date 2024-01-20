@@ -5,20 +5,19 @@ namespace MediaWiki\Skins\Lakeus;
 use Config;
 # use MediaWiki\Config\Config; // Namespaced in 1.41.0
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
-# use MediaWiki\ResourceLoader\Context; // Namespaced in 1.39.0
-use ResourceLoaderContext;
+use MediaWiki\ResourceLoader\Context as ResourceLoaderContext;
 
 class Hooks implements GetPreferencesHook {
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @param Config $config
-	 * @return $wgLakeusWvuiSearchOptions
+	 * @return $wgLakeusSearchOptions
 	 */
-	public function getLakeusWvuiSearchResourceLoaderConfig(
+	public function getLakeusSearchResourceLoaderConfig(
 		ResourceLoaderContext $context,
 		Config $config
 	) {
-		return $config->get( 'LakeusWvuiSearchOptions' );
+		return $config->get( 'LakeusSearchOptions' );
 	}
 
 	/**

@@ -197,18 +197,18 @@
 			]
 		},
 		"skins.lakeus.search": {
-			"dependencies": [
-				"mediawiki.Uri",
-				"wvui"
-			],
 			"es6": true,
+			"dependencies": [
+				"mediawiki.Uri"
+			],
 			"packageFiles": [
 				"resources/skins.lakeus.search/skins.lakeus.search.js",
 				"resources/skins.lakeus.search/App.vue",
 				{
 					"name": "resources/skins.lakeus.search/config.json",
-					"callback": "MediaWiki\\Skins\\Lakeus\\Hooks::getLakeusWvuiSearchResourceLoaderConfig"
+					"callback": "MediaWiki\\Skins\\Lakeus\\Hooks::getLakeusSearchResourceLoaderConfig"
 				}
+
 			],
 			"messages": [
 				"searchbutton",
@@ -291,10 +291,11 @@
 			"value": "",
 			"description": "Override default search API. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
 		},
-		"LakeusUseWvuiSearch": {
-			"value": true
+		"LakeusSearchModuleType": {
+			"value": null,
+			"description": "Which search module to use. Options: null (default Codex) / 'codex' (Codex) / 'jquery' (legacy jQuery search)."
 		},
-		"LakeusWvuiSearchOptions": {
+		"LakeusSearchOptions": {
 			"value": {
 				"showThumbnail": true,
 				"showDescription": true
