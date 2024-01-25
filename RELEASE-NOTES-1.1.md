@@ -48,12 +48,15 @@ risk!
 
 * …
 
-### Languages updated in 1.1.4
+### Languages updated
 
 Lakeus skin now supports # languages. Many localisations are updated regularly.
 
 Below only new and removed languages are listed.
 
+* (issue #30) Added missing localisations for British English (tw).
+* (issue #30) Added missing localisations for Cantonese (Traditional Han script)
+  (yue-hant), which was moved from yue.
 * …
 
 ### Breaking changes

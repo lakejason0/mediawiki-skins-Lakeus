@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lakejason0",
+			"Olvcpr423",
+			"Winston Sung"
+		]
+	},
+	"lakeus-skin-desc": "以作者[https://github.com/lakejason0 Lakejason0]嘅小說角色命名嘅簡易外觀",
+	"lakeus.css": "/* 呢度放置嘅CSS會影響所有使用Lakeus外觀嘅用戶 */",
+	"lakeus.js": "/* 響每一次個頁面載入時，用 Lakeus 畫面嘅用戶都會載入呢度任何嘅JavaScript */",
+	"lakeus-openmainmenu": "打開主選單",
+	"lakeus-articlecount": "{{PLURAL:$1|篇文章}}",
+	"lakeus-footermessage": "由Lakeus外觀提供"
+}
