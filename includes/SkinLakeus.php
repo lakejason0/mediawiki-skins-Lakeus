@@ -2,24 +2,11 @@
 
 namespace MediaWiki\Skins\Lakeus;
 
-use BagOStuff;
-# use MediaWiki\Html\TemplateParser; // Namespaced in 1.40.0
 # use MediaWiki\SiteStats\SiteStats; // Namespaced in 1.41.0
 use SiteStats;
 use SkinMustache;
-use TemplateParser;
 
 class SkinLakeus extends SkinMustache {
-	/**
-	 * @param BagOStuff $localServerObjectCache
-	 * @param array $options
-	 */
-	public function __construct( BagOStuff $localServerObjectCache, array $options ) {
-		parent::__construct( $options );
-
-		$this->templateParser = new TemplateParser( $this->options['templateDirectory'], $localServerObjectCache );
-	}
-
 	/**
 	 * Extends the getTemplateData function to add a template key 'html-myskin-hello-world'
 	 * which can be rendered in skin.mustache using {{{html-myskin-hello-world}}}

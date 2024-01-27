@@ -229,9 +229,6 @@
 	"ValidSkinNames": {
 		"lakeus": {
 			"class": "MediaWiki\\Skins\\Lakeus\\SkinLakeus",
-			"services": [
-				"LocalServerObjectCache"
-			],
 			"args": [
 				{
 					"name": "lakeus",
