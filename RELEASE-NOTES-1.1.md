@@ -65,12 +65,13 @@ Below only new and removed languages are listed.
 
 ### Deprecations
 
+* (issue #24) Converted to the new hook system.
+* (T262067, issue #33) Migrated `templateDirectory` option to `skin.json`.
 * …
 
 ### Other changes
 
 * (issue #22) Fixed capitalization in README.
-* (issue #24) Converted to the new hook system.
 * Reordered skin.json based on mediawiki/core `docs/extension.schema.v2.json`
   (`6d71df9`).
 * (issue #28, #29) Added documentations.

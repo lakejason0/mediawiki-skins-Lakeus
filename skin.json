@@ -235,6 +235,7 @@
 			"args": [
 				{
 					"name": "lakeus",
+					"templateDirectory": "includes/templates",
 					"responsive": true,
 					"styles": [
 						"mediawiki.hlist",
