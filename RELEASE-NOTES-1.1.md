@@ -38,6 +38,9 @@ risk!
 * Removed unnecessary modules.
 * Fixed CodeMirror glitch.
 * (issue #26) Removed unneeded `wp` prefix from `hide-if`.
+* (issue #32) Fixed "access to private variable `$templateParser` of parent
+  class" in `SkinLakeus.php` by dropping unneeded
+  `BagOStuff $localServerObjectCache` dependency.
 * …
 
 ### Action API changes
