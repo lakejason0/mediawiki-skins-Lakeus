@@ -60,6 +60,8 @@ Below only new and removed languages are listed.
 * (issue #30) Added missing localisations for British English (tw).
 * (issue #30) Added missing localisations for Cantonese (Traditional Han script)
   (yue-hant), which was moved from yue.
+* (issue #35) Unified indentation for en.json by changing 2-whitespace
+  indentation to tab-character indentation.
 * …
 
 ### Breaking changes
