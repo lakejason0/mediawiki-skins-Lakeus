@@ -331,7 +331,7 @@ Lakeus.initThemeDesigner = function () {
                         "color-secondary",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[0]].value.darken(0.1), Lakeus.variablesList[this.calculateFrom[0]].value.brighten(0.1));
+                        return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'), Lakeus.variablesList[this.calculateFrom[0]].value.darken(0.1), Lakeus.variablesList[this.calculateFrom[0]].value.brighten(0.1));
                     },
                 },
                 "border-color-secondary--derived": {
@@ -349,7 +349,7 @@ Lakeus.initThemeDesigner = function () {
                         "color-secondary",
                     ],
                     calculate: function (i) {
-                        return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value, Lakeus.variablesList[this.calculateFrom[0]].value.darken(1), Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1.5));
+                        return i || Lakeus.getContrastYIQ(Lakeus.variablesList[this.calculateFrom[0]].value.hex('rgb'), Lakeus.variablesList[this.calculateFrom[0]].value.darken(1), Lakeus.variablesList[this.calculateFrom[0]].value.brighten(1.5));
                     },
                 },
                 "font-family": {
