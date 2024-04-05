@@ -14,7 +14,7 @@
 	"descriptionmsg": "lakeus-skin-desc",
 	"license-name": "GPL-3.0-or-later",
 	"requires": {
-		"MediaWiki": ">= 1.36.0"
+		"MediaWiki": ">= 1.39.0"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
@@ -22,7 +22,7 @@
 	},
 	"ResourceModules": {
 		"skins.lakeus.styles": {
-			"class": "ResourceLoaderSkinModule",
+			"class": "MediaWiki\\ResourceLoader\\SkinModule",
 			"features": {
 				"normalize": true,
 				"elements": true,
