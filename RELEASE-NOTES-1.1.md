@@ -1,37 +1,11 @@
 # mediawiki-skins-Lakeus 1.1
 
-## mediawiki-skins-Lakeus master branch
+## mediawiki-skins-Lakeus 1.1.18
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the mediawiki-skins-Lakeus 1.1 version.
 
-The `master` branch is an alpha-quality development branch. Use it at your own
-risk!
-
-### Configuration changes for system administrators
-
-#### New configuration
-
-* …
-
-#### Changed configuration
-
-* …
-
-#### Removed configuration
-
-* …
-
-### New user-facing features
-
-* …
-
-### New features for sysadmins
-
-* …
-
-### New developer features
-
-* …
+This will be the last release support obsoleted MediaWiki version 1.37.x,
+1.38.x.
 
 ### Bug fixes
 
@@ -41,38 +15,24 @@ risk!
 * (issue #32) Fixed "access to private variable `$templateParser` of parent
   class" in `SkinLakeus.php` by dropping unneeded
   `BagOStuff $localServerObjectCache` dependency.
-* …
-
-### Action API changes
-
-* …
-
-### Action API internal changes
-
-* …
+* Fixed hexcolor.replace is not a function
 
 ### Languages updated
 
-Lakeus skin now supports # languages. Many localisations are updated regularly.
+Lakeus skin now supports 27 languages. Many localisations are updated regularly.
 
 Below only new and removed languages are listed.
 
-* (issue #30) Added missing localisations for British English (tw).
+* (issue #30) Added missing localisations for Twi (tw).
 * (issue #30) Added missing localisations for Cantonese (Traditional Han script)
   (yue-hant), which was moved from yue.
 * (issue #35) Unified indentation for en.json by changing 2-whitespace
   indentation to tab-character indentation.
-* …
-
-### Breaking changes
-
-* …
 
 ### Deprecations
 
 * (issue #24) Converted to the new hook system.
 * (T262067, issue #33) Migrated `templateDirectory` option to `skin.json`.
-* …
 
 ### Other changes
 
@@ -84,7 +44,6 @@ Below only new and removed languages are listed.
   * HISTORY
   * RELEASE-NOTES-1.1
   * SECURITY
-* …
 
 ## mediawiki-skins-Lakeus 1.1.17
 
