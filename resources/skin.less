@@ -148,6 +148,7 @@ p {
 
 #logo-image {
   height: 45px;
+
   @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
     display: none;
   }
@@ -159,22 +160,26 @@ p {
   margin-left: 5px;
   font-size: 100%;
   white-space: nowrap;
+
   @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
     max-width: ~'calc(100vw - 170px)';    
   }
 }
 
 #siteNotice {
+  margin: 40px auto 0;
+  padding-bottom: 8px;
+  color: @text-color-body;
+
   @media screen and ( min-width: @width-breakpoint-tablet ) {
-    width: 70%;
+    width: max( @width-breakpoint-tablet, 70% );
+    max-width: 100%;
   }
 
   @media screen and ( max-width: @width-breakpoint-tablet ) {
     width: 95%;
   }
-  margin: 40px auto 0;
-  padding-bottom: 8px;
-  color: @text-color-body;
+
   &.has-border {
     box-sizing: border-box;
     background-color: @background-color-content;
@@ -183,24 +188,23 @@ p {
     border-radius: 3px;
     box-shadow: @elevation;
   }
+
+  &:empty,
   :empty {
     visibility: hidden;
   }
 }
 
-#siteNotice:empty {
-  visibility: hidden;
-}
-
 #p-search {
+  margin-right: 30px;
+  margin-left: 10px;
+
   @media screen and ( max-width: @width-breakpoint-tablet ) {
     width: 100%;
     display: flex;
     justify-content: center;
     margin: 5px auto;
   }
-  margin-right: 30px;
-  margin-left: 10px;
 
   #searchInput {
     background-image: url( 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Esearch%3C%2Ftitle%3E%3Cg%20fill%3D%22%2354595d%22%3E%3Cpath%20d%3D%22M7.5%2013a5.5%205.5%200%20100-11%205.5%205.5%200%20000%2011zm4.55.46A7.43%207.43%200%20017.5%2015a7.5%207.5%200%20115.96-2.95l6.49%206.49-1.41%201.41-6.49-6.49z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E' ); /* TODO: Variablize */
@@ -492,6 +496,8 @@ main {
 }
 
 .mw-body {
+  word-wrap: break-word;
+
   h1,
   h2,
   h3,
@@ -510,8 +516,6 @@ main {
   hr {
     background-color: @border-color-content;
   }
-
-  word-wrap: break-word;
 }
 
 .client-js .mw-content-ltr .mw-editsection-bracket:first-of-type,.client-js .mw-content-rtl .mw-editsection-bracket:not(:first-of-type) {
@@ -573,20 +577,17 @@ main {
 }
 
 #content {
-  @media screen and ( min-width: @width-breakpoint-tablet ) {
-    min-width: 70%;
-    margin: 10px auto 40px;
-  }
-
-  @media screen and ( max-width: @width-breakpoint-mobile ) {
-    max-width: 100%;
-  }
   color: @text-color-content;
-  max-width: 1200px;
+  max-width: min( 100%, 1200px );
   background-color: @background-color-content;
   position: relative;
   box-sizing: border-box;
   margin-top: 40px;
+
+  @media screen and ( min-width: @width-breakpoint-tablet ) {
+    width: max( @width-breakpoint-tablet, 70% );
+    margin: 10px auto 40px;
+  }
 }
 
 #mw-content-text {
@@ -807,17 +808,21 @@ div.editOptions {
 }
 
 /* TOC */
-.toc, body .toc,
-.toccolours, body .toccolours {
+.toc,
+body .toc,
+.toccolours,
+body .toccolours {
   border-color: @border-color-toc;
   background-color: @background-color-toc;
 }
 
-.tocnumber, body .tocnumber {
+.tocnumber,
+body .tocnumber {
   color: @color-toc-number;
 }
 
-.toctogglelabel, body .toctogglelabel {
+.toctogglelabel,
+body .toctogglelabel {
   color: @color-link;
 }
 
@@ -827,31 +832,40 @@ div.editOptions {
 
 /* INTERFACE MESSAGE BOXES */
 /* SOME OF THE CLASS NAMES WILL BE DEPRECATED */
-.mw-message-box, .messagebox, body .messagebox {
+.mw-message-box,
+.messagebox, body
+.messagebox {
   background-color: @background-color-interface-message-box-neutral;
   border-color: @border-color-interface-message-box-neutral;
   color: @text-color-interface-message-box-neutral;
 }
 
-.mw-message-box-error, .errorbox, body .errorbox {
+.mw-message-box-error,
+.errorbox,
+body .errorbox {
   background-color: @background-color-interface-message-box-error;
   border-color: @border-color-interface-message-box-error;
   color: @text-color-interface-message-box-error;
 }
 
-.mw-message-box-warning, .warningbox, body .warningbox {
+.mw-message-box-warning,
+.warningbox,
+body .warningbox {
   background-color: @background-color-interface-message-box-warning;
   border-color: @border-color-interface-message-box-warning;
   color: @text-color-interface-message-box-warning;
 }
 
-.mw-message-box-success, .successbox, body .successbox {
+.mw-message-box-success,
+.successbox,
+body .successbox {
   background-color: @background-color-interface-message-box-success;
   border-color: @border-color-interface-message-box-success;
   color: @text-color-interface-message-box-success;
 }
 
-.usermessage, body .usermessage {
+.usermessage,
+body .usermessage {
   background-color: @background-color-user-message;
   border-color: @border-color-user-message;
   color: @text-color-user-message;
@@ -862,7 +876,8 @@ div.editOptions {
 }
 
 /* TABLES */
-.wikitable, body .wikitable {
+.wikitable,
+body .wikitable {
   background-color: @background-color-wikitable;
   color: @text-color-wikitable;
   border-color: @border-color-wikitable;
