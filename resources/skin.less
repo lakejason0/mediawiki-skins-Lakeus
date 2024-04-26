@@ -162,7 +162,7 @@ p {
   white-space: nowrap;
 
   @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
-    max-width: ~'calc(100vw - 170px)';    
+    max-width: ~"calc(100vw - 170px)";
   }
 }
 
@@ -172,7 +172,7 @@ p {
   color: @text-color-body;
 
   @media screen and ( min-width: @width-breakpoint-tablet ) {
-    width: ~"max( 720px, 70% )"; // 720px is originally @width-breakpoint-tablet
+    width: max( @width-breakpoint-tablet, ~"70%" );
     max-width: 100%;
   }
 
@@ -585,7 +585,7 @@ main {
   margin-top: 40px;
 
   @media screen and ( min-width: @width-breakpoint-tablet ) {
-    width: ~"max( 720px, 70% )"; // 720px is originally @width-breakpoint-tablet
+    width: max( @width-breakpoint-tablet, ~"70%" );
     margin: 10px auto 40px;
   }
 }
@@ -660,7 +660,7 @@ div.editOptions {
       &:visited {
         color: @text-color-portlet-item;
       }
-      
+
       &:visited:hover {
         background: @background-color-portlet-item-hover;
         color: @text-color-portlet-item-hover;
@@ -780,7 +780,7 @@ div.editOptions {
   .mw-portlet-body ul {
     min-width: 120px;
   }
-  
+
   li.selected {
     display: none;
   }
@@ -1080,7 +1080,7 @@ body > footer {
       max-height: 400px;
       padding: 0.4em;
 
-      @media screen and ( max-width: @width-breakpoint-semi-mobile ) { 
+      @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
         transform: translate(-10px, -45px);
       }
 
@@ -1092,7 +1092,7 @@ body > footer {
         li {
           display: block;
           font-weight: 500;
-      
+
           a {
             padding: 0.2em 0.4em;
             display: block;
@@ -1102,7 +1102,7 @@ body > footer {
             .lakeus-sticky-toc-tocnumber {
               color: @text-color-sticky-toc-number;
             }
-      
+
             &:hover {
               background: @background-color-portlet-item-hover;
               color: @text-color-portlet-item-hover;
@@ -1111,7 +1111,7 @@ body > footer {
                 color: @text-color-portlet-item-hover;
               }
             }
-      
+
             &:focus {
               background: @background-color-portlet-item-focus;
               color: @text-color-portlet-item-focus;
@@ -1120,7 +1120,7 @@ body > footer {
                 color: @text-color-portlet-item-focus;
               }
             }
-      
+
             &:visited {
               color: @text-color-portlet-item;
 
@@ -1128,7 +1128,7 @@ body > footer {
                 color: @text-color-sticky-toc-number;
               }
             }
-            
+
             &:visited:hover {
               background: @background-color-portlet-item-hover;
               color: @text-color-portlet-item-hover;
@@ -1137,7 +1137,7 @@ body > footer {
                 color: @text-color-portlet-item-hover;
               }
             }
-      
+
             &:visited:focus {
               background: @background-color-portlet-item-focus;
               color: @text-color-portlet-item-focus;
