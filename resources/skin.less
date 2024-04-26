@@ -172,7 +172,7 @@ p {
   color: @text-color-body;
 
   @media screen and ( min-width: @width-breakpoint-tablet ) {
-    width: max( @width-breakpoint-tablet, 70% );
+    width: ~"max( 720px, 70% )"; // 720px is originally @width-breakpoint-tablet
     max-width: 100%;
   }
 
