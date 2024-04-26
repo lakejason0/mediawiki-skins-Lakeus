@@ -172,7 +172,7 @@ p {
   color: @text-color-body;
 
   @media screen and ( min-width: @width-breakpoint-tablet ) {
-    width: max( @width-breakpoint-tablet, ~"70%" );
+    width: ~"max(" @width-breakpoint-tablet, ~"70% )";
     max-width: 100%;
   }
 
@@ -585,7 +585,7 @@ main {
   margin-top: 40px;
 
   @media screen and ( min-width: @width-breakpoint-tablet ) {
-    width: max( @width-breakpoint-tablet, ~"70%" );
+    width: ~"max(" @width-breakpoint-tablet, ~"70% )";
     margin: 10px auto 40px;
   }
 }
