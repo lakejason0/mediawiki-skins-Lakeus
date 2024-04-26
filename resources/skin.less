@@ -578,14 +578,14 @@ main {
 
 #content {
   color: @text-color-content;
-  max-width: min( 100%, 1200px );
+  max-width: ~"min( 100%, 1200px )";
   background-color: @background-color-content;
   position: relative;
   box-sizing: border-box;
   margin-top: 40px;
 
   @media screen and ( min-width: @width-breakpoint-tablet ) {
-    width: max( @width-breakpoint-tablet, 70% );
+    width: ~"max( 720px, 70% )"; // 720px is originally @width-breakpoint-tablet
     margin: 10px auto 40px;
   }
 }
