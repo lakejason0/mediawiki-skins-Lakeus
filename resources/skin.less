@@ -369,14 +369,14 @@ p {
   position: fixed;
   left: 0;
   top: 0;
-  width: 30%;
+  width: max-content;
   bottom: 0;
   background: @background-color-toggle-list;
   z-index: 13;
   height: 100%;
   overflow-y: auto;
-  min-width: max-content;
-  max-width: 500px;
+  min-width: ~"max( 224px, 30% )";
+  max-width: ~"min( calc( 100% - 80px ), 500px )";
   transform: translateX( -100% );
   transition: cubic-bezier( 0.4, 0, 0.2, 1 ) 0.2s transform;
 

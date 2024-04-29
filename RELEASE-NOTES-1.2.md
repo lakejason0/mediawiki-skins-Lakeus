@@ -1,5 +1,73 @@
 # mediawiki-skins-Lakeus 1.2
 
+## mediawiki-skins-Lakeus master branch
+
+THIS IS NOT A RELEASE YET
+
+The `master` branch is an alpha-quality development branch. Use it at your own
+risk!
+
+### Configuration changes for system administrators
+
+#### New configuration
+
+* …
+
+#### Changed configuration
+
+* …
+
+#### Removed configuration
+
+* …
+
+### New user-facing features
+
+* …
+
+### New features for sysadmins
+
+* …
+
+### New developer features
+
+* …
+
+### Bug fixes
+
+* (issue #44) Fixed too-wide sidebar in narrow screen, causing cannot
+  tap-to-close.
+* (issue #44) Fixed the sidebar became too narrow if the texts in sidebar are
+  too short.
+
+### Action API changes
+
+* …
+
+### Action API internal changes
+
+* …
+
+### Languages updated
+
+Lakeus skin now supports 27 languages. Many localisations are updated regularly.
+
+Below only new and removed languages are listed.
+
+* …
+
+### Breaking changes
+
+* …
+
+### Deprecations
+
+* …
+
+### Other changes
+
+* …
+
 ## mediawiki-skins-Lakeus 1.2.0
 
 This is the first release of the mediawiki-skins-Lakeus 1.2 version.
