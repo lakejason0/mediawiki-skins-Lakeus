@@ -47,6 +47,18 @@ class SkinLakeus extends SkinMustache {
 			unset( $data["data-toc"] );
 		}
 
+		$customIndicators = $config->get( 'LakeusCustomIndicators' );
+		$idTracker = [];
+		foreach ( $data["array-indicators"] as $item ) {
+			$idTracker[$item["id"]] = true;
+		}
+		foreach ( $customIndicators as $indicator ) {
+			if ( !isset( $idTracker[ $indicator["id"] ] ) ) {
+				$data["array-indicators"][] = $indicator;
+				$idTracker[ $indicator["id"] ] = true;
+			}
+		};
+
 		return $data;
 	}
 }

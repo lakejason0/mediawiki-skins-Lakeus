@@ -276,6 +276,10 @@
 		"LakeusShowStickyTOC": {
 			"value": false,
 			"description": "Whether to show sticky TOC."
+		},
+		"LakeusCustomIndicators": {
+			"value": [],
+			"description": "Add custom skin-wide indicators. This is PROBABLY NOT how you should add page status indicators and therefore experimental. This array should contain objects with `id` `class` `html` properties."
 		}
 	},
 	"manifest_version": 2
