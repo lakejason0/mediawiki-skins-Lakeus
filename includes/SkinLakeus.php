@@ -57,7 +57,7 @@ class SkinLakeus extends SkinMustache {
 				$data["array-indicators"][] = $indicator;
 				$idTracker[ $indicator["id"] ] = true;
 			}
-		};
+		}
 
 		return $data;
 	}
