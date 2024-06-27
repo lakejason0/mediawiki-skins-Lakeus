@@ -13,6 +13,7 @@
 	"lakeus-articlecount": "{{PLURAL:$1|Artikel|Artikelen}}",
 	"lakeus-preferences-smooth-scroll-behavior": "Vloeiend scrollen inschakelen",
 	"lakeus-preferences-smooth-scroll-behavior-desc": "Vloeiende animatie inschakelen bij het scrollen van pagina's, bijvoorbeeld bij het navigeren naar een bepaalde paragraaf via de inhoudsopgave.",
+	"lakeus-theme-designer-reload": "Herladen",
 	"lakeus-theme-designer-color-primary": "Primaire kleur (voorgrond)",
 	"lakeus-theme-designer-color-secondary": "Secundaire kleur (achtergrond)",
 	"lakeus-theme-designer-color-neutral": "Neutrale kleur",
