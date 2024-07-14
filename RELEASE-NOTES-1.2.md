@@ -1,72 +1,35 @@
 # mediawiki-skins-Lakeus 1.2
 
-## mediawiki-skins-Lakeus master branch
+## mediawiki-skins-Lakeus 1.2.1
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the mediawiki-skins-Lakeus 1.2 version.
 
-The `master` branch is an alpha-quality development branch. Use it at your own
-risk!
+This will be the last release support obsoleted MediaWiki version 1.40.x.
 
-### Configuration changes for system administrators
+### Configuration changes for system administrators in 1.2.1
 
-#### New configuration
+#### New configuration in 1.2.1
 
-* …
+* `$wgLakeusCustomIndicators`: Makes it possible to set skin-wide page status
+  indicators.
+  Defaults to empty array (`[]`).
 
-#### Changed configuration
-
-* …
-
-#### Removed configuration
-
-* …
-
-### New user-facing features
-
-* …
-
-### New features for sysadmins
-
-* …
-
-### New developer features
-
-* …
-
-### Bug fixes
+### Bug fixes in 1.2.1
 
 * (issue #44) Fixed too-wide sidebar in narrow screen, causing cannot
   tap-to-close.
 * (issue #44) Fixed the sidebar became too narrow if the texts in sidebar are
   too short.
+* Fixed body height by changing `height` to `min-height`.
 
-### Action API changes
-
-* …
-
-### Action API internal changes
-
-* …
-
-### Languages updated
+### Languages updated in 1.2.1
 
 Lakeus skin now supports 27 languages. Many localisations are updated regularly.
 
-Below only new and removed languages are listed.
+### Other changes in 1.2.1
 
-* …
-
-### Breaking changes
-
-* …
-
-### Deprecations
-
-* …
-
-### Other changes
-
-* …
+* (issue #45) Added `CONTRIBUTING.md`.
+* (issue #46) Added GitHub issue templates.
 
 ## mediawiki-skins-Lakeus 1.2.0
 
