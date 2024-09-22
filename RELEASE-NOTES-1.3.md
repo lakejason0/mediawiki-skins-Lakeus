@@ -35,6 +35,8 @@ risk!
 
 ### Bug fixes
 
+* Removed duplicate `<h1>` from `#logo-text`.
+* Updated logic and fixed styles of `.mw-portlet-dropdown`.
 * …
 
 ### Action API changes
