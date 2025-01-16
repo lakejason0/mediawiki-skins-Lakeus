@@ -7,6 +7,7 @@
 		"Light beacon",
 		"Dianliang233",
 		"Winston Sung",
+		"DDElephant",
 		"..."
 	],
 	"version": "1.3.0",
@@ -180,6 +181,26 @@
 				"lakeus-theme-designer-text-color-sticky-toc-number",
 				"lakeus-theme-designer-danger-zone"
 			]
+		},
+		"skins.lakeus.search": {
+			"es6": true,
+			"dependencies": [
+				"mediawiki.Uri"
+			],
+			"packageFiles": [
+				"resources/skins.lakeus.search/skins.lakeus.search.js",
+				"resources/skins.lakeus.search/App.vue",
+				{
+					"name": "resources/skins.lakeus.search/config.json",
+					"callback": "MediaWiki\\Skins\\Lakeus\\Hooks::getLakeusSearchResourceLoaderConfig"
+				}
+
+			],
+			"messages": [
+				"searchbutton",
+				"searchresults",
+				"searchsuggest-containing"
+			]
 		}
 	},
 	"ResourceModuleSkinStyles": {
@@ -226,7 +247,8 @@
 					],
 					"scripts": [
 						"skins.lakeus",
-						"skins.lakeus.designer"
+						"skins.lakeus.designer",
+						"skins.lakeus.search"
 					],
 					"messages": [
 						"sitetitle",
@@ -250,6 +272,20 @@
 		"LakeusShowRepositoryLink": {
 			"value": true,
 			"description": "Whether to show the link to the repository or not."
+		},
+		"LakeusSearchHost": {
+			"value": "",
+			"description": "Override default search API. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
+		},
+		"LakeusSearchModuleType": {
+			"value": null,
+			"description": "Which search module to use. Options: null (default Codex) / 'codex' (Codex) / 'jquery' (legacy jQuery search)."
+		},
+		"LakeusSearchOptions": {
+			"value": {
+				"showThumbnail": true,
+				"showDescription": true
+			}
 		},
 		"LakeusSiteNoticeHasBorder": {
 			"value": false,
