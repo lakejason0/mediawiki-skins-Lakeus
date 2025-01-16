@@ -1,76 +1,27 @@
 # mediawiki-skins-Lakeus 1.3
 
-## mediawiki-skins-Lakeus master branch
+## mediawiki-skins-Lakeus 1.3.0
 
-THIS IS NOT A RELEASE YET
+This is the first release of the mediawiki-skins-Lakeus 1.3 version.
 
-The `master` branch is an beta-quality development branch. Use it at your own
-risk!
+This will be the last release support non-latest-stable MediaWiki version
+1.39.x, 1.41.x, 1.42.x in the master branch.
+Please switch to MediaWiki-version-specific branches and versions instead.
 
-### Configuration changes for system administrators
-
-#### New configuration
-
-* …
-
-#### Changed configuration
-
-* …
-
-#### Removed configuration
-
-* …
-
-### New user-facing features
-
-* …
-
-### New features for sysadmins
-
-* …
-
-### New developer features
-
-* …
-
-### Bug fixes
+### Bug fixes in 1.3.0
 
 * Removed duplicate `<h1>` from `#logo-text`.
 * Updated logic and fixed styles of `.mw-portlet-dropdown`.
-* …
+* Removed unnecessary slash from `<input>`.
+* Removed unnecessary `role` attribute from `<footer>`.
+* Added `aria-pressed` attribute for `#sidebar-input`.
 
-### Action API changes
-
-* …
-
-### Action API internal changes
-
-* …
-
-### REST API changes
-
-* …
-
-### REST API internal changes
-
-* …
-
-### Languages updated
+### Languages updated in 1.3.0
 
 Lakeus skin now supports 27 languages. Many localisations are updated regularly.
 
-Below only new and removed languages are listed.
+### Breaking changes in 1.3.0
 
-* …
-
-### Breaking changes
-
-* …
-
-### Deprecations
-
-* …
-
-### Other changes
-
-* …
+* This will be the last release support non-latest-stable MediaWiki version
+  1.39.x, 1.41.x, 1.42.x in the master branch.
+  Please switch to MediaWiki-version-specific branches and versions instead.
