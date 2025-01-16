@@ -14,7 +14,7 @@
 	"descriptionmsg": "lakeus-skin-desc",
 	"license-name": "GPL-3.0-or-later",
 	"requires": {
-		"MediaWiki": "1.39.* || >= 1.41.0"
+		"MediaWiki": ">= 1.43.0"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
@@ -26,20 +26,14 @@
 			"features": {
 				"normalize": true,
 				"elements": true,
-				"content-tables": true,
-				"content-links": true,
 				"content-media": true,
+				"content-links": true,
+				"content-tables": true,
 				"interface-category": true,
-				"interface-message-box": true,
+				"toc": true,
 				"i18n-ordered-lists": true,
-				"i18n-all-lists-margins": true,
-				"i18n-headings": true,
-				"toc": true
+				"i18n-headings": true
 			},
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"styles": {
 				"0": "resources/skin.less",
 				"resources/print.less": {
@@ -48,10 +42,6 @@
 			}
 		},
 		"skins.lakeus": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"styles": "resources/skin.js.less",
 			"packageFiles": [
 				"resources/skin.js"
@@ -59,10 +49,6 @@
 		},
 		"skins.lakeus.designer": {
 			"es6": true,
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.jqueryMsg",
