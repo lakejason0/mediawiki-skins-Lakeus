@@ -2,8 +2,7 @@
 
 namespace MediaWiki\Skins\Lakeus;
 
-# use MediaWiki\SiteStats\SiteStats; // Namespaced in 1.41.0
-use SiteStats;
+use MediaWiki\SiteStats\SiteStats;
 use SkinMustache;
 
 class SkinLakeus extends SkinMustache {
