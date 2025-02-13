@@ -24,7 +24,7 @@ class SkinLakeus extends SkinMustache {
 		$show_repository_link = $config->get( 'LakeusShowRepositoryLink' );
 		if ( $show_repository_link ) {
 			$data['html-repository-link'] = '<a href="https://github.com/lakejason0/mediawiki-skins-Lakeus">' .
-				$this->msg( 'lakeus-footermessage' )->plain() . '</a>';
+				$this->msg( 'lakeus-footermessage' )->escaped() . '</a>';
 			$data['is-repository-link-shown'] = true;
 		}
 		$data['is-notice-with-border'] = $config->get( 'LakeusSiteNoticeHasBorder' );
