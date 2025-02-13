@@ -1,5 +1,19 @@
 # mediawiki-skins-Lakeus 1.3
 
+## mediawiki-skins-Lakeus 1.3.1+REL1.39
+
+This is a security release of the mediawiki-skins-Lakeus 1.3 version with MediaWiki 1.39.x.
+
+This release contains a security fix, all websites using Lakeus skin should apply this update!
+
+### Bug fixes
+
+* (#55, GHSA-mq77-3q68-v64v) SECURITY: Fixed stored XSS via system messages.
+
+### Languages updated
+
+Lakeus skin now supports 27 languages. Many localisations are updated regularly.
+
 ## mediawiki-skins-Lakeus 1.3.0
 
 This is the first release of the mediawiki-skins-Lakeus 1.3 version.
