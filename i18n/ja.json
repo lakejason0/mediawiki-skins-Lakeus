@@ -4,16 +4,17 @@
 			"Lakejason0",
 			"MathXplore",
 			"MirukuPC",
-			"RYOUMA1117"
+			"RYOUMA1117",
+			"Yaakiyu.jp"
 		]
 	},
 	"lakeus-skin-desc": "[https://github.com/lakejason0 Lakejason0]によるシンプルなスキンで、彼らの小説の登場人物にちなんだものです",
-	"lakeus.css": "/* ここに記述したCSSはLakeus外装の利用者に影響します */",
-	"lakeus.js": "/* ここにあるすべてのJavaScriptは、Lakeus外装を使用している利用者に対して読み込まれます */",
+	"lakeus.css": "/* ここに記述したCSSは、Lakeusスキンの利用者に読み込まれます */",
+	"lakeus.js": "/* ここに記述したJavaScriptは、Lakeusスキンの利用者に読み込まれます */",
 	"lakeus-openmainmenu": "メインメニューを開く",
 	"lakeus-jumptocontent": "コンテンツに移動",
 	"lakeus-articlecount": "{{PLURAL:$1|記事}}",
-	"lakeus-footermessage": "提供：Lakeus外装",
+	"lakeus-footermessage": "提供：Lakeusスキン",
 	"lakeus-preferences-enable-theme-designer": "テーマデザイナーの有効化",
 	"lakeus-preferences-enable-theme-designer-desc": "すべてのページでLakeusテーマデザイナーを有効にします。",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "浮動目次のリンクをクリックしたときに浮動目次を閉じない",
