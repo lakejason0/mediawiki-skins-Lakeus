@@ -2,9 +2,23 @@
 
 namespace MediaWiki\Skins\Lakeus;
 
+use MediaWiki\Config\Config;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
+use MediaWiki\ResourceLoader\Context as ResourceLoaderContext;
 
 class Hooks implements GetPreferencesHook {
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @param Config $config
+	 * @return $wgLakeusSearchOptions
+	 */
+	public function getLakeusSearchResourceLoaderConfig(
+		ResourceLoaderContext $context,
+		Config $config
+	) {
+		return $config->get( 'LakeusSearchOptions' );
+	}
+
 	/**
 	 * @see https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Hooks/GetPreferences
 	 * @param User $user
