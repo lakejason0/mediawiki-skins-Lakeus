@@ -5,12 +5,13 @@
 			"MathXplore",
 			"MirukuPC",
 			"RYOUMA1117",
+			"Shirayuki",
 			"Yaakiyu.jp"
 		]
 	},
 	"lakeus-skin-desc": "[https://github.com/lakejason0 Lakejason0]によるシンプルなスキンで、彼らの小説の登場人物にちなんだものです",
-	"lakeus.css": "/* ここに記述したCSSは、Lakeusスキンの利用者に読み込まれます */",
-	"lakeus.js": "/* ここに記述したJavaScriptは、Lakeusスキンの利用者に読み込まれます */",
+	"lakeus.css": "/* ここに記述したCSSはLakeus外装の利用者に影響します */",
+	"lakeus.js": "/* ここにあるすべてのJavaScriptは、Lakeus外装を使用している利用者に対して読み込まれます */",
 	"lakeus-openmainmenu": "メインメニューを開く",
 	"lakeus-jumptocontent": "コンテンツに移動",
 	"lakeus-articlecount": "{{PLURAL:$1|記事}}",
