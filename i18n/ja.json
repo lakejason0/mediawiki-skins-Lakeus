@@ -15,7 +15,7 @@
 	"lakeus-openmainmenu": "メインメニューを開く",
 	"lakeus-jumptocontent": "コンテンツに移動",
 	"lakeus-articlecount": "{{PLURAL:$1|記事}}",
-	"lakeus-footermessage": "提供：Lakeusスキン",
+	"lakeus-footermessage": "Lakeus 外装によって動作しています",
 	"lakeus-preferences-enable-theme-designer": "テーマデザイナーの有効化",
 	"lakeus-preferences-enable-theme-designer-desc": "すべてのページでLakeusテーマデザイナーを有効にします。",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "浮動目次のリンクをクリックしたときに浮動目次を閉じない",
