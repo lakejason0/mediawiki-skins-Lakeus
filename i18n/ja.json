@@ -9,7 +9,7 @@
 			"Yaakiyu.jp"
 		]
 	},
-	"lakeus-skin-desc": "[https://github.com/lakejason0 Lakejason0]によるシンプルなスキンで、彼らの小説の登場人物にちなんだものです",
+	"lakeus-skin-desc": "[https://github.com/lakejason0 Lakejason0] によるシンプルな外装で、彼らの小説の登場人物にちなんで名付けられています",
 	"lakeus.css": "/* ここに記述したCSSはLakeus外装の利用者に影響します */",
 	"lakeus.js": "/* ここにあるすべてのJavaScriptは、Lakeus外装を使用している利用者に対して読み込まれます */",
 	"lakeus-openmainmenu": "メインメニューを開く",
