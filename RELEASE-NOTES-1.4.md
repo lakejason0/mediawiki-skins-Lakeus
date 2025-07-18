@@ -31,12 +31,14 @@ risk!
 
 ### New developer features
 
+* (issue #59) Cleaned up ResourceModules and ResourceModuleSkinStyles.
 * …
 
 ### Bug fixes
 
-* (#56) Point security report to GitHub's Security Reporting page instead of the
-  Issues page in `SECURITY.md`.
+* (issue #56) Point security report to GitHub's Security Reporting page instead
+  of the Issues page in `SECURITY.md`.
+* (T357482, issue #57) Fixed CodeMirror 6 in VisualEditor misalignment.
 * …
 
 ### Action API changes
@@ -61,6 +63,8 @@ Lakeus skin now supports 27 languages. Many localisations are updated regularly.
 
 Below only new and removed languages are listed.
 
+* Added localisations for Chechen (ce).
+* Added localisations for Russian (ru).
 * …
 
 ### Breaking changes
@@ -81,10 +85,10 @@ This is the first release and a security release of the mediawiki-skins-Lakeus 1
 
 This release contains a security fix, all websites using Lakeus skin should apply this update!
 
-### Bug fixes
+### Bug fixes in 1.4.0
 
 * (#55, GHSA-mq77-3q68-v64v) SECURITY: Fixed stored XSS via system messages.
 
-### Languages updated
+### Languages updated in 1.4.0
 
 Lakeus skin now supports 27 languages. Many localisations are updated regularly.
