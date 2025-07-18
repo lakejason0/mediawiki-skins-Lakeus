@@ -2036,7 +2036,7 @@ Lakeus.initThemeDesigner = function () {
                 Lakeus.updateVariablesListFromForm();
             }
             var stylePath = mw.config.get('stylepath');
-            $('head').append('<link id="lakeus-theme-designer-style" rel="stylesheet" href="' + stylePath + '/Lakeus/resources/themeDesigner.css' + '" type="text/css" />');
+            $('head').append('<link id="lakeus-theme-designer-style" rel="stylesheet" href="' + stylePath + '/Lakeus/resources/skins.lakeus.theme.designer/themeDesigner.css' + '" type="text/css" />');
             constructThemeDesigner();
             console.log("[Lakeus] " + mw.message('lakeus-theme-designer-all-loaded'));
         });
