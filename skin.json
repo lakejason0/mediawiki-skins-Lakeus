@@ -225,8 +225,8 @@
 						"skins.lakeus.styles"
 					],
 					"scripts": [
-						"skins.lakeus",
-						"skins.lakeus.designer"
+						"skins.lakeus.scripts",
+						"skins.lakeus.theme.designer"
 					],
 					"messages": [
 						"sitetitle",
