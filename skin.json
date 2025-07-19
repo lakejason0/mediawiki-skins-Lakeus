@@ -21,6 +21,38 @@
 		"remoteSkinPath": "Lakeus"
 	},
 	"ResourceModules": {
+		"skins.lakeus.clientPreferences": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"es6": true,
+			"dependencies": [
+				"mediawiki.api",
+				"mediawiki.user"
+			],
+			"styles": [
+				"resources/skins.lakeus.clientPreferences/skin.lakeus.clientPreferences.less"
+			],
+			"packageFiles": [
+				"resources/skins.lakeus.clientPreferences/skin.lakeus.clientPreferences.js",
+				"resources/skins.lakeus.clientPreferences/clientPreferences.js",
+				"resources/skins.lakeus.clientPreferences/clientPreferences.json"
+			],
+			"messages": [
+				"lakeus-client-preferences-label",
+				"lakeus-client-preferences-tooltip",
+				"lakeus-color-scheme-name",
+				"lakeus-color-scheme-desc",
+				"lakeus-color-scheme-option-os-label",
+				"lakeus-color-scheme-option-wiki-label",
+				"lakeus-color-scheme-option-light-label",
+				"lakeus-color-scheme-option-dark-label",
+				"lakeus-color-scheme-exclusion-notice"
+			],
+			"codexStyleOnly": "true",
+			"codexComponents": [
+				"CdxRadio",
+				"CdxToggleSwitch"
+			]
+		},
 		"skins.lakeus.scripts": {
 			"styles": "resources/skins.lakeus.scripts/skin.js.less",
 			"packageFiles": [
@@ -114,6 +146,8 @@
 				"lakeus-theme-designer-color-search-suggestions-text-current",
 				"lakeus-theme-designer-background-color-search-input",
 				"lakeus-theme-designer-border-color-search-bar",
+				"lakeus-theme-designer-box-shadow-search-input",
+				"lakeus-theme-designer-box-shadow-color-search-input",
 				"lakeus-theme-designer-toggle-list",
 				"lakeus-theme-designer-background-color-toggle-list",
 				"lakeus-theme-designer-background-color-toggle-list-card",
@@ -163,6 +197,8 @@
 				"lakeus-theme-designer-background-color-portlet-item-focus",
 				"lakeus-theme-designer-text-color-portlet-item-focus",
 				"lakeus-theme-designer-border-color-portlet-body",
+				"lakeus-theme-designer-box-shadow-portlet-body",
+				"lakeus-theme-designer-box-shadow-color-portlet-body",
 				"lakeus-theme-designer-footer",
 				"lakeus-theme-designer-background-color-footer",
 				"lakeus-theme-designer-text-color-footer",
@@ -176,11 +212,15 @@
 				"lakeus-theme-designer-color-accent-header-tab-new",
 				"lakeus-theme-designer-sticky-toc",
 				"lakeus-theme-designer-background-color-toc-button",
+				"lakeus-theme-designer-border-color-toc-button",
 				"lakeus-theme-designer-icon-filter-toc-button",
 				"lakeus-theme-designer-text-color-sticky-toc-number",
 				"lakeus-theme-designer-danger-zone"
 			]
 		}
+	},
+	"SkinLessImportPaths": {
+		"lakeus": "resources/mediawiki.less"
 	},
 	"ResourceModuleSkinStyles": {
 		"lakeus": {
@@ -192,6 +232,7 @@
 		}
 	},
 	"DefaultUserOptions": {
+		"lakeus-color-scheme": "wiki",
 		"lakeus-enable-theme-designer": 0,
 		"lakeus-sticky-toc-donot-auto-collapse": 0,
 		"lakeus-smooth-scroll-behavior": 1
@@ -210,21 +251,27 @@
 		}
 	},
 	"Hooks": {
-		"GetPreferences": "LakeusHooks"
+		"GetPreferences": "LakeusHooks",
+		"ResourceLoaderGetConfigVars": "LakeusHooks"
 	},
 	"ValidSkinNames": {
 		"lakeus": {
 			"class": "MediaWiki\\Skins\\Lakeus\\SkinLakeus",
+			"services": [
+				"UserOptionsLookup"
+			],
 			"args": [
 				{
 					"name": "lakeus",
 					"templateDirectory": "includes/templates",
+					"clientPrefEnabled": true,
 					"responsive": true,
 					"styles": [
 						"mediawiki.hlist",
 						"skins.lakeus.styles"
 					],
 					"scripts": [
+						"skins.lakeus.clientPreferences",
 						"skins.lakeus.scripts",
 						"skins.lakeus.theme.designer"
 					],
@@ -247,6 +294,10 @@
 		}
 	},
 	"config": {
+		"LakeusWikiDefaultColorScheme": {
+			"value": "light",
+			"description": "The default color scheme of the wiki when choosing \"Use wiki default\" preference option. This is especially useful when using shared user preferences instead of global user preferences."
+		},
 		"LakeusShowRepositoryLink": {
 			"value": true,
 			"description": "Whether to show the link to the repository or not."
