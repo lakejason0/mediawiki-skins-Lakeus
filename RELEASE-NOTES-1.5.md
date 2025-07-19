@@ -11,6 +11,12 @@ risk!
 
 #### New configuration
 
+* (#issue #47, #60) `$wgLakeusWikiDefaultColorScheme`: Makes it possible to set
+  the default color scheme of the wiki when choosing \"Use wiki default\"
+  preference option.
+  This is especially useful when using shared user preferences instead of
+  global user preferences.
+  Default to `light`.
 * …
 
 #### Changed configuration
@@ -35,6 +41,7 @@ risk!
 
 ### Bug fixes
 
+* Hide the icon of UniversalLanguageSelector.
 * …
 
 ### Action API changes

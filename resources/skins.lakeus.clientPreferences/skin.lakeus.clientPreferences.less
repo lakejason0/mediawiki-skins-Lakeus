@@ -1,0 +1,40 @@
+@import '../skins.lakeus.styles/variables.less';
+
+.mw-portlet-client-preferences {
+	padding: 0 12px 0 0;
+	height: 20px;
+	width: 20px;
+
+	h3 {
+		background-image: url( "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%0A%09%3Ctitle%3E%0A%09%09appearance%0A%09%3C%2Ftitle%3E%0A%09%3Cpath%20d%3D%22M1.2%209a4.25%204.25%200%200%201%207.9-.6%202.8%202.8%200%200%201%201.8%200%204.25%204.25%200%200%201%207.9.6%201.01%201.01%200%201%201%20.1%202%204.23%204.23%200%200%201-8.4-.6%201%201%200%200%200-1%200%204.23%204.23%200%200%201-8.4.6%201.01%201.01%200%201%201%20.1-2m4.05-1a2.25%202.25%200%200%200%200%204.5%202.25%202.25%200%200%200%200-4.5m9.5%200a2.25%202.25%200%200%200%200%204.5%202.25%202.25%200%200%200%200-4.5%22%2F%3E%0A%3C%2Fsvg%3E%0A" ); /* TODO: Variablize */
+		opacity: 0.65;
+		text-indent: -999px;
+		background-repeat: no-repeat;
+		height: 100%;
+		width: 40px;
+		margin: 0;
+		padding: 0;
+		background-position: center top;
+		overflow: hidden;
+		display: flex;
+		filter: @icon-filter-header;
+	}
+
+	.mw-portlet-body {
+		ul {
+			top: 30px;
+			right: -300%;
+		}
+	}
+
+	//  @media ( max-width: var( --width-breakpoint-tablet ) ) {
+	//    margin-bottom: 10px;
+	//  }
+}
+
+.skin-client-pref-label {
+	display: block;
+	margin-bottom: 12px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid @border-color-portlet-body;
+}

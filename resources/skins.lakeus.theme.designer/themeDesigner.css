@@ -10,9 +10,12 @@
     bottom: 32px;
     user-select: none;
     z-index: 199;
+    color-scheme: light;
+    color: #000;
 }
 
 #lakeus-theme-designer-title {
+    color: #000;
     font-size: 100%;
     font-weight: bold;
     margin-bottom: 0.6em;
