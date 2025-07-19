@@ -14,7 +14,7 @@
 	"descriptionmsg": "lakeus-skin-desc",
 	"license-name": "GPL-3.0-or-later",
 	"requires": {
-		"MediaWiki": ">= 1.43.0"
+		"MediaWiki": ">= 1.44.0"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
