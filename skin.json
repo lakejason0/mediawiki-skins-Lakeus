@@ -219,6 +219,7 @@
 				{
 					"name": "lakeus",
 					"templateDirectory": "includes/templates",
+					"clientPrefEnabled": true,
 					"responsive": true,
 					"styles": [
 						"mediawiki.hlist",
@@ -247,6 +248,14 @@
 		}
 	},
 	"config": {
+		"LakeusPreferenceDefaultTheme": {
+			"value": "os",
+			"description": "Set the default theme option in the theme preference."
+		},
+		"LakeusWikiDefaultTheme": {
+			"value": "light",
+			"description": "Set the default theme to use when user select \"Use wiki default\" in the theme preference."
+		},
 		"LakeusShowRepositoryLink": {
 			"value": true,
 			"description": "Whether to show the link to the repository or not."
