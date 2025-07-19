@@ -11,30 +11,33 @@ class Hooks implements GetPreferencesHook {
 	 * @param array &$preferences
 	 */
 	public function onGetPreferences( $user, &$preferences ) {
-		// A checkbox
-		$preferences['lakeus-enable-theme-designer'] = [
+		$lakeusPreferences = [];
+
+		$lakeusPreferences['lakeus-enable-theme-designer'] = [
+			'section' => 'rendering/skin/skin-prefs',
 			'type' => 'check',
-			// a system message
 			'label-message' => 'lakeus-preferences-enable-theme-designer',
 			'help-message' => 'lakeus-preferences-enable-theme-designer-desc',
-			'section' => 'rendering/skin/skin-prefs',
 			'hide-if' => [ '!==', 'skin', 'lakeus' ],
 		];
 
-		$preferences['lakeus-sticky-toc-donot-auto-collapse'] = [
+		$lakeusPreferences['lakeus-sticky-toc-donot-auto-collapse'] = [
+			'section' => 'rendering/skin/skin-prefs',
 			'type' => 'check',
 			'label-message' => 'lakeus-preferences-sticky-toc-donot-auto-collapse',
 			'help-message' => 'lakeus-preferences-sticky-toc-donot-auto-collapse-desc',
-			'section' => 'rendering/skin/skin-prefs',
 			'hide-if' => [ '!==', 'skin', 'lakeus' ],
 		];
 
-		$preferences['lakeus-smooth-scroll-behavior'] = [
+		$lakeusPreferences['lakeus-smooth-scroll-behavior'] = [
+			'section' => 'rendering/skin/skin-prefs',
 			'type' => 'check',
 			'label-message' => 'lakeus-preferences-smooth-scroll-behavior',
 			'help-message' => 'lakeus-preferences-smooth-scroll-behavior-desc',
-			'section' => 'rendering/skin/skin-prefs',
 			'hide-if' => [ '!==', 'skin', 'lakeus' ],
 		];
+
+		// Prevent override core preferences
+		$preferences += $lakeusPreferences;
 	}
 }
