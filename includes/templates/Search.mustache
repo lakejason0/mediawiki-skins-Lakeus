@@ -1,10 +1,16 @@
 {{#data-search-box}}
-<form action="{{form-action}}" role="search" class="mw-portlet" id="p-search">
-    <input type="hidden" name="title" value="{{page-title}}">
-    <h3>
-        <label for="searchInput">{{msg-search}}</label>
-    </h3>
-    {{{html-input}}}
-    {{{html-button-search}}}
-</form>
+<div role="search" class="lakeus-search-box">
+    <div class="lakeus-typeahead-search-container">
+        <div class="cdx-typeahead-search{{#is-thumbnail}} cdx-typeahead-search--show-thumbnail{{/is-thumbnail}}{{#is-auto-expand}} cdx-typeahead-search--auto-expand-width{{/is-auto-expand}}">
+            <form action="{{form-action}}" class="cdx-search-input" id="p-search">
+                <input type="hidden" name="title" value="{{page-title}}">
+                <div class="cdx-search-input__input-wrapper" id="simpleSearch">
+                    <div class="cdx-text-input">
+                        <input type="search" name="search" placeholder="{{msg-searchsuggest-search}}" role="combobox" class="cdx-text-input__input mw-searchInput" id="searchInput" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {{/data-search-box}}
