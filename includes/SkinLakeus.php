@@ -2,13 +2,63 @@
 
 namespace MediaWiki\Skins\Lakeus;
 
+use MediaWiki\Html\Html;
 use MediaWiki\SiteStats\SiteStats;
+use MediaWiki\User\Options\UserOptionsLookup;
 use SkinMustache;
 
 class SkinLakeus extends SkinMustache {
+
+	private UserOptionsLookup $userOptionsLookup;
+
+	public function __construct(
+		UserOptionsLookup $userOptionsLookup,
+		array $options
+	) {
+		parent::__construct( $options );
+		$this->userOptionsLookup = $userOptionsLookup;
+	}
+
 	/**
-	 * Extends the getTemplateData function to add a template key 'html-myskin-hello-world'
-	 * which can be rendered in skin.mustache using {{{html-myskin-hello-world}}}
+	 * Gets user's preference value
+	 *
+	 * If user preference is not set or did not appear in config
+	 * set it to default value
+	 *
+	 * @param string $preferenceKey User preference key
+	 * @return string
+	 */
+	public function getUserPreferenceValue( $preferenceKey ) {
+		return $this->userOptionsLookup->getOption(
+			$this->getUser(),
+			$preferenceKey
+			// For client preferences, this should be the same as `preferenceKey`
+			// in 'resources/skins.vector.js/clientPreferences.json'
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getHtmlElementAttributes() {
+		$config = $this->getConfig();
+		$original = parent::getHtmlElementAttributes();
+		$original['class'] .= ' ' . 'skin-theme-clientpref-' . $this->getUserPreferenceValue( 'lakeus-theme' );
+
+		return $original;
+	}
+
+	/**
+	 * Extends the getTemplateData function.
+	 * For example, we can add a template key 'html-myskin-hello-world'
+	 * which can be rendered in skin.mustache using {{{html-myskin-hello-world}}}.
+	 *
+	 * For this skin:
+	 * 1. All configs provided by this skin are actually implemented here.
+	 * 2. Messages that are used by the skin but need parsing are handled.
+	 * 3. Essential template data are handled to meet the layout of the skin.
+	 * 4. Custom indicators are injected into template data.
+	 * 5. The data of Client Preferences portlet is added.
 	 *
 	 * @return array
 	 */
@@ -92,6 +142,25 @@ class SkinLakeus extends SkinMustache {
 				$id_tracker[ $indicator['id'] ] = true;
 			}
 		}
+
+		/**
+		 * Inject Client Preferences Portlet to Mustache
+		 * Only an empty portlet is created here; JavaScript handles
+		 * the actual initialization here.
+		 */
+		$data['data-portlets']['data-client-preferences'] = [
+			"array-items" => [],
+			"class" => "mw-portlet mw-portlet-dropdown mw-portlet-client-preferences emptyPortlet",
+			"html-after-portal" => "",
+			"html-before-portal" => "",
+			"html-items" => "",
+			"html-tooltip" => Html::expandAttributes( [
+				'title' => $this->msg( 'lakeus-client-preferences-tooltip' )->text(),
+			] ),
+			"id" => "p-client-preferences",
+			"is-empty" => true,
+			"label" => $this->msg( 'lakeus-client-preferences-label' )->text(),
+		];
 
 		return $data;
 	}
