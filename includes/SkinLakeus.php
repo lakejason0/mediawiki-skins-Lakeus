@@ -17,6 +17,10 @@ class SkinLakeus extends SkinMustache {
 		// this is a Config object
 		$config = $this->getConfig();
 
+		/**
+		 * Parse the article count message, providing values to the variable
+		 * Implement config
+		 */
 		$data['html-articlecount'] = SiteStats::articles();
 		// trying to overwrite
 		$data['msg-lakeus-articlecount'] = $this->msg( 'lakeus-articlecount' )
@@ -31,6 +35,9 @@ class SkinLakeus extends SkinMustache {
 		$data['is-portlet-animated'] = $config->get( 'LakeusShouldAnimatePortlets' );
 		$data['is-sticky-toc-shown'] = $config->get( 'LakeusShowStickyTOC' );
 
+		/**
+		 * Move Toolbox to a separate portlet
+		 */
 		$page_tools_key = array_search(
 			'p-tb',
 			array_column( $data['data-portlets-sidebar']['array-portlets-rest'], 'id' )
@@ -42,6 +49,9 @@ class SkinLakeus extends SkinMustache {
 			$data['data-portlets-sidebar']['array-portlets-rest']
 		);
 
+		/**
+		 * Add dropdown classes to applicable menus
+		 */
 		$dropdown_portlet_keys = [
 			'data-user-menu',
 			'data-actions',
@@ -59,10 +69,18 @@ class SkinLakeus extends SkinMustache {
 			}
 		}
 
+		/**
+		 * There was a bug in 1.38 where `data-toc` could be empty
+		 * In this case unset it so as to remove the sticky ToC
+		 */
 		if ( empty( $data['data-toc']['array-sections'] ) ) {
 			unset( $data['data-toc'] );
 		}
 
+		/**
+		 * The experimental custom indicators
+		 * Currently only used for gh@travellings-link/travellings
+		 */
 		$custom_indicators = $config->get( 'LakeusCustomIndicators' );
 		$id_tracker = [];
 		foreach ( $data['array-indicators'] as $item ) {
