@@ -13,6 +13,19 @@ class Hooks implements GetPreferencesHook {
 	public function onGetPreferences( $user, &$preferences ) {
 		$lakeusPreferences = [];
 
+		$lakeusPreferences['lakeus-theme'] = [
+			'section' => 'rendering/skin/skin-prefs',
+			'type' => 'radio',
+			'label-message' => 'lakeus-preferences-theme',
+			'help-message' => 'lakeus-preferences-theme-desc',
+			'options-messages' => [
+				'lakeus-preferences-theme-option-os-label' => 'os',
+				'lakeus-preferences-theme-option-day-label' => 'day',
+				'lakeus-preferences-theme-option-night-label' => 'night',
+			],
+			'hide-if' => [ '!==', 'skin', 'lakeus' ],
+		];
+
 		$lakeusPreferences['lakeus-enable-theme-designer'] = [
 			'section' => 'rendering/skin/skin-prefs',
 			'type' => 'check',

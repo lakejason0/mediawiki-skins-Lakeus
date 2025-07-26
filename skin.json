@@ -47,6 +47,37 @@
 				}
 			}
 		},
+		"skins.lakeus.clientPreferences": {
+			"es6": true,
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"dependencies": [
+				"mediawiki.api",
+				"mediawiki.user"
+			],
+			"styles": [
+				"resources/skins.lakeus.clientPreferences/skin.lakeus.clientPreferences.less"
+			],
+			"packageFiles": [
+				"resources/skins.lakeus.clientPreferences/skin.lakeus.clientPreferences.js",
+				"resources/skins.lakeus.clientPreferences/clientPreferences.js",
+				"resources/skins.lakeus.clientPreferences/clientPreferences.json"
+			],
+			"messages": [
+				"lakeus-client-preferences-label",
+				"lakeus-client-preferences-tooltip",
+				"lakeus-theme-name",
+				"lakeus-theme-description",
+				"lakeus-theme-day-label",
+				"lakeus-theme-night-label",
+				"lakeus-theme-os-label",
+				"lakeus-theme-exclusion-notice"
+			],
+			"codexStyleOnly": "true",
+			"codexComponents": [
+				"CdxRadio",
+				"CdxToggleSwitch"
+			]
+		},
 		"skins.lakeus.theme.designer": {
 			"es6": true,
 			"dependencies": [
@@ -192,6 +223,7 @@
 		}
 	},
 	"DefaultUserOptions": {
+		"lakeus-theme": "os",
 		"lakeus-enable-theme-designer": 0,
 		"lakeus-sticky-toc-donot-auto-collapse": 0,
 		"lakeus-smooth-scroll-behavior": 1
@@ -215,10 +247,14 @@
 	"ValidSkinNames": {
 		"lakeus": {
 			"class": "MediaWiki\\Skins\\Lakeus\\SkinLakeus",
+			"services": [
+				"UserOptionsLookup"
+			],
 			"args": [
 				{
 					"name": "lakeus",
 					"templateDirectory": "includes/templates",
+					"clientPrefEnabled": true,
 					"responsive": true,
 					"styles": [
 						"mediawiki.hlist",
@@ -226,6 +262,7 @@
 					],
 					"scripts": [
 						"skins.lakeus.scripts",
+						"skins.lakeus.clientPreferences",
 						"skins.lakeus.theme.designer"
 					],
 					"messages": [
