@@ -179,7 +179,7 @@ body .mw-parser-output a.external:active {
 				position: absolute;
 				overflow-y: auto;
 				z-index: 10;
-				box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px @border-color-portlet-body; /* TODO: Variablize */
+				box-shadow: @box-shadow-portlet-body, 0 0 1px @border-color-portlet-body;
 				border-radius: 3px;
 				right: 0;
 				min-width: 200px;
@@ -315,7 +315,7 @@ p {
 
 	#searchInput {
 		background-image: url( 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Esearch%3C%2Ftitle%3E%3Cg%20fill%3D%22%2354595d%22%3E%3Cpath%20d%3D%22M7.5%2013a5.5%205.5%200%20100-11%205.5%205.5%200%20000%2011zm4.55.46A7.43%207.43%200%20017.5%2015a7.5%207.5%200%20115.96-2.95l6.49%206.49-1.41%201.41-6.49-6.49z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E' ); /* TODO: Variablize */
-		background-color: @background-color-search-input; /* TODO: Variablize */
+		background-color: @background-color-search-input;
 		background-size: 18px;
 		-webkit-appearance: none;
 		appearance: none;
@@ -332,7 +332,7 @@ p {
 		border: solid 1px @border-color-search-bar;
 		border-radius: 2px;
 		padding: 7px 0 7px 29px;
-		box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.05 ); /* TODO: Variablize */
+		box-shadow: @box-shadow-search-input;
 		outline: 0;
 		background-position: left 6px center;
 		background-repeat: no-repeat;
@@ -358,6 +358,16 @@ p {
 		background-color: @background-color-search-suggestions;
 		border: 1px solid @border-color-search-suggestions;
 		padding: 0.75em 2em;
+
+		.special {
+			&-label {
+				color: @color-placeholder;
+			}
+
+			&-query {
+				color: @color-base;
+			}
+		}
 	}
 
 	.suggestions-results {
@@ -373,6 +383,16 @@ p {
 	.suggestions-result-current {
 		background-color: @background-color-search-suggestions-current;
 		color: @color-search-suggestions-text-current;
+
+		.special {
+			&-label {
+				color: @color-search-suggestions-text-current;
+			}
+
+			&-query {
+				color: @color-search-suggestions-text-current;
+			}
+		}
 	}
 }
 
@@ -1088,7 +1108,7 @@ body > footer {
 			position: absolute;
 			overflow-y: auto;
 			z-index: 2;
-			box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px @border-color-portlet-body; /* TODO: Variablize */
+			box-shadow: @box-shadow-portlet-body, 0 0 1px @border-color-portlet-body;
 			border-radius: 3px;
 			right: 40px;
 			min-width: 200px;
@@ -1213,7 +1233,7 @@ body > footer {
 		font-size: 20px;
 		border: 0;
 		border-radius: 50%;
-		box-shadow: 0 0 5px grey;
+		box-shadow: 0 0 5px @border-color-toc-button;
 		padding: 0;
 		margin: 0;
 		cursor: pointer;

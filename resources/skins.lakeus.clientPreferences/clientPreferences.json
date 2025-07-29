@@ -1,0 +1,6 @@
+{
+	"lakeus-color-scheme": {
+		"preferenceKey": "lakeus-color-scheme",
+		"options": [ "os", "wiki", "light", "dark" ]
+	}
+}
