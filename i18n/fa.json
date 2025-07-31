@@ -1,12 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"Darafsh",
 			"Jeeputer"
 		]
 	},
 	"skinname-lakeus": "لاکئوس",
 	"lakeus-openmainmenu": "گشودن منوی اصلی",
 	"lakeus-articlecount": "{{PLURAL:$1|مقاله}}",
+	"lakeus-color-scheme-option-os-label": "خودکار",
+	"lakeus-color-scheme-option-light-label": "روشن",
+	"lakeus-color-scheme-option-dark-label": "تیره",
 	"lakeus-theme-designer-color-neutral": "رنگ خنثی",
 	"lakeus-theme-designer-color-warning": "رنگ هشدار",
 	"lakeus-theme-designer-color-error": "رنگ خطا",
