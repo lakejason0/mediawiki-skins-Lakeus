@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Neriah",
 			"YaronSh"
 		]
 	},
@@ -11,6 +12,10 @@
 	"lakeus-jumptocontent": "לדלג לתוכן",
 	"lakeus-articlecount": "{{PLURAL:$1|ערך|ערכים}}",
 	"lakeus-footermessage": "מופעל בעיצוב לקאוס",
+	"lakeus-color-scheme-option-os-label": "אוטומטי",
+	"lakeus-color-scheme-option-light-label": "בהיר",
+	"lakeus-color-scheme-option-dark-label": "כהה",
+	"lakeus-preferences-color-scheme-option-os-label": "שימוש בהגדרות הדפדפן",
 	"lakeus-preferences-enable-theme-designer": "הפעלת מעצב ערכות נושא",
 	"lakeus-preferences-enable-theme-designer-desc": "הפעלת מעצב ערכות נושא של לקאוס בכל דף.",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "לא לסגור תוכן עניינים דביק בעת לחיצה על עוגני תוכן עניינים דביקים",
