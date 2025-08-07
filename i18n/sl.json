@@ -5,6 +5,7 @@
 		]
 	},
 	"lakeus-openmainmenu": "Odprtje glavnega menija",
+	"lakeus-client-preferences-tooltip": "Spremembe videza strani",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "Ne zapri kazala vsebine ob kliku lepljivih sider kazal vsebine",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse-desc": "Ob kliku povezav v lepljivem kazalu vsebine ne zapri lepljivega kazala vsebine. Še vedno se zapre ob kliku zunaj lepljivega kazala vsebine.",
 	"lakeus-preferences-smooth-scroll-behavior": "Omogoči gladko drsenje",
