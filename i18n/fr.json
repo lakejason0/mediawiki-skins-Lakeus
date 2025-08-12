@@ -3,6 +3,7 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Gomoko",
+			"JLTRY",
 			"Verdy p"
 		]
 	},
@@ -13,6 +14,9 @@
 	"lakeus-jumptocontent": "Aller au contenu",
 	"lakeus-articlecount": "Article{{PLURAL:$1||s}}",
 	"lakeus-footermessage": "Propulsé par l’habillage Lakeus",
+	"lakeus-client-preferences-label": "Apparence",
+	"lakeus-client-preferences-tooltip": "Modifier l'apparence de la page",
+	"lakeus-color-scheme-option-os-label": "Automatique",
 	"lakeus-preferences-enable-theme-designer": "Activer le concepteur de thèmes",
 	"lakeus-preferences-enable-theme-designer-desc": "Activer le concepteur de thèmes Lakeus sur chaque page.",
 	"lakeus-preferences-sticky-toc-donot-auto-collapse": "Ne pas fermer la table des matières collante lors du clic sur un titre ancré dans la table des matières",
