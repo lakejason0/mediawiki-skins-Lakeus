@@ -1,9 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bartomelow",
 			"Eduardoaddad"
 		]
 	},
+	"skinname-lakeus": "Lakeus",
 	"lakeus-openmainmenu": "Abrir menu principal",
-	"lakeus-articlecount": "{{PLURAL:$1|Artigo|Artigos}}"
+	"lakeus-articlecount": "{{PLURAL:$1|Artigo|Artigos}}",
+	"lakeus-client-preferences-label": "Aparência",
+	"lakeus-color-scheme-option-os-label": "Automático",
+	"lakeus-color-scheme-option-wiki-label": "Padrão do wiki",
+	"lakeus-color-scheme-option-light-label": "Claro",
+	"lakeus-color-scheme-option-dark-label": "Escuro",
+	"lakeus-preferences-color-scheme": "Paleta de cores"
 }
