@@ -274,7 +274,7 @@ p {
 }
 
 #siteNotice {
-	margin: 40px auto 0;
+	margin: 45px auto 0;
 	padding-bottom: 8px;
 	color: @text-color-body;
 
@@ -302,13 +302,19 @@ p {
 	}
 }
 
+.lakeus-typeahead-search-container {
+	.cdx-typeahead-search,
+	.cdx-typeahead-search--show-thumbnail.cdx-typeahead-search--auto-expand-width:not(.cdx-typeahead-search--expanded) {
+		margin-left: 10px;
+	}
+}
+
 #p-search {
 	margin-right: 30px;
-	margin-left: 10px;
+	z-index: 3;
 
 	@media screen and ( max-width: @width-breakpoint-tablet ) {
 		width: 100%;
-		display: flex;
 		justify-content: center;
 		margin: 5px auto;
 	}

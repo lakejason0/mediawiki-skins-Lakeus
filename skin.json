@@ -7,6 +7,7 @@
 		"Light beacon",
 		"Dianliang233",
 		"Winston Sung",
+		"DDElephant",
 		"..."
 	],
 	"version": "1.4.1",
@@ -57,6 +58,26 @@
 			"styles": "resources/skins.lakeus.scripts/skin.js.less",
 			"packageFiles": [
 				"resources/skins.lakeus.scripts/skin.js"
+			]
+		},
+		"skins.lakeus.search": {
+			"es6": true,
+			"dependencies": [
+				"mediawiki.util",
+				"mediawiki.skinning.typeaheadSearch",
+				"web2017-polyfills"
+			],
+			"packageFiles": [
+				"resources/skins.lakeus.search/skins.lakeus.search.js",
+				{
+					"name": "resources/skins.lakeus.search/config.json",
+					"callback": "MediaWiki\\Skins\\Lakeus\\Hooks::getLakeusSearchResourceLoaderConfig"
+				}
+			],
+			"messages": [
+				"searchbutton",
+				"searchresults",
+				"searchsuggest-containing"
 			]
 		},
 		"skins.lakeus.styles": {
@@ -247,11 +268,15 @@
 	},
 	"HookHandlers": {
 		"LakeusHooks": {
-			"class": "MediaWiki\\Skins\\Lakeus\\Hooks"
+			"class": "MediaWiki\\Skins\\Lakeus\\Hooks",
+			"services": [
+				"MainConfig"
+			]
 		}
 	},
 	"Hooks": {
 		"GetPreferences": "LakeusHooks",
+		"SkinPageReadyConfig": "LakeusHooks",
 		"ResourceLoaderGetConfigVars": "LakeusHooks"
 	},
 	"ValidSkinNames": {
@@ -273,11 +298,13 @@
 					"scripts": [
 						"skins.lakeus.clientPreferences",
 						"skins.lakeus.scripts",
+						"skins.lakeus.search",
 						"skins.lakeus.theme.designer"
 					],
 					"messages": [
 						"sitetitle",
 						"search",
+						"searchsuggest-search",
 						"otherlanguages",
 						"tagline",
 						"toc",
@@ -301,6 +328,16 @@
 		"LakeusShowRepositoryLink": {
 			"value": true,
 			"description": "Whether to show the link to the repository or not."
+		},
+		"LakeusSearchModuleType": {
+			"value": "codex",
+			"description": "Which search module to use. Options: 'codex' (Codex, default) / 'jquery' (legacy jQuery search)."
+		},
+		"LakeusSearchOptions": {
+			"value": {
+				"showThumbnail": true,
+				"showDescription": true
+			}
 		},
 		"LakeusSiteNoticeHasBorder": {
 			"value": false,
