@@ -1,107 +1,426 @@
-// @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.skin.variables.less';
+@import 'mediawiki.skin.codex/mixins/codex-public-mixins.less';
+@import 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-mixin-dark.less';
+// Renamed from 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-mixin-light.less'
+// Renamed from 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-mixin-reset.less'
+@import 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-mixin-mode-reset.less';
+
 /* Variables */
 /* Make less variables to CSS ones */
 :root {
-  --color-primary: #3366cc;
-  --color-secondary: #ffffff;
-  --color-neutral: #a2a9b1;
-  --color-error: #d33;
-  --color-warning: #fc3;
-  --color-success: #14866d;
-  --background-color-base: var(--color-secondary);
-  --background-color-body: var(--color-secondary);
-  --background-color-content: var(--color-secondary);
-  --background-color-footer: #eee;
-  --background-color-toggle-list: var(--color-secondary);
-  --background-color-portlet-body: var(--color-secondary);
-  --background-color-toggle-list-card: #eee;
-  --background-color-toggle-list-item-hover: rgba(0, 0, 0, 0.1);
-  --background-color-toggle-list-item-focus: rgba(0, 0, 0, 0.2);
-  --background-color-portlet-item-hover: rgba(0, 0, 0, 0.1);
-  --background-color-portlet-item-focus: rgba(0, 0, 0, 0.2);
-  --background-color-edit-options: #eee;
-  --background-color-search-suggestions: var(--color-secondary);
-  --background-color-search-suggestions-current: var(--color-primary);
-  --background-color-search-input: var(--color-secondary);
-  --background-color-toc: #f8f9fa;
-  --background-color-interface-message-box-neutral: #eaecf0;
-  --background-color-interface-message-box-error: #fee7e6;
-  --background-color-interface-message-box-warning: #fef6e7;
-  --background-color-interface-message-box-success: #d5fdf4;
-  --background-color-user-message: #ffce7b;
-  --background-color-wikitable: #f8f9fa;
-  --background-color-wikitable-table-head: #eaecf0;
-  --background-color-toc-button: #fff;
-  --border-color-edit-options: #c8ccd1;
-  --border-color-content: #ccc;
-  --border-color-toggle-list: #ddd;
-  --border-color-search-suggestions: #c8ccd1;
-  --border-color-search-bar: var(--color-gray-2);
-  --border-color-portlet-body: var(--color-gray);
-  --border-color-header-tab: var(--color-gray-2);
-  --border-color-toc: #a2a9b1;
-  --border-color-interface-message-box-neutral: var(--color-neutral);
-  --border-color-interface-message-box-error: var(--color-error);
-  --border-color-interface-message-box-warning: var(--color-warning);
-  --border-color-interface-message-box-success: var(--color-success);
-  --border-color-user-message: #ffa500;
-  --border-color-wikitable: #a2a9b1;
-  --subheader-color-toggle-list: #6a6a6a;
-  --logo-text-color-toggle-list: #000000;
-  --text-color-toggle-list-item: #1c1c1c;
-  --text-color-toggle-list-item-hover: #3a3a3a;
-  --text-color-toggle-list-item-focus: #3a3a3a;
-  --text-color-portlet-item: #1c1c1c;
-  --text-color-portlet-item-hover: #3a3a3a;
-  --text-color-portlet-item-focus: #3a3a3a;
-  --text-color-content: #000000;
-  --text-color-header: #000000;
-  --text-color-body: #000000;
-  --text-color-footer: #000000;
-  --text-color-interface-message-box-neutral: #000000;
-  --text-color-interface-message-box-error: #000000;
-  --text-color-interface-message-box-warning: #000000;
-  --text-color-interface-message-box-success: #000000;
-  --text-color-user-message: #000000;
-  --text-color-wikitable: #202122;
-  --text-color-sticky-toc-number: #888;
-  --icon-filter-header: unset;
-  --icon-filter-ooui-icon: unset;
-  --icon-filter-toc-button: unset;
-  --color-search-suggestions-text: #000;
-  --color-search-suggestions-text-current: #fff;
-  --color-tagline: var(--color-base);
-  --color-accent-header-tab: var(--color-base);
-  --color-accent-header-tab-selected: #54595d;
-  --color-accent-header-tab-new: #54595d;
-  --color-header: white;
-  --color-base: #54595d;
-  --color-gray: #a2a9b1;
-  --color-gray-2: #eaecf0;
-  --color-link: #0645ad;
-  --color-link--visited: #0b0080;
-  --color-link--active: #faa700;
-  --color-link-new: #d33;
-  --color-link-new--visited: #a55858;
-  --color-link-new--active: #faa700;
-  --color-link-external: #36b;
-  --color-link-external--visited: #636;
-  --color-link-external--active: #b63;
-  --color-footer-link: var(--color-link);
-  --color-footer-link--visited: var(--color-link--visited);
-  --color-footer-link--active: var(--color-link--active);
-  --color-toc-number: #202122;
-  --font-family: 'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
-  --font-family-serif: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
-  --font-family-headings: var(--font-family-serif);
-  --font-family-action-bar: var(--font-family);
-  --elevation: 0 2px 2px rgba( 0, 0, 0, 10% );
-  --header-elevation: var(--elevation);
-  --mask-background: rgba( 0, 0, 0, 0.8 );
+	--color-primary-light: #3366cc;
+	--color-secondary-light: #ffffff;
+	--color-neutral-light: #a2a9b1;
+	--color-error-light: #d33;
+	--color-warning-light: #fc3;
+	--color-success-light: #14866d;
+	--background-color-base-light: var( --color-secondary-light );
+	--background-color-body-light: var( --color-secondary-light );
+	--background-color-content-light: var( --color-secondary-light );
+	--background-color-footer-light: #eee;
+	--background-color-toggle-list-light: var( --color-secondary-light );
+	--background-color-portlet-body-light: var( --color-secondary-light );
+	--background-color-toggle-list-card-light: #eee;
+	--background-color-toggle-list-item-hover-light: rgba( 0, 0, 0, 0.1 );
+	--background-color-toggle-list-item-focus-light: rgba( 0, 0, 0, 0.2 );
+	--background-color-portlet-item-hover-light: rgba( 0, 0, 0, 0.1 );
+	--background-color-portlet-item-focus-light: rgba( 0, 0, 0, 0.2 );
+	--background-color-edit-options-light: #eee;
+	--background-color-search-suggestions-light: var( --color-secondary-light );
+	--background-color-search-suggestions-current-light: var( --color-primary-light );
+	--background-color-search-input-light: var( --color-secondary-light );
+	--background-color-toc-light: #f8f9fa;
+	--background-color-interface-message-box-neutral-light: #eaecf0;
+	--background-color-interface-message-box-error-light: #fee7e6;
+	--background-color-interface-message-box-warning-light: #fef6e7;
+	--background-color-interface-message-box-success-light: #d5fdf4;
+	--background-color-user-message-light: #ffce7b;
+	--background-color-wikitable-light: #f8f9fa;
+	--background-color-wikitable-table-head-light: #eaecf0;
+	--background-color-toc-button-light: #fff;
+	--border-color-edit-options-light: #c8ccd1;
+	--border-color-content-light: #ccc;
+	--border-color-toggle-list-light: #ddd;
+	--border-color-search-suggestions-light: #c8ccd1;
+	--border-color-search-bar-light: var( --color-gray-2-light );
+	--border-color-portlet-body-light: var( --color-gray-light );
+	--border-color-header-tab-light: var( --color-gray-2-light );
+	--border-color-toc-light: #a2a9b1;
+	--border-color-interface-message-box-neutral-light: var( --color-neutral-light );
+	--border-color-interface-message-box-error-light: var( --color-error-light );
+	--border-color-interface-message-box-warning-light: var( --color-warning-light );
+	--border-color-interface-message-box-success-light: var( --color-success-light );
+	--border-color-user-message-light: #ffa500;
+	--border-color-wikitable-light: #a2a9b1;
+	--border-color-toc-button-light: rgba( 0, 0, 0, 0.24 );
+	--box-shadow-search-input-light: 0 1px 1px var( --box-shadow-color-search-input-light );
+	--box-shadow-color-search-input-light: rgba( 0, 0, 0, 0.05 );
+	--box-shadow-portlet-body-light: 0 5px 17px 0 var( --box-shadow-color-portlet-body-light );
+	--box-shadow-color-portlet-body-light: rgba( 0, 0, 0, 0.24 );
+	--subheader-color-toggle-list-light: #6a6a6a;
+	--logo-text-color-toggle-list-light: #000000;
+	--text-color-toggle-list-item-light: #1c1c1c;
+	--text-color-toggle-list-item-hover-light: #3a3a3a;
+	--text-color-toggle-list-item-focus-light: #3a3a3a;
+	--text-color-portlet-item-light: #1c1c1c;
+	--text-color-portlet-item-hover-light: #3a3a3a;
+	--text-color-portlet-item-focus-light: #3a3a3a;
+	--text-color-content-light: #000000;
+	--text-color-header-light: #000000;
+	--text-color-body-light: #000000;
+	--text-color-footer-light: #000000;
+	--text-color-interface-message-box-neutral-light: #000000;
+	--text-color-interface-message-box-error-light: #000000;
+	--text-color-interface-message-box-warning-light: #000000;
+	--text-color-interface-message-box-success-light: #000000;
+	--text-color-user-message-light: #000000;
+	--text-color-wikitable-light: #202122;
+	--text-color-sticky-toc-number-light: #888;
+	--icon-filter-header-light: unset;
+	--icon-filter-ooui-icon-light: unset;
+	--icon-filter-toc-button-light: unset;
+	--color-search-suggestions-text-light: #000;
+	--color-search-suggestions-text-current-light: #fff;
+	--color-tagline-light: var( --color-base-light );
+	--color-accent-header-tab-light: var( --color-base-light );
+	--color-accent-header-tab-selected-light: #54595d;
+	--color-accent-header-tab-new-light: #54595d;
+	--color-header-light: white;
+	--color-base-light: #222;
+	--color-gray-light: #a2a9b1;
+	--color-gray-2-light: #eaecf0;
+	--color-link-light: #0645ad;
+	--color-link--visited-light: #0b0080;
+	--color-link--active-light: #faa700;
+	--color-link-new-light: #d33;
+	--color-link-new--visited-light: #a55858;
+	--color-link-new--active-light: #faa700;
+	--color-link-external-light: #36b;
+	--color-link-external--visited-light: #636;
+	--color-link-external--active-light: #b63;
+	--color-footer-link-light: var( --color-link-light );
+	--color-footer-link--visited-light: var( --color-link--visited-light );
+	--color-footer-link--active-light: var( --color-link--active-light );
+	--color-toc-number-light: #202122;
+	--font-family-light: 'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+	--font-family-serif-light: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
+	--font-family-headings-light: var( --font-family-serif );
+	--font-family-action-bar-light: var( --font-family );
+	--elevation-light: 0 2px 2px rgba( 0, 0, 0, 10% );
+	--header-elevation-light: var( --elevation-light );
+	--mask-background-light: rgba( 0, 0, 0, 0.8 );
 }
 
-@color-primary: var(--color-primary);
-@color-secondary: var(--color-secondary);
+:root {
+	--color-primary-dark: #9dc3f7;
+	--color-secondary-dark: #121212;
+	--color-neutral-dark: #a2a9b1;
+	--color-warning-dark: #ffcc33;
+	--color-error-dark: #dd3333;
+	--color-success-dark: #14866d;
+	--color-header-dark: #121212;
+	--color-link-dark: #9dc3f7;
+	--color-secondary--derived-dark: #161616;
+	--border-color-secondary--derived-dark: #4c4c4c;
+	--font-family-dark: 'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+	--font-family-serif-dark: 'Linux Libertine', 'Times New Roman', 'Liberation Serif', 'Nimbus Roman', 'Noto Serif', 'Times', serif;
+	--elevation-dark: 0 2px 2px rgba( 0, 0, 0, 10% );
+	--background-color-base-dark: #121212;
+	--color-link--visited-dark: #d1d4ff;
+	--color-link--active-dark: #d0f6ff;
+	--color-link-new-dark: #f7d19d;
+	--color-link-new--visited-dark: #ffffce;
+	--color-link-new--active-dark: #ffffce;
+	--color-link-external-dark: #a7cdff;
+	--color-link-external--visited-dark: #d1d4ff;
+	--color-link-external--active-dark: #daffff;
+	--header-elevation-dark: var( --elevation );
+	--text-color-header-dark: #ffffff;
+	--icon-filter-header-dark: invert( 1 ) hue-rotate( 180deg );
+	--background-color-search-suggestions-dark: #121212;
+	--border-color-search-suggestions-dark: #626262;
+	--background-color-search-suggestions-current-dark: #9dc3f7;
+	--color-search-suggestions-text-dark: #ffffff;
+	--color-search-suggestions-text-current-dark: #000000;
+	--background-color-search-input-dark: #121212;
+	--border-color-search-bar-dark: #626262;
+	--background-color-toggle-list-dark: #121212;
+	--background-color-toggle-list-card-dark: #9dc3f7;
+	--text-color-toggle-list-item-dark: #ffffff;
+	--background-color-toggle-list-item-hover-dark: rgba( 157,195,247,0.1 );
+	--text-color-toggle-list-item-hover-dark: #9dc3f7;
+	--background-color-toggle-list-item-focus-dark: rgba( 167,205,255,0.2 );
+	--text-color-toggle-list-item-focus-dark: #9dc3f7;
+	--border-color-toggle-list-dark: #626262;
+	--subheader-color-toggle-list-dark: #b1d7ff;
+	--logo-text-color-toggle-list-dark: #000000;
+	--mask-background-dark: rgba( 0, 0, 0, 0.8 );
+	--background-color-content-dark: #121212;
+	--text-color-content-dark: #ffffff;
+	--background-color-body-dark: #121212;
+	--text-color-body-dark: #ffffff;
+	--border-color-content-dark: #626262;
+	--font-family-action-bar-dark: var( --font-family );
+	--color-accent-header-tab-dark: #9dc3f7;
+	--color-accent-header-tab-selected-dark: #9dc3f7;
+	--color-accent-header-tab-new-dark: #9dc3f7;
+	--border-color-header-tab-dark: #aaaaaa;
+	--color-tagline-dark: rgba( 255, 255, 255, 0.7 );
+	--font-family-headings-dark: var( --font-family-serif );
+	--background-color-edit-options-dark: #27292d;
+	--border-color-edit-options-dark: #54595d;
+	--background-color-toc-dark: #252525;
+	--border-color-toc-dark: #4c4c4c;
+	--color-toc-number-dark: #f5f5f5;
+	--border-color-interface-message-box-neutral-dark: #a2a9b1;
+	--background-color-interface-message-box-neutral-dark: #56595e;
+	--text-color-interface-message-box-neutral-dark: #ffffff;
+	--border-color-interface-message-box-warning-dark: #ffcc33;
+	--background-color-interface-message-box-warning-dark: #6c5716;
+	--text-color-interface-message-box-warning-dark: #ffffff;
+	--border-color-interface-message-box-error-dark: #dd3333;
+	--background-color-interface-message-box-error-dark: #a92727;
+	--text-color-interface-message-box-error-dark: #ffffff;
+	--border-color-interface-message-box-success-dark: #14866d;
+	--background-color-interface-message-box-success-dark: #0f6552;
+	--text-color-interface-message-box-success-dark: #ffffff;
+	--border-color-user-message-dark: #ffa500;
+	--background-color-user-message-dark: #7c5000;
+	--text-color-user-message-dark: #ffffff;
+	--background-color-wikitable-dark: #222;
+	--text-color-wikitable-dark: #fff;
+	--border-color-wikitable-dark: #444;
+	--background-color-wikitable-table-head-dark: #2f2f2f;
+	--background-color-portlet-body-dark: #282828;
+	--text-color-portlet-item-dark: #ffffff;
+	--background-color-portlet-item-hover-dark: rgba( 157, 195, 247, 0.1 );
+	--text-color-portlet-item-hover-dark: #9dc3f7;
+	--background-color-portlet-item-focus-dark: rgba( 208, 246, 255, 0.1 );
+	--text-color-portlet-item-focus-dark: #9dc3f7;
+	--border-color-portlet-body-dark: #aaaaaa;
+	--background-color-footer-dark: #212121;
+	--text-color-footer-dark: #ffffff;
+	--color-footer-link-dark: #9dc3f7;
+	--color-footer-link--visited-dark: #d1d4ff;
+	--color-footer-link--active-dark: #d0f6ff;
+	--background-color-toc-button-dark: #121212;
+	--icon-filter-toc-button-dark: invert( 1 ) hue-rotate( 180deg );
+	--text-color-sticky-toc-number-dark: rgba( 255, 255, 255, 0.7 );
+	--border-color-toc-button-dark: rgba( 255, 255, 255, 0.24 );
+	--color-base-dark: #eaecf0;
+	--box-shadow-search-input-dark: 0 1px 1px var( --box-shadow-color-search-input-dark );
+	--box-shadow-color-search-input-dark: rgba( 255, 255, 255, 0.05 );
+	--box-shadow-portlet-body-dark: 0 5px 17px 0 var( --box-shadow-color-portlet-body-dark );
+	--box-shadow-color-portlet-body-dark: rgba( 255, 255, 255, 0.24 );
+	--icon-filter-ooui-icon-dark: invert( 1 ) hue-rotate( 180deg );
+}
+
+.theme-light() {
+	--color-primary: var( --color-primary-light );
+	--color-secondary: var( --color-secondary-light );
+	--color-neutral: var( --color-neutral-light );
+	--color-error: var( --color-error-light );
+	--color-warning: var( --color-warning-light );
+	--color-success: var( --color-success-light );
+	--background-color-base: var( --background-color-base-light );
+	--background-color-body: var( --background-color-body-light );
+	--background-color-content: var( --background-color-content-light );
+	--background-color-footer: var( --background-color-footer-light );
+	--background-color-toggle-list: var( --background-color-toggle-list-light );
+	--background-color-portlet-body: var( --background-color-portlet-body-light );
+	--background-color-toggle-list-card: var( --background-color-toggle-list-card-light );
+	--background-color-toggle-list-item-hover: var( --background-color-toggle-list-item-hover-light );
+	--background-color-toggle-list-item-focus: var( --background-color-toggle-list-item-focus-light );
+	--background-color-portlet-item-hover: var( --background-color-portlet-item-hover-light );
+	--background-color-portlet-item-focus: var( --background-color-portlet-item-focus-light );
+	--background-color-edit-options: var( --background-color-edit-options-light );
+	--background-color-search-suggestions: var( --background-color-search-suggestions-light );
+	--background-color-search-suggestions-current: var( --background-color-search-suggestions-current-light );
+	--background-color-search-input: var( --background-color-search-input-light );
+	--background-color-toc: var( --background-color-toc-light );
+	--background-color-interface-message-box-neutral: var( --background-color-interface-message-box-neutral-light );
+	--background-color-interface-message-box-error: var( --background-color-interface-message-box-error-light );
+	--background-color-interface-message-box-warning: var( --background-color-interface-message-box-warning-light );
+	--background-color-interface-message-box-success: var( --background-color-interface-message-box-success-light );
+	--background-color-user-message: var( --background-color-user-message-light );
+	--background-color-wikitable: var( --background-color-wikitable-light );
+	--background-color-wikitable-table-head: var( --background-color-wikitable-table-head-light );
+	--background-color-toc-button: var( --background-color-toc-button-light );
+	--border-color-edit-options: var( --border-color-edit-options-light );
+	--border-color-content: var( --border-color-content-light );
+	--border-color-toggle-list: var( --border-color-toggle-list-light );
+	--border-color-search-suggestions: var( --border-color-search-suggestions-light );
+	--border-color-search-bar: var( --border-color-search-bar-light );
+	--border-color-portlet-body: var( --border-color-portlet-body-light );
+	--border-color-header-tab: var( --border-color-header-tab-light );
+	--border-color-toc: var( --border-color-toc-light );
+	--border-color-interface-message-box-neutral: var( --border-color-interface-message-box-neutral-light );
+	--border-color-interface-message-box-error: var( --border-color-interface-message-box-error-light );
+	--border-color-interface-message-box-warning: var( --border-color-interface-message-box-warning-light );
+	--border-color-interface-message-box-success: var( --border-color-interface-message-box-success-light );
+	--border-color-user-message: var( --border-color-user-message-light );
+	--border-color-wikitable: var( --border-color-wikitable-light );
+	--border-color-toc-button: var( --border-color-toc-button-light );
+	--box-shadow-search-input: var( --box-shadow-search-input-light );
+	--box-shadow-portlet-body: var( --box-shadow-portlet-body-light );
+	--subheader-color-toggle-list: var( --subheader-color-toggle-list-light );
+	--logo-text-color-toggle-list: var( --logo-text-color-toggle-list-light );
+	--text-color-toggle-list-item: var( --text-color-toggle-list-item-light );
+	--text-color-toggle-list-item-hover: var( --text-color-toggle-list-item-hover-light );
+	--text-color-toggle-list-item-focus: var( --text-color-toggle-list-item-focus-light );
+	--text-color-portlet-item: var( --text-color-portlet-item-light );
+	--text-color-portlet-item-hover: var( --text-color-portlet-item-hover-light );
+	--text-color-portlet-item-focus: var( --text-color-portlet-item-focus-light );
+	--text-color-content: var( --text-color-content-light );
+	--text-color-header: var( --text-color-header-light );
+	--text-color-body: var( --text-color-body-light );
+	--text-color-footer: var( --text-color-footer-light );
+	--text-color-interface-message-box-neutral: var( --text-color-interface-message-box-neutral-light );
+	--text-color-interface-message-box-error: var( --text-color-interface-message-box-error-light );
+	--text-color-interface-message-box-warning: var( --text-color-interface-message-box-warning-light );
+	--text-color-interface-message-box-success: var( --text-color-interface-message-box-success-light );
+	--text-color-user-message: var( --text-color-user-message-light );
+	--text-color-wikitable: var( --text-color-wikitable-light );
+	--text-color-sticky-toc-number: var( --text-color-sticky-toc-number-light );
+	--icon-filter-header: var( --icon-filter-header-light );
+	--icon-filter-ooui-icon: var( --icon-filter-ooui-icon-light );
+	--icon-filter-toc-button: var( --icon-filter-toc-button-light );
+	--color-search-suggestions-text: var( --color-search-suggestions-text-light );
+	--color-search-suggestions-text-current: var( --color-search-suggestions-text-current-light );
+	--color-tagline: var( --color-tagline-light );
+	--color-accent-header-tab: var( --color-accent-header-tab-light );
+	--color-accent-header-tab-selected: var( --color-accent-header-tab-selected-light );
+	--color-accent-header-tab-new: var( --color-accent-header-tab-new-light );
+	--color-header: var( --color-header-light );
+	--color-base: var( --color-base-light );
+	--color-gray: var( --color-gray-light );
+	--color-gray-2: var( --color-gray-2-light );
+	--color-link: var( --color-link-light );
+	--color-link--visited: var( --color-link--visited-light );
+	--color-link--active: var( --color-link--active-light );
+	--color-link-new: var( --color-link-new-light );
+	--color-link-new--visited: var( --color-link-new--visited-light );
+	--color-link-new--active: var( --color-link-new--active-light );
+	--color-link-external: var( --color-link-external-light );
+	--color-link-external--visited: var( --color-link-external--visited-light );
+	--color-link-external--active: var( --color-link-external--active-light );
+	--color-footer-link: var( --color-footer-link-light );
+	--color-footer-link--visited: var( --color-footer-link--visited-light );
+	--color-footer-link--active: var( --color-footer-link--active-light );
+	--color-toc-number: var( --color-toc-number-light );
+	--font-family: var( --font-family-light );
+	--font-family-serif: var( --font-family-serif-light );
+	--font-family-headings: var( --font-family-headings-light );
+	--font-family-action-bar: var( --font-family-action-bar-light );
+	--elevation: var( --elevation-light );
+	--header-elevation: var( --header-elevation-light );
+	--mask-background: var( --mask-background-light );
+}
+
+.theme-dark() {
+	--color-primary: var( --color-primary-dark );
+	--color-secondary: var( --color-secondary-dark );
+	--color-neutral: var( --color-neutral-dark );
+	--color-error: var( --color-error-dark );
+	--color-warning: var( --color-warning-dark );
+	--color-success: var( --color-success-dark );
+	--background-color-base: var( --background-color-base-dark );
+	--background-color-body: var( --background-color-body-dark );
+	--background-color-content: var( --background-color-content-dark );
+	--background-color-footer: var( --background-color-footer-dark );
+	--background-color-toggle-list: var( --background-color-toggle-list-dark );
+	--background-color-portlet-body: var( --background-color-portlet-body-dark );
+	--background-color-toggle-list-card: var( --background-color-toggle-list-card-dark );
+	--background-color-toggle-list-item-hover: var( --background-color-toggle-list-item-hover-dark );
+	--background-color-toggle-list-item-focus: var( --background-color-toggle-list-item-focus-dark );
+	--background-color-portlet-item-hover: var( --background-color-portlet-item-hover-dark );
+	--background-color-portlet-item-focus: var( --background-color-portlet-item-focus-dark );
+	--background-color-edit-options: var( --background-color-edit-options-dark );
+	--background-color-search-suggestions: var( --background-color-search-suggestions-dark );
+	--background-color-search-suggestions-current: var( --background-color-search-suggestions-current-dark );
+	--background-color-search-input: var( --background-color-search-input-dark );
+	--background-color-toc: var( --background-color-toc-dark );
+	--background-color-interface-message-box-neutral: var( --background-color-interface-message-box-neutral-dark );
+	--background-color-interface-message-box-error: var( --background-color-interface-message-box-error-dark );
+	--background-color-interface-message-box-warning: var( --background-color-interface-message-box-warning-dark );
+	--background-color-interface-message-box-success: var( --background-color-interface-message-box-success-dark );
+	--background-color-user-message: var( --background-color-user-message-dark );
+	--background-color-wikitable: var( --background-color-wikitable-dark );
+	--background-color-wikitable-table-head: var( --background-color-wikitable-table-head-dark );
+	--background-color-toc-button: var( --background-color-toc-button-dark );
+	--border-color-edit-options: var( --border-color-edit-options-dark );
+	--border-color-content: var( --border-color-content-dark );
+	--border-color-toggle-list: var( --border-color-toggle-list-dark );
+	--border-color-search-suggestions: var( --border-color-search-suggestions-dark );
+	--border-color-search-bar: var( --border-color-search-bar-dark );
+	--border-color-portlet-body: var( --border-color-portlet-body-dark );
+	--border-color-header-tab: var( --border-color-header-tab-dark );
+	--border-color-toc: var( --border-color-toc-dark );
+	--border-color-interface-message-box-neutral: var( --border-color-interface-message-box-neutral-dark );
+	--border-color-interface-message-box-error: var( --border-color-interface-message-box-error-dark );
+	--border-color-interface-message-box-warning: var( --border-color-interface-message-box-warning-dark );
+	--border-color-interface-message-box-success: var( --border-color-interface-message-box-success-dark );
+	--border-color-user-message: var( --border-color-user-message-dark );
+	--border-color-wikitable: var( --border-color-wikitable-dark );
+	--border-color-toc-button: var( --border-color-toc-button-dark );
+	--box-shadow-search-input: var( --box-shadow-search-input-dark );
+	--box-shadow-portlet-body: var( --box-shadow-portlet-body-dark );
+	--subheader-color-toggle-list: var( --subheader-color-toggle-list-dark );
+	--logo-text-color-toggle-list: var( --logo-text-color-toggle-list-dark );
+	--text-color-toggle-list-item: var( --text-color-toggle-list-item-dark );
+	--text-color-toggle-list-item-hover: var( --text-color-toggle-list-item-hover-dark );
+	--text-color-toggle-list-item-focus: var( --text-color-toggle-list-item-focus-dark );
+	--text-color-portlet-item: var( --text-color-portlet-item-dark );
+	--text-color-portlet-item-hover: var( --text-color-portlet-item-hover-dark );
+	--text-color-portlet-item-focus: var( --text-color-portlet-item-focus-dark );
+	--text-color-content: var( --text-color-content-dark );
+	--text-color-header: var( --text-color-header-dark );
+	--text-color-body: var( --text-color-body-dark );
+	--text-color-footer: var( --text-color-footer-dark );
+	--text-color-interface-message-box-neutral: var( --text-color-interface-message-box-neutral-dark );
+	--text-color-interface-message-box-error: var( --text-color-interface-message-box-error-dark );
+	--text-color-interface-message-box-warning: var( --text-color-interface-message-box-warning-dark );
+	--text-color-interface-message-box-success: var( --text-color-interface-message-box-success-dark );
+	--text-color-user-message: var( --text-color-user-message-dark );
+	--text-color-wikitable: var( --text-color-wikitable-dark );
+	--text-color-sticky-toc-number: var( --text-color-sticky-toc-number-dark );
+	--icon-filter-header: var( --icon-filter-header-dark );
+	--icon-filter-ooui-icon: var( --icon-filter-ooui-icon-dark );
+	--icon-filter-toc-button: var( --icon-filter-toc-button-dark );
+	--color-search-suggestions-text: var( --color-search-suggestions-text-dark );
+	--color-search-suggestions-text-current: var( --color-search-suggestions-text-current-dark );
+	--color-tagline: var( --color-tagline-dark );
+	--color-accent-header-tab: var( --color-accent-header-tab-dark );
+	--color-accent-header-tab-selected: var( --color-accent-header-tab-selected-dark );
+	--color-accent-header-tab-new: var( --color-accent-header-tab-new-dark );
+	--color-header: var( --color-header-dark );
+	--color-base: var( --color-base-dark );
+	--color-gray: var( --color-gray-dark );
+	--color-gray-2: var( --color-gray-2-dark );
+	--color-link: var( --color-link-dark );
+	--color-link--visited: var( --color-link--visited-dark );
+	--color-link--active: var( --color-link--active-dark );
+	--color-link-new: var( --color-link-new-dark );
+	--color-link-new--visited: var( --color-link-new--visited-dark );
+	--color-link-new--active: var( --color-link-new--active-dark );
+	--color-link-external: var( --color-link-external-dark );
+	--color-link-external--visited: var( --color-link-external--visited-dark );
+	--color-link-external--active: var( --color-link-external--active-dark );
+	--color-footer-link: var( --color-footer-link-dark );
+	--color-footer-link--visited: var( --color-footer-link--visited-dark );
+	--color-footer-link--active: var( --color-footer-link--active-dark );
+	--color-toc-number: var( --color-toc-number-dark );
+	--font-family: var( --font-family-dark );
+	--font-family-serif: var( --font-family-serif-dark );
+	--font-family-headings: var( --font-family-headings-dark );
+	--font-family-action-bar: var( --font-family-action-bar-dark );
+	--elevation: var( --elevation-dark );
+	--header-elevation: var( --header-elevation-dark );
+	--mask-background: var( --mask-background-dark );
+}
+
+@color-primary: var( --color-primary );
+@color-secondary: var( --color-secondary );
 @background-color-base: var( --background-color-base );
 @background-color-body: var( --background-color-body );
 @background-color-content: var( --background-color-content );
@@ -129,7 +448,7 @@
 @background-color-portlet-item-focus: var( --background-color-portlet-item-focus );
 @border-color-content: var( --border-color-content );
 @border-color-toggle-list: var( --border-color-toggle-list );
-@border-color-search-suggestions: var(--border-color-search-suggestions);
+@border-color-search-suggestions: var( --border-color-search-suggestions );
 @border-color-search-bar: var( --border-color-search-bar );
 @border-color-portlet-body: var( --border-color-portlet-body );
 @border-color-header-tab: var( --border-color-header-tab );
@@ -140,6 +459,9 @@
 @border-color-interface-message-box-success: var( --border-color-interface-message-box-success );
 @border-color-user-message: var( --border-color-user-message );
 @border-color-wikitable: var( --border-color-wikitable );
+@border-color-toc-button: var( --border-color-toc-button );
+@box-shadow-search-input: var( --box-shadow-search-input );
+@box-shadow-portlet-body: var( --box-shadow-portlet-body );
 @subheader-color-toggle-list: var( --subheader-color-toggle-list );
 @logo-text-color-toggle-list: var( --logo-text-color-toggle-list );
 @text-color-content: var( --text-color-content );
@@ -197,3 +519,145 @@
 @header-elevation: var( --header-elevation );
 @elevation: var( --elevation );
 @mask-background: var( --mask-background );
+
+/**
+ * Color scheme (dark mode) Related stuff
+ * Literally borrowed from Vector 2022, need cleanup
+ */
+
+/**
+ * T365764 - OOUI Icon classes for inverted dark color scheme icons.
+ * This includes OOUI icons that are not colored (progressive/destructive), checkbox icons, and
+ * indicator widgets.
+ */
+@OOUIIconSelectors: ~'.oo-ui-iconElement-icon:not( .oo-ui-image-progressive ):not( .oo-ui-image-destructive ):not( .oo-ui-checkboxInputWidget-checkIcon ):not( .oo-ui-image-invert ):not( .mw-no-invert )';
+@OOUIIndicatorSelectors: ~'.oo-ui-indicatorElement-indicator';
+
+@media screen {
+	/**
+	 * Light color scheme
+	 *
+	 * Applies the light color scheme color palette by default
+	 * or with the .skin-invert, or .notheme classes
+	 */
+	:root,
+	.skin-invert,
+	.notheme {
+		// They changed name
+		// .cdx-mode-light();
+		.cdx-mode-reset();
+		.theme-light();
+	}
+
+	/**
+	 * Forced dark color scheme.
+	 *
+	 * Applies the dark color palette per the users explicit preference,
+	 * regardless of system settings.
+	 */
+	html.skin-theme-clientpref-night {
+		color-scheme: dark;
+		.cdx-mode-dark();
+
+		/**
+		 * Inverted dark color scheme
+		 * Creates a dark color scheme effect on elements by flipping their color,
+		 * (usually from black to white).
+		 * Applied as a last resort when using CSS variables is not possible.
+		 * NOTE: `.skin-invert` is used in templates and user generated content.
+		 *
+		 * - T365102 invert class specifically for image related element
+		 * - T365764 special treatment of inverted OOUI icons
+		 */
+		@{OOUIIconSelectors},
+		@{OOUIIndicatorSelectors} {
+			color-scheme: light;
+			filter: invert( 1 ) hue-rotate( 180deg );
+		}
+	}
+
+	html.lakeus-color-scheme-clientpref-dark,
+	html.lakeus-color-scheme-wiki-default-dark.lakeus-color-scheme-clientpref-wiki {
+		color-scheme: dark;
+		.theme-dark();
+
+		/**
+		 * Inverted dark color scheme
+		 * Creates a dark color scheme effect on elements by flipping their color,
+		 * (usually from black to white).
+		 * Applied as a last resort when using CSS variables is not possible.
+		 * NOTE: `.skin-invert` is used in templates and user generated content.
+		 *
+		 * - T365102 invert class specifically for image related element
+		 * - T365764 special treatment of inverted OOUI icons
+		 */
+		.skin-invert-image img,
+		.skin-invert {
+			color-scheme: light;
+			filter: invert( 1 ) hue-rotate( 180deg );
+		}
+
+		/**
+		 * Forced light color scheme.
+		 * Makes elements appear in light color scheme when dark color scheme is enabled.
+		 * NOTE: might be used in templates and user generated content.
+		 */
+		.notheme {
+			color-scheme: light;
+			color: var( --color-base-light );
+		}
+	}
+
+	/**
+	 * Prevent double inversion.
+	 * Do not apply invert to elements that are inside a notheme or a skin-invert class to avoid inversion in light color scheme or
+	 * double inversion in an already inverted element
+	 * - OOUI icons inside .notheme OOUI elements
+	 * - OOUI icons inside elements with .skin-invert
+	 * - OOUI icons inside elements with .notheme
+	 */
+	.skin-invert,
+	.notheme {
+		@{OOUIIndicatorSelectors},
+		@{OOUIIconSelectors} {
+			filter: none !important; /* stylelint-disable-line declaration-no-important */
+		}
+	}
+}
+
+/**
+ * Automatic dark color scheme.
+ *
+ * Applies the dark color palette only in response to system settings.
+ */
+@media screen and ( prefers-color-scheme: dark ) {
+	html.skin-theme-clientpref-os {
+		color-scheme: light dark;
+		.cdx-mode-dark();
+
+		// T365102 invert class specifically for image related elements
+		@{OOUIIconSelectors},
+		@{OOUIIndicatorSelectors} {
+			color-scheme: light;
+			filter: invert( 1 ) hue-rotate( 180deg );
+		}
+	}
+
+	html.lakeus-color-scheme-clientpref-os,
+	html.lakeus-color-scheme-wiki-default-os.lakeus-color-scheme-clientpref-wiki {
+		color-scheme: light dark;
+		.theme-dark();
+
+		.notheme {
+			color-scheme: light;
+			color: var( --color-base-light );
+		}
+
+		// T365102 invert class specifically for image related elements
+		.skin-invert-image img,
+		.skin-invert {
+			color-scheme: light;
+			filter: invert( 1 ) hue-rotate( 180deg );
+		}
+	}
+}

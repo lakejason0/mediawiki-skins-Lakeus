@@ -12,6 +12,8 @@
 	"lakeus-openmainmenu": "मुख्य मेनू खोलें",
 	"lakeus-articlecount": "{{PLURAL:$1|लेख}}",
 	"lakeus-footermessage": "Lakeus स्किन द्वारा संचालित",
+	"lakeus-color-scheme-option-light-label": "रोशनी",
+	"lakeus-color-scheme-option-dark-label": "अँधेरा",
 	"lakeus-preferences-enable-theme-designer": "थीम डिज़ाइनर सक्षम करें",
 	"lakeus-preferences-enable-theme-designer-desc": "हर पृष्ठ पर Lakeus थीम डिज़ाइनर सक्षम करें।",
 	"lakeus-theme-designer": "Lakeus थीम डिज़ाइनर",

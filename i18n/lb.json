@@ -1,15 +1,30 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"lakeus-openmainmenu": "Haaptmenü opmaachen",
 	"lakeus-articlecount": "{{PLURAL:$1|Artikel|Artikelen}}",
 	"lakeus-footermessage": "Erméiglecht duerch de Lakeus Interface",
+	"lakeus-client-preferences-label": "Ausgesinn",
+	"lakeus-client-preferences-tooltip": "D'Ausgesi vun der Säit änneren",
+	"lakeus-color-scheme-name": "Faarfscheema",
+	"lakeus-color-scheme-desc": "D'Faarfscheema vun der Wiki änneren",
+	"lakeus-color-scheme-option-os-label": "Automatesch",
+	"lakeus-color-scheme-option-wiki-label": "Wiki-Standard",
+	"lakeus-color-scheme-option-light-label": "Hell",
+	"lakeus-color-scheme-option-dark-label": "Däischter",
+	"lakeus-color-scheme-exclusion-notice": "Dës Säit ass ëmmer am helle Faarfscheema.",
+	"lakeus-preferences-color-scheme": "Faarfscheema",
+	"lakeus-preferences-color-scheme-option-os-label": "Browserastellunge benotzen",
+	"lakeus-preferences-color-scheme-option-wiki-label": "Wiki-Standard benotzen",
+	"lakeus-preferences-color-scheme-option-light-label": "Hellt Faarfscheema",
+	"lakeus-preferences-color-scheme-option-dark-label": "Däischtert Faarfscheema",
 	"lakeus-theme-designer-system-messages-loaded": "Obligatoresch Systemmessage goufe gelueden.",
 	"lakeus-theme-designer-paste-theme": "Aktuell Astellungen drasetzen",
-	"lakeus-theme-designer-reset-theme": "Zrécksetzen",
+	"lakeus-theme-designer-reset-theme": "Zerécksetzen",
 	"lakeus-theme-designer-reload": "Nei lueden",
 	"lakeus-theme-designer-basic": "Einfach",
 	"lakeus-theme-designer-color-primary": "Primär Faarf (Virdergrond)",

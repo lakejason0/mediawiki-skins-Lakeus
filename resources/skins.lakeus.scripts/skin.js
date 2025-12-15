@@ -27,6 +27,7 @@ Lakeus.stickyTOCAutoCollapse = function () {
 }
 $(function () {
     Lakeus.portletOutsideClose('p-personal');
+    Lakeus.portletOutsideClose('p-client-preferences');
     Lakeus.portletOutsideClose('p-cactions');
     Lakeus.portletOutsideClose('p-lang');
     Lakeus.portletOutsideClose('p-variants');
