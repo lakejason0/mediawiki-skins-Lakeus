@@ -105,6 +105,7 @@ class Hooks implements
 		if ( $this->config->get( 'LakeusSearchModuleType' ) === 'codex' ) {
 			$config['searchModule'] = 'skins.lakeus.search';
 		}
+	}
 
 	/**
 	 * Export static site-wide `mw.config` variables to JavaScript.
