@@ -1,81 +1,34 @@
 # mediawiki-skins-Lakeus 1.5
 
-## mediawiki-skins-Lakeus master branch
+## mediawiki-skins-Lakeus 1.5.0+REL1.44
 
-THIS IS NOT A RELEASE YET
+This is the first release of the mediawiki-skins-Lakeus 1.5 version.
 
-The `master` branch is an beta-quality development branch. Use it at your own
-risk!
+### Configuration changes for system administrators in 1.5.0+REL1.44
 
-### Configuration changes for system administrators
-
-#### New configuration
+#### New configuration in 1.5.0+REL1.44
 
 * (#issue #47, #60) `$wgLakeusWikiDefaultColorScheme`: Makes it possible to set
   the default color scheme of the wiki when choosing \"Use wiki default\"
   preference option.
-  This is especially useful when using shared user preferences instead of
-  global user preferences.
+  This is especially useful when using shared user preferences instead of global
+  user preferences.
   Default to `light`.
-* …
 
-#### Changed configuration
-
-* …
-
-#### Removed configuration
-
-* …
-
-### New user-facing features
-
-* …
-
-### New features for sysadmins
-
-* …
-
-### New developer features
-
-* …
-
-### Bug fixes
+### Bug fixes in 1.5.0+REL1.44
 
 * Hide the icon of UniversalLanguageSelector.
-* …
+* Fixed outdated PHP CI.
 
-### Action API changes
-
-* …
-
-### Action API internal changes
-
-* …
-
-### REST API changes
-
-* …
-
-### REST API internal changes
-
-* …
-
-### Languages updated
+### Languages updated in 1.5.0+REL1.44
 
 Lakeus skin now supports 29 languages. Many localisations are updated regularly.
 
 Below only new and removed languages are listed.
 
-* …
+* Added localisations for Galician (gl).
 
-### Breaking changes
+### Deprecations in 1.5.0+REL1.44
 
-* …
-
-### Deprecations
-
-* …
-
-### Other changes
-
-* …
+* Lakeus skin now require PHP 8.1, 8.2, 8.3; PHP 7.4, 8.0 are no longer
+  supported.
