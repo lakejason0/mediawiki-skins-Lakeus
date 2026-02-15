@@ -3,10 +3,10 @@
 namespace MediaWiki\Skins\Lakeus;
 
 use MediaWiki\Config\Config;
+use MediaWiki\Language\Skin\SkinPageReadyConfigHook;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Context as ResourceLoaderContext;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
-use MediaWiki\Skins\Hook\SkinPageReadyConfigHook;
 
 class Hooks implements
 	GetPreferencesHook,
