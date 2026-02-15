@@ -20,12 +20,12 @@
 		}
 	],
 	"require": {
-		"php": ">=7.4",
-		"mustangostang/spyc": "0.6.3"
+		"mustangostang/spyc": "0.6.3",
+		"php": ">=8.1.0"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "9.6.13",
-		"mediawiki/mediawiki-codesniffer": "42.0.0"
+		"mediawiki/mediawiki-codesniffer": "48.0.0",
+		"phpunit/phpunit": "9.6.34"
 	},
 	"support": {
 		"issues": "https://github.com/lakejason0/mediawiki-skins-Lakeus/issues"
@@ -33,6 +33,11 @@
 	"autoload": {
 		"psr-4": {
 			"MediaWiki\\Skins\\Lakeus\\": "includes/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
 	"scripts": {
