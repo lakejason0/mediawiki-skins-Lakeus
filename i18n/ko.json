@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Tensama0415",
 			"YeBoy371",
 			"Ykhwong"
 		]
@@ -8,6 +9,7 @@
 	"lakeus-openmainmenu": "주 메뉴 열기",
 	"lakeus-jumptocontent": "본문으로 이동",
 	"lakeus-articlecount": "{{PLURAL:$1|문서}}",
+	"lakeus-footermessage": "Lakeus Skin 제공",
 	"lakeus-client-preferences-label": "보이기",
 	"lakeus-color-scheme-name": "컬러 스킴",
 	"lakeus-color-scheme-desc": "위키의 색 구성표 변경하기",
