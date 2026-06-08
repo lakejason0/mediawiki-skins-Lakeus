@@ -3,7 +3,8 @@
 		"authors": [
 			"Mainframe98",
 			"McDutchie",
-			"Romaine"
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"lakeus-skin-desc": "Een simpele vormgeving van [https://github.com/lakejason0 Lakejason0], vernoemd naar een personage in hun romans",
@@ -48,7 +49,7 @@
 	"lakeus-theme-designer-unselect-do-not-generate-selection": "“Selectie niet genereren” uitvinken",
 	"lakeus-theme-designer-copied": "De themacode is naar het klembord gekopieerd.",
 	"lakeus-theme-designer-copy-failed": "De themacode kon niet naar het klembord worden gekopieerd; het resultaat bevindt zich aan het einde van de ontwerper.",
-	"lakeus-theme-designer-reload": "Herladen",
+	"lakeus-theme-designer-reload": "Vernieuwen",
 	"lakeus-theme-designer-color-picker-fallback": "Tekstinvoer gebruiken voor kleurenkiezers",
 	"lakeus-theme-designer-alpha-channel": "Alfa (Ondoorzichtigheid)",
 	"lakeus-theme-designer-basic": "Basis",
