@@ -702,17 +702,25 @@ Lakeus.updateVariablesListFromForm = function () {
     Lakeus.recalculateAutoVariables();
 };
 
+/**
+ * Load the scheme being edited into the form.
+ *
+ * Every variable is refreshed, including ones marked "do not generate".
+ * `skipped` only means the variable is left out of the generated stylesheet; it
+ * must not stop the field from following the scheme switch. Leaving skipped
+ * fields alone made them keep the *previous* scheme's value, and clearing the
+ * checkbox afterwards flushed that stale value into the scheme now on screen -
+ * a light value silently overwriting the dark default.
+ */
 Lakeus.updateFormFromVariablesList = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
-        if (!v.skipped) {
-            if (v.value) {
-                if (v.input === 'color') {
-                    inputElement.val(v.value.hex('rgb'));
-                    $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.value.alpha());
-                } else {
-                    inputElement.val(v.value);
-                }
+        if (v.value) {
+            if (v.input === 'color') {
+                inputElement.val(v.value.hex('rgb'));
+                $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.value.alpha());
+            } else {
+                inputElement.val(v.value);
             }
         }
     })
