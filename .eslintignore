@@ -1,0 +1,6 @@
+.eslintcache
+node_modules/
+
+# Vendored third-party libraries are not ours to lint. Each one carries its own
+# upstream licence and formatting; see resources/lib/*/README.md for provenance.
+resources/lib/
