@@ -342,17 +342,35 @@ Lakeus.setupThemeDesigner = function () {
          *
          * calculate() rules read other variables through `value`, which resolves
          * against the active scheme, so a pass is needed after switching schemes.
-         * A rule may depend on variables that are themselves auto-calculated and
-         * the list order does not always put dependencies first, so the pass is
-         * repeated to let the values settle.
+         *
+         * More importantly the rules are order-dependent: 13 of them read a source
+         * that appears LATER in the list - color-link--visited and friends (index
+         * 14-33) read background-color-body, which sits at index 47. A single pass
+         * therefore computes them from the previous background colour, which made
+         * flushing an unchanged form twice produce different results. Repeating
+         * until the values stop moving removes the dependence on list order.
          */
         Lakeus.recalculateAutoVariables = function () {
-            for (var pass = 0; pass < 2; pass++) {
+            // Generous cap; real chains are three deep (color-secondary ->
+            // background-color-body -> color-link--visited).
+            var maxPasses = 10;
+            for (var pass = 0; pass < maxPasses; pass++) {
+                var changed = false;
                 $.each(Lakeus.variablesList, function (k, v) {
-                    if (Lakeus.isAutoCalculated(k, v)) {
-                        v.value = v.calculate(undefined);
+                    if (!Lakeus.isAutoCalculated(k, v)) {
+                        return;
                     }
+                    var next = v.calculate(undefined);
+                    // String comparison is enough to detect convergence: if two
+                    // values render identically they produce identical CSS anyway.
+                    if (String(next) !== String(v.value)) {
+                        changed = true;
+                    }
+                    v.value = next;
                 });
+                if (!changed) {
+                    break;
+                }
             }
         };
 
@@ -603,25 +621,39 @@ Lakeus.setupThemeDesigner = function () {
 
 /* Moving these functions into the init function */
 
+/**
+ * Read the form into the variable table.
+ *
+ * User-entered values are collected first and the derived ones are computed
+ * afterwards by recalculateAutoVariables(). Deriving inline inside this loop is
+ * order-dependent - the list does not put every dependency first - and used to
+ * give different results when the same unchanged form was flushed twice.
+ *
+ * Whether a variable is derived is taken from its "auto calculate" checkbox
+ * rather than from the input's `disabled` property, so that unrelated disabling
+ * (a disabled fieldset, for instance) cannot turn a user value into a derived one.
+ */
 Lakeus.updateVariablesListFromForm = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
-        if (!(inputElement.data('skipped'))) {
-            if (!(inputElement.prop('disabled'))) {
-                if (inputElement.attr('type') === 'color') {
-                    var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
-                    Lakeus.variablesList[k].value = chroma(inputElement.val()).alpha((Number(inputElementAlpha.val()) <= 1 && Number(inputElementAlpha.val()) >= 0) ? Number(inputElementAlpha.val()) : 1);
-                } else {
-                    Lakeus.variablesList[k].value = inputElement.val();
-                }
-            } else {
-                Lakeus.variablesList[k].value = Lakeus.variablesList[k].calculate(undefined);
-            }
-            Lakeus.variablesList[k].skipped = false;
+        if (inputElement.data('skipped')) {
+            v.skipped = true;
+            return;
+        }
+        v.skipped = false;
+        if (Lakeus.isAutoCalculated(k, v)) {
+            // Derived below, once every user-entered value has been read.
+            return;
+        }
+        if (inputElement.attr('type') === 'color') {
+            var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
+            var alpha = Number(inputElementAlpha.val());
+            v.value = chroma(inputElement.val()).alpha(alpha <= 1 && alpha >= 0 ? alpha : 1);
         } else {
-            Lakeus.variablesList[k].skipped = true;
+            v.value = inputElement.val();
         }
     });
+    Lakeus.recalculateAutoVariables();
 };
 
 Lakeus.updateFormFromVariablesList = function () {
