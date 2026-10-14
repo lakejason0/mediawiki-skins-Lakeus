@@ -237,22 +237,19 @@ Lakeus.setupThemeDesigner = function () {
         Lakeus.colorSchemes = [ 'light', 'dark' ];
 
         /**
-         * Which schemes' auto-calculated variables are derived rather than seeded.
+         * Record, per scheme, the source values a variable was last derived from.
          *
-         * `rule.autoCalculate === 'calculateWhenNotNeeded'` means "work the value
-         * out when nothing provides one". That is true for light: its seed is this
-         * table's own literal, which is the input those rules were written against.
-         * It is NOT true for dark: there the skin already provides an authored
-         * `--<name>-dark`, and running the heuristics over it is a downgrade - the
-         * rules return opaque colours, so e.g. `border-color-toc-button` lost its
-         * alpha and became an invisible black border on a dark background.
+         * This is what makes derivation dependency-scoped rather than wholesale:
+         * a variable is recomputed only when one of the values its `calculate()`
+         * rule reads has actually moved. Two earlier approaches were worse -
+         * recomputing every rule on every scheme visit overwrote the skin's
+         * authored dark palette, and gating on "the author touched this scheme"
+         * meant un-ticking one "auto calculate" box recomputed all 74 of them.
          *
-         * So a scheme is derived only once the author actually engages with it.
-         * This also removes a history dependence: deriving on scheme *visits* meant
-         * the same theme came out differently depending on whether the dark tab had
-         * been opened.
+         * `null` means "never derived in this scheme", so the rule runs once.
+         * Populated for dark by initColorSchemes(), because the skin hands over a
+         * finished dark palette that is already self-consistent.
          */
-        Lakeus.schemeDerives = { light: true, dark: false };
 
         /**
          * Read a themeable value out of the skin's own stylesheet.
@@ -322,6 +319,9 @@ Lakeus.setupThemeDesigner = function () {
 
                 v.defaults = { light: lightDefault, dark: darkDefault };
                 v.values = { light: lightDefault, dark: darkDefault };
+                // Light is left unrecorded so the rules run over this table's own
+                // literals, exactly as they always did; dark is recorded below.
+                v.derivedFrom = { light: null, dark: null };
 
                 // `value` and `default` become views onto the scheme being edited.
                 Object.defineProperty(v, 'default', {
@@ -344,6 +344,9 @@ Lakeus.setupThemeDesigner = function () {
                 console.warn('[Lakeus] The skin defines no --<name>-dark for: ' +
                     missingDark.join(', ') + '. Those fall back to the light default.');
             }
+            // The skin hands over a finished dark palette, so treat it as already
+            // consistent: nothing there is recomputed until a source moves.
+            Lakeus.markSchemeInSync('dark');
         };
 
         /**
@@ -365,23 +368,59 @@ Lakeus.setupThemeDesigner = function () {
         };
 
         /**
-         * Recompute every auto-calculated variable for the scheme being edited.
+         * A fingerprint of the values a variable's calculate() rule reads.
          *
-         * calculate() rules read other variables through `value`, which resolves
-         * against the active scheme, so a pass is needed after switching schemes.
+         * Only `calculateFrom` is considered. A rule that declares no sources is
+         * never treated as up to date, so it keeps being recomputed - the safe
+         * default for a rule whose inputs cannot be enumerated.
          *
-         * More importantly the rules are order-dependent: 13 of them read a source
-         * that appears LATER in the list - color-link--visited and friends (index
-         * 14-33) read background-color-body, which sits at index 47. A single pass
-         * therefore computes them from the previous background colour, which made
-         * flushing an unchanged form twice produce different results. Repeating
-         * until the values stop moving removes the dependence on list order.
+         * @param {Object} v Entry from Lakeus.variablesList.
+         * @param {string} scheme Which scheme's values to fingerprint.
+         * @return {?string} Null when the variable declares no sources.
+         */
+        Lakeus.sourceFingerprint = function (v, scheme) {
+            var names = v.calculateFrom || [];
+            if (names.length === 0) {
+                return null;
+            }
+            return names.map(function (name) {
+                var source = Lakeus.variablesList[name];
+                return name + '=' + (source ? String(source.values[scheme]) : '?');
+            }).join('|');
+        };
+
+        /**
+         * Declare a scheme's derived values to be in step with their sources.
+         *
+         * Used for the skin-seeded dark palette, which arrives already internally
+         * consistent, and after a reset that restores it. Without this the first
+         * pass would run every rule over the skin's palette and replace good
+         * authored colours with the heuristics' opaque approximations.
+         *
+         * @param {string} scheme
+         */
+        Lakeus.markSchemeInSync = function (scheme) {
+            $.each(Lakeus.variablesList, function (k, v) {
+                v.derivedFrom[scheme] = Lakeus.isAutoCalculated(k, v)
+                    ? Lakeus.sourceFingerprint(v, scheme)
+                    : null;
+            });
+        };
+
+        /**
+         * Bring the derived variables in the scheme being edited up to date.
+         *
+         * Two order concerns are handled here. First, only variables whose sources
+         * have actually moved are recomputed, so editing one value cannot churn a
+         * palette - and in dark it cannot replace the skin's authored colours with
+         * the heuristics' approximations. Second, the rules are order-dependent:
+         * 13 of them read a source that appears LATER in the list -
+         * color-link--visited and friends (index 14-33) read background-color-body
+         * at index 47 - so the pass repeats until the values stop moving rather
+         * than trusting list order.
          */
         Lakeus.recalculateAutoVariables = function () {
-            // A scheme the author has not engaged with keeps its seeded palette.
-            if (!Lakeus.schemeDerives[Lakeus.colorSchemeMode]) {
-                return;
-            }
+            var scheme = Lakeus.colorSchemeMode;
             // Generous cap; real chains are three deep (color-secondary ->
             // background-color-body -> color-link--visited).
             var maxPasses = 10;
@@ -391,6 +430,11 @@ Lakeus.setupThemeDesigner = function () {
                     if (!Lakeus.isAutoCalculated(k, v)) {
                         return;
                     }
+                    var fingerprint = Lakeus.sourceFingerprint(v, scheme);
+                    if (fingerprint !== null && v.derivedFrom[scheme] === fingerprint) {
+                        // Sources unchanged since the last derivation.
+                        return;
+                    }
                     var next = v.calculate(undefined);
                     // String comparison is enough to detect convergence: if two
                     // values render identically they produce identical CSS anyway.
@@ -398,11 +442,29 @@ Lakeus.setupThemeDesigner = function () {
                         changed = true;
                     }
                     v.value = next;
+                    v.derivedFrom[scheme] = fingerprint;
                 });
                 if (!changed) {
                     break;
                 }
             }
+        };
+
+        /**
+         * Bring a specific scheme's derived values up to date, whichever scheme
+         * the author happens to be editing.
+         *
+         * calculate() rules read their sources through `value`, which resolves
+         * against the scheme being edited, so the mode is switched for the
+         * duration and restored afterwards.
+         *
+         * @param {string} scheme
+         */
+        Lakeus.recalculateScheme = function (scheme) {
+            var previous = Lakeus.colorSchemeMode;
+            Lakeus.colorSchemeMode = scheme;
+            Lakeus.recalculateAutoVariables();
+            Lakeus.colorSchemeMode = previous;
         };
 
         /**
@@ -636,21 +698,6 @@ Lakeus.setupThemeDesigner = function () {
             $(".lakeus-theme-designer-color-scheme-radio").on('change', function () {
                 Lakeus.switchColorScheme($(this).val());
             });
-            // Touching a value marks the scheme being edited as authored, which is
-            // what lets its auto-calculated variables derive. Scoped to value inputs
-            // on purpose: the colour-scheme radios would otherwise mark the outgoing
-            // scheme on their way past.
-            $("#lakeus-theme-designer-portlet-body").on(
-                'input change',
-                '.lakeus-theme-designer-input-color, ' +
-                '.lakeus-theme-designer-input-text, ' +
-                '.lakeus-theme-designer-input-textarea, ' +
-                '.lakeus-theme-designer-input-alpha, ' +
-                '.lakeus-theme-designer-auto-calculate-checkbox',
-                function () {
-                    Lakeus.schemeDerives[ Lakeus.colorSchemeMode ] = true;
-                }
-            );
             Lakeus.updateVariablesListFromForm();
         }
         // themeDesigner.css ships with this module as a ResourceLoader style,
@@ -750,10 +797,16 @@ Lakeus.resetFormFromVariablesList = function () {
         Lakeus.colorSchemes.forEach(function (scheme) {
             v.values[scheme] = v.defaults[scheme];
         });
+        // A variable's own value just moved without any of its sources moving, so
+        // a recorded fingerprint would wrongly claim it was already derived.
+        v.derivedFrom = { light: null, dark: null };
     });
-    // Back to pristine: only light derives until the author touches dark again.
-    Lakeus.schemeDerives = { light: true, dark: false };
-    Lakeus.recalculateAutoVariables();
+    // Dark is back to the skin's palette, which is internally consistent, so it
+    // stays as authored until one of its own sources moves.
+    Lakeus.markSchemeInSync('dark');
+    // Light must be re-derived now, whichever scheme is on screen, so the stored
+    // theme is complete even if the author resets and copies without tabbing back.
+    Lakeus.recalculateScheme('light');
     Lakeus.updateFormFromVariablesList();
 }
 
@@ -856,6 +909,9 @@ Lakeus.pasteThemeFromCurrentSettings = function () {
                 .getPropertyValue('--' + k).trim() || null;
         }
         v.value = Lakeus.parseVariableValue(raw, v, v.default);
+        // Values were replaced wholesale, so any recorded fingerprint for this
+        // scheme no longer describes them.
+        v.derivedFrom[scheme] = null;
     })
     Lakeus.updateFormFromVariablesList();
 }
