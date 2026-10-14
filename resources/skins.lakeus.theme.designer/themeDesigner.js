@@ -282,11 +282,20 @@ Lakeus.setupThemeDesigner = function () {
          * design instead of asking the author to re-pick a hundred colours.
          *
          * Must run before constructThemeDesigner(), which reads these values.
+         *
+         * Re-entrant: setupThemeDesigner() runs again when the reader presses
+         * reload, so this runs more than once over the same table. On the second
+         * pass `default` and `value` are already accessors that resolve against
+         * whichever scheme is being edited, so reading them would copy the dark
+         * palette into the light slot. The stored slots are read directly instead,
+         * and re-seeding `values` from `defaults` is exactly what the first pass
+         * did - every entry's literal `value` and `default` are the same
+         * expression.
          */
         Lakeus.initColorSchemes = function () {
             var missingDark = [];
             $.each(Lakeus.variablesList, function (k, v) {
-                var lightDefault = v.default;
+                var lightDefault = v.defaults ? v.defaults.light : v.default;
                 var darkRaw = Lakeus.getSkinVariableValue(k, 'dark');
                 if (darkRaw === null) {
                     missingDark.push(k);
@@ -294,7 +303,7 @@ Lakeus.setupThemeDesigner = function () {
                 var darkDefault = Lakeus.parseVariableValue(darkRaw, v, lightDefault);
 
                 v.defaults = { light: lightDefault, dark: darkDefault };
-                v.values = { light: v.value, dark: darkDefault };
+                v.values = { light: lightDefault, dark: darkDefault };
 
                 // `value` and `default` become views onto the scheme being edited.
                 Object.defineProperty(v, 'default', {
