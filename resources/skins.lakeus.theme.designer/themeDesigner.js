@@ -691,10 +691,23 @@ Lakeus.updateVariablesListFromForm = function () {
             // Derived below, once every user-entered value has been read.
             return;
         }
-        if (inputElement.attr('type') === 'color') {
+        if (v.input === 'color') {
+            // Keyed on the variable's declared input type, NOT on the <input>'s
+            // `type` attribute. The "colour picker fallback" checkbox flips that
+            // attribute to `text` for readers whose browser has no native colour
+            // picker; branching on it made colour variables collapse to raw
+            // strings, after which generateTheme() threw on value.alpha(), the
+            // form refresh threw on value.hex() and calculate() rules threw on
+            // .darken(). The fallback changes how a colour is entered, not what
+            // it means.
             var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
             var alpha = Number(inputElementAlpha.val());
-            v.value = chroma(inputElement.val()).alpha(alpha <= 1 && alpha >= 0 ? alpha : 1);
+            var raw = inputElement.val();
+            // Leave the previous value alone rather than storing something that
+            // cannot be parsed back into a colour.
+            if (chroma.valid(raw)) {
+                v.value = chroma(raw).alpha(alpha <= 1 && alpha >= 0 ? alpha : 1);
+            }
         } else {
             v.value = inputElement.val();
         }
