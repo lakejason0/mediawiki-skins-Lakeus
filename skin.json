@@ -114,7 +114,11 @@
 				"user.options"
 			],
 			"packageFiles": [
-				"resources/skins.lakeus.theme.designer/themeDesigner.js"
+				"resources/skins.lakeus.theme.designer/themeDesigner.js",
+				"resources/skins.lakeus.theme.designer/themeDesigner.variables.js"
+			],
+			"styles": [
+				"resources/skins.lakeus.theme.designer/themeDesigner.css"
 			],
 			"messages": [
 				"lakeus-theme-designer",

@@ -2161,7 +2161,7 @@ Lakeus.initThemeDesigner = function () {
                         fieldsetList.push(v.fieldset);
                     }
                 })
-                for (fieldset of fieldsetList) {
+                fieldsetList.forEach(function (fieldset) {
                     var fieldsetElement = '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-' + fieldset + '">';
                     var legendElement = '<legend class="lakeus-theme-designer-title">' + mw.message(fieldset).escaped() + '</legend>';
                     var settingsElement = '';
@@ -2172,8 +2172,21 @@ Lakeus.initThemeDesigner = function () {
                     });
                     fieldsetElement += legendElement + settingsElement + '</fieldset>';
                     result += fieldsetElement;
-                }
+                });
                 return result;
+            }
+
+            /**
+             * Escape a value for a double-quoted HTML attribute or element body.
+             *
+             * The text variables hold arbitrary CSS - font stacks with quotes in
+             * them, filter chains - so their defaults must not be concatenated raw.
+             *
+             * @param {*} value
+             * @return {string}
+             */
+            function escapeAttribute(value) {
+                return mw.html.escape(String(value));
             }
 
             function constructVariableItem(variableName, variableContent) {
@@ -2189,13 +2202,16 @@ Lakeus.initThemeDesigner = function () {
                     settingElement +=
                         '<label>' +
                             mw.message('lakeus-theme-designer-' + variableName).escaped() +
-                            '<input type="text" class="lakeus-theme-designer-input-text" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
+                            '<input type="text" class="lakeus-theme-designer-input-text" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + escapeAttribute(variableContent.default) + '" />' +
                         '</label>';
                 } else if (variableContent.input === 'textarea') {
+                    // Nothing uses this yet, but <input type="textarea"> is not a real
+                    // input type; a proper <textarea> is what the stylesheet and the
+                    // form-reading code both expect.
                     settingElement +=
                         '<label>' +
                             mw.message('lakeus-theme-designer-' + variableName).escaped() +
-                            '<input type="textarea" class="lakeus-theme-designer-input-textarea" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default + '" />' +
+                            '<textarea class="lakeus-theme-designer-input-textarea" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '">' + escapeAttribute(variableContent.default) + '</textarea>' +
                         '</label>';
                 }
 
@@ -2311,22 +2327,27 @@ Lakeus.initThemeDesigner = function () {
                     var checked = $(this).prop('checked');
                     $(".lakeus-theme-designer-input-color").attr("type", (checked ? "text" : "color"));
                 });
-                $("#lakeus-theme-designer-copy-theme-button").click(function (e) { e.preventDefault; Lakeus.copyTheme(); });
-                $("#lakeus-theme-designer-paste-theme-button").click(function (e) { e.preventDefault; Lakeus.pasteThemeFromCurrentSettings(); });
-                $("#lakeus-theme-designer-test-theme-button").click(function (e) { e.preventDefault; Lakeus.testTheme(); });
-                $("#lakeus-theme-designer-clear-theme-button").click(function (e) { e.preventDefault; Lakeus.clearTheme(); });
-                $("#lakeus-theme-designer-reset-theme-button").click(function (e) { e.preventDefault; Lakeus.resetFormFromVariablesList(); });
-                $("#lakeus-theme-designer-reload-button").click(function (e) { e.preventDefault; Lakeus.reloadThemeDesigner(); });
-                $("#lakeus-theme-designer-invert-auto-calculate-selection-button").click(function (e) { e.preventDefault; Lakeus.invertAutoCalculateSelection(); });
-                $("#lakeus-theme-designer-unselect-do-not-generate-selection-button").click(function (e) { e.preventDefault; Lakeus.unselectDoNotGenerateSelection(); });
-                $("#lakeus-theme-designer-portlet-body").submit(function (e) { e.preventDefault; });
+                $("#lakeus-theme-designer-copy-theme-button").click(function (e) { e.preventDefault(); Lakeus.copyTheme(); });
+                $("#lakeus-theme-designer-paste-theme-button").click(function (e) { e.preventDefault(); Lakeus.pasteThemeFromCurrentSettings(); });
+                $("#lakeus-theme-designer-test-theme-button").click(function (e) { e.preventDefault(); Lakeus.testTheme(); });
+                $("#lakeus-theme-designer-clear-theme-button").click(function (e) { e.preventDefault(); Lakeus.clearTheme(); });
+                $("#lakeus-theme-designer-reset-theme-button").click(function (e) { e.preventDefault(); Lakeus.resetFormFromVariablesList(); });
+                $("#lakeus-theme-designer-reload-button").click(function (e) { e.preventDefault(); Lakeus.reloadThemeDesigner(); });
+                $("#lakeus-theme-designer-invert-auto-calculate-selection-button").click(function (e) { e.preventDefault(); Lakeus.invertAutoCalculateSelection(); });
+                $("#lakeus-theme-designer-unselect-do-not-generate-selection-button").click(function (e) { e.preventDefault(); Lakeus.unselectDoNotGenerateSelection(); });
+                // Without this, pressing Enter in a text field would submit the form
+                // and reload the page, throwing away the theme being edited.
+                $("#lakeus-theme-designer-portlet-body").submit(function (e) { e.preventDefault(); });
                 $(".lakeus-theme-designer-color-scheme-radio").on('change', function () {
                     Lakeus.switchColorScheme($(this).val());
                 });
                 Lakeus.updateVariablesListFromForm();
             }
-            var stylePath = mw.config.get('stylepath');
-            $('head').append('<link id="lakeus-theme-designer-style" rel="stylesheet" href="' + stylePath + '/Lakeus/resources/skins.lakeus.theme.designer/themeDesigner.css' + '" type="text/css" />');
+            // themeDesigner.css ships with this module as a ResourceLoader style,
+            // so it is versioned and cached with the script. It used to be injected
+            // here as a <link> built from mw.config.get('stylepath') + '/Lakeus/...',
+            // which hard-coded the skin's directory name.
+            //
             // Must run before the form is built: the form reads each variable's
             // per-scheme value.
             Lakeus.initColorSchemes();
@@ -2441,30 +2462,37 @@ Lakeus.generateTheme = function () {
     return result;
 }
 
+/**
+ * Show the generated stylesheet in the panel.
+ *
+ * Used when the clipboard is unavailable or the write was refused, so the user
+ * can still select and copy the CSS by hand.
+ *
+ * @param {string} generatedCode
+ */
+Lakeus.showGeneratedTheme = function (generatedCode) {
+    var $pre = $("<pre>");
+    $pre.attr("id", "lakeus-theme-designer-result-pre-element");
+    $pre.text(generatedCode);
+    $("#lakeus-theme-designer-result").empty().append($pre);
+};
+
 Lakeus.copyTheme = function () {
     if (!($("body").attr("testing") === 'true')) {
         Lakeus.updateVariablesListFromForm();
     }
 
-    generatedCode = Lakeus.generateTheme();
+    var generatedCode = Lakeus.generateTheme();
     if (navigator.clipboard) {
         navigator.clipboard.writeText(generatedCode).then(function () {
             mw.notify(mw.message("lakeus-theme-designer-copied"));
         }, function () {
             mw.notify(mw.message("lakeus-theme-designer-copy-failed"));
-
-            $pre = $("<pre>");
-            $pre.attr("id", "lakeus-theme-designer-result-pre-element");
-            $pre.text(generatedCode);
-            $("#lakeus-theme-designer-result").empty().append($pre);
+            Lakeus.showGeneratedTheme(generatedCode);
         });
     } else {
         mw.notify(mw.message("lakeus-theme-designer-copy-failed"));
-
-        $pre = $("<pre>");
-        $pre.attr("id", "lakeus-theme-designer-result-pre-element");
-        $pre.text(generatedCode);
-        $("#lakeus-theme-designer-result").empty().append($pre);
+        Lakeus.showGeneratedTheme(generatedCode);
     }
 }
 
@@ -2554,9 +2582,13 @@ Lakeus.unselectDoNotGenerateSelection = function () {
     });
 }
 
+/**
+ * Tear the panel down. The stylesheet is part of this ResourceLoader module and
+ * is deliberately left alone; it is scoped to the panel's own ids, so it costs
+ * nothing once the markup is gone.
+ */
 Lakeus.unloadThemeDesigner = function () {
     $("#lakeus-theme-designer").remove();
-    $("#lakeus-theme-designer-style").remove();
 }
 
 Lakeus.reloadThemeDesigner = function () {
