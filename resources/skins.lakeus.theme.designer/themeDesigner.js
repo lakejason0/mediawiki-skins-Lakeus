@@ -237,6 +237,24 @@ Lakeus.setupThemeDesigner = function () {
         Lakeus.colorSchemes = [ 'light', 'dark' ];
 
         /**
+         * Which schemes' auto-calculated variables are derived rather than seeded.
+         *
+         * `rule.autoCalculate === 'calculateWhenNotNeeded'` means "work the value
+         * out when nothing provides one". That is true for light: its seed is this
+         * table's own literal, which is the input those rules were written against.
+         * It is NOT true for dark: there the skin already provides an authored
+         * `--<name>-dark`, and running the heuristics over it is a downgrade - the
+         * rules return opaque colours, so e.g. `border-color-toc-button` lost its
+         * alpha and became an invisible black border on a dark background.
+         *
+         * So a scheme is derived only once the author actually engages with it.
+         * This also removes a history dependence: deriving on scheme *visits* meant
+         * the same theme came out differently depending on whether the dark tab had
+         * been opened.
+         */
+        Lakeus.schemeDerives = { light: true, dark: false };
+
+        /**
          * Read a themeable value out of the skin's own stylesheet.
          *
          * Because the skin declares both halves in an unconditional `:root`
@@ -360,6 +378,10 @@ Lakeus.setupThemeDesigner = function () {
          * until the values stop moving removes the dependence on list order.
          */
         Lakeus.recalculateAutoVariables = function () {
+            // A scheme the author has not engaged with keeps its seeded palette.
+            if (!Lakeus.schemeDerives[Lakeus.colorSchemeMode]) {
+                return;
+            }
             // Generous cap; real chains are three deep (color-secondary ->
             // background-color-body -> color-link--visited).
             var maxPasses = 10;
@@ -614,6 +636,21 @@ Lakeus.setupThemeDesigner = function () {
             $(".lakeus-theme-designer-color-scheme-radio").on('change', function () {
                 Lakeus.switchColorScheme($(this).val());
             });
+            // Touching a value marks the scheme being edited as authored, which is
+            // what lets its auto-calculated variables derive. Scoped to value inputs
+            // on purpose: the colour-scheme radios would otherwise mark the outgoing
+            // scheme on their way past.
+            $("#lakeus-theme-designer-portlet-body").on(
+                'input change',
+                '.lakeus-theme-designer-input-color, ' +
+                '.lakeus-theme-designer-input-text, ' +
+                '.lakeus-theme-designer-input-textarea, ' +
+                '.lakeus-theme-designer-input-alpha, ' +
+                '.lakeus-theme-designer-auto-calculate-checkbox',
+                function () {
+                    Lakeus.schemeDerives[ Lakeus.colorSchemeMode ] = true;
+                }
+            );
             Lakeus.updateVariablesListFromForm();
         }
         // themeDesigner.css ships with this module as a ResourceLoader style,
@@ -693,6 +730,8 @@ Lakeus.resetFormFromVariablesList = function () {
             v.values[scheme] = v.defaults[scheme];
         });
     });
+    // Back to pristine: only light derives until the author touches dark again.
+    Lakeus.schemeDerives = { light: true, dark: false };
     Lakeus.recalculateAutoVariables();
     Lakeus.updateFormFromVariablesList();
 }
