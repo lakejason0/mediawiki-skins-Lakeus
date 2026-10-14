@@ -1,3 +1,5 @@
+const chroma = require( 'skins.lakeus.chroma' );
+
 window.Lakeus = window.Lakeus || {};
 
 /*
@@ -29,6 +31,9 @@ Lakeus.initThemeDesigner = function () {
     $.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg']), $.ready).then(function () {
         return new mw.Api().loadMessagesIfMissing([
             "lakeus-theme-designer",
+            "lakeus-theme-designer-color-scheme",
+            "lakeus-theme-designer-color-scheme-light",
+            "lakeus-theme-designer-color-scheme-dark",
             "lakeus-theme-designer-system-messages-loaded",
             "lakeus-theme-designer-all-loaded",
             "lakeus-theme-designer-auto-calculate",
@@ -157,7 +162,12 @@ Lakeus.initThemeDesigner = function () {
         ]);
     }).then(function () {
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));
-        $.getScript("https://cdn.jsdelivr.net/npm/chroma-js@2.1.2/chroma.min.js", function () {
+        // chroma.js used to be pulled from jsDelivr right here with $.getScript().
+        // It is now vendored as the ResourceLoader module "skins.lakeus.chroma" and
+        // required at the top of this file, so initialisation no longer depends on a
+        // third-party CDN being reachable. The IIFE keeps the original scoping of
+        // this block; it gets flattened when the file is restructured.
+        (function () {
 
             /* Leaving it as-is since 50% contrast method works differently */
             Lakeus.getContrastYIQ = function (hexcolor, black, white) {
@@ -1956,6 +1966,193 @@ Lakeus.initThemeDesigner = function () {
                 },
             };
 
+            /* Light/dark colour scheme support
+             *
+             * The skin declares every themeable variable twice - as `--<name>-light`
+             * and `--<name>-dark`, both in an unconditional `:root` block - and its own
+             * `.theme-light()` / `.theme-dark()` mixins map `--<name>` onto whichever
+             * half the active colour scheme needs.
+             *
+             * A stylesheet loaded after the skin (site CSS, or a user's common.css)
+             * therefore only has to supply both halves, and the skin resolves every
+             * scheme by itself. That means no `light-dark()` - which MediaWiki's CSS
+             * sanitiser rejects - and no duplicated dark-mode block either.
+             *
+             * The designer mirrors that shape: each variable keeps one value per
+             * scheme, `value` / `default` become accessors resolving against the scheme
+             * currently being edited (so all existing calculate() rules keep working
+             * untouched), and generateTheme() emits `<name>-light` / `<name>-dark` pairs.
+             */
+
+            /** Colour scheme currently being edited: 'light' or 'dark'. */
+            Lakeus.colorSchemeMode = 'light';
+
+            /** Colour schemes the designer edits, in UI order. */
+            Lakeus.colorSchemes = [ 'light', 'dark' ];
+
+            /**
+             * Read a themeable value out of the skin's own stylesheet.
+             *
+             * Because the skin declares both halves in an unconditional `:root`
+             * block, both are readable no matter which scheme is in effect. Returns
+             * null when the skin does not define the variable, so callers can fall
+             * back to their built-in default rather than inventing a value.
+             *
+             * @param {string} variableName Variable name without the scheme suffix.
+             * @param {string} scheme 'light' or 'dark'.
+             * @return {?string} Raw CSS value, or null when undefined.
+             */
+            Lakeus.getSkinVariableValue = function (variableName, scheme) {
+                var raw = window.getComputedStyle(document.documentElement)
+                    .getPropertyValue('--' + variableName + '-' + scheme)
+                    .trim();
+                return raw === '' ? null : raw;
+            };
+
+            /**
+             * Coerce a raw CSS value into what the variable's input type expects.
+             *
+             * @param {?string} raw
+             * @param {Object} variable Entry from Lakeus.variablesList.
+             * @param {*} fallback Used when the raw value cannot be interpreted.
+             * @return {*}
+             */
+            Lakeus.parseVariableValue = function (raw, variable, fallback) {
+                if (raw === null || raw === undefined) {
+                    return fallback;
+                }
+                if (variable.input !== 'color') {
+                    return raw;
+                }
+                return chroma.valid(raw) ? chroma(raw) : fallback;
+            };
+
+            /**
+             * Give every variable a value and a default for each colour scheme.
+             *
+             * Light keeps the literal defaults declared in `variablesList`, so light
+             * output is unchanged by this feature. Dark is seeded from the skin's own
+             * `--<name>-dark`, which means a generated theme inherits the skin's dark
+             * design instead of asking the author to re-pick a hundred colours.
+             *
+             * Must run before constructThemeDesigner(), which reads these values.
+             */
+            Lakeus.initColorSchemes = function () {
+                var missingDark = [];
+                $.each(Lakeus.variablesList, function (k, v) {
+                    var lightDefault = v.default;
+                    var darkRaw = Lakeus.getSkinVariableValue(k, 'dark');
+                    if (darkRaw === null) {
+                        missingDark.push(k);
+                    }
+                    var darkDefault = Lakeus.parseVariableValue(darkRaw, v, lightDefault);
+
+                    v.defaults = { light: lightDefault, dark: darkDefault };
+                    v.values = { light: v.value, dark: darkDefault };
+
+                    // `value` and `default` become views onto the scheme being edited.
+                    Object.defineProperty(v, 'default', {
+                        get: function () {
+                            return this.defaults[Lakeus.colorSchemeMode];
+                        },
+                        configurable: true,
+                    });
+                    Object.defineProperty(v, 'value', {
+                        get: function () {
+                            return this.values[Lakeus.colorSchemeMode];
+                        },
+                        set: function (newValue) {
+                            this.values[Lakeus.colorSchemeMode] = newValue;
+                        },
+                        configurable: true,
+                    });
+                });
+                if (missingDark.length) {
+                    console.warn('[Lakeus] The skin defines no --<name>-dark for: ' +
+                        missingDark.join(', ') + '. Those fall back to the light default.');
+                }
+            };
+
+            /**
+             * Whether a variable's value is derived instead of user-entered.
+             *
+             * Prefers the checkbox in the form, because the user can invert the
+             * selection; falls back to the declared rule before the form exists.
+             *
+             * @param {string} k Variable name.
+             * @param {Object} v Entry from Lakeus.variablesList.
+             * @return {boolean}
+             */
+            Lakeus.isAutoCalculated = function (k, v) {
+                var checkbox = $("#lakeus-theme-designer-input-auto-calculate-" + k);
+                if (checkbox.length) {
+                    return checkbox.prop('checked');
+                }
+                return (v.rule || {}).autoCalculate === 'calculateWhenNotNeeded';
+            };
+
+            /**
+             * Recompute every auto-calculated variable for the scheme being edited.
+             *
+             * calculate() rules read other variables through `value`, which resolves
+             * against the active scheme, so a pass is needed after switching schemes.
+             * A rule may depend on variables that are themselves auto-calculated and
+             * the list order does not always put dependencies first, so the pass is
+             * repeated to let the values settle.
+             */
+            Lakeus.recalculateAutoVariables = function () {
+                for (var pass = 0; pass < 2; pass++) {
+                    $.each(Lakeus.variablesList, function (k, v) {
+                        if (Lakeus.isAutoCalculated(k, v)) {
+                            v.value = v.calculate(undefined);
+                        }
+                    });
+                }
+            };
+
+            /**
+             * Switch which scheme's values the form edits.
+             *
+             * @param {string} scheme 'light' or 'dark'.
+             */
+            Lakeus.switchColorScheme = function (scheme) {
+                if (Lakeus.colorSchemes.indexOf(scheme) === -1 || scheme === Lakeus.colorSchemeMode) {
+                    return;
+                }
+                // Flush the form into the scheme being left behind before moving on.
+                Lakeus.updateVariablesListFromForm();
+                Lakeus.colorSchemeMode = scheme;
+                Lakeus.recalculateAutoVariables();
+                Lakeus.updateFormFromVariablesList();
+            };
+
+            /**
+             * Radio pair choosing which colour scheme's values the form edits.
+             *
+             * The skin always renders both schemes from the same stylesheet, so the
+             * designer has to let the author pick which one they are filling in.
+             *
+             * @return {string} HTML.
+             */
+            function constructColorSchemeSelector() {
+                var result = '<fieldset class="lakeus-theme-designer-fieldset ' +
+                    'lakeus-theme-designer-color-scheme-fieldset" ' +
+                    'id="lakeus-theme-designer-fieldset-color-scheme">' +
+                    '<legend class="lakeus-theme-designer-title">' +
+                    mw.message("lakeus-theme-designer-color-scheme").escaped() +
+                    '</legend>';
+                Lakeus.colorSchemes.forEach(function (scheme) {
+                    result +=
+                        '<label>' +
+                            '<input type="radio" class="lakeus-theme-designer-color-scheme-radio" ' +
+                                'name="lakeus-theme-designer-color-scheme" value="' + scheme + '"' +
+                                (scheme === Lakeus.colorSchemeMode ? ' checked' : '') + '>' +
+                            mw.message("lakeus-theme-designer-color-scheme-" + scheme).escaped() +
+                        '</label>';
+                });
+                return result + '</fieldset>';
+            }
+
             function constructThemeDesignerBody() {
                 var fieldsetList = [];
                 var result = '';
@@ -2055,6 +2252,7 @@ Lakeus.initThemeDesigner = function () {
                             '<form id="lakeus-theme-designer-portlet-body">' +
                                 '<div id="lakeus-theme-designer-portlet-body-container">' +
                                     '<h1 id="lakeus-theme-designer-title">' + mw.message("lakeus-theme-designer").escaped() + '</h1>' +
+                                    constructColorSchemeSelector() +
                                     Lakeus.constructColorDatalist() +
                                     constructThemeDesignerBody() +
                                     '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-danger-zone">' +
@@ -2122,13 +2320,19 @@ Lakeus.initThemeDesigner = function () {
                 $("#lakeus-theme-designer-invert-auto-calculate-selection-button").click(function (e) { e.preventDefault; Lakeus.invertAutoCalculateSelection(); });
                 $("#lakeus-theme-designer-unselect-do-not-generate-selection-button").click(function (e) { e.preventDefault; Lakeus.unselectDoNotGenerateSelection(); });
                 $("#lakeus-theme-designer-portlet-body").submit(function (e) { e.preventDefault; });
+                $(".lakeus-theme-designer-color-scheme-radio").on('change', function () {
+                    Lakeus.switchColorScheme($(this).val());
+                });
                 Lakeus.updateVariablesListFromForm();
             }
             var stylePath = mw.config.get('stylepath');
             $('head').append('<link id="lakeus-theme-designer-style" rel="stylesheet" href="' + stylePath + '/Lakeus/resources/skins.lakeus.theme.designer/themeDesigner.css' + '" type="text/css" />');
+            // Must run before the form is built: the form reads each variable's
+            // per-scheme value.
+            Lakeus.initColorSchemes();
             constructThemeDesigner();
             console.log("[Lakeus] " + mw.message('lakeus-theme-designer-all-loaded'));
-        });
+        }());
     });
 };
 
@@ -2171,31 +2375,66 @@ Lakeus.updateFormFromVariablesList = function () {
     })
 }
 
+/**
+ * Restore every variable, in every colour scheme, to the skin default.
+ *
+ * The danger-zone button resets the whole theme rather than only the scheme on
+ * screen, so a half-edited dark palette cannot survive a reset invisibly.
+ */
 Lakeus.resetFormFromVariablesList = function () {
     $.each(Lakeus.variablesList, function (k, v) {
-        var inputElement = $("#lakeus-theme-designer-input-" + k);
-        if (v.input === 'color') {
-            inputElement.val(v.default.hex('rgb'));
-            $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.default.alpha());
-        } else {
-            inputElement.val(v.default);
-        }
-    })
+        Lakeus.colorSchemes.forEach(function (scheme) {
+            v.values[scheme] = v.defaults[scheme];
+        });
+    });
+    Lakeus.recalculateAutoVariables();
+    Lakeus.updateFormFromVariablesList();
 }
 
+/**
+ * Render one `--<name>-<scheme>: value;` declaration.
+ *
+ * @param {string} name Variable name.
+ * @param {string} scheme 'light' or 'dark'.
+ * @param {Object} variable Entry from Lakeus.variablesList.
+ * @return {string} Declaration including trailing newline, or '' if valueless.
+ */
+Lakeus.formatThemeDeclaration = function (name, scheme, variable) {
+    var value = variable.values[scheme];
+    if (value === undefined || value === null || value === '') {
+        return '';
+    }
+    if (variable.input === 'color') {
+        return '    --' + name + '-' + scheme + ': ' +
+            (value.alpha() < 1 ? value.css() : value.hex()) + ';\n';
+    }
+    return '    --' + name + '-' + scheme + ': ' + value + ';\n';
+};
+
+/**
+ * Build the stylesheet the user copies into their CSS page.
+ *
+ * Output is a single `:root` block declaring both halves of every variable, e.g.
+ *
+ *     :root {
+ *         --color-primary-light: #3366cc;
+ *         --color-primary-dark: #9dc3f7;
+ *     }
+ *
+ * The skin's own `.theme-light()` / `.theme-dark()` mixins do the rest, so this
+ * covers the explicit-dark scheme, the wiki-default-dark scheme and automatic
+ * `prefers-color-scheme` at once - the dark values do not have to be repeated
+ * under each of those selectors.
+ *
+ * @return {string}
+ */
 Lakeus.generateTheme = function () {
     var result = ':root {\n';
     $.each(Lakeus.variablesList, function (k, v) {
         if (!v.skipped) {
-            if (v.input === 'color') {
-                if (v.value.alpha() < 1) {
-                    result += '    ' + '--' + k + ': ' + v.value.css() + ';\n';
-                } else {
-                    result += '    ' + '--' + k + ': ' + v.value.hex() + ';\n';
-                }
-            } else {
-                result += '    ' + '--' + k + ': ' + v.value + ';\n';
-            }
+            Lakeus.colorSchemes.forEach(function (scheme) {
+                result += Lakeus.formatThemeDeclaration(k, scheme, v);
+            });
         }
     });
     result += '}\n';
@@ -2229,16 +2468,50 @@ Lakeus.copyTheme = function () {
     }
 }
 
+/**
+ * Load the values the page is currently rendering with into the form.
+ *
+ * Reads the scheme-specific half the skin declares, falling back to the resolved
+ * `--<name>` for anything the skin does not split per scheme.
+ */
 Lakeus.pasteThemeFromCurrentSettings = function () {
+    var scheme = Lakeus.colorSchemeMode;
     $.each(Lakeus.variablesList, function (k, v) {
-        if (v.input === 'color') {
-            Lakeus.variablesList[k].value = chroma(window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k)) || v.default;
-        } else {
-            Lakeus.variablesList[k].value = window.getComputedStyle(document.querySelector('html')).getPropertyValue("--" + k) || v.default;
+        var raw = Lakeus.getSkinVariableValue(k, scheme);
+        if (raw === null) {
+            raw = window.getComputedStyle(document.documentElement)
+                .getPropertyValue('--' + k).trim() || null;
         }
+        v.value = Lakeus.parseVariableValue(raw, v, v.default);
     })
     Lakeus.updateFormFromVariablesList();
 }
+
+/**
+ * Paint both colour schemes onto <html> as inline custom properties.
+ *
+ * Inline declarations outrank every stylesheet, so the skin's own
+ * `.theme-light()` / `.theme-dark()` mixins immediately resolve against the
+ * previewed values in whichever scheme is active - including when the reader
+ * switches scheme while the preview is up. Skipped variables are explicitly
+ * removed rather than set, so the preview matches what generateTheme() emits.
+ */
+Lakeus.applyThemeToDocument = function () {
+    var html = document.documentElement;
+    $.each(Lakeus.variablesList, function (k, v) {
+        Lakeus.colorSchemes.forEach(function (scheme) {
+            var property = '--' + k + '-' + scheme;
+            var value = v.values[scheme];
+            if (v.skipped || value === undefined || value === null || value === '') {
+                html.style.removeProperty(property);
+                return;
+            }
+            html.style.setProperty(property, v.input === 'color'
+                ? (value.alpha() < 1 ? value.css() : value.hex())
+                : value);
+        });
+    });
+};
 
 Lakeus.testTheme = function () {
     Lakeus.updateVariablesListFromForm();
@@ -2246,18 +2519,10 @@ Lakeus.testTheme = function () {
     $("body").attr("testing", "true");
     $("#lakeus-theme-designer-test-theme-button").prop('disabled', true);
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', false);
-    $(".lakeus-theme-designer-fieldset").prop('disabled', true);
-    $.each(Lakeus.variablesList, function (k, v) {
-        if (v.input === 'color') {
-            if (v.value.alpha() < 1) {
-                document.querySelector('html').style.setProperty('--' + k, v.value.css());
-            } else {
-                document.querySelector('html').style.setProperty("--" + k, v.value.hex());
-            }
-        } else {
-            document.querySelector('html').style.setProperty("--" + k, v.value);
-        }
-    });
+    // The colour scheme selector stays live so both schemes can be previewed.
+    $(".lakeus-theme-designer-fieldset").not(".lakeus-theme-designer-color-scheme-fieldset")
+        .prop('disabled', true);
+    Lakeus.applyThemeToDocument();
 }
 
 Lakeus.clearTheme = function () {
@@ -2265,8 +2530,11 @@ Lakeus.clearTheme = function () {
     $("#lakeus-theme-designer-test-theme-button").prop('disabled', false);
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', true);
     $(".lakeus-theme-designer-fieldset").prop('disabled', false);
+    var html = document.documentElement;
     $.each(Lakeus.variablesList, function (k, v) {
-        document.querySelector('html').style.removeProperty("--" + k);
+        Lakeus.colorSchemes.forEach(function (scheme) {
+            html.style.removeProperty('--' + k + '-' + scheme);
+        });
     });
 }
 

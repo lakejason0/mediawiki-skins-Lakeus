@@ -54,6 +54,11 @@
 				"CdxToggleSwitch"
 			]
 		},
+		"skins.lakeus.chroma": {
+			"packageFiles": [
+				"resources/lib/chroma-js/chroma.min.js"
+			]
+		},
 		"skins.lakeus.scripts": {
 			"styles": "resources/skins.lakeus.scripts/skin.js.less",
 			"packageFiles": [
@@ -105,6 +110,7 @@
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.jqueryMsg",
+				"skins.lakeus.chroma",
 				"user.options"
 			],
 			"packageFiles": [
@@ -112,6 +118,9 @@
 			],
 			"messages": [
 				"lakeus-theme-designer",
+				"lakeus-theme-designer-color-scheme",
+				"lakeus-theme-designer-color-scheme-light",
+				"lakeus-theme-designer-color-scheme-dark",
 				"lakeus-theme-designer-system-messages-loaded",
 				"lakeus-theme-designer-all-loaded",
 				"lakeus-theme-designer-auto-calculate",
