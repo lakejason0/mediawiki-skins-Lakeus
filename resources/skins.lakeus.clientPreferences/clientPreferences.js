@@ -67,7 +67,7 @@ function getVisibleClientPreferences( config ) {
 	const active = getClientPreferences();
 
 	// Order should be based on key in config.json
-	return Object.keys( config ).filter( ( key ) => active.indexOf( key ) !== -1 );
+	return Object.keys( config ).filter( ( key ) => active.includes( key ) );
 }
 
 /**
@@ -163,7 +163,7 @@ function makeLabelElement( featureName, value ) {
 	const labelText = document.createElement( 'span' );
 
 	labelText.classList.add( 'cdx-label__label__text' );
-
+	// eslint-disable-next-line mediawiki/msg-doc
 	labelText.textContent = getMessage( `${ featureName }-option-${ value }-label` );
 
 	label.appendChild( labelText );
@@ -181,7 +181,7 @@ function makeLabelElement( featureName, value ) {
  */
 function makeExclusionNotice( featureName ) {
 	const p = document.createElement( 'p' );
-
+	// eslint-disable-next-line mediawiki/msg-doc
 	const noticeMessage = getMessage( `${ featureName }-exclusion-notice` );
 
 	p.classList.add( 'exclusion-notice', `${ featureName }-exclusion-notice` );
@@ -287,7 +287,7 @@ function createRow( className ) {
  * @param {string} featureName
  * @return {MwMessage}
  */
-
+// eslint-disable-next-line mediawiki/msg-doc
 const getFeatureLabelMsg = ( featureName ) => getMessage( `${ featureName }-name` );
 
 /**
@@ -362,7 +362,7 @@ function makeClientPreference( parent, featureName, config ) {
 	// If the user is not debugging messages and no language exists,
 	// exit as its a hidden client preference.
 	if ( !labelMsg.exists() && mw.config.get( 'wgUserLanguage' ) !== 'qqx' ) {
-		mw.log( `Oops! ${ featureName }` );
+		console.log(`Oops! ${featureName}`);
 
 		return;
 	}

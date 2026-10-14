@@ -17,6 +17,9 @@ const showEmptySearchRecommendations = false;
  * @return {void}
  */
 function initApp( searchBox ) {
+	// These two were assigned without a declaration, so they became implicit
+	// globals that leaked out of this function and were shared by every search box
+	// on the page.
 	const urlGeneratorInstance = urlGenerator( mw.config.get( 'wgScript' ) );
 
 	const restClient = restSearchClient(
@@ -70,11 +73,11 @@ function initApp( searchBox ) {
  * @return {void}
  */
 function main( document ) {
-	// NodeList.prototype.forEach is not available in the browsers this skin
-	// still supports, so the array method is applied to it explicitly.
+	// NodeList.prototype.forEach does not exist in the browsers this skin still
+	// supports, so the array method is applied to the NodeList explicitly.
 	Array.prototype.forEach.call(
 		document.querySelectorAll( '.lakeus-search-box' ),
-		( node ) => {
+		function ( node ) {
 			initApp( node );
 		}
 	);

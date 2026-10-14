@@ -1,50 +1,50 @@
 /* scripts can go here */
 window.Lakeus = window.Lakeus || {};
-Lakeus.portletOutsideClose = function ( id ) {
-	$( document ).on( 'click', ( event ) => {
-		const container = document.getElementById( id );
-		if ( container ) {
-			if ( container !== event.target && !container.contains( event.target ) ) {
-				$( '#' + id + ' input[type="checkbox"]' ).prop( 'checked', false );
-			}
-		}
-	} );
-};
+Lakeus.portletOutsideClose = function (id) {
+    $(document).on('click', function (event) {
+        var container = document.getElementById(id);
+        if (container) {
+            if (container !== event.target && !container.contains(event.target)) {
+                $('#' + id + ' input[type="checkbox"]').prop('checked', false);
+            }
+        }
+    })
+}
 Lakeus.stickyTOCAutoCollapse = function () {
-	$( document ).on( 'click', ( event ) => {
-		const container = document.getElementById( 'lakeus-sticky-toc' );
-		if ( container ) {
-			if ( Lakeus.isStickyTOCAutoCollapse ) {
-				if ( $( event.target ).is( '.lakeus-sticky-toc-anchor' ) || $( event.target ).is( '.lakeus-sticky-toc-tocnumber' ) || $( event.target ).is( '.lakeus-sticky-toc-toctext' ) ) {
-					$( container ).find( 'input[type="checkbox"]' ).prop( 'checked', false );
-				}
-			}
-			if ( !$( event.target ).closest( '#lakeus-sticky-toc' ).length && !$( event.target ).is( '#lakeus-sticky-toc' ) ) {
-				$( container ).find( 'input[type="checkbox"]' ).prop( 'checked', false );
-			}
-		}
-	} );
-};
-$( () => {
-	Lakeus.portletOutsideClose( 'p-personal' );
-	Lakeus.portletOutsideClose( 'p-client-preferences' );
-	Lakeus.portletOutsideClose( 'p-cactions' );
-	Lakeus.portletOutsideClose( 'p-lang' );
-	Lakeus.portletOutsideClose( 'p-variants' );
-	Lakeus.portletOutsideClose( 'p-tb' );
-	Lakeus.stickyTOCAutoCollapse();
-} );
+    $(document).on('click', function (event) {
+        var container = document.getElementById('lakeus-sticky-toc');
+        if (container) {
+            if ( Lakeus.isStickyTOCAutoCollapse ) {
+                if ( $(event.target).is('.lakeus-sticky-toc-anchor') || $(event.target).is('.lakeus-sticky-toc-tocnumber') || $(event.target).is('.lakeus-sticky-toc-toctext') ) {
+                    $('#lakeus-sticky-toc input[type="checkbox"]').prop('checked', false);
+                }
+            }
+            if ( !$(event.target).closest('#lakeus-sticky-toc').length && !$(event.target).is('#lakeus-sticky-toc') ) {
+                $('#lakeus-sticky-toc input[type="checkbox"]').prop('checked', false);
+            }
+        }
+    })
+}
+$(function () {
+    Lakeus.portletOutsideClose('p-personal');
+    Lakeus.portletOutsideClose('p-client-preferences');
+    Lakeus.portletOutsideClose('p-cactions');
+    Lakeus.portletOutsideClose('p-lang');
+    Lakeus.portletOutsideClose('p-variants');
+    Lakeus.portletOutsideClose('p-tb');
+    Lakeus.stickyTOCAutoCollapse();
+});
 
-$.when( mw.loader.using( [ 'user.options' ] ), $.ready ).then( () => {
-	Lakeus.isStickyTOCAutoCollapse = !mw.user.options.get( 'lakeus-sticky-toc-donot-auto-collapse' );
+$.when(mw.loader.using(['user.options']), $.ready).then(function () {
+    Lakeus.isStickyTOCAutoCollapse = !mw.user.options.get('lakeus-sticky-toc-donot-auto-collapse');
 
-	if ( mw.user.options.get( 'lakeus-smooth-scroll-behavior' ) ) {
-		$( [ document.documentElement, document.body ] ).addClass( 'lakeus-smooth-scrolling' );
+	if (mw.user.options.get('lakeus-smooth-scroll-behavior')) {
+		$("html, body").addClass('lakeus-smooth-scrolling');
 	}
-} );
+});
 
 /* Experimental overflowing table scrolling, borrowed from Timeless */
-mw.hook( 'wikipage.content' ).add( ( $content ) => {
+mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	$content.find( 'div > table:not( table table )' ).wrap( '<div class="content-table-wrapper"><div class="content-table"></div></div>' );
 	$content.find( '.content-table-wrapper' ).prepend( '<div class="content-table-left"></div><div class="content-table-right"></div>' );
 
@@ -54,7 +54,7 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	 * @param {jQuery} $table
 	 */
 	function setScrollClass( $table ) {
-		const $tableWrapper = $table.parent(),
+		var $tableWrapper = $table.parent(),
 			$wrapper = $tableWrapper.parent(),
 			// wtf browser rtl implementations
 			scroll = Math.abs( $tableWrapper.scrollLeft() );
@@ -88,7 +88,7 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	 */
 	function unOverflowTables() {
 		$content.find( '.content-table > table' ).each( function () {
-			const $table = $( this ),
+			var $table = $( this ),
 				$wrapper = $table.parent().parent();
 			if ( $table.outerWidth() > $wrapper.outerWidth() ) {
 				$wrapper.addClass( 'overflowed' );
@@ -100,13 +100,14 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 
 		// Set up sticky captions
 		$content.find( '.content-table > table > caption' ).each( function () {
-			const $table = $( this ).parent();
-			const $wrapper = $table.parent().parent();
+			var $container, tableHeight,
+				$table = $( this ).parent(),
+				$wrapper = $table.parent().parent();
 
 			if ( $table.outerWidth() > $wrapper.outerWidth() ) {
-				const $container = $( this ).parents( '.content-table-wrapper' );
+				$container = $( this ).parents( '.content-table-wrapper' );
 				$( this ).width( $content.width() );
-				const tableHeight = $container.innerHeight() - $( this ).outerHeight();
+				tableHeight = $container.innerHeight() - $( this ).outerHeight();
 
 				$container.find( '.content-table-left' ).height( tableHeight );
 				$container.find( '.content-table-right' ).height( tableHeight );
@@ -121,12 +122,14 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	 * Sticky scrollbars maybe?!
 	 */
 	$content.find( '.content-table' ).each( function () {
-		const $tableWrapper = $( this );
-		const $table = $tableWrapper.children( 'table' ).first();
+		var $table, $tableWrapper, $spoof, $scrollbar;
+
+		$tableWrapper = $( this );
+		$table = $tableWrapper.children( 'table' ).first();
 
 		// Assemble our silly crap and add to page
-		const $scrollbar = $( '<div>' ).addClass( 'content-table-scrollbar inactive' ).width( $content.width() );
-		const $spoof = $( '<div>' ).addClass( 'content-table-spoof' ).width( $table.outerWidth() );
+		$scrollbar = $( '<div>' ).addClass( 'content-table-scrollbar inactive' ).width( $content.width() );
+		$spoof = $( '<div>' ).addClass( 'content-table-spoof' ).width( $table.outerWidth() );
 		$tableWrapper.parent().prepend( $scrollbar.prepend( $spoof ) );
 	} );
 
@@ -135,12 +138,12 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	 */
 	$content.find( '.content-table' ).on( 'scroll', function () {
 		// Only do this here if we're not already mirroring the spoof
-		const $mirror = $( this ).siblings( '.inactive' ).first();
+		var $mirror = $( this ).siblings( '.inactive' ).first();
 
 		$mirror.scrollLeft( $( this ).scrollLeft() );
 	} );
 	$content.find( '.content-table-scrollbar' ).on( 'scroll', function () {
-		const $mirror = $( this ).siblings( '.content-table' ).first();
+		var $mirror = $( this ).siblings( '.content-table' ).first();
 
 		// Only do this here if we're not already mirroring the table
 		// eslint-disable-next-line no-jquery/no-class-state
@@ -154,10 +157,11 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	 */
 	function determineActiveSpoofScrollbars() {
 		$content.find( '.overflowed .content-table' ).each( function () {
-			const $scrollbar = $( this ).siblings( '.content-table-scrollbar' ).first();
+			var $scrollbar = $( this ).siblings( '.content-table-scrollbar' ).first(),
+				tableTop, tableBottom, viewBottom, captionHeight;
 
 			// Skip caption
-			let captionHeight = $( this ).find( 'caption' ).outerHeight();
+			captionHeight = $( this ).find( 'caption' ).outerHeight();
 
 			if ( !captionHeight ) {
 				captionHeight = 0;
@@ -166,9 +170,9 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 				captionHeight += 8;
 			}
 
-			const tableTop = $( this ).offset().top;
-			const tableBottom = tableTop + $( this ).outerHeight();
-			const viewBottom = window.scrollY + document.documentElement.clientHeight;
+			tableTop = $( this ).offset().top;
+			tableBottom = tableTop + $( this ).outerHeight();
+			viewBottom = window.scrollY + document.documentElement.clientHeight;
 
 			if ( tableTop + captionHeight < viewBottom && tableBottom > viewBottom ) {
 				$scrollbar.removeClass( 'inactive' );
@@ -184,9 +188,9 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	/**
 	 * Make sure tablespoofs remain correctly-sized?
 	 */
-	$( window ).on( 'resize', () => {
+	$( window ).on( 'resize', function () {
 		$content.find( '.content-table-scrollbar' ).each( function () {
-			const width = $( this ).siblings().first().find( 'table' ).first().width();
+			var width = $( this ).siblings().first().find( 'table' ).first().width();
 			$( this ).find( '.content-table-spoof' ).first().width( width );
 			$( this ).width( $content.width() );
 		} );

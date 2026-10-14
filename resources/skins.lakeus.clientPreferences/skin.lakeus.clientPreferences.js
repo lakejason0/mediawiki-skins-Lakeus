@@ -1,8 +1,5 @@
 /**
  * Define callback functions.
- *
- * @param featureName
- * @param value
  */
 function onLakeusUpdateColorScheme( featureName, value ) {
 	const prefix = 'skin-theme-clientpref-';
@@ -44,8 +41,8 @@ function loadClientPreferences() {
 		/**
 		 * Setup callback functions
 		 */
-		clientPreferenceConfig[ 'lakeus-color-scheme' ].callbacks = {
-			ClientPrefsUpdateClassList: onLakeusUpdateColorScheme
+		clientPreferenceConfig['lakeus-color-scheme']['callbacks'] = {
+			'ClientPrefsUpdateClassList': onLakeusUpdateColorScheme
 		};
 
 		clientPreferences.render( `#${ clientPreferenceId } > .mw-portlet-body > ul`, clientPreferenceConfig );
