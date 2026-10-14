@@ -2,6 +2,20 @@ const chroma = require( 'skins.lakeus.chroma' );
 
 window.Lakeus = window.Lakeus || {};
 
+/**
+ * The Theme Designer panel, or null before it has been built.
+ *
+ * Lookups go through this so they are scoped to a known node instead of scanning
+ * the whole document, which is what MediaWiki's no-jquery/no-global-selector
+ * rule asks for. `$( null ).find( ... )` is an empty set, so callers that run
+ * before the panel exists simply match nothing.
+ *
+ * @return {?HTMLElement}
+ */
+function panel() {
+	return document.getElementById( 'lakeus-theme-designer' );
+}
+
 /*
     TODO List:
     1. [X] Use chroma("color") in Lakeus.variablesList for default and value;
@@ -23,147 +37,145 @@ window.Lakeus = window.Lakeus || {};
 */
 
 Lakeus.initThemeDesigner = function () {
-    if (!$('body').hasClass('skin-lakeus')) {
-        console.log("[Lakeus] Do not load Lakeus Theme Designer when not using Lakeus skin.");
-        return;
-    }
-    console.log("[Lakeus] Theme Designer is loading...");
-    $.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg']), $.ready).then(function () {
-        return new mw.Api().loadMessagesIfMissing([
-            "lakeus-theme-designer",
-            "lakeus-theme-designer-color-scheme",
-            "lakeus-theme-designer-color-scheme-light",
-            "lakeus-theme-designer-color-scheme-dark",
-            "lakeus-theme-designer-system-messages-loaded",
-            "lakeus-theme-designer-all-loaded",
-            "lakeus-theme-designer-auto-calculate",
-            "lakeus-theme-designer-do-not-generate",
-            "lakeus-theme-designer-copy-theme",
-            "lakeus-theme-designer-paste-theme",
-            "lakeus-theme-designer-test-theme",
-            "lakeus-theme-designer-clear-theme",
-            "lakeus-theme-designer-reset-theme",
-            "lakeus-theme-designer-invert-auto-calculate-selection",
-            "lakeus-theme-designer-unselect-do-not-generate-selection",
-            "lakeus-theme-designer-copied",
-            "lakeus-theme-designer-copy-failed",
-            "lakeus-theme-designer-reload",
-            "lakeus-theme-designer-color-picker-fallback",
-            "lakeus-theme-designer-alpha-channel",
-            "lakeus-theme-designer-basic",
-            "lakeus-theme-designer-color-primary",
-            "lakeus-theme-designer-color-secondary",
-            "lakeus-theme-designer-color-neutral",
-            "lakeus-theme-designer-color-warning",
-            "lakeus-theme-designer-color-error",
-            "lakeus-theme-designer-color-success",
-            "lakeus-theme-designer-basic-derived",
-            "lakeus-theme-designer-color-secondary--derived",
-            "lakeus-theme-designer-border-color-secondary--derived",
-            "lakeus-theme-designer-global",
-            "lakeus-theme-designer-background-color-base",
-            "lakeus-theme-designer-color-link",
-            "lakeus-theme-designer-color-link--visited",
-            "lakeus-theme-designer-color-link--active",
-            "lakeus-theme-designer-color-link-new",
-            "lakeus-theme-designer-color-link-new--visited",
-            "lakeus-theme-designer-color-link-new--active",
-            "lakeus-theme-designer-color-footer-link",
-            "lakeus-theme-designer-color-footer-link--visited",
-            "lakeus-theme-designer-color-footer-link--active",
-            "lakeus-theme-designer-color-link-external",
-            "lakeus-theme-designer-color-link-external--visited",
-            "lakeus-theme-designer-color-link-external--active",
-            "lakeus-theme-designer-elevation",
-            "lakeus-theme-designer-font-family",
-            "lakeus-theme-designer-font-family-serif",
-            "lakeus-theme-designer-font-family-action-bar",
-            "lakeus-theme-designer-page-header",
-            "lakeus-theme-designer-color-header",
-            "lakeus-theme-designer-header-elevation",
-            "lakeus-theme-designer-icon-filter-header",
-            "lakeus-theme-designer-background-color-search-suggestions",
-            "lakeus-theme-designer-border-color-search-suggestions",
-            "lakeus-theme-designer-color-search-suggestions-text",
-            "lakeus-theme-designer-background-color-search-suggestions-current",
-            "lakeus-theme-designer-color-search-suggestions-text-current",
-            "lakeus-theme-designer-background-color-search-input",
-            "lakeus-theme-designer-border-color-search-bar",
-            "lakeus-theme-designer-box-shadow-search-input",
-            "lakeus-theme-designer-box-shadow-color-search-input",
-            "lakeus-theme-designer-toggle-list",
-            "lakeus-theme-designer-background-color-toggle-list",
-            "lakeus-theme-designer-background-color-toggle-list-card",
-            "lakeus-theme-designer-logo-text-color-toggle-list",
-            "lakeus-theme-designer-background-color-toggle-list-item-hover",
-            "lakeus-theme-designer-background-color-toggle-list-item-focus",
-            "lakeus-theme-designer-border-color-toggle-list",
-            "lakeus-theme-designer-subheader-color-toggle-list",
-            "lakeus-theme-designer-mask-background",
-            "lakeus-theme-designer-body",
-            "lakeus-theme-designer-background-color-content",
-            "lakeus-theme-designer-background-color-body",
-            "lakeus-theme-designer-border-color-content",
-            "lakeus-theme-designer-color-accent-header-tab",
-            "lakeus-theme-designer-border-color-header-tab",
-            "lakeus-theme-designer-color-tagline",
-            "lakeus-theme-designer-font-family-headings",
-            "lakeus-theme-designer-background-color-edit-options",
-            "lakeus-theme-designer-border-color-edit-options",
-            "lakeus-theme-designer-background-color-toc",
-            "lakeus-theme-designer-border-color-toc",
-            "lakeus-theme-designer-color-toc-number",
-            "lakeus-theme-designer-border-color-interface-message-box-neutral",
-            "lakeus-theme-designer-background-color-interface-message-box-neutral",
-            "lakeus-theme-designer-text-color-interface-message-box-neutral",
-            "lakeus-theme-designer-border-color-interface-message-box-warning",
-            "lakeus-theme-designer-background-color-interface-message-box-warning",
-            "lakeus-theme-designer-text-color-interface-message-box-warning",
-            "lakeus-theme-designer-border-color-interface-message-box-error",
-            "lakeus-theme-designer-background-color-interface-message-box-error",
-            "lakeus-theme-designer-text-color-interface-message-box-error",
-            "lakeus-theme-designer-border-color-interface-message-box-success",
-            "lakeus-theme-designer-background-color-interface-message-box-success",
-            "lakeus-theme-designer-text-color-interface-message-box-success",
-            "lakeus-theme-designer-border-color-user-message",
-            "lakeus-theme-designer-background-color-user-message",
-            "lakeus-theme-designer-text-color-user-message",
-            "lakeus-theme-designer-background-color-wikitable",
-            "lakeus-theme-designer-border-color-wikitable",
-            "lakeus-theme-designer-background-color-wikitable-table-head",
-            "lakeus-theme-designer-text-color-wikitable",
-            "lakeus-theme-designer-portlet",
-            "lakeus-theme-designer-background-color-portlet-body",
-            "lakeus-theme-designer-text-color-portlet-item",
-            "lakeus-theme-designer-background-color-portlet-item-hover",
-            "lakeus-theme-designer-text-color-portlet-item-hover",
-            "lakeus-theme-designer-background-color-portlet-item-focus",
-            "lakeus-theme-designer-text-color-portlet-item-focus",
-            "lakeus-theme-designer-border-color-portlet-body",
-            "lakeus-theme-designer-box-shadow-portlet-body",
-            "lakeus-theme-designer-box-shadow-color-portlet-body",
-            "lakeus-theme-designer-footer",
-            "lakeus-theme-designer-background-color-footer",
-            "lakeus-theme-designer-text-color-footer",
-            "lakeus-theme-designer-text-color-toggle-list-item",
-            "lakeus-theme-designer-text-color-toggle-list-item-hover",
-            "lakeus-theme-designer-text-color-toggle-list-item-focus",
-            "lakeus-theme-designer-text-color-content",
-            "lakeus-theme-designer-text-color-header",
-            "lakeus-theme-designer-text-color-body",
-            "lakeus-theme-designer-color-accent-header-tab-selected",
-            "lakeus-theme-designer-color-accent-header-tab-new",
-            "lakeus-theme-designer-sticky-toc",
-            "lakeus-theme-designer-background-color-toc-button",
-            "lakeus-theme-designer-border-color-toc-button",
-            "lakeus-theme-designer-icon-filter-toc-button",
-            "lakeus-theme-designer-text-color-sticky-toc-number",
-            "lakeus-theme-designer-danger-zone",
-        ]);
-    }).then(function () {
-        console.log("[Lakeus] " + mw.message('lakeus-theme-designer-system-messages-loaded'));
-        Lakeus.setupThemeDesigner();
-    });
+	if ( !document.body.classList.contains( 'skin-lakeus' ) ) {
+		mw.log( '[Lakeus] Do not load Lakeus Theme Designer when not using Lakeus skin.' );
+		return;
+	}
+	mw.log( '[Lakeus] Theme Designer is loading...' );
+	$.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.jqueryMsg' ] ), $.ready ).then( () => new mw.Api().loadMessagesIfMissing( [
+		'lakeus-theme-designer',
+		'lakeus-theme-designer-color-scheme',
+		'lakeus-theme-designer-color-scheme-light',
+		'lakeus-theme-designer-color-scheme-dark',
+		'lakeus-theme-designer-system-messages-loaded',
+		'lakeus-theme-designer-all-loaded',
+		'lakeus-theme-designer-auto-calculate',
+		'lakeus-theme-designer-do-not-generate',
+		'lakeus-theme-designer-copy-theme',
+		'lakeus-theme-designer-paste-theme',
+		'lakeus-theme-designer-test-theme',
+		'lakeus-theme-designer-clear-theme',
+		'lakeus-theme-designer-reset-theme',
+		'lakeus-theme-designer-invert-auto-calculate-selection',
+		'lakeus-theme-designer-unselect-do-not-generate-selection',
+		'lakeus-theme-designer-copied',
+		'lakeus-theme-designer-copy-failed',
+		'lakeus-theme-designer-reload',
+		'lakeus-theme-designer-color-picker-fallback',
+		'lakeus-theme-designer-alpha-channel',
+		'lakeus-theme-designer-basic',
+		'lakeus-theme-designer-color-primary',
+		'lakeus-theme-designer-color-secondary',
+		'lakeus-theme-designer-color-neutral',
+		'lakeus-theme-designer-color-warning',
+		'lakeus-theme-designer-color-error',
+		'lakeus-theme-designer-color-success',
+		'lakeus-theme-designer-basic-derived',
+		'lakeus-theme-designer-color-secondary--derived',
+		'lakeus-theme-designer-border-color-secondary--derived',
+		'lakeus-theme-designer-global',
+		'lakeus-theme-designer-background-color-base',
+		'lakeus-theme-designer-color-link',
+		'lakeus-theme-designer-color-link--visited',
+		'lakeus-theme-designer-color-link--active',
+		'lakeus-theme-designer-color-link-new',
+		'lakeus-theme-designer-color-link-new--visited',
+		'lakeus-theme-designer-color-link-new--active',
+		'lakeus-theme-designer-color-footer-link',
+		'lakeus-theme-designer-color-footer-link--visited',
+		'lakeus-theme-designer-color-footer-link--active',
+		'lakeus-theme-designer-color-link-external',
+		'lakeus-theme-designer-color-link-external--visited',
+		'lakeus-theme-designer-color-link-external--active',
+		'lakeus-theme-designer-elevation',
+		'lakeus-theme-designer-font-family',
+		'lakeus-theme-designer-font-family-serif',
+		'lakeus-theme-designer-font-family-action-bar',
+		'lakeus-theme-designer-page-header',
+		'lakeus-theme-designer-color-header',
+		'lakeus-theme-designer-header-elevation',
+		'lakeus-theme-designer-icon-filter-header',
+		'lakeus-theme-designer-background-color-search-suggestions',
+		'lakeus-theme-designer-border-color-search-suggestions',
+		'lakeus-theme-designer-color-search-suggestions-text',
+		'lakeus-theme-designer-background-color-search-suggestions-current',
+		'lakeus-theme-designer-color-search-suggestions-text-current',
+		'lakeus-theme-designer-background-color-search-input',
+		'lakeus-theme-designer-border-color-search-bar',
+		'lakeus-theme-designer-box-shadow-search-input',
+		'lakeus-theme-designer-box-shadow-color-search-input',
+		'lakeus-theme-designer-toggle-list',
+		'lakeus-theme-designer-background-color-toggle-list',
+		'lakeus-theme-designer-background-color-toggle-list-card',
+		'lakeus-theme-designer-logo-text-color-toggle-list',
+		'lakeus-theme-designer-background-color-toggle-list-item-hover',
+		'lakeus-theme-designer-background-color-toggle-list-item-focus',
+		'lakeus-theme-designer-border-color-toggle-list',
+		'lakeus-theme-designer-subheader-color-toggle-list',
+		'lakeus-theme-designer-mask-background',
+		'lakeus-theme-designer-body',
+		'lakeus-theme-designer-background-color-content',
+		'lakeus-theme-designer-background-color-body',
+		'lakeus-theme-designer-border-color-content',
+		'lakeus-theme-designer-color-accent-header-tab',
+		'lakeus-theme-designer-border-color-header-tab',
+		'lakeus-theme-designer-color-tagline',
+		'lakeus-theme-designer-font-family-headings',
+		'lakeus-theme-designer-background-color-edit-options',
+		'lakeus-theme-designer-border-color-edit-options',
+		'lakeus-theme-designer-background-color-toc',
+		'lakeus-theme-designer-border-color-toc',
+		'lakeus-theme-designer-color-toc-number',
+		'lakeus-theme-designer-border-color-interface-message-box-neutral',
+		'lakeus-theme-designer-background-color-interface-message-box-neutral',
+		'lakeus-theme-designer-text-color-interface-message-box-neutral',
+		'lakeus-theme-designer-border-color-interface-message-box-warning',
+		'lakeus-theme-designer-background-color-interface-message-box-warning',
+		'lakeus-theme-designer-text-color-interface-message-box-warning',
+		'lakeus-theme-designer-border-color-interface-message-box-error',
+		'lakeus-theme-designer-background-color-interface-message-box-error',
+		'lakeus-theme-designer-text-color-interface-message-box-error',
+		'lakeus-theme-designer-border-color-interface-message-box-success',
+		'lakeus-theme-designer-background-color-interface-message-box-success',
+		'lakeus-theme-designer-text-color-interface-message-box-success',
+		'lakeus-theme-designer-border-color-user-message',
+		'lakeus-theme-designer-background-color-user-message',
+		'lakeus-theme-designer-text-color-user-message',
+		'lakeus-theme-designer-background-color-wikitable',
+		'lakeus-theme-designer-border-color-wikitable',
+		'lakeus-theme-designer-background-color-wikitable-table-head',
+		'lakeus-theme-designer-text-color-wikitable',
+		'lakeus-theme-designer-portlet',
+		'lakeus-theme-designer-background-color-portlet-body',
+		'lakeus-theme-designer-text-color-portlet-item',
+		'lakeus-theme-designer-background-color-portlet-item-hover',
+		'lakeus-theme-designer-text-color-portlet-item-hover',
+		'lakeus-theme-designer-background-color-portlet-item-focus',
+		'lakeus-theme-designer-text-color-portlet-item-focus',
+		'lakeus-theme-designer-border-color-portlet-body',
+		'lakeus-theme-designer-box-shadow-portlet-body',
+		'lakeus-theme-designer-box-shadow-color-portlet-body',
+		'lakeus-theme-designer-footer',
+		'lakeus-theme-designer-background-color-footer',
+		'lakeus-theme-designer-text-color-footer',
+		'lakeus-theme-designer-text-color-toggle-list-item',
+		'lakeus-theme-designer-text-color-toggle-list-item-hover',
+		'lakeus-theme-designer-text-color-toggle-list-item-focus',
+		'lakeus-theme-designer-text-color-content',
+		'lakeus-theme-designer-text-color-header',
+		'lakeus-theme-designer-text-color-body',
+		'lakeus-theme-designer-color-accent-header-tab-selected',
+		'lakeus-theme-designer-color-accent-header-tab-new',
+		'lakeus-theme-designer-sticky-toc',
+		'lakeus-theme-designer-background-color-toc-button',
+		'lakeus-theme-designer-border-color-toc-button',
+		'lakeus-theme-designer-icon-filter-toc-button',
+		'lakeus-theme-designer-text-color-sticky-toc-number',
+		'lakeus-theme-designer-danger-zone'
+	] ) ).then( () => {
+		mw.log( '[Lakeus] ' + mw.message( 'lakeus-theme-designer-system-messages-loaded' ) );
+		Lakeus.setupThemeDesigner();
+	} );
 };
 
 /**
@@ -172,47 +184,47 @@ Lakeus.initThemeDesigner = function () {
  */
 Lakeus.setupThemeDesigner = function () {
 
-        /* Leaving it as-is since 50% contrast method works differently */
-        Lakeus.getContrastYIQ = function (hexcolor, black, white) {
-            hexcolor = hexcolor.replace("#", "");
-            var r = parseInt(hexcolor.substr(0, 2), 16);
-            var g = parseInt(hexcolor.substr(2, 2), 16);
-            var b = parseInt(hexcolor.substr(4, 2), 16);
-            var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-            return (yiq >= 128) ? (black ? black : '#000000') : (white ? white : '#ffffff');
-        }
+	/* Leaving it as-is since 50% contrast method works differently */
+	Lakeus.getContrastYIQ = function ( hexcolor, black, white ) {
+		hexcolor = hexcolor.replace( '#', '' );
+		const r = parseInt( hexcolor.slice( 0, 2 ), 16 );
+		const g = parseInt( hexcolor.slice( 2, 4 ), 16 );
+		const b = parseInt( hexcolor.slice( 4, 6 ), 16 );
+		const yiq = ( ( r * 299 ) + ( g * 587 ) + ( b * 114 ) ) / 1000;
+		return ( yiq >= 128 ) ? ( black || '#000000' ) : ( white || '#ffffff' );
+	};
 
-        Lakeus.calculateRGBAActualValue = function (frontRGBA, backgroundRGB){
+	Lakeus.calculateRGBAActualValue = function ( frontRGBA, backgroundRGB ) {
 
-            var rtrn = {};
-            //allows the function to just accept a front colour and assume the background is a plain white.
-            backgroundRGB = backgroundRGB || chroma([255, 255, 255]);
+		const rtrn = {};
+		// allows the function to just accept a front colour and assume the background is a plain white.
+		backgroundRGB = backgroundRGB || chroma( [ 255, 255, 255 ] );
 
-            //allows a RGB value to be passed in assuming full alpha channel.
-            frontRGBA.alpha(frontRGBA.alpha() || 1);
+		// allows a RGB value to be passed in assuming full alpha channel.
+		frontRGBA.alpha( frontRGBA.alpha() || 1 );
 
-            //normalise the alpha channel across the foreground and background.
-            rtrn.r = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.r")) + (frontRGBA.alpha() * frontRGBA.get("rgb.r"));
-            rtrn.g = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.g")) + (frontRGBA.alpha() * frontRGBA.get("rgb.g"));
-            rtrn.b = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.b")) + (frontRGBA.alpha() * frontRGBA.get("rgb.b"));
+		// normalise the alpha channel across the foreground and background.
+		rtrn.r = ( ( 1 - frontRGBA.alpha() ) * backgroundRGB.get( 'rgb.r' ) ) + ( frontRGBA.alpha() * frontRGBA.get( 'rgb.r' ) );
+		rtrn.g = ( ( 1 - frontRGBA.alpha() ) * backgroundRGB.get( 'rgb.g' ) ) + ( frontRGBA.alpha() * frontRGBA.get( 'rgb.g' ) );
+		rtrn.b = ( ( 1 - frontRGBA.alpha() ) * backgroundRGB.get( 'rgb.b' ) ) + ( frontRGBA.alpha() * frontRGBA.get( 'rgb.b' ) );
 
-            //just check that we don't end up with a value greater than 255 for any channel.
-            rtrn.r = (rtrn.r > 255) ? 255 : rtrn.r;
-            rtrn.g = (rtrn.g > 255) ? 255 : rtrn.g;
-            rtrn.b = (rtrn.b > 255) ? 255 : rtrn.b;
+		// just check that we don't end up with a value greater than 255 for any channel.
+		rtrn.r = ( rtrn.r > 255 ) ? 255 : rtrn.r;
+		rtrn.g = ( rtrn.g > 255 ) ? 255 : rtrn.g;
+		rtrn.b = ( rtrn.b > 255 ) ? 255 : rtrn.b;
 
-            return chroma(rtrn);
+		return chroma( rtrn );
 
-        }
+	};
 
-        Lakeus.changeColorBrightnessByContrast = function (foregroundColor, backgroundColor, brightenCoefficient, darkenCoefficient) {
-            return (Lakeus.getContrastYIQ(backgroundColor.hex(), "black", "white") === "white" ? foregroundColor.brighten(brightenCoefficient) : foregroundColor.darken(darkenCoefficient));
-        }
+	Lakeus.changeColorBrightnessByContrast = function ( foregroundColor, backgroundColor, brightenCoefficient, darkenCoefficient ) {
+		return ( Lakeus.getContrastYIQ( backgroundColor.hex(), 'black', 'white' ) === 'white' ? foregroundColor.brighten( brightenCoefficient ) : foregroundColor.darken( darkenCoefficient ) );
+	};
 
-        /* CSS Variables List */
-        Lakeus.variablesList = require( './themeDesigner.variables.js' )( Lakeus, chroma );
+	/* CSS Variables List */
+	Lakeus.variablesList = require( './themeDesigner.variables.js' )( Lakeus, chroma );
 
-        /* Light/dark colour scheme support
+	/* Light/dark colour scheme support
          *
          * The skin declares every themeable variable twice - as `--<name>-light`
          * and `--<name>-dark`, both in an unconditional `:root` block - and its own
@@ -230,486 +242,517 @@ Lakeus.setupThemeDesigner = function () {
          * untouched), and generateTheme() emits `<name>-light` / `<name>-dark` pairs.
          */
 
-        /** Colour scheme currently being edited: 'light' or 'dark'. */
-        Lakeus.colorSchemeMode = 'light';
+	/** Colour scheme currently being edited: 'light' or 'dark'. */
+	Lakeus.colorSchemeMode = 'light';
 
-        /** Colour schemes the designer edits, in UI order. */
-        Lakeus.colorSchemes = [ 'light', 'dark' ];
+	/** Colour schemes the designer edits, in UI order. */
+	Lakeus.colorSchemes = [ 'light', 'dark' ];
 
-        /**
-         * Record, per scheme, the source values a variable was last derived from.
-         *
-         * This is what makes derivation dependency-scoped rather than wholesale:
-         * a variable is recomputed only when one of the values its `calculate()`
-         * rule reads has actually moved. Two earlier approaches were worse -
-         * recomputing every rule on every scheme visit overwrote the skin's
-         * authored dark palette, and gating on "the author touched this scheme"
-         * meant un-ticking one "auto calculate" box recomputed all 74 of them.
-         *
-         * `null` means "never derived in this scheme", so the rule runs once.
-         * Populated for dark by initColorSchemes(), because the skin hands over a
-         * finished dark palette that is already self-consistent.
-         */
+	/**
+	 * Record, per scheme, the source values a variable was last derived from.
+	 *
+	 * This is what makes derivation dependency-scoped rather than wholesale:
+	 * a variable is recomputed only when one of the values its `calculate()`
+	 * rule reads has actually moved. Two earlier approaches were worse -
+	 * recomputing every rule on every scheme visit overwrote the skin's
+	 * authored dark palette, and gating on "the author touched this scheme"
+	 * meant un-ticking one "auto calculate" box recomputed all 74 of them.
+	 *
+	 * `null` means "never derived in this scheme", so the rule runs once.
+	 * Populated for dark by initColorSchemes(), because the skin hands over a
+	 * finished dark palette that is already self-consistent.
+	 */
 
-        /**
-         * Read a themeable value out of the skin's own stylesheet.
-         *
-         * Because the skin declares both halves in an unconditional `:root`
-         * block, both are readable no matter which scheme is in effect. Returns
-         * null when the skin does not define the variable, so callers can fall
-         * back to their built-in default rather than inventing a value.
-         *
-         * @param {string} variableName Variable name without the scheme suffix.
-         * @param {string} scheme 'light' or 'dark'.
-         * @return {?string} Raw CSS value, or null when undefined.
-         */
-        Lakeus.getSkinVariableValue = function (variableName, scheme) {
-            var raw = window.getComputedStyle(document.documentElement)
-                .getPropertyValue('--' + variableName + '-' + scheme)
-                .trim();
-            return raw === '' ? null : raw;
-        };
+	/**
+	 * Read a themeable value out of the skin's own stylesheet.
+	 *
+	 * Because the skin declares both halves in an unconditional `:root`
+	 * block, both are readable no matter which scheme is in effect. Returns
+	 * null when the skin does not define the variable, so callers can fall
+	 * back to their built-in default rather than inventing a value.
+	 *
+	 * @param {string} variableName Variable name without the scheme suffix.
+	 * @param {string} scheme 'light' or 'dark'.
+	 * @return {?string} Raw CSS value, or null when undefined.
+	 */
+	Lakeus.getSkinVariableValue = function ( variableName, scheme ) {
+		const raw = window.getComputedStyle( document.documentElement )
+			.getPropertyValue( '--' + variableName + '-' + scheme )
+			.trim();
+		return raw === '' ? null : raw;
+	};
 
-        /**
-         * Coerce a raw CSS value into what the variable's input type expects.
-         *
-         * @param {?string} raw
-         * @param {Object} variable Entry from Lakeus.variablesList.
-         * @param {*} fallback Used when the raw value cannot be interpreted.
-         * @return {*}
-         */
-        Lakeus.parseVariableValue = function (raw, variable, fallback) {
-            if (raw === null || raw === undefined) {
-                return fallback;
-            }
-            if (variable.input !== 'color') {
-                return raw;
-            }
-            return chroma.valid(raw) ? chroma(raw) : fallback;
-        };
+	/**
+	 * Coerce a raw CSS value into what the variable's input type expects.
+	 *
+	 * @param {?string} raw
+	 * @param {Object} variable Entry from Lakeus.variablesList.
+	 * @param {*} fallback Used when the raw value cannot be interpreted.
+	 * @return {*}
+	 */
+	Lakeus.parseVariableValue = function ( raw, variable, fallback ) {
+		if ( raw === null || raw === undefined ) {
+			return fallback;
+		}
+		if ( variable.input !== 'color' ) {
+			return raw;
+		}
+		return chroma.valid( raw ) ? chroma( raw ) : fallback;
+	};
 
-        /**
-         * Give every variable a value and a default for each colour scheme.
-         *
-         * Light keeps the literal defaults declared in `variablesList`, so light
-         * output is unchanged by this feature. Dark is seeded from the skin's own
-         * `--<name>-dark`, which means a generated theme inherits the skin's dark
-         * design instead of asking the author to re-pick a hundred colours.
-         *
-         * Must run before constructThemeDesigner(), which reads these values.
-         *
-         * Re-entrant: setupThemeDesigner() runs again when the reader presses
-         * reload, so this runs more than once over the same table. On the second
-         * pass `default` and `value` are already accessors that resolve against
-         * whichever scheme is being edited, so reading them would copy the dark
-         * palette into the light slot. The stored slots are read directly instead,
-         * and re-seeding `values` from `defaults` is exactly what the first pass
-         * did - every entry's literal `value` and `default` are the same
-         * expression.
-         */
-        Lakeus.initColorSchemes = function () {
-            var missingDark = [];
-            $.each(Lakeus.variablesList, function (k, v) {
-                var lightDefault = v.defaults ? v.defaults.light : v.default;
-                var darkRaw = Lakeus.getSkinVariableValue(k, 'dark');
-                if (darkRaw === null) {
-                    missingDark.push(k);
-                }
-                var darkDefault = Lakeus.parseVariableValue(darkRaw, v, lightDefault);
+	/**
+	 * Give every variable a value and a default for each colour scheme.
+	 *
+	 * Light keeps the literal defaults declared in `variablesList`, so light
+	 * output is unchanged by this feature. Dark is seeded from the skin's own
+	 * `--<name>-dark`, which means a generated theme inherits the skin's dark
+	 * design instead of asking the author to re-pick a hundred colours.
+	 *
+	 * Must run before constructThemeDesigner(), which reads these values.
+	 *
+	 * Re-entrant: setupThemeDesigner() runs again when the reader presses
+	 * reload, so this runs more than once over the same table. On the second
+	 * pass `default` and `value` are already accessors that resolve against
+	 * whichever scheme is being edited, so reading them would copy the dark
+	 * palette into the light slot. The stored slots are read directly instead,
+	 * and re-seeding `values` from `defaults` is exactly what the first pass
+	 * did - every entry's literal `value` and `default` are the same
+	 * expression.
+	 */
+	Lakeus.initColorSchemes = function () {
+		const missingDark = [];
+		Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+			const v = Lakeus.variablesList[ k ];
+			const lightDefault = v.defaults ? v.defaults.light : v.default;
+			const darkRaw = Lakeus.getSkinVariableValue( k, 'dark' );
+			if ( darkRaw === null ) {
+				missingDark.push( k );
+			}
+			const darkDefault = Lakeus.parseVariableValue( darkRaw, v, lightDefault );
 
-                v.defaults = { light: lightDefault, dark: darkDefault };
-                v.values = { light: lightDefault, dark: darkDefault };
-                // Light is left unrecorded so the rules run over this table's own
-                // literals, exactly as they always did; dark is recorded below.
-                v.derivedFrom = { light: null, dark: null };
+			v.defaults = { light: lightDefault, dark: darkDefault };
+			v.values = { light: lightDefault, dark: darkDefault };
+			// Light is left unrecorded so the rules run over this table's own
+			// literals, exactly as they always did; dark is recorded below.
+			v.derivedFrom = { light: null, dark: null };
 
-                // `value` and `default` become views onto the scheme being edited.
-                Object.defineProperty(v, 'default', {
-                    get: function () {
-                        return this.defaults[Lakeus.colorSchemeMode];
-                    },
-                    configurable: true,
-                });
-                Object.defineProperty(v, 'value', {
-                    get: function () {
-                        return this.values[Lakeus.colorSchemeMode];
-                    },
-                    set: function (newValue) {
-                        this.values[Lakeus.colorSchemeMode] = newValue;
-                    },
-                    configurable: true,
-                });
-            });
-            if (missingDark.length) {
-                console.warn('[Lakeus] The skin defines no --<name>-dark for: ' +
-                    missingDark.join(', ') + '. Those fall back to the light default.');
-            }
-            // The skin hands over a finished dark palette, so treat it as already
-            // consistent: nothing there is recomputed until a source moves.
-            Lakeus.markSchemeInSync('dark');
-        };
+			// `value` and `default` become views onto the scheme being edited.
+			Object.defineProperty( v, 'default', {
+				get: function () {
+					return this.defaults[ Lakeus.colorSchemeMode ];
+				},
+				configurable: true
+			} );
+			Object.defineProperty( v, 'value', {
+				get: function () {
+					return this.values[ Lakeus.colorSchemeMode ];
+				},
+				set: function ( newValue ) {
+					this.values[ Lakeus.colorSchemeMode ] = newValue;
+				},
+				configurable: true
+			} );
+		} );
+		if ( missingDark.length ) {
+			mw.log.warn( '[Lakeus] The skin defines no --<name>-dark for: ' +
+				missingDark.join( ', ' ) + '. Those fall back to the light default.' );
+		}
+		// The skin hands over a finished dark palette, so treat it as already
+		// consistent: nothing there is recomputed until a source moves.
+		Lakeus.markSchemeInSync( 'dark' );
+	};
 
-        /**
-         * Whether a variable's value is derived instead of user-entered.
-         *
-         * Prefers the checkbox in the form, because the user can invert the
-         * selection; falls back to the declared rule before the form exists.
-         *
-         * @param {string} k Variable name.
-         * @param {Object} v Entry from Lakeus.variablesList.
-         * @return {boolean}
-         */
-        Lakeus.isAutoCalculated = function (k, v) {
-            var checkbox = $("#lakeus-theme-designer-input-auto-calculate-" + k);
-            if (checkbox.length) {
-                return checkbox.prop('checked');
-            }
-            return (v.rule || {}).autoCalculate === 'calculateWhenNotNeeded';
-        };
+	/**
+	 * Whether a variable's value is derived instead of user-entered.
+	 *
+	 * Prefers the checkbox in the form, because the user can invert the
+	 * selection; falls back to the declared rule before the form exists.
+	 *
+	 * @param {string} k Variable name.
+	 * @param {Object} v Entry from Lakeus.variablesList.
+	 * @return {boolean}
+	 */
+	Lakeus.isAutoCalculated = function ( k, v ) {
+		const $checkbox = $( document.getElementById( 'lakeus-theme-designer-input-auto-calculate-' + k ) );
+		if ( $checkbox.length ) {
+			return $checkbox.prop( 'checked' );
+		}
+		return ( v.rule || {} ).autoCalculate === 'calculateWhenNotNeeded';
+	};
 
-        /**
-         * A fingerprint of the values a variable's calculate() rule reads.
-         *
-         * Only `calculateFrom` is considered. A rule that declares no sources is
-         * never treated as up to date, so it keeps being recomputed - the safe
-         * default for a rule whose inputs cannot be enumerated.
-         *
-         * @param {Object} v Entry from Lakeus.variablesList.
-         * @param {string} scheme Which scheme's values to fingerprint.
-         * @return {?string} Null when the variable declares no sources.
-         */
-        Lakeus.sourceFingerprint = function (v, scheme) {
-            var names = v.calculateFrom || [];
-            if (names.length === 0) {
-                return null;
-            }
-            return names.map(function (name) {
-                var source = Lakeus.variablesList[name];
-                return name + '=' + (source ? String(source.values[scheme]) : '?');
-            }).join('|');
-        };
+	/**
+	 * A fingerprint of the values a variable's calculate() rule reads.
+	 *
+	 * Only `calculateFrom` is considered. A rule that declares no sources is
+	 * never treated as up to date, so it keeps being recomputed - the safe
+	 * default for a rule whose inputs cannot be enumerated.
+	 *
+	 * @param {Object} v Entry from Lakeus.variablesList.
+	 * @param {string} scheme Which scheme's values to fingerprint.
+	 * @return {?string} Null when the variable declares no sources.
+	 */
+	Lakeus.sourceFingerprint = function ( v, scheme ) {
+		const names = v.calculateFrom || [];
+		if ( names.length === 0 ) {
+			return null;
+		}
+		return names.map( ( name ) => {
+			const source = Lakeus.variablesList[ name ];
+			return name + '=' + ( source ? String( source.values[ scheme ] ) : '?' );
+		} ).join( '|' );
+	};
 
-        /**
-         * Declare a scheme's derived values to be in step with their sources.
-         *
-         * Used for the skin-seeded dark palette, which arrives already internally
-         * consistent, and after a reset that restores it. Without this the first
-         * pass would run every rule over the skin's palette and replace good
-         * authored colours with the heuristics' opaque approximations.
-         *
-         * @param {string} scheme
-         */
-        Lakeus.markSchemeInSync = function (scheme) {
-            $.each(Lakeus.variablesList, function (k, v) {
-                v.derivedFrom[scheme] = Lakeus.isAutoCalculated(k, v)
-                    ? Lakeus.sourceFingerprint(v, scheme)
-                    : null;
-            });
-        };
+	/**
+	 * Declare a scheme's derived values to be in step with their sources.
+	 *
+	 * Used for the skin-seeded dark palette, which arrives already internally
+	 * consistent, and after a reset that restores it. Without this the first
+	 * pass would run every rule over the skin's palette and replace good
+	 * authored colours with the heuristics' opaque approximations.
+	 *
+	 * @param {string} scheme
+	 */
+	Lakeus.markSchemeInSync = function ( scheme ) {
+		Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+			const v = Lakeus.variablesList[ k ];
+			v.derivedFrom[ scheme ] = Lakeus.isAutoCalculated( k, v ) ?
+				Lakeus.sourceFingerprint( v, scheme ) :
+				null;
+		} );
+	};
 
-        /**
-         * Bring the derived variables in the scheme being edited up to date.
-         *
-         * Two order concerns are handled here. First, only variables whose sources
-         * have actually moved are recomputed, so editing one value cannot churn a
-         * palette - and in dark it cannot replace the skin's authored colours with
-         * the heuristics' approximations. Second, the rules are order-dependent:
-         * 13 of them read a source that appears LATER in the list -
-         * color-link--visited and friends (index 14-33) read background-color-body
-         * at index 47 - so the pass repeats until the values stop moving rather
-         * than trusting list order.
-         */
-        Lakeus.recalculateAutoVariables = function () {
-            var scheme = Lakeus.colorSchemeMode;
-            // Generous cap; real chains are three deep (color-secondary ->
-            // background-color-body -> color-link--visited).
-            var maxPasses = 10;
-            for (var pass = 0; pass < maxPasses; pass++) {
-                var changed = false;
-                $.each(Lakeus.variablesList, function (k, v) {
-                    if (!Lakeus.isAutoCalculated(k, v)) {
-                        return;
-                    }
-                    var fingerprint = Lakeus.sourceFingerprint(v, scheme);
-                    if (fingerprint !== null && v.derivedFrom[scheme] === fingerprint) {
-                        // Sources unchanged since the last derivation.
-                        return;
-                    }
-                    var next = v.calculate(undefined);
-                    // String comparison is enough to detect convergence: if two
-                    // values render identically they produce identical CSS anyway.
-                    if (String(next) !== String(v.value)) {
-                        changed = true;
-                    }
-                    v.value = next;
-                    v.derivedFrom[scheme] = fingerprint;
-                });
-                if (!changed) {
-                    break;
-                }
-            }
-        };
+	/**
+	 * Bring the derived variables in the scheme being edited up to date.
+	 *
+	 * Two order concerns are handled here. First, only variables whose sources
+	 * have actually moved are recomputed, so editing one value cannot churn a
+	 * palette - and in dark it cannot replace the skin's authored colours with
+	 * the heuristics' approximations. Second, the rules are order-dependent:
+	 * 13 of them read a source that appears LATER in the list -
+	 * color-link--visited and friends (index 14-33) read background-color-body
+	 * at index 47 - so the pass repeats until the values stop moving rather
+	 * than trusting list order.
+	 */
+	Lakeus.recalculateAutoVariables = function () {
+		const scheme = Lakeus.colorSchemeMode;
+		// Generous cap; real chains are three deep (color-secondary ->
+		// background-color-body -> color-link--visited).
+		const maxPasses = 10;
+		for ( let pass = 0; pass < maxPasses; pass++ ) {
+			let changed = false;
+			Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+				const v = Lakeus.variablesList[ k ];
+				if ( !Lakeus.isAutoCalculated( k, v ) ) {
+					return;
+				}
+				const fingerprint = Lakeus.sourceFingerprint( v, scheme );
+				if ( fingerprint !== null && v.derivedFrom[ scheme ] === fingerprint ) {
+					// Sources unchanged since the last derivation.
+					return;
+				}
+				const next = v.calculate( undefined );
+				// String comparison is enough to detect convergence: if two
+				// values render identically they produce identical CSS anyway.
+				if ( String( next ) !== String( v.value ) ) {
+					changed = true;
+				}
+				v.value = next;
+				v.derivedFrom[ scheme ] = fingerprint;
+			} );
+			if ( !changed ) {
+				break;
+			}
+		}
+	};
 
-        /**
-         * Bring a specific scheme's derived values up to date, whichever scheme
-         * the author happens to be editing.
-         *
-         * calculate() rules read their sources through `value`, which resolves
-         * against the scheme being edited, so the mode is switched for the
-         * duration and restored afterwards.
-         *
-         * @param {string} scheme
-         */
-        Lakeus.recalculateScheme = function (scheme) {
-            var previous = Lakeus.colorSchemeMode;
-            Lakeus.colorSchemeMode = scheme;
-            Lakeus.recalculateAutoVariables();
-            Lakeus.colorSchemeMode = previous;
-        };
+	/**
+	 * Bring a specific scheme's derived values up to date, whichever scheme
+	 * the author happens to be editing.
+	 *
+	 * calculate() rules read their sources through `value`, which resolves
+	 * against the scheme being edited, so the mode is switched for the
+	 * duration and restored afterwards.
+	 *
+	 * @param {string} scheme
+	 */
+	Lakeus.recalculateScheme = function ( scheme ) {
+		const previous = Lakeus.colorSchemeMode;
+		Lakeus.colorSchemeMode = scheme;
+		Lakeus.recalculateAutoVariables();
+		Lakeus.colorSchemeMode = previous;
+	};
 
-        /**
-         * Switch which scheme's values the form edits.
-         *
-         * @param {string} scheme 'light' or 'dark'.
-         */
-        Lakeus.switchColorScheme = function (scheme) {
-            if (Lakeus.colorSchemes.indexOf(scheme) === -1 || scheme === Lakeus.colorSchemeMode) {
-                return;
-            }
-            // Flush the form into the scheme being left behind before moving on.
-            Lakeus.updateVariablesListFromForm();
-            Lakeus.colorSchemeMode = scheme;
-            Lakeus.recalculateAutoVariables();
-            Lakeus.updateFormFromVariablesList();
-        };
+	/**
+	 * Switch which scheme's values the form edits.
+	 *
+	 * @param {string} scheme 'light' or 'dark'.
+	 */
+	Lakeus.switchColorScheme = function ( scheme ) {
+		if ( Lakeus.colorSchemes.indexOf( scheme ) === -1 || scheme === Lakeus.colorSchemeMode ) {
+			return;
+		}
+		// Flush the form into the scheme being left behind before moving on.
+		Lakeus.updateVariablesListFromForm();
+		Lakeus.colorSchemeMode = scheme;
+		Lakeus.recalculateAutoVariables();
+		Lakeus.updateFormFromVariablesList();
+	};
 
-        /**
-         * Radio pair choosing which colour scheme's values the form edits.
-         *
-         * The skin always renders both schemes from the same stylesheet, so the
-         * designer has to let the author pick which one they are filling in.
-         *
-         * @return {string} HTML.
-         */
-        function constructColorSchemeSelector() {
-            var result = '<fieldset class="lakeus-theme-designer-fieldset ' +
+	/**
+	 * Radio pair choosing which colour scheme's values the form edits.
+	 *
+	 * The skin always renders both schemes from the same stylesheet, so the
+	 * designer has to let the author pick which one they are filling in.
+	 *
+	 * @return {string} HTML.
+	 */
+	function constructColorSchemeSelector() {
+		let result = '<fieldset class="lakeus-theme-designer-fieldset ' +
                 'lakeus-theme-designer-color-scheme-fieldset" ' +
                 'id="lakeus-theme-designer-fieldset-color-scheme">' +
                 '<legend class="lakeus-theme-designer-title">' +
-                mw.message("lakeus-theme-designer-color-scheme").escaped() +
+                mw.message( 'lakeus-theme-designer-color-scheme' ).escaped() +
                 '</legend>';
-            Lakeus.colorSchemes.forEach(function (scheme) {
-                result +=
+		Lakeus.colorSchemes.forEach( ( scheme ) => {
+			result +=
                     '<label>' +
                         '<input type="radio" class="lakeus-theme-designer-color-scheme-radio" ' +
                             'name="lakeus-theme-designer-color-scheme" value="' + scheme + '"' +
-                            (scheme === Lakeus.colorSchemeMode ? ' checked' : '') + '>' +
-                        mw.message("lakeus-theme-designer-color-scheme-" + scheme).escaped() +
+                            ( scheme === Lakeus.colorSchemeMode ? ' checked' : '' ) + '>' +
+                        mw.message( 'lakeus-theme-designer-color-scheme-' + scheme ).escaped() +
                     '</label>';
-            });
-            return result + '</fieldset>';
-        }
+		} );
+		return result + '</fieldset>';
+	}
 
-        function constructThemeDesignerBody() {
-            var fieldsetList = [];
-            var result = '';
-            $.each(Lakeus.variablesList, function (k, v) {
-                if (!(fieldsetList.includes(v.fieldset))) {
-                    fieldsetList.push(v.fieldset);
-                }
-            })
-            fieldsetList.forEach(function (fieldset) {
-                var fieldsetElement = '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-' + fieldset + '">';
-                var legendElement = '<legend class="lakeus-theme-designer-title">' + mw.message(fieldset).escaped() + '</legend>';
-                var settingsElement = '';
-                $.each(Lakeus.variablesList, function (k, v) {
-                    if (v.fieldset === fieldset) {
-                        settingsElement += constructVariableItem(k, v);
-                    }
-                });
-                fieldsetElement += legendElement + settingsElement + '</fieldset>';
-                result += fieldsetElement;
-            });
-            return result;
-        }
+	function constructThemeDesignerBody() {
+		const fieldsetList = [];
+		let result = '';
+		Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+			const v = Lakeus.variablesList[ k ];
+			if ( fieldsetList.indexOf( v.fieldset ) === -1 ) {
+				fieldsetList.push( v.fieldset );
+			}
+		} );
+		fieldsetList.forEach( ( fieldset ) => {
+			let fieldsetElement = '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-' + fieldset + '">';
+			const legendElement = '<legend class="lakeus-theme-designer-title">' + mw.message( fieldset ).escaped() + '</legend>';
+			let settingsElement = '';
+			Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+				const v = Lakeus.variablesList[ k ];
+				if ( v.fieldset === fieldset ) {
+					settingsElement += constructVariableItem( k, v );
+				}
+			} );
+			fieldsetElement += legendElement + settingsElement + '</fieldset>';
+			result += fieldsetElement;
+		} );
+		return result;
+	}
 
-        /**
-         * Escape a value for a double-quoted HTML attribute or element body.
-         *
-         * The text variables hold arbitrary CSS - font stacks with quotes in
-         * them, filter chains - so their defaults must not be concatenated raw.
-         *
-         * @param {*} value
-         * @return {string}
-         */
-        function escapeAttribute(value) {
-            return mw.html.escape(String(value));
-        }
+	/**
+	 * Escape a value for a double-quoted HTML attribute or element body.
+	 *
+	 * The text variables hold arbitrary CSS - font stacks with quotes in
+	 * them, filter chains - so their defaults must not be concatenated raw.
+	 *
+	 * @param {*} value
+	 * @return {string}
+	 */
+	function escapeAttribute( value ) {
+		return mw.html.escape( String( value ) );
+	}
 
-        function constructVariableItem(variableName, variableContent) {
-            var settingElement = '<p class="lakeus-theme-designer-variable-section" id="lakeus-theme-designer-variable-section-' + variableName + '">';
-            if (variableContent.input === 'color') {
-                settingElement +=
+	function constructVariableItem( variableName, variableContent ) {
+		let settingElement = '<p class="lakeus-theme-designer-variable-section" id="lakeus-theme-designer-variable-section-' + variableName + '">';
+		if ( variableContent.input === 'color' ) {
+			settingElement +=
                     '<label>' +
-                        mw.message('lakeus-theme-designer-' + variableName).escaped() +
-                        '<input type="color" class="lakeus-theme-designer-input-color" list="'+ (variableContent.datalist ? variableContent.datalist : "lakeus-theme-designer-preset-colors") +'" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex('rgb') + '" />' +
-                        (variableContent.allowAlpha ? '<input type="number" placeholder="' + mw.message("lakeus-theme-designer-alpha-channel").escaped() + '" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' : "") +
+                        mw.message( 'lakeus-theme-designer-' + variableName ).escaped() +
+                        '<input type="color" class="lakeus-theme-designer-input-color" list="' + ( variableContent.datalist ? variableContent.datalist : 'lakeus-theme-designer-preset-colors' ) + '" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex( 'rgb' ) + '" />' +
+                        ( variableContent.allowAlpha ? '<input type="number" placeholder="' + mw.message( 'lakeus-theme-designer-alpha-channel' ).escaped() + '" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' : '' ) +
                     '</label>';
-            } else if (variableContent.input === 'text') {
-                settingElement +=
+		} else if ( variableContent.input === 'text' ) {
+			settingElement +=
                     '<label>' +
-                        mw.message('lakeus-theme-designer-' + variableName).escaped() +
-                        '<input type="text" class="lakeus-theme-designer-input-text" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + escapeAttribute(variableContent.default) + '" />' +
+                        mw.message( 'lakeus-theme-designer-' + variableName ).escaped() +
+                        '<input type="text" class="lakeus-theme-designer-input-text" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + escapeAttribute( variableContent.default ) + '" />' +
                     '</label>';
-            } else if (variableContent.input === 'textarea') {
-                // Nothing uses this yet, but <input type="textarea"> is not a real
-                // input type; a proper <textarea> is what the stylesheet and the
-                // form-reading code both expect.
-                settingElement +=
+		} else if ( variableContent.input === 'textarea' ) {
+			// Nothing uses this yet, but <input type="textarea"> is not a real
+			// input type; a proper <textarea> is what the stylesheet and the
+			// form-reading code both expect.
+			settingElement +=
                     '<label>' +
-                        mw.message('lakeus-theme-designer-' + variableName).escaped() +
-                        '<textarea class="lakeus-theme-designer-input-textarea" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '">' + escapeAttribute(variableContent.default) + '</textarea>' +
+                        mw.message( 'lakeus-theme-designer-' + variableName ).escaped() +
+                        '<textarea class="lakeus-theme-designer-input-textarea" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '">' + escapeAttribute( variableContent.default ) + '</textarea>' +
                     '</label>';
-            }
+		}
 
-            if (variableContent.rule["autoCalculate"] === 'calculateWhenNotNeeded') {
-                settingElement +=
+		if ( variableContent.rule.autoCalculate === 'calculateWhenNotNeeded' ) {
+			settingElement +=
                     '<label>' +
-                        '<input checked type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
-                        mw.message('lakeus-theme-designer-auto-calculate').escaped() +
+                        '<input checked type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
+                        mw.message( 'lakeus-theme-designer-auto-calculate' ).escaped() +
                     '</label>';
-            } else if (variableContent.rule["autoCalculate"] === 'calculateWhenNeeded') {
-                settingElement +=
+		} else if ( variableContent.rule.autoCalculate === 'calculateWhenNeeded' ) {
+			settingElement +=
                     '<label>' +
-                        '<input type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
-                        mw.message('lakeus-theme-designer-auto-calculate').escaped() +
+                        '<input type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
+                        mw.message( 'lakeus-theme-designer-auto-calculate' ).escaped() +
                     '</label>';
-            }
+		}
 
-            if (!variableContent.rule["generateByDefault"]) {
-                settingElement +=
+		if ( !variableContent.rule.generateByDefault ) {
+			settingElement +=
                     '<label>' +
-                        '<input checked type="checkbox" class="lakeus-theme-designer-do-not-generate-checkbox" name="' + 'do-not-generate-' + variableName + '" id="lakeus-theme-designer-input-do-not-generate-' + variableName + '">' +
-                        mw.message('lakeus-theme-designer-do-not-generate').escaped() +
+                        '<input checked type="checkbox" class="lakeus-theme-designer-do-not-generate-checkbox" name="do-not-generate-' + variableName + '" id="lakeus-theme-designer-input-do-not-generate-' + variableName + '">' +
+                        mw.message( 'lakeus-theme-designer-do-not-generate' ).escaped() +
                     '</label>';
-            } else if (variableContent.rule["generateByDefault"]) {
-                settingElement +=
+		} else if ( variableContent.rule.generateByDefault ) {
+			settingElement +=
                     '<label>' +
-                        '<input type="checkbox" class="lakeus-theme-designer-do-not-generate-checkbox" name="' + 'do-not-generate-' + variableName + '" id="lakeus-theme-designer-input-do-not-generate-' + variableName + '">' +
-                        mw.message('lakeus-theme-designer-do-not-generate').escaped() +
+                        '<input type="checkbox" class="lakeus-theme-designer-do-not-generate-checkbox" name="do-not-generate-' + variableName + '" id="lakeus-theme-designer-input-do-not-generate-' + variableName + '">' +
+                        mw.message( 'lakeus-theme-designer-do-not-generate' ).escaped() +
                     '</label>';
-            }
+		}
 
-            settingElement += '</p>'
-            return settingElement;
-        }
+		settingElement += '</p>';
+		return settingElement;
+	}
 
-        Lakeus.constructColorDatalist = function (id, presetColors) {
-            id = id || 'lakeus-theme-designer-preset-colors';
-            // community-background-color (27)
-            presetColors = presetColors || ["#9cd6cc","#1b2a34","#1e5aa8","#1c58a7","#58ab41","#9dc3f7","#fcac00","#ffec6c","#ff9ecd","#8a12a8","#543324","#645a4c","#6c96bf","#dfc176","#3cb371","#aa4d8e","#cecece","#764d3b","#ff6d77","#469bc3","#19325a","#0e3e9a","#646464","#352100","#ad6140","#00451a","#545955","#91501c","#d3359d","#720012","#897d62","#069d9f","#d86d2c","#7f7f7f","#d0d0d0","#ae7a59","#d27744","#cf8a47","#78fc78","#ff8014","#ff94c2","#83724f","#898788","#bb805a","#ffffff","#923978","#8c00ff","#e0ffb0","#bdc6ad","#f5f3d7","#00852b","#cda4de","#d3f2ea","#97cbd9","#969696","#ffc995","#add9a8","#8a928d","#deea92","#f9a777","#fa9c1c","#fecccf","#f9b7a5","#00aaa4","#afbed6","#ffd67f","#564e9d","#a5ca18","#abd9ff","#901f76","#656761","#ffff80","#68c3e2","#7396c8","#aa7d55","#f785b1","#7fc475","#a06eb9","#441a91","#b7d425","#f58624","#4861ac","#5b7590","#0a1327","#d60026","#c27f53","#008e3c","#6d6e5c","#dbac34","#6a7944","#767676","#eeeeee","#77774e","#d67923","#484d48","#aa7f2e","#deac66","#a0a0a0","#989b99","#f6f2df","#f6a9bb","#671f81","#b40000","#5f3109","#ac8247","#8e5597","#fcfcfc","#f5cd2f","#f4f4f4","#fac80a","#872b17","#f06d61","#70819a","#708e7c","#75657d","#88605e","#77c9d8","#ab6038","#b0a06f","#635f52","#000000","#56e646","#fcb76d","#96709f","#0020a0","#df6695","#fbe890","#237841","#aee9ef","#6babe4","#7dc291","#559ab7","#c0ff00","#ff800d","#dab000","#f08f1c","#fc97ac","#a5a5cb","#c91a09","#c281a5","#c1dff0","#c8c8c8","#bcb4a5","#fdc383","#26469a","#e2f99a",];
-            var result = '<datalist id="'+ id +'">';
-            for (var i = 0; i < presetColors.length; i++) {
-                result += '<option value="' + presetColors[i] + '">';
-            }
-            result += '</datalist>';
-            return result;
-        }
+	Lakeus.constructColorDatalist = function ( id, presetColors ) {
+		id = id || 'lakeus-theme-designer-preset-colors';
+		// community-background-color (27)
+		presetColors = presetColors || [ '#9cd6cc', '#1b2a34', '#1e5aa8', '#1c58a7', '#58ab41', '#9dc3f7', '#fcac00', '#ffec6c', '#ff9ecd', '#8a12a8', '#543324', '#645a4c', '#6c96bf', '#dfc176', '#3cb371', '#aa4d8e', '#cecece', '#764d3b', '#ff6d77', '#469bc3', '#19325a', '#0e3e9a', '#646464', '#352100', '#ad6140', '#00451a', '#545955', '#91501c', '#d3359d', '#720012', '#897d62', '#069d9f', '#d86d2c', '#7f7f7f', '#d0d0d0', '#ae7a59', '#d27744', '#cf8a47', '#78fc78', '#ff8014', '#ff94c2', '#83724f', '#898788', '#bb805a', '#ffffff', '#923978', '#8c00ff', '#e0ffb0', '#bdc6ad', '#f5f3d7', '#00852b', '#cda4de', '#d3f2ea', '#97cbd9', '#969696', '#ffc995', '#add9a8', '#8a928d', '#deea92', '#f9a777', '#fa9c1c', '#fecccf', '#f9b7a5', '#00aaa4', '#afbed6', '#ffd67f', '#564e9d', '#a5ca18', '#abd9ff', '#901f76', '#656761', '#ffff80', '#68c3e2', '#7396c8', '#aa7d55', '#f785b1', '#7fc475', '#a06eb9', '#441a91', '#b7d425', '#f58624', '#4861ac', '#5b7590', '#0a1327', '#d60026', '#c27f53', '#008e3c', '#6d6e5c', '#dbac34', '#6a7944', '#767676', '#eeeeee', '#77774e', '#d67923', '#484d48', '#aa7f2e', '#deac66', '#a0a0a0', '#989b99', '#f6f2df', '#f6a9bb', '#671f81', '#b40000', '#5f3109', '#ac8247', '#8e5597', '#fcfcfc', '#f5cd2f', '#f4f4f4', '#fac80a', '#872b17', '#f06d61', '#70819a', '#708e7c', '#75657d', '#88605e', '#77c9d8', '#ab6038', '#b0a06f', '#635f52', '#000000', '#56e646', '#fcb76d', '#96709f', '#0020a0', '#df6695', '#fbe890', '#237841', '#aee9ef', '#6babe4', '#7dc291', '#559ab7', '#c0ff00', '#ff800d', '#dab000', '#f08f1c', '#fc97ac', '#a5a5cb', '#c91a09', '#c281a5', '#c1dff0', '#c8c8c8', '#bcb4a5', '#fdc383', '#26469a', '#e2f99a' ];
+		let result = '<datalist id="' + id + '">';
+		for ( let i = 0; i < presetColors.length; i++ ) {
+			result += '<option value="' + presetColors[ i ] + '">';
+		}
+		result += '</datalist>';
+		return result;
+	};
 
-        function constructThemeDesigner() {
-            $("body").append(
-                '<div id="lakeus-theme-designer">' +
+	function constructThemeDesigner() {
+		$( document.body ).append(
+			'<div id="lakeus-theme-designer">' +
                     '<div id="lakeus-theme-designer-portlet" aria-labelledby="lakeus-theme-designer-modal-button">' +
                         '<input type="checkbox" id="lakeus-theme-designer-modal-checkbox-hack" aria-labelledby="lakeus-theme-designer-modal-button">' +
                         '<button id="lakeus-theme-designer-modal-button">🖌️</button>' +
                         '<form id="lakeus-theme-designer-portlet-body">' +
                             '<div id="lakeus-theme-designer-portlet-body-container">' +
-                                '<h1 id="lakeus-theme-designer-title">' + mw.message("lakeus-theme-designer").escaped() + '</h1>' +
+                                '<h1 id="lakeus-theme-designer-title">' + mw.message( 'lakeus-theme-designer' ).escaped() + '</h1>' +
                                 constructColorSchemeSelector() +
                                 Lakeus.constructColorDatalist() +
                                 constructThemeDesignerBody() +
                                 '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-danger-zone">' +
-                                    '<legend class="lakeus-theme-designer-title">' + mw.message("lakeus-theme-designer-danger-zone").escaped() + '</legend>' +
-                                    '<button type="button" id="lakeus-theme-designer-reset-theme-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-reset-theme").escaped() +
+                                    '<legend class="lakeus-theme-designer-title">' + mw.message( 'lakeus-theme-designer-danger-zone' ).escaped() + '</legend>' +
+                                    '<button type="button" id="lakeus-theme-designer-reset-theme-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message( 'lakeus-theme-designer-reset-theme' ).escaped() +
                                     '</button>' +
-                                    '<button type="button" id="lakeus-theme-designer-reload-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-reload").escaped() +
+                                    '<button type="button" id="lakeus-theme-designer-reload-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message( 'lakeus-theme-designer-reload' ).escaped() +
                                     '</button>' +
-                                    '<button type="button" id="lakeus-theme-designer-invert-auto-calculate-selection-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-invert-auto-calculate-selection").escaped() +
+                                    '<button type="button" id="lakeus-theme-designer-invert-auto-calculate-selection-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message( 'lakeus-theme-designer-invert-auto-calculate-selection' ).escaped() +
                                     '</button>' +
-                                    '<button type="button" id="lakeus-theme-designer-unselect-do-not-generate-selection-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message("lakeus-theme-designer-unselect-do-not-generate-selection").escaped() +
+                                    '<button type="button" id="lakeus-theme-designer-unselect-do-not-generate-selection-button" class="lakeus-theme-designer-action-button lakeus-theme-designer-action-button-danger">' + mw.message( 'lakeus-theme-designer-unselect-do-not-generate-selection' ).escaped() +
                                     '</button>' +
                                     '<label>' +
                                         '<input type="checkbox" id="lakeus-theme-designer-color-picker-fallback-checkbox">' +
-                                        mw.message("lakeus-theme-designer-color-picker-fallback").escaped() +
+                                        mw.message( 'lakeus-theme-designer-color-picker-fallback' ).escaped() +
                                     '</label>' +
                                 '</fieldset>' +
                                 '<div id="lakeus-theme-designer-result">' +
                                 '</div>' +
                                 '<div id="lakeus-theme-designer-action-buttons">' +
-                                    '<button type="button" id="lakeus-theme-designer-copy-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-copy-theme").escaped() +
+                                    '<button type="button" id="lakeus-theme-designer-copy-theme-button" class="lakeus-theme-designer-action-button">' + mw.message( 'lakeus-theme-designer-copy-theme' ).escaped() +
                                     '</button>' +
-                                    '<button type="button" id="lakeus-theme-designer-test-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-test-theme").escaped() +
+                                    '<button type="button" id="lakeus-theme-designer-test-theme-button" class="lakeus-theme-designer-action-button">' + mw.message( 'lakeus-theme-designer-test-theme' ).escaped() +
                                     '</button>' +
-                                    '<button type="button" id="lakeus-theme-designer-paste-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-paste-theme").escaped() +
+                                    '<button type="button" id="lakeus-theme-designer-paste-theme-button" class="lakeus-theme-designer-action-button">' + mw.message( 'lakeus-theme-designer-paste-theme' ).escaped() +
                                     '</button>' +
-                                    '<button type="button" disabled id="lakeus-theme-designer-clear-theme-button" class="lakeus-theme-designer-action-button">' + mw.message("lakeus-theme-designer-clear-theme").escaped() +
+                                    '<button type="button" disabled id="lakeus-theme-designer-clear-theme-button" class="lakeus-theme-designer-action-button">' + mw.message( 'lakeus-theme-designer-clear-theme' ).escaped() +
                                     '</button>' +
                                 '</div>' +
                             '</div>' +
                         '</form>' +
                     '</div>' +
                 '</div>'
-            );
-            $(".lakeus-theme-designer-auto-calculate-checkbox").on('change', function () {
-                var checked = $(this).prop('checked');
-                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', checked);
-                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', checked);
-            });
-            $(".lakeus-theme-designer-auto-calculate-checkbox:checked").each(function () {
-                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', true);
-                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', true);
-            });
-            $(".lakeus-theme-designer-do-not-generate-checkbox").on('change', function() {
-                var checked = $(this).prop('checked');
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-")).data('skipped', checked);
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-") + "-alpha").data('skipped', checked);
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-auto-calculate-")).data('skipped', checked);
-            });
-            $(".lakeus-theme-designer-do-not-generate-checkbox:checked").each(function () {
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-")).data('skipped', true);
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-") + "-alpha").data('skipped', true);
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-auto-calculate-")).data('skipped', true);
-            });
-            $("#lakeus-theme-designer-color-picker-fallback-checkbox").on('change', function () {
-                var checked = $(this).prop('checked');
-                $(".lakeus-theme-designer-input-color").attr("type", (checked ? "text" : "color"));
-            });
-            $("#lakeus-theme-designer-copy-theme-button").click(function (e) { e.preventDefault(); Lakeus.copyTheme(); });
-            $("#lakeus-theme-designer-paste-theme-button").click(function (e) { e.preventDefault(); Lakeus.pasteThemeFromCurrentSettings(); });
-            $("#lakeus-theme-designer-test-theme-button").click(function (e) { e.preventDefault(); Lakeus.testTheme(); });
-            $("#lakeus-theme-designer-clear-theme-button").click(function (e) { e.preventDefault(); Lakeus.clearTheme(); });
-            $("#lakeus-theme-designer-reset-theme-button").click(function (e) { e.preventDefault(); Lakeus.resetFormFromVariablesList(); });
-            $("#lakeus-theme-designer-reload-button").click(function (e) { e.preventDefault(); Lakeus.reloadThemeDesigner(); });
-            $("#lakeus-theme-designer-invert-auto-calculate-selection-button").click(function (e) { e.preventDefault(); Lakeus.invertAutoCalculateSelection(); });
-            $("#lakeus-theme-designer-unselect-do-not-generate-selection-button").click(function (e) { e.preventDefault(); Lakeus.unselectDoNotGenerateSelection(); });
-            // Without this, pressing Enter in a text field would submit the form
-            // and reload the page, throwing away the theme being edited.
-            $("#lakeus-theme-designer-portlet-body").submit(function (e) { e.preventDefault(); });
-            $(".lakeus-theme-designer-color-scheme-radio").on('change', function () {
-                Lakeus.switchColorScheme($(this).val());
-            });
-            Lakeus.updateVariablesListFromForm();
-        }
-        // themeDesigner.css ships with this module as a ResourceLoader style,
-        // so it is versioned and cached with the script. It used to be injected
-        // here as a <link> built from mw.config.get('stylepath') + '/Lakeus/...',
-        // which hard-coded the skin's directory name.
-        //
-        // Must run before the form is built: the form reads each variable's
-        // per-scheme value.
-        Lakeus.initColorSchemes();
-        constructThemeDesigner();
-        console.log("[Lakeus] " + mw.message('lakeus-theme-designer-all-loaded'));
+		);
+		$( panel() ).find( '.lakeus-theme-designer-auto-calculate-checkbox' ).on( 'change', function () {
+			const checked = $( this ).prop( 'checked' );
+			$( '#' + $( this ).attr( 'name' ).replace( 'auto-calculate-', 'lakeus-theme-designer-input-' ) ).prop( 'disabled', checked );
+			$( '#' + $( this ).attr( 'name' ).replace( 'auto-calculate-', 'lakeus-theme-designer-input-' ) + '-alpha' ).prop( 'disabled', checked );
+		} );
+		$( panel() ).find( '.lakeus-theme-designer-auto-calculate-checkbox:checked' ).each( function () {
+			$( '#' + $( this ).attr( 'name' ).replace( 'auto-calculate-', 'lakeus-theme-designer-input-' ) ).prop( 'disabled', true );
+			$( '#' + $( this ).attr( 'name' ).replace( 'auto-calculate-', 'lakeus-theme-designer-input-' ) + '-alpha' ).prop( 'disabled', true );
+		} );
+		$( panel() ).find( '.lakeus-theme-designer-do-not-generate-checkbox' ).on( 'change', function () {
+			const checked = $( this ).prop( 'checked' );
+			$( '#' + $( this ).attr( 'name' ).replace( 'do-not-generate-', 'lakeus-theme-designer-input-' ) ).data( 'skipped', checked );
+			$( '#' + $( this ).attr( 'name' ).replace( 'do-not-generate-', 'lakeus-theme-designer-input-' ) + '-alpha' ).data( 'skipped', checked );
+			$( '#' + $( this ).attr( 'name' ).replace( 'do-not-generate-', 'lakeus-theme-designer-input-auto-calculate-' ) ).data( 'skipped', checked );
+		} );
+		$( panel() ).find( '.lakeus-theme-designer-do-not-generate-checkbox:checked' ).each( function () {
+			$( '#' + $( this ).attr( 'name' ).replace( 'do-not-generate-', 'lakeus-theme-designer-input-' ) ).data( 'skipped', true );
+			$( '#' + $( this ).attr( 'name' ).replace( 'do-not-generate-', 'lakeus-theme-designer-input-' ) + '-alpha' ).data( 'skipped', true );
+			$( '#' + $( this ).attr( 'name' ).replace( 'do-not-generate-', 'lakeus-theme-designer-input-auto-calculate-' ) ).data( 'skipped', true );
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-color-picker-fallback-checkbox' ) ).on( 'change', function () {
+			const checked = $( this ).prop( 'checked' );
+			$( panel() ).find( '.lakeus-theme-designer-input-color' ).attr( 'type', ( checked ? 'text' : 'color' ) );
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-copy-theme-button' ) ).on( 'click', ( e ) => {
+			e.preventDefault();
+			Lakeus.copyTheme();
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-paste-theme-button' ) ).on( 'click', ( e ) => {
+			e.preventDefault();
+			Lakeus.pasteThemeFromCurrentSettings();
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-test-theme-button' ) ).on( 'click', ( e ) => {
+			e.preventDefault();
+			Lakeus.testTheme();
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-clear-theme-button' ) ).on( 'click', ( e ) => {
+			e.preventDefault();
+			Lakeus.clearTheme();
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-reset-theme-button' ) ).on( 'click', ( e ) => {
+			e.preventDefault();
+			Lakeus.resetFormFromVariablesList();
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-reload-button' ) ).on( 'click', ( e ) => {
+			e.preventDefault();
+			Lakeus.reloadThemeDesigner();
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-invert-auto-calculate-selection-button' ) ).on( 'click', ( e ) => {
+			e.preventDefault();
+			Lakeus.invertAutoCalculateSelection();
+		} );
+		$( document.getElementById( 'lakeus-theme-designer-unselect-do-not-generate-selection-button' ) ).on( 'click', ( e ) => {
+			e.preventDefault();
+			Lakeus.unselectDoNotGenerateSelection();
+		} );
+		// Without this, pressing Enter in a text field would submit the form
+		// and reload the page, throwing away the theme being edited.
+		$( document.getElementById( 'lakeus-theme-designer-portlet-body' ) ).on( 'submit', ( e ) => {
+			e.preventDefault();
+		} );
+		$( panel() ).find( '.lakeus-theme-designer-color-scheme-radio' ).on( 'change', function () {
+			Lakeus.switchColorScheme( $( this ).val() );
+		} );
+		Lakeus.updateVariablesListFromForm();
+	}
+	// themeDesigner.css ships with this module as a ResourceLoader style,
+	// so it is versioned and cached with the script. It used to be injected
+	// here as a <link> built from mw.config.get('stylepath') + '/Lakeus/...',
+	// which hard-coded the skin's directory name.
+	//
+	// Must run before the form is built: the form reads each variable's
+	// per-scheme value.
+	Lakeus.initColorSchemes();
+	constructThemeDesigner();
+	mw.log( '[Lakeus] ' + mw.message( 'lakeus-theme-designer-all-loaded' ) );
 };
 
 /* Moving these functions into the init function */
@@ -727,39 +770,40 @@ Lakeus.setupThemeDesigner = function () {
  * (a disabled fieldset, for instance) cannot turn a user value into a derived one.
  */
 Lakeus.updateVariablesListFromForm = function () {
-    $.each(Lakeus.variablesList, function (k, v) {
-        var inputElement = $("#lakeus-theme-designer-input-" + k);
-        if (inputElement.data('skipped')) {
-            v.skipped = true;
-            return;
-        }
-        v.skipped = false;
-        if (Lakeus.isAutoCalculated(k, v)) {
-            // Derived below, once every user-entered value has been read.
-            return;
-        }
-        if (v.input === 'color') {
-            // Keyed on the variable's declared input type, NOT on the <input>'s
-            // `type` attribute. The "colour picker fallback" checkbox flips that
-            // attribute to `text` for readers whose browser has no native colour
-            // picker; branching on it made colour variables collapse to raw
-            // strings, after which generateTheme() threw on value.alpha(), the
-            // form refresh threw on value.hex() and calculate() rules threw on
-            // .darken(). The fallback changes how a colour is entered, not what
-            // it means.
-            var inputElementAlpha = $("#lakeus-theme-designer-input-" + k + "-alpha");
-            var alpha = Number(inputElementAlpha.val());
-            var raw = inputElement.val();
-            // Leave the previous value alone rather than storing something that
-            // cannot be parsed back into a colour.
-            if (chroma.valid(raw)) {
-                v.value = chroma(raw).alpha(alpha <= 1 && alpha >= 0 ? alpha : 1);
-            }
-        } else {
-            v.value = inputElement.val();
-        }
-    });
-    Lakeus.recalculateAutoVariables();
+	Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+		const v = Lakeus.variablesList[ k ];
+		const $inputElement = $( document.getElementById( 'lakeus-theme-designer-input-' + k ) );
+		if ( $inputElement.data( 'skipped' ) ) {
+			v.skipped = true;
+			return;
+		}
+		v.skipped = false;
+		if ( Lakeus.isAutoCalculated( k, v ) ) {
+			// Derived below, once every user-entered value has been read.
+			return;
+		}
+		if ( v.input === 'color' ) {
+			// Keyed on the variable's declared input type, NOT on the <input>'s
+			// `type` attribute. The "colour picker fallback" checkbox flips that
+			// attribute to `text` for readers whose browser has no native colour
+			// picker; branching on it made colour variables collapse to raw
+			// strings, after which generateTheme() threw on value.alpha(), the
+			// form refresh threw on value.hex() and calculate() rules threw on
+			// .darken(). The fallback changes how a colour is entered, not what
+			// it means.
+			const $inputElementAlpha = $( document.getElementById( 'lakeus-theme-designer-input-' + k + '-alpha' ) );
+			const alpha = Number( $inputElementAlpha.val() );
+			const raw = $inputElement.val();
+			// Leave the previous value alone rather than storing something that
+			// cannot be parsed back into a colour.
+			if ( chroma.valid( raw ) ) {
+				v.value = chroma( raw ).alpha( alpha <= 1 && alpha >= 0 ? alpha : 1 );
+			}
+		} else {
+			v.value = $inputElement.val();
+		}
+	} );
+	Lakeus.recalculateAutoVariables();
 };
 
 /**
@@ -773,18 +817,19 @@ Lakeus.updateVariablesListFromForm = function () {
  * a light value silently overwriting the dark default.
  */
 Lakeus.updateFormFromVariablesList = function () {
-    $.each(Lakeus.variablesList, function (k, v) {
-        var inputElement = $("#lakeus-theme-designer-input-" + k);
-        if (v.value) {
-            if (v.input === 'color') {
-                inputElement.val(v.value.hex('rgb'));
-                $("#lakeus-theme-designer-input-" + k + "-alpha").val(v.value.alpha());
-            } else {
-                inputElement.val(v.value);
-            }
-        }
-    })
-}
+	Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+		const v = Lakeus.variablesList[ k ];
+		const $inputElement = $( document.getElementById( 'lakeus-theme-designer-input-' + k ) );
+		if ( v.value ) {
+			if ( v.input === 'color' ) {
+				$inputElement.val( v.value.hex( 'rgb' ) );
+				$( document.getElementById( 'lakeus-theme-designer-input-' + k + '-alpha' ) ).val( v.value.alpha() );
+			} else {
+				$inputElement.val( v.value );
+			}
+		}
+	} );
+};
 
 /**
  * Restore every variable, in every colour scheme, to the skin default.
@@ -793,22 +838,23 @@ Lakeus.updateFormFromVariablesList = function () {
  * screen, so a half-edited dark palette cannot survive a reset invisibly.
  */
 Lakeus.resetFormFromVariablesList = function () {
-    $.each(Lakeus.variablesList, function (k, v) {
-        Lakeus.colorSchemes.forEach(function (scheme) {
-            v.values[scheme] = v.defaults[scheme];
-        });
-        // A variable's own value just moved without any of its sources moving, so
-        // a recorded fingerprint would wrongly claim it was already derived.
-        v.derivedFrom = { light: null, dark: null };
-    });
-    // Dark is back to the skin's palette, which is internally consistent, so it
-    // stays as authored until one of its own sources moves.
-    Lakeus.markSchemeInSync('dark');
-    // Light must be re-derived now, whichever scheme is on screen, so the stored
-    // theme is complete even if the author resets and copies without tabbing back.
-    Lakeus.recalculateScheme('light');
-    Lakeus.updateFormFromVariablesList();
-}
+	Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+		const v = Lakeus.variablesList[ k ];
+		Lakeus.colorSchemes.forEach( ( scheme ) => {
+			v.values[ scheme ] = v.defaults[ scheme ];
+		} );
+		// A variable's own value just moved without any of its sources moving, so
+		// a recorded fingerprint would wrongly claim it was already derived.
+		v.derivedFrom = { light: null, dark: null };
+	} );
+	// Dark is back to the skin's palette, which is internally consistent, so it
+	// stays as authored until one of its own sources moves.
+	Lakeus.markSchemeInSync( 'dark' );
+	// Light must be re-derived now, whichever scheme is on screen, so the stored
+	// theme is complete even if the author resets and copies without tabbing back.
+	Lakeus.recalculateScheme( 'light' );
+	Lakeus.updateFormFromVariablesList();
+};
 
 /**
  * Render one `--<name>-<scheme>: value;` declaration.
@@ -818,16 +864,16 @@ Lakeus.resetFormFromVariablesList = function () {
  * @param {Object} variable Entry from Lakeus.variablesList.
  * @return {string} Declaration including trailing newline, or '' if valueless.
  */
-Lakeus.formatThemeDeclaration = function (name, scheme, variable) {
-    var value = variable.values[scheme];
-    if (value === undefined || value === null || value === '') {
-        return '';
-    }
-    if (variable.input === 'color') {
-        return '    --' + name + '-' + scheme + ': ' +
-            (value.alpha() < 1 ? value.css() : value.hex()) + ';\n';
-    }
-    return '    --' + name + '-' + scheme + ': ' + value + ';\n';
+Lakeus.formatThemeDeclaration = function ( name, scheme, variable ) {
+	const value = variable.values[ scheme ];
+	if ( value === undefined || value === null || value === '' ) {
+		return '';
+	}
+	if ( variable.input === 'color' ) {
+		return '    --' + name + '-' + scheme + ': ' +
+            ( value.alpha() < 1 ? value.css() : value.hex() ) + ';\n';
+	}
+	return '    --' + name + '-' + scheme + ': ' + value + ';\n';
 };
 
 /**
@@ -848,17 +894,18 @@ Lakeus.formatThemeDeclaration = function (name, scheme, variable) {
  * @return {string}
  */
 Lakeus.generateTheme = function () {
-    var result = ':root {\n';
-    $.each(Lakeus.variablesList, function (k, v) {
-        if (!v.skipped) {
-            Lakeus.colorSchemes.forEach(function (scheme) {
-                result += Lakeus.formatThemeDeclaration(k, scheme, v);
-            });
-        }
-    });
-    result += '}\n';
-    return result;
-}
+	let result = ':root {\n';
+	Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+		const v = Lakeus.variablesList[ k ];
+		if ( !v.skipped ) {
+			Lakeus.colorSchemes.forEach( ( scheme ) => {
+				result += Lakeus.formatThemeDeclaration( k, scheme, v );
+			} );
+		}
+	} );
+	result += '}\n';
+	return result;
+};
 
 /**
  * Show the generated stylesheet in the panel.
@@ -868,31 +915,31 @@ Lakeus.generateTheme = function () {
  *
  * @param {string} generatedCode
  */
-Lakeus.showGeneratedTheme = function (generatedCode) {
-    var $pre = $("<pre>");
-    $pre.attr("id", "lakeus-theme-designer-result-pre-element");
-    $pre.text(generatedCode);
-    $("#lakeus-theme-designer-result").empty().append($pre);
+Lakeus.showGeneratedTheme = function ( generatedCode ) {
+	const $pre = $( '<pre>' );
+	$pre.attr( 'id', 'lakeus-theme-designer-result-pre-element' );
+	$pre.text( generatedCode );
+	$( document.getElementById( 'lakeus-theme-designer-result' ) ).empty().append( $pre );
 };
 
 Lakeus.copyTheme = function () {
-    if (!($("body").attr("testing") === 'true')) {
-        Lakeus.updateVariablesListFromForm();
-    }
+	if ( !( $( document.body ).attr( 'testing' ) === 'true' ) ) {
+		Lakeus.updateVariablesListFromForm();
+	}
 
-    var generatedCode = Lakeus.generateTheme();
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(generatedCode).then(function () {
-            mw.notify(mw.message("lakeus-theme-designer-copied"));
-        }, function () {
-            mw.notify(mw.message("lakeus-theme-designer-copy-failed"));
-            Lakeus.showGeneratedTheme(generatedCode);
-        });
-    } else {
-        mw.notify(mw.message("lakeus-theme-designer-copy-failed"));
-        Lakeus.showGeneratedTheme(generatedCode);
-    }
-}
+	const generatedCode = Lakeus.generateTheme();
+	if ( navigator.clipboard ) {
+		navigator.clipboard.writeText( generatedCode ).then( () => {
+			mw.notify( mw.message( 'lakeus-theme-designer-copied' ) );
+		}, () => {
+			mw.notify( mw.message( 'lakeus-theme-designer-copy-failed' ) );
+			Lakeus.showGeneratedTheme( generatedCode );
+		} );
+	} else {
+		mw.notify( mw.message( 'lakeus-theme-designer-copy-failed' ) );
+		Lakeus.showGeneratedTheme( generatedCode );
+	}
+};
 
 /**
  * Load the values the page is currently rendering with into the form.
@@ -901,20 +948,21 @@ Lakeus.copyTheme = function () {
  * `--<name>` for anything the skin does not split per scheme.
  */
 Lakeus.pasteThemeFromCurrentSettings = function () {
-    var scheme = Lakeus.colorSchemeMode;
-    $.each(Lakeus.variablesList, function (k, v) {
-        var raw = Lakeus.getSkinVariableValue(k, scheme);
-        if (raw === null) {
-            raw = window.getComputedStyle(document.documentElement)
-                .getPropertyValue('--' + k).trim() || null;
-        }
-        v.value = Lakeus.parseVariableValue(raw, v, v.default);
-        // Values were replaced wholesale, so any recorded fingerprint for this
-        // scheme no longer describes them.
-        v.derivedFrom[scheme] = null;
-    })
-    Lakeus.updateFormFromVariablesList();
-}
+	const scheme = Lakeus.colorSchemeMode;
+	Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+		const v = Lakeus.variablesList[ k ];
+		let raw = Lakeus.getSkinVariableValue( k, scheme );
+		if ( raw === null ) {
+			raw = window.getComputedStyle( document.documentElement )
+				.getPropertyValue( '--' + k ).trim() || null;
+		}
+		v.value = Lakeus.parseVariableValue( raw, v, v.default );
+		// Values were replaced wholesale, so any recorded fingerprint for this
+		// scheme no longer describes them.
+		v.derivedFrom[ scheme ] = null;
+	} );
+	Lakeus.updateFormFromVariablesList();
+};
 
 /**
  * Paint both colour schemes onto <html> as inline custom properties.
@@ -926,62 +974,63 @@ Lakeus.pasteThemeFromCurrentSettings = function () {
  * removed rather than set, so the preview matches what generateTheme() emits.
  */
 Lakeus.applyThemeToDocument = function () {
-    var html = document.documentElement;
-    $.each(Lakeus.variablesList, function (k, v) {
-        Lakeus.colorSchemes.forEach(function (scheme) {
-            var property = '--' + k + '-' + scheme;
-            var value = v.values[scheme];
-            if (v.skipped || value === undefined || value === null || value === '') {
-                html.style.removeProperty(property);
-                return;
-            }
-            html.style.setProperty(property, v.input === 'color'
-                ? (value.alpha() < 1 ? value.css() : value.hex())
-                : value);
-        });
-    });
+	const html = document.documentElement;
+	Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+		const v = Lakeus.variablesList[ k ];
+		Lakeus.colorSchemes.forEach( ( scheme ) => {
+			const property = '--' + k + '-' + scheme;
+			const value = v.values[ scheme ];
+			if ( v.skipped || value === undefined || value === null || value === '' ) {
+				html.style.removeProperty( property );
+				return;
+			}
+			html.style.setProperty( property, v.input === 'color' ?
+				( value.alpha() < 1 ? value.css() : value.hex() ) :
+				value );
+		} );
+	} );
 };
 
 Lakeus.testTheme = function () {
-    Lakeus.updateVariablesListFromForm();
-    Lakeus.updateFormFromVariablesList();
-    $("body").attr("testing", "true");
-    $("#lakeus-theme-designer-test-theme-button").prop('disabled', true);
-    $("#lakeus-theme-designer-clear-theme-button").prop('disabled', false);
-    // The colour scheme selector stays live so both schemes can be previewed.
-    $(".lakeus-theme-designer-fieldset").not(".lakeus-theme-designer-color-scheme-fieldset")
-        .prop('disabled', true);
-    Lakeus.applyThemeToDocument();
-}
+	Lakeus.updateVariablesListFromForm();
+	Lakeus.updateFormFromVariablesList();
+	$( document.body ).attr( 'testing', 'true' );
+	$( document.getElementById( 'lakeus-theme-designer-test-theme-button' ) ).prop( 'disabled', true );
+	$( document.getElementById( 'lakeus-theme-designer-clear-theme-button' ) ).prop( 'disabled', false );
+	// The colour scheme selector stays live so both schemes can be previewed.
+	$( panel() ).find( '.lakeus-theme-designer-fieldset' ).not( '.lakeus-theme-designer-color-scheme-fieldset' )
+		.prop( 'disabled', true );
+	Lakeus.applyThemeToDocument();
+};
 
 Lakeus.clearTheme = function () {
-    $("body").attr("testing", "false");
-    $("#lakeus-theme-designer-test-theme-button").prop('disabled', false);
-    $("#lakeus-theme-designer-clear-theme-button").prop('disabled', true);
-    $(".lakeus-theme-designer-fieldset").prop('disabled', false);
-    var html = document.documentElement;
-    $.each(Lakeus.variablesList, function (k, v) {
-        Lakeus.colorSchemes.forEach(function (scheme) {
-            html.style.removeProperty('--' + k + '-' + scheme);
-        });
-    });
-}
+	$( document.body ).attr( 'testing', 'false' );
+	$( document.getElementById( 'lakeus-theme-designer-test-theme-button' ) ).prop( 'disabled', false );
+	$( document.getElementById( 'lakeus-theme-designer-clear-theme-button' ) ).prop( 'disabled', true );
+	$( panel() ).find( '.lakeus-theme-designer-fieldset' ).prop( 'disabled', false );
+	const html = document.documentElement;
+	Object.keys( Lakeus.variablesList ).forEach( ( k ) => {
+		Lakeus.colorSchemes.forEach( ( scheme ) => {
+			html.style.removeProperty( '--' + k + '-' + scheme );
+		} );
+	} );
+};
 
 Lakeus.invertAutoCalculateSelection = function () {
-    $(".lakeus-theme-designer-auto-calculate-checkbox").each(function () {
-        var checked = $(this).prop('checked');
-        $(this).prop('checked', !checked).trigger('change');
-    });
-}
+	$( panel() ).find( '.lakeus-theme-designer-auto-calculate-checkbox' ).each( function () {
+		const checked = $( this ).prop( 'checked' );
+		$( this ).prop( 'checked', !checked ).trigger( 'change' );
+	} );
+};
 
 Lakeus.unselectDoNotGenerateSelection = function () {
-    $(".lakeus-theme-designer-do-not-generate-checkbox").each(function () {
-        var checked = $(this).prop('checked');
-        if (checked) {
-            $(this).prop('checked', false).trigger('change');
-        }
-    });
-}
+	$( panel() ).find( '.lakeus-theme-designer-do-not-generate-checkbox' ).each( function () {
+		const checked = $( this ).prop( 'checked' );
+		if ( checked ) {
+			$( this ).prop( 'checked', false ).trigger( 'change' );
+		}
+	} );
+};
 
 /**
  * Tear the panel down. The stylesheet is part of this ResourceLoader module and
@@ -989,22 +1038,22 @@ Lakeus.unselectDoNotGenerateSelection = function () {
  * nothing once the markup is gone.
  */
 Lakeus.unloadThemeDesigner = function () {
-    $("#lakeus-theme-designer").remove();
-}
+	$( document.getElementById( 'lakeus-theme-designer' ) ).remove();
+};
 
 Lakeus.reloadThemeDesigner = function () {
-    Lakeus.unloadThemeDesigner();
-    Lakeus.initThemeDesigner();
-}
+	Lakeus.unloadThemeDesigner();
+	Lakeus.initThemeDesigner();
+};
 
-Lakeus.validateContrast = function (color1, color2, contrast) {
-    return (chroma.contrast(color1, color2) >= (contrast || 4.5) ? true : false)
-}
+Lakeus.validateContrast = function ( color1, color2, contrast ) {
+	return ( chroma.contrast( color1, color2 ) >= ( contrast || 4.5 ) );
+};
 
 /* Load Theme Designer when enabled in user's preferences */
 
-$.when(mw.loader.using(['mediawiki.api', 'mediawiki.jqueryMsg', 'user.options']), $.ready).then(function () {
-    if (mw.user.options.get('lakeus-enable-theme-designer')) {
-        Lakeus.initThemeDesigner();
-    }
-});
+$.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.jqueryMsg', 'user.options' ] ), $.ready ).then( () => {
+	if ( mw.user.options.get( 'lakeus-enable-theme-designer' ) ) {
+		Lakeus.initThemeDesigner();
+	}
+} );

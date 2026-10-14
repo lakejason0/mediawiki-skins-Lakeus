@@ -8,8 +8,8 @@
 /* Variables */
 /* Make less variables to CSS ones */
 :root {
-	--color-primary-light: #3366cc;
-	--color-secondary-light: #ffffff;
+	--color-primary-light: #36c;
+	--color-secondary-light: #fff;
 	--color-neutral-light: #a2a9b1;
 	--color-error-light: #d33;
 	--color-warning-light: #fc3;
@@ -58,22 +58,22 @@
 	--box-shadow-portlet-body-light: 0 5px 17px 0 var( --box-shadow-color-portlet-body-light );
 	--box-shadow-color-portlet-body-light: rgba( 0, 0, 0, 0.24 );
 	--subheader-color-toggle-list-light: #6a6a6a;
-	--logo-text-color-toggle-list-light: #000000;
+	--logo-text-color-toggle-list-light: #000;
 	--text-color-toggle-list-item-light: #1c1c1c;
 	--text-color-toggle-list-item-hover-light: #3a3a3a;
 	--text-color-toggle-list-item-focus-light: #3a3a3a;
 	--text-color-portlet-item-light: #1c1c1c;
 	--text-color-portlet-item-hover-light: #3a3a3a;
 	--text-color-portlet-item-focus-light: #3a3a3a;
-	--text-color-content-light: #000000;
-	--text-color-header-light: #000000;
-	--text-color-body-light: #000000;
-	--text-color-footer-light: #000000;
-	--text-color-interface-message-box-neutral-light: #000000;
-	--text-color-interface-message-box-error-light: #000000;
-	--text-color-interface-message-box-warning-light: #000000;
-	--text-color-interface-message-box-success-light: #000000;
-	--text-color-user-message-light: #000000;
+	--text-color-content-light: #000;
+	--text-color-header-light: #000;
+	--text-color-body-light: #000;
+	--text-color-footer-light: #000;
+	--text-color-interface-message-box-neutral-light: #000;
+	--text-color-interface-message-box-error-light: #000;
+	--text-color-interface-message-box-warning-light: #000;
+	--text-color-interface-message-box-success-light: #000;
+	--text-color-user-message-light: #000;
 	--text-color-wikitable-light: #202122;
 	--text-color-sticky-toc-number-light: #888;
 	--icon-filter-header-light: unset;
@@ -85,7 +85,7 @@
 	--color-accent-header-tab-light: var( --color-base-light );
 	--color-accent-header-tab-selected-light: #54595d;
 	--color-accent-header-tab-new-light: #54595d;
-	--color-header-light: white;
+	--color-header-light: #fff;
 	--color-base-light: #222;
 	--color-gray-light: #a2a9b1;
 	--color-gray-2-light: #eaecf0;
@@ -111,12 +111,16 @@
 	--mask-background-light: rgba( 0, 0, 0, 0.8 );
 }
 
+/* The second :root is deliberate: the skin declares each themeable variable
+   twice, as --<name>-light and --<name>-dark, and keeping the two halves in
+   separate blocks is what makes the pairing readable. */
+/* stylelint-disable-next-line no-duplicate-selectors */
 :root {
 	--color-primary-dark: #9dc3f7;
 	--color-secondary-dark: #121212;
 	--color-neutral-dark: #a2a9b1;
-	--color-warning-dark: #ffcc33;
-	--color-error-dark: #dd3333;
+	--color-warning-dark: #fc3;
+	--color-error-dark: #d33;
 	--color-success-dark: #14866d;
 	--color-header-dark: #121212;
 	--color-link-dark: #9dc3f7;
@@ -135,36 +139,36 @@
 	--color-link-external--visited-dark: #d1d4ff;
 	--color-link-external--active-dark: #daffff;
 	--header-elevation-dark: var( --elevation );
-	--text-color-header-dark: #ffffff;
+	--text-color-header-dark: #fff;
 	--icon-filter-header-dark: invert( 1 ) hue-rotate( 180deg );
 	--background-color-search-suggestions-dark: #121212;
 	--border-color-search-suggestions-dark: #626262;
 	--background-color-search-suggestions-current-dark: #9dc3f7;
-	--color-search-suggestions-text-dark: #ffffff;
-	--color-search-suggestions-text-current-dark: #000000;
+	--color-search-suggestions-text-dark: #fff;
+	--color-search-suggestions-text-current-dark: #000;
 	--background-color-search-input-dark: #121212;
 	--border-color-search-bar-dark: #626262;
 	--background-color-toggle-list-dark: #121212;
 	--background-color-toggle-list-card-dark: #9dc3f7;
-	--text-color-toggle-list-item-dark: #ffffff;
-	--background-color-toggle-list-item-hover-dark: rgba( 157,195,247,0.1 );
+	--text-color-toggle-list-item-dark: #fff;
+	--background-color-toggle-list-item-hover-dark: rgba( 157, 195, 247, 0.1 );
 	--text-color-toggle-list-item-hover-dark: #9dc3f7;
-	--background-color-toggle-list-item-focus-dark: rgba( 167,205,255,0.2 );
+	--background-color-toggle-list-item-focus-dark: rgba( 167, 205, 255, 0.2 );
 	--text-color-toggle-list-item-focus-dark: #9dc3f7;
 	--border-color-toggle-list-dark: #626262;
 	--subheader-color-toggle-list-dark: #b1d7ff;
-	--logo-text-color-toggle-list-dark: #000000;
+	--logo-text-color-toggle-list-dark: #000;
 	--mask-background-dark: rgba( 0, 0, 0, 0.8 );
 	--background-color-content-dark: #121212;
-	--text-color-content-dark: #ffffff;
+	--text-color-content-dark: #fff;
 	--background-color-body-dark: #121212;
-	--text-color-body-dark: #ffffff;
+	--text-color-body-dark: #fff;
 	--border-color-content-dark: #626262;
 	--font-family-action-bar-dark: var( --font-family );
 	--color-accent-header-tab-dark: #9dc3f7;
 	--color-accent-header-tab-selected-dark: #9dc3f7;
 	--color-accent-header-tab-new-dark: #9dc3f7;
-	--border-color-header-tab-dark: #aaaaaa;
+	--border-color-header-tab-dark: #aaa;
 	--color-tagline-dark: rgba( 255, 255, 255, 0.7 );
 	--font-family-headings-dark: var( --font-family-serif );
 	--background-color-edit-options-dark: #27292d;
@@ -174,32 +178,32 @@
 	--color-toc-number-dark: #f5f5f5;
 	--border-color-interface-message-box-neutral-dark: #a2a9b1;
 	--background-color-interface-message-box-neutral-dark: #56595e;
-	--text-color-interface-message-box-neutral-dark: #ffffff;
-	--border-color-interface-message-box-warning-dark: #ffcc33;
+	--text-color-interface-message-box-neutral-dark: #fff;
+	--border-color-interface-message-box-warning-dark: #fc3;
 	--background-color-interface-message-box-warning-dark: #6c5716;
-	--text-color-interface-message-box-warning-dark: #ffffff;
-	--border-color-interface-message-box-error-dark: #dd3333;
+	--text-color-interface-message-box-warning-dark: #fff;
+	--border-color-interface-message-box-error-dark: #d33;
 	--background-color-interface-message-box-error-dark: #a92727;
-	--text-color-interface-message-box-error-dark: #ffffff;
+	--text-color-interface-message-box-error-dark: #fff;
 	--border-color-interface-message-box-success-dark: #14866d;
 	--background-color-interface-message-box-success-dark: #0f6552;
-	--text-color-interface-message-box-success-dark: #ffffff;
+	--text-color-interface-message-box-success-dark: #fff;
 	--border-color-user-message-dark: #ffa500;
 	--background-color-user-message-dark: #7c5000;
-	--text-color-user-message-dark: #ffffff;
+	--text-color-user-message-dark: #fff;
 	--background-color-wikitable-dark: #222;
 	--text-color-wikitable-dark: #fff;
 	--border-color-wikitable-dark: #444;
 	--background-color-wikitable-table-head-dark: #2f2f2f;
 	--background-color-portlet-body-dark: #282828;
-	--text-color-portlet-item-dark: #ffffff;
+	--text-color-portlet-item-dark: #fff;
 	--background-color-portlet-item-hover-dark: rgba( 157, 195, 247, 0.1 );
 	--text-color-portlet-item-hover-dark: #9dc3f7;
 	--background-color-portlet-item-focus-dark: rgba( 208, 246, 255, 0.1 );
 	--text-color-portlet-item-focus-dark: #9dc3f7;
-	--border-color-portlet-body-dark: #aaaaaa;
+	--border-color-portlet-body-dark: #aaa;
 	--background-color-footer-dark: #212121;
-	--text-color-footer-dark: #ffffff;
+	--text-color-footer-dark: #fff;
 	--color-footer-link-dark: #9dc3f7;
 	--color-footer-link--visited-dark: #d1d4ff;
 	--color-footer-link--active-dark: #d0f6ff;

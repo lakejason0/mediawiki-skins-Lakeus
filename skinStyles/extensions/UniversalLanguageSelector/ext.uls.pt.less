@@ -2,39 +2,39 @@
 /* ULS toggle styles tweak */
 
 .skin-lakeus {
-  #pt-uls {
-    .uls-trigger {
-      background-image: none;
-      // Same values as this skin's `.mw-portlet-personal li a`
-      padding: 0.2em 0.75em;
-      // Why !important? then I guess I can only write another !important
-      padding-top: 0.2em !important;
-      display: block;
-    }
-  }
+	#pt-uls {
+		.uls-trigger {
+			background-image: none;
+			// Same values as this skin's `.mw-portlet-personal li a`
+			padding: 0.2em 0.75em;
+			// Why !important? then I guess I can only write another !important
+			padding-top: 0.2em !important;
+			display: block;
+		}
+	}
 
-  #ca-uls {
-    .uls-trigger {
-      margin-left: 12px;
-      color: var(--text-color-header);
-      display: inline-block;
-      white-space: nowrap;
-      background-image: none;
-      padding-left: 0;
+	#ca-uls {
+		.uls-trigger {
+			margin-left: 12px;
+			color: var( --text-color-header );
+			display: inline-block;
+			white-space: nowrap;
+			background-image: none;
+			padding-left: 0;
 
-      @media screen and ( max-width: @width-breakpoint-tablet ) {
-        max-width: 7.5em;
-        vertical-align: top;
-        overflow: hidden;
-      }
+			@media screen and ( max-width: @width-breakpoint-tablet ) {
+				max-width: 7.5em;
+				vertical-align: top;
+				overflow: hidden;
+			}
 
-      @media screen and ( max-width: @width-breakpoint-semi-mobile ) {
-        display: none;
-      }
+			@media screen and ( max-width: @width-breakpoint-semi-mobile ) {
+				display: none;
+			}
 
-      &:visited {
-        color: var(--text-color-header);
-      }
-    }
-  }
+			&:visited {
+				color: var( --text-color-header );
+			}
+		}
+	}
 }
