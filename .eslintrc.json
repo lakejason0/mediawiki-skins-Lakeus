@@ -5,6 +5,9 @@
 		"wikimedia/jquery",
 		"wikimedia/mediawiki"
 	],
+	"globals": {
+		"Lakeus": "writable"
+	},
 	"rules": {
 		"compat/compat": "off",
 		"vue/no-v-html": "off"
