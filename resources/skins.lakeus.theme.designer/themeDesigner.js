@@ -172,29 +172,63 @@ Lakeus.initThemeDesigner = function () {
  */
 Lakeus.setupThemeDesigner = function () {
 
-        /* Leaving it as-is since 50% contrast method works differently */
-        Lakeus.getContrastYIQ = function (hexcolor, black, white) {
-            hexcolor = hexcolor.replace("#", "");
+        /**
+         * Pick the value that contrasts with `background`.
+         *
+         * Named after what it does rather than after the two default arguments:
+         * the parameters used to be called `black` / `white`, but callers pass CSS
+         * filter strings such as `'invert(1) hue-rotate(180deg)'` and chroma
+         * luminance numbers through them just as often, so the old names described
+         * the common case rather than the parameter.
+         *
+         * Returns `onLightBackground` when the background is light (YIQ >= 128) and
+         * `onDarkBackground` when it is dark; omitted, those are `#000000` and
+         * `#ffffff`. The built-in pair is a plain hex string, while explicit
+         * candidates are returned as given, which is what lets the icon filters
+         * work.
+         *
+         * The YIQ formula is left as it was - the 50% contrast method behaves
+         * differently enough that switching would change every derived colour.
+         *
+         * @param {Object} background A chroma colour.
+         * @param {*} [onLightBackground]
+         * @param {*} [onDarkBackground]
+         * @return {*}
+         */
+        Lakeus.pickForBackground = function (background, onLightBackground, onDarkBackground) {
+            var hexcolor = background.hex("rgb").replace("#", "");
             var r = parseInt(hexcolor.substr(0, 2), 16);
             var g = parseInt(hexcolor.substr(2, 2), 16);
             var b = parseInt(hexcolor.substr(4, 2), 16);
             var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-            return (yiq >= 128) ? (black ? black : '#000000') : (white ? white : '#ffffff');
+            return (yiq >= 128) ?
+                (onLightBackground !== undefined ? onLightBackground : '#000000') :
+                (onDarkBackground !== undefined ? onDarkBackground : '#ffffff');
         }
 
-        Lakeus.calculateRGBAActualValue = function (frontRGBA, backgroundRGB){
+        /**
+         * Composite a translucent colour onto a background, the way the browser
+         * will, and return the resulting opaque colour.
+         *
+         * `over` may be omitted, in which case plain white is assumed.
+         *
+         * @param {Object} front A chroma colour, possibly with alpha.
+         * @param {Object} [over] A chroma colour.
+         * @return {Object} A chroma colour.
+         */
+        Lakeus.flattenColor = function (front, over){
 
             var rtrn = {};
             //allows the function to just accept a front colour and assume the background is a plain white.
-            backgroundRGB = backgroundRGB || chroma([255, 255, 255]);
+            over = over || chroma([255, 255, 255]);
 
             //allows a RGB value to be passed in assuming full alpha channel.
-            frontRGBA.alpha(frontRGBA.alpha() || 1);
+            front.alpha(front.alpha() || 1);
 
             //normalise the alpha channel across the foreground and background.
-            rtrn.r = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.r")) + (frontRGBA.alpha() * frontRGBA.get("rgb.r"));
-            rtrn.g = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.g")) + (frontRGBA.alpha() * frontRGBA.get("rgb.g"));
-            rtrn.b = ((1 - frontRGBA.alpha()) * backgroundRGB.get("rgb.b")) + (frontRGBA.alpha() * frontRGBA.get("rgb.b"));
+            rtrn.r = ((1 - front.alpha()) * over.get("rgb.r")) + (front.alpha() * front.get("rgb.r"));
+            rtrn.g = ((1 - front.alpha()) * over.get("rgb.g")) + (front.alpha() * front.get("rgb.g"));
+            rtrn.b = ((1 - front.alpha()) * over.get("rgb.b")) + (front.alpha() * front.get("rgb.b"));
 
             //just check that we don't end up with a value greater than 255 for any channel.
             rtrn.r = (rtrn.r > 255) ? 255 : rtrn.r;
@@ -205,8 +239,24 @@ Lakeus.setupThemeDesigner = function () {
 
         }
 
-        Lakeus.changeColorBrightnessByContrast = function (foregroundColor, backgroundColor, brightenCoefficient, darkenCoefficient) {
-            return (Lakeus.getContrastYIQ(backgroundColor.hex(), "black", "white") === "white" ? foregroundColor.brighten(brightenCoefficient) : foregroundColor.darken(darkenCoefficient));
+        /**
+         * Move a colour away from a background's brightness, so it keeps contrasting
+         * with it: brighten when the background is dark, darken when it is light.
+         *
+         * The two amounts are separate parameters because they are separately
+         * meaningful. Most rules in the table pass the same number for both, but
+         * that is a property of the current palette rather than of the rule, and
+         * four of them do not.
+         *
+         * @param {Object} colour A chroma colour.
+         * @param {Object} background A chroma colour.
+         * @param {number} brightenIfDark
+         * @param {number} darkenIfLight
+         * @return {Object} A chroma colour.
+         */
+        Lakeus.nudgeForContrast = function (colour, background, brightenIfDark, darkenIfLight) {
+            var backgroundIsDark = Lakeus.pickForBackground(background, "black", "white") === "white";
+            return backgroundIsDark ? colour.brighten(brightenIfDark) : colour.darken(darkenIfLight);
         }
 
         /* CSS Variables List */
@@ -370,7 +420,10 @@ Lakeus.setupThemeDesigner = function () {
         /**
          * A fingerprint of the values a variable's calculate() rule reads.
          *
-         * Only `calculateFrom` is considered. A rule that declares no sources is
+         * The sources come from the rule itself: every rule built through
+         * themeDesigner.rules.js carries a `.sources` list naming the variables it
+         * reads, so there is no parallel `calculateFrom` array to keep in step and
+         * no positional coupling to get wrong. A rule that declares no sources is
          * never treated as up to date, so it keeps being recomputed - the safe
          * default for a rule whose inputs cannot be enumerated.
          *
@@ -379,7 +432,7 @@ Lakeus.setupThemeDesigner = function () {
          * @return {?string} Null when the variable declares no sources.
          */
         Lakeus.sourceFingerprint = function (v, scheme) {
-            var names = v.calculateFrom || [];
+            var names = (v.calculate && v.calculate.sources) || v.calculateFrom || [];
             if (names.length === 0) {
                 return null;
             }

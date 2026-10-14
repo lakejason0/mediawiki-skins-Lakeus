@@ -115,6 +115,7 @@
 			],
 			"packageFiles": [
 				"resources/skins.lakeus.theme.designer/themeDesigner.js",
+				"resources/skins.lakeus.theme.designer/themeDesigner.rules.js",
 				"resources/skins.lakeus.theme.designer/themeDesigner.variables.js"
 			],
 			"styles": [
