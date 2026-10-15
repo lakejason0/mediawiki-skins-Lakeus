@@ -603,6 +603,21 @@ Lakeus.setupThemeDesigner = function () {
             return result + '</fieldset>';
         }
 
+        /**
+         * The empty fieldsets the Vue components mount into.
+         *
+         * This used to build every variable's markup as a string, and the Vue
+         * module would replace a fieldset's contents after the fact. That left two
+         * renderers to keep in step, so the markup is gone and only the hosts
+         * remain: Vue renders the legend and the items into each one.
+         *
+         * There is deliberately no fallback to the generated markup. This module
+         * depends on `skins.lakeus.theme.designer.vue`, and ResourceLoader treats
+         * dependencies as hard, so a Vue failure means this module never runs
+         * either - a fallback could not be reached to save anything.
+         *
+         * @return {string}
+         */
         function constructThemeDesignerBody() {
             var fieldsetList = [];
             var result = '';
@@ -613,89 +628,9 @@ Lakeus.setupThemeDesigner = function () {
                 }
             })
             fieldsetList.forEach(function (fieldset) {
-                var fieldsetElement = '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-' + fieldset + '">';
-                var legendElement = '<legend class="lakeus-theme-designer-title">' + mw.message(fieldset).escaped() + '</legend>';
-                var settingsElement = '';
-                $.each(Lakeus.variablesList, function (k, v) {
-                    if (v.fieldset === fieldset) {
-                        settingsElement += constructVariableItem(k, v);
-                    }
-                });
-                fieldsetElement += legendElement + settingsElement + '</fieldset>';
-                result += fieldsetElement;
+                result += '<fieldset class="lakeus-theme-designer-fieldset" id="lakeus-theme-designer-fieldset-' + fieldset + '"></fieldset>';
             });
             return result;
-        }
-
-        /**
-         * Escape a value for a double-quoted HTML attribute or element body.
-         *
-         * The text variables hold arbitrary CSS - font stacks with quotes in
-         * them, filter chains - so their defaults must not be concatenated raw.
-         *
-         * @param {*} value
-         * @return {string}
-         */
-        function escapeAttribute(value) {
-            return mw.html.escape(String(value));
-        }
-
-        function constructVariableItem(variableName, variableContent) {
-            var settingElement = '<p class="lakeus-theme-designer-variable-section" id="lakeus-theme-designer-variable-section-' + variableName + '">';
-            if (variableContent.input === 'color') {
-                settingElement +=
-                    '<label>' +
-                        mw.message('lakeus-theme-designer-' + variableName).escaped() +
-                        '<input type="color" class="lakeus-theme-designer-input-color" list="'+ (variableContent.datalist ? variableContent.datalist : "lakeus-theme-designer-preset-colors") +'" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + variableContent.default.hex('rgb') + '" />' +
-                        (variableContent.allowAlpha ? '<input type="number" placeholder="' + mw.message("lakeus-theme-designer-alpha-channel").escaped() + '" class="lakeus-theme-designer-input-alpha" step="0.01" min="0" max="1" name="' + variableName + '-alpha" id="lakeus-theme-designer-input-' + variableName + '-alpha" value="' + variableContent.default.alpha() + '" />' : "") +
-                    '</label>';
-            } else if (variableContent.input === 'text') {
-                settingElement +=
-                    '<label>' +
-                        mw.message('lakeus-theme-designer-' + variableName).escaped() +
-                        '<input type="text" class="lakeus-theme-designer-input-text" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '" value="' + escapeAttribute(variableContent.default) + '" />' +
-                    '</label>';
-            } else if (variableContent.input === 'textarea') {
-                // Nothing uses this yet, but <input type="textarea"> is not a real
-                // input type; a proper <textarea> is what the stylesheet and the
-                // form-reading code both expect.
-                settingElement +=
-                    '<label>' +
-                        mw.message('lakeus-theme-designer-' + variableName).escaped() +
-                        '<textarea class="lakeus-theme-designer-input-textarea" name="' + variableName + '" id="lakeus-theme-designer-input-' + variableName + '">' + escapeAttribute(variableContent.default) + '</textarea>' +
-                    '</label>';
-            }
-
-            if (variableContent.rule["autoCalculate"] === 'calculateWhenNotNeeded') {
-                settingElement +=
-                    '<label>' +
-                        '<input checked type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
-                        mw.message('lakeus-theme-designer-auto-calculate').escaped() +
-                    '</label>';
-            } else if (variableContent.rule["autoCalculate"] === 'calculateWhenNeeded') {
-                settingElement +=
-                    '<label>' +
-                        '<input type="checkbox" class="lakeus-theme-designer-auto-calculate-checkbox" name="' + 'auto-calculate-' + variableName + '" id="lakeus-theme-designer-input-auto-calculate-' + variableName + '">' +
-                        mw.message('lakeus-theme-designer-auto-calculate').escaped() +
-                    '</label>';
-            }
-
-            if (!variableContent.rule["generateByDefault"]) {
-                settingElement +=
-                    '<label>' +
-                        '<input checked type="checkbox" class="lakeus-theme-designer-do-not-generate-checkbox" name="' + 'do-not-generate-' + variableName + '" id="lakeus-theme-designer-input-do-not-generate-' + variableName + '">' +
-                        mw.message('lakeus-theme-designer-do-not-generate').escaped() +
-                    '</label>';
-            } else if (variableContent.rule["generateByDefault"]) {
-                settingElement +=
-                    '<label>' +
-                        '<input type="checkbox" class="lakeus-theme-designer-do-not-generate-checkbox" name="' + 'do-not-generate-' + variableName + '" id="lakeus-theme-designer-input-do-not-generate-' + variableName + '">' +
-                        mw.message('lakeus-theme-designer-do-not-generate').escaped() +
-                    '</label>';
-            }
-
-            settingElement += '</p>'
-            return settingElement;
         }
 
         Lakeus.constructColorDatalist = function (id, presetColors) {
@@ -891,6 +826,16 @@ Lakeus.mountVueFieldsets = function () {
 Lakeus.updateVariablesListFromForm = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
+        // No input means nothing has been rendered for this variable yet, so there
+        // is nothing to read and the stored value must be left alone. Without this
+        // guard `$().val()` is undefined and the flush wrote the literal string
+        // "undefined" into every text variable. That went unnoticed while the
+        // fieldsets still carried generated markup, because the inputs were always
+        // there by then; the fieldsets are empty hosts that Vue fills in, and the
+        // flush inside constructThemeDesigner runs before the mount.
+        if (!inputElement.length) {
+            return;
+        }
         // `skipped` is the variable's own state now, kept up to date by the
         // delegated handler below. It used to live in jQuery `.data()` on three
         // separate DOM nodes, which meant the flag vanished whenever the markup
