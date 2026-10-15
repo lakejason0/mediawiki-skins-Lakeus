@@ -708,22 +708,35 @@ Lakeus.setupThemeDesigner = function () {
                 Lakeus.variablesList[name].skipped = $(this).prop('checked');
             });
             Lakeus.syncVariableUiState();
-            $("#lakeus-theme-designer-color-picker-fallback-checkbox").on('change', function () {
+            // Everything below is delegated on the panel root too, for the same
+            // reason. These used to be bound per element with `.click()` and
+            // `$().on()`, which meant any element Vue re-rendered silently lost its
+            // handler - the buttons would simply stop working.
+            panelElement.on('change', '#lakeus-theme-designer-color-picker-fallback-checkbox', function () {
                 var checked = $(this).prop('checked');
                 $(".lakeus-theme-designer-input-color").attr("type", (checked ? "text" : "color"));
             });
-            $("#lakeus-theme-designer-copy-theme-button").click(function (e) { e.preventDefault(); Lakeus.copyTheme(); });
-            $("#lakeus-theme-designer-paste-theme-button").click(function (e) { e.preventDefault(); Lakeus.pasteThemeFromCurrentSettings(); });
-            $("#lakeus-theme-designer-test-theme-button").click(function (e) { e.preventDefault(); Lakeus.testTheme(); });
-            $("#lakeus-theme-designer-clear-theme-button").click(function (e) { e.preventDefault(); Lakeus.clearTheme(); });
-            $("#lakeus-theme-designer-reset-theme-button").click(function (e) { e.preventDefault(); Lakeus.resetFormFromVariablesList(); });
-            $("#lakeus-theme-designer-reload-button").click(function (e) { e.preventDefault(); Lakeus.reloadThemeDesigner(); });
-            $("#lakeus-theme-designer-invert-auto-calculate-selection-button").click(function (e) { e.preventDefault(); Lakeus.invertAutoCalculateSelection(); });
-            $("#lakeus-theme-designer-unselect-do-not-generate-selection-button").click(function (e) { e.preventDefault(); Lakeus.unselectDoNotGenerateSelection(); });
+            var actions = {
+                'lakeus-theme-designer-copy-theme-button': Lakeus.copyTheme,
+                'lakeus-theme-designer-paste-theme-button': Lakeus.pasteThemeFromCurrentSettings,
+                'lakeus-theme-designer-test-theme-button': Lakeus.testTheme,
+                'lakeus-theme-designer-clear-theme-button': Lakeus.clearTheme,
+                'lakeus-theme-designer-reset-theme-button': Lakeus.resetFormFromVariablesList,
+                'lakeus-theme-designer-reload-button': Lakeus.reloadThemeDesigner,
+                'lakeus-theme-designer-invert-auto-calculate-selection-button': Lakeus.invertAutoCalculateSelection,
+                'lakeus-theme-designer-unselect-do-not-generate-selection-button': Lakeus.unselectDoNotGenerateSelection
+            };
+            Object.keys(actions).forEach(function (id) {
+                panelElement.on('click', '#' + id, function (e) {
+                    e.preventDefault();
+                    actions[id]();
+                });
+            });
             // Without this, pressing Enter in a text field would submit the form
-            // and reload the page, throwing away the theme being edited.
-            $("#lakeus-theme-designer-portlet-body").submit(function (e) { e.preventDefault(); });
-            $(".lakeus-theme-designer-color-scheme-radio").on('change', function () {
+            // and reload the page, throwing away the theme being edited. Submit
+            // bubbles, so the delegated form of this still cancels it.
+            panelElement.on('submit', '#lakeus-theme-designer-portlet-body', function (e) { e.preventDefault(); });
+            panelElement.on('change', '.lakeus-theme-designer-color-scheme-radio', function () {
                 Lakeus.switchColorScheme($(this).val());
             });
             Lakeus.updateVariablesListFromForm();
