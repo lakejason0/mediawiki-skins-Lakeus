@@ -52,6 +52,8 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-alpha-channel",
             "lakeus-theme-designer-basic",
             "lakeus-theme-designer-color-primary",
+            "lakeus-theme-designer-color-primary--hover",
+            "lakeus-theme-designer-color-primary--active",
             "lakeus-theme-designer-color-secondary",
             "lakeus-theme-designer-color-neutral",
             "lakeus-theme-designer-color-warning",

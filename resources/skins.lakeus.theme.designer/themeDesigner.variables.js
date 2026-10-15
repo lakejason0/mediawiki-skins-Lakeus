@@ -60,6 +60,40 @@ module.exports = function ( Lakeus, chroma ) {
             value: chroma("#36c"),
             calculate: derive.manual(),
         },
+        "color-primary--hover": {
+            fieldset: "lakeus-theme-designer-basic",
+            rule: {
+                autoCalculate: "calculateWhenNotNeeded",
+                generateByDefault: true,
+            },
+            input: "color",
+            allowAlpha: false,
+            skipped: false,
+            default: chroma("#1e5bbf"),
+            value: chroma("#1e5bbf"),
+            calculate: derive.nudge(
+                colour.of( 'color-primary' ),
+                colour.of( 'background-color-content' ).flattenOver( colour.of( 'background-color-body' ) ),
+                { brightenIfDark: 0.25, darkenIfLight: 0.25 }
+            ),
+        },
+        "color-primary--active": {
+            fieldset: "lakeus-theme-designer-basic",
+            rule: {
+                autoCalculate: "calculateWhenNotNeeded",
+                generateByDefault: true,
+            },
+            input: "color",
+            allowAlpha: false,
+            skipped: false,
+            default: chroma("#002a82"),
+            value: chroma("#002a82"),
+            calculate: derive.nudge(
+                colour.of( 'color-primary' ),
+                colour.of( 'background-color-content' ).flattenOver( colour.of( 'background-color-body' ) ),
+                { brightenIfDark: 0.5, darkenIfLight: 1.5 }
+            ),
+        },
         "color-secondary": {
             fieldset: "lakeus-theme-designer-basic",
             rule: {
