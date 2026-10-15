@@ -155,43 +155,52 @@ module.exports = {
 </script>
 
 <style lang="less">
-// CdxField renders its class onto THIS element, so these are its own margins.
-// The first attempt used `.lakeus-theme-designer-vue-item .cdx-field`, a
-// descendant selector that matched nothing, so Codex's 16px top margin stayed.
+/*
+ * CdxField lays a field out as a block: label, then control underneath. That is
+ * right for a form page and wrong for ninety-nine of them in a sidebar, where it
+ * cost 97px per variable against master's thirty-odd. Its APPEARANCE is kept -
+ * the label styling, the control styling, all of it - and only the direction
+ * changes, so the field reads as one row.
+ */
 .lakeus-theme-designer-vue-item {
+	display: flex;
+	align-items: center;
+	gap: 0 0.6em;
+	flex-wrap: wrap;
 	margin: 0 0 0.35em;
 }
 
-// Codex spaces a field out as if it stood alone: 4px of label padding, 4px of
-// label margin on each side, and a help-text row. Stacked 99 deep that is most of
-// the panel's height in whitespace.
-.lakeus-theme-designer-vue-item .cdx-field__label.cdx-label {
-	padding-bottom: 1px !important;
+.lakeus-theme-designer-vue-item > .cdx-field__label.cdx-label {
+	flex: 0 1 auto;
+	padding-bottom: 0 !important;
 }
 
-.lakeus-theme-designer-vue-item .cdx-label .cdx-label__label {
+.lakeus-theme-designer-vue-item > .cdx-field__label.cdx-label .cdx-label__label {
 	margin: 0 !important;
 }
 
-.lakeus-theme-designer-vue-item .cdx-field__help-text {
-	margin-top: 0;
+.lakeus-theme-designer-vue-item > .cdx-field__control {
+	flex: 1 1 auto;
+	min-width: 0;
 }
 
-.lakeus-theme-designer-vue-item .cdx-field__help-text:empty {
+.lakeus-theme-designer-vue-item > .cdx-field__help-text {
 	display: none;
 }
 
 .lakeus-theme-designer-vue-controls {
 	display: flex;
 	align-items: center;
-	gap: 0.35em 0.75em;
+	gap: 0.25em 0.6em;
 	flex-wrap: wrap;
 	min-width: 0;
 }
 
-// The panel's width is driven by its contents, so these have to be FIXED widths.
-// `width: 100%` looked reasonable and made the panel collapse to a narrow strip:
-// each field shrank to fit a container that was itself shrinking to fit them.
+/*
+ * The panel's width is driven by its contents, so these have to be FIXED widths.
+ * `width: 100%` looked reasonable and collapsed the panel to a narrow strip:
+ * every field shrank to fit a container that was itself shrinking to fit them.
+ */
 .lakeus-theme-designer-input-color {
 	width: 3em;
 	flex: none;
@@ -204,9 +213,12 @@ module.exports = {
 	min-width: 0;
 }
 
-// The colour-picker fallback rewrites a swatch's type attribute to `text`, which
-// makes it a text field needing a text field's width. This is why the width
-// cannot be decided by class alone.
+/*
+ * The colour-picker fallback rewrites a swatch's type attribute to `text`, which
+ * makes it a text field needing a text field's width. This is why the width
+ * cannot be decided by class alone. Codex has no colour input of its own, so this
+ * stays a native one.
+ */
 .lakeus-theme-designer-input-color[type="text"] {
 	width: 12em;
 	max-width: 100%;
@@ -217,22 +229,18 @@ module.exports = {
 	min-width: 0;
 }
 
-// A row of its own, so a long variable name cannot leave one box next to the
-// swatch and the other wrapped onto the following line.
 .lakeus-theme-designer-vue-checkboxes {
-	flex-basis: 100%;
 	display: flex;
 	align-items: center;
-	gap: 0.35em 1em;
+	gap: 0.25em 0.9em;
 	flex-wrap: wrap;
 }
 
 .lakeus-theme-designer-vue-checkbox {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.35em;
-	// Codex gives every label a 4px vertical margin; these sit inside a row of
-	// their own already.
+	gap: 0.3em;
 	margin: 0;
+	white-space: nowrap;
 }
 </style>
