@@ -155,13 +155,30 @@ module.exports = {
 </script>
 
 <style lang="less">
+// CdxField renders its class onto THIS element, so these are its own margins.
+// The first attempt used `.lakeus-theme-designer-vue-item .cdx-field`, a
+// descendant selector that matched nothing, so Codex's 16px top margin stayed.
 .lakeus-theme-designer-vue-item {
-	margin-bottom: 0.4em;
+	margin: 0 0 0.35em;
 }
 
-// Codex's own field spacing is generous, and the panel has 99 of these stacked.
-.lakeus-theme-designer-vue-item .cdx-field {
-	margin-bottom: 0;
+// Codex spaces a field out as if it stood alone: 4px of label padding, 4px of
+// label margin on each side, and a help-text row. Stacked 99 deep that is most of
+// the panel's height in whitespace.
+.lakeus-theme-designer-vue-item .cdx-field__label.cdx-label {
+	padding-bottom: 1px !important;
+}
+
+.lakeus-theme-designer-vue-item .cdx-label .cdx-label__label {
+	margin: 0 !important;
+}
+
+.lakeus-theme-designer-vue-item .cdx-field__help-text {
+	margin-top: 0;
+}
+
+.lakeus-theme-designer-vue-item .cdx-field__help-text:empty {
+	display: none;
 }
 
 .lakeus-theme-designer-vue-controls {
@@ -214,5 +231,8 @@ module.exports = {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.35em;
+	// Codex gives every label a 4px vertical margin; these sit inside a row of
+	// their own already.
+	margin: 0;
 }
 </style>
