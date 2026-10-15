@@ -235,7 +235,15 @@ module.exports = {
 .lakeus-theme-designer-input-alpha {
 	width: 4.5em;
 	min-width: 0;
+	/*
+	 * `min-height` alone does not bring a native control down to Codex's height -
+	 * 36px measured against a 30px Codex button. Something gives these inputs a
+	 * taller intrinsic height, so the height is stated outright. The colour swatch
+	 * does not need this and is 30px from `min-height` alone.
+	 */
+	height: 30px;
 	min-height: 30px;
+	box-sizing: border-box;
 }
 
 .lakeus-theme-designer-vue-checkboxes {
