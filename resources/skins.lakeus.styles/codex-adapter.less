@@ -55,16 +55,23 @@
 .codex-adapter() {
 	/* Codex background of a "subtle" (tinted) message box
 	   <- Lakeus: the background of `.mw-message-box-error` etc. */
-	--background-color-error-subtle: var( --background-color-interface-message-box-error );
-	--background-color-warning-subtle: var( --background-color-interface-message-box-warning );
-	--background-color-success-subtle: var( --background-color-interface-message-box-success );
+	--background-color-error-subtle: var( --lakeus-background-color-interface-message-box-error );
+	--background-color-warning-subtle: var( --lakeus-background-color-interface-message-box-warning );
+	--background-color-success-subtle: var( --lakeus-background-color-interface-message-box-success );
 	/* Codex calls the neutral one "notice" */
-	--background-color-notice-subtle: var( --background-color-interface-message-box-neutral );
+	--background-color-notice-subtle: var( --lakeus-background-color-interface-message-box-neutral );
+
+	/* Base surface and body text. Both sides are terminals here: Codex paints
+	   page/card backgrounds from one and text from the other, and the skin does the
+	   same, so these two are the only non-message tokens with a layer match.
+	   The sources are the namespaced skin names (see the 2.0 rename). */
+	--background-color-base: var( --lakeus-background-color-base );
+	--color-base: var( --lakeus-color-base );
 
 	/* Codex border of a message box
 	   <- Lakeus: the border of the same `.mw-message-box-*` rules */
-	--border-color-error: var( --border-color-interface-message-box-error );
-	--border-color-warning: var( --border-color-interface-message-box-warning );
-	--border-color-success: var( --border-color-interface-message-box-success );
-	--border-color-notice: var( --border-color-interface-message-box-neutral );
+	--border-color-error: var( --lakeus-border-color-interface-message-box-error );
+	--border-color-warning: var( --lakeus-border-color-interface-message-box-warning );
+	--border-color-success: var( --lakeus-border-color-interface-message-box-success );
+	--border-color-notice: var( --lakeus-border-color-interface-message-box-neutral );
 }

@@ -1029,7 +1029,7 @@ Lakeus.pasteThemeFromCurrentSettings = function () {
         var raw = Lakeus.getSkinVariableValue(k, scheme);
         if (raw === null) {
             raw = window.getComputedStyle(document.documentElement)
-                .getPropertyValue('--' + k).trim() || null;
+                .getPropertyValue('--lakeus-' + k).trim() || null;
         }
         v.value = Lakeus.parseVariableValue(raw, v, v.default);
         // Values were replaced wholesale, so any recorded fingerprint for this
@@ -1081,7 +1081,7 @@ Lakeus.panelPaletteTokens = function () {
         Lakeus.colorSchemes.forEach(function (scheme) {
             tokens['--' + k + '-' + scheme] = true;
         });
-        tokens['--' + k] = true;
+        tokens['--lakeus-' + k] = true;
     });
     Array.prototype.forEach.call(document.styleSheets, function (sheet) {
         var rules;
