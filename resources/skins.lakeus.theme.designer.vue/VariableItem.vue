@@ -167,7 +167,10 @@ module.exports = {
 	align-items: center;
 	gap: 0 0.6em;
 	flex-wrap: wrap;
-	margin: 0 0 0.35em;
+	// The gap between fields has to be clearly larger than the gap inside one, or
+	// a title stops reading as belonging to the controls beside it. The inside gap
+	// is the label's own padding plus the row gap above; this is the outside one.
+	margin: 0 0 1.1em;
 }
 
 .lakeus-theme-designer-vue-item > .cdx-field__label.cdx-label {
@@ -197,13 +200,16 @@ module.exports = {
 }
 
 /*
- * The panel's width is driven by its contents, so these have to be FIXED widths.
- * `width: 100%` looked reasonable and collapsed the panel to a narrow strip:
- * every field shrank to fit a container that was itself shrinking to fit them.
+ * Native controls, sized to sit next to Codex's own. Codex has no colour input,
+ * so the swatch stays native and has to be made to match - a 21px text field or a
+ * 27px swatch beside a 30px Codex button reads as a mistake. `min-height` in px
+ * rather than em because the font size differs between these elements (13.33px on
+ * a colour input, 16px on a text one) and em would give two different heights.
  */
 .lakeus-theme-designer-input-color {
 	width: 3em;
 	flex: none;
+	min-height: 30px;
 }
 
 .lakeus-theme-designer-input-text,
@@ -211,6 +217,7 @@ module.exports = {
 	width: 12em;
 	max-width: 100%;
 	min-width: 0;
+	min-height: 30px;
 }
 
 /*
@@ -222,11 +229,13 @@ module.exports = {
 .lakeus-theme-designer-input-color[type="text"] {
 	width: 12em;
 	max-width: 100%;
+	min-height: 30px;
 }
 
 .lakeus-theme-designer-input-alpha {
 	width: 4.5em;
 	min-width: 0;
+	min-height: 30px;
 }
 
 .lakeus-theme-designer-vue-checkboxes {
