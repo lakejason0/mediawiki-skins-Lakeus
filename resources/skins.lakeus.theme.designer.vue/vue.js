@@ -70,7 +70,20 @@ module.exports = function ( Lakeus ) {
 		if ( !host ) {
 			return null;
 		}
-		const app = Vue.createMwApp( Fieldset, { fieldset, variables } );
+		// `onUpdateFlag` is how a Vue 3 root component receives an event: $on was
+		// removed in Vue 3, and calling it threw - which aborted the mount loop and
+		// left every fieldset after the first one unrendered.
+		const app = Vue.createMwApp( Fieldset, {
+			fieldset,
+			variables,
+			onUpdateFlag: ( name, field, value ) => {
+				// The checkboxes are controlled Codex components, so their state
+				// arrives as an event rather than being read back out of the DOM.
+				// That is the direction this panel has been moving in since the state
+				// came off the markup: the variable is the truth and the DOM follows.
+				Lakeus.variablesList[ name ][ field ] = value;
+			}
+		} );
 		// mount() returns the root instance proxy. Reading app._instance instead is
 		// not the same thing and silently produced a component with no items, i.e.
 		// an empty fieldset.

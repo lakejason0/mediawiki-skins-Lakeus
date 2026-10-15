@@ -17,6 +17,8 @@
 		:skipped="item.skipped"
 		:value="item.value"
 		:alpha="item.alpha"
+		@update:auto-on="setFlag( item.name, 'autoOn', $event )"
+		@update:skipped="setFlag( item.name, 'skipped', $event )"
 	/>
 </template>
 
@@ -26,6 +28,7 @@ const VariableItem = require( './VariableItem.vue' );
 module.exports = {
 	name: 'LakeusThemeDesignerFieldset',
 	components: { VariableItem },
+	emits: [ 'update-flag' ],
 	props: {
 		fieldset: { type: String, required: true },
 		variables: { type: Array, default: () => [] }
@@ -46,6 +49,24 @@ module.exports = {
 		}
 	},
 	methods: {
+		/**
+		 * A checkbox was toggled.
+		 *
+		 * The item is updated here as well as announced upwards, because these are
+		 * controlled components: if the rendered copy kept the old value, Vue would
+		 * put it straight back and the box would appear not to respond.
+		 *
+		 * @param {string} name
+		 * @param {string} field 'autoOn' or 'skipped'.
+		 * @param {boolean} value
+		 */
+		setFlag( name, field, value ) {
+			const item = this.items.find( ( candidate ) => candidate.name === name );
+			if ( item ) {
+				item[ field ] = value;
+			}
+			this.$emit( 'update-flag', name, field, value );
+		},
 		/**
 		 * @param {Array<Object>} items
 		 */

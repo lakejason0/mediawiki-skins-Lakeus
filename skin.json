@@ -118,6 +118,7 @@
 				"DangerZoneFieldset.vue"
 			],
 			"codexComponents": [
+				"CdxCheckbox",
 				"CdxField"
 			],
 			"messages": [

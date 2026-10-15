@@ -448,12 +448,14 @@ Lakeus.setupThemeDesigner = function () {
                 // Disabled only mirrors the auto-calculate box; it is presentation,
                 // never read back. Reading it back is what once let a disabled
                 // fieldset turn a user value into a derived one.
+                //
+                // The checkboxes are not written here. They are controlled Codex
+                // components rendering from the variable, and this function used to
+                // set their `checked` by id - which stopped working the moment the
+                // markup became components, and which was the thing that once left
+                // all 78 auto-calculate boxes unticked.
                 $("#lakeus-theme-designer-input-" + k).prop('disabled', !!v.autoCalculateOn);
                 $("#lakeus-theme-designer-input-" + k + "-alpha").prop('disabled', !!v.autoCalculateOn);
-                // The checkboxes are the editable surface, so they are written both
-                // ways: set from the model here, and read in the delegated handlers.
-                $("#lakeus-theme-designer-input-auto-calculate-" + k).prop('checked', !!v.autoCalculateOn);
-                $("#lakeus-theme-designer-input-do-not-generate-" + k).prop('checked', !!v.skipped);
             });
         };
 
@@ -696,17 +698,10 @@ Lakeus.setupThemeDesigner = function () {
             // fieldset the rewrite is heading towards - silently lost the handlers
             // along with the elements they were attached to.
             var panelElement = $("#lakeus-theme-designer");
-            panelElement.on('change', '.lakeus-theme-designer-auto-calculate-checkbox', function () {
-                var name = $(this).attr("name").replace("auto-calculate-", "");
-                var checked = $(this).prop('checked');
-                Lakeus.variablesList[name].autoCalculateOn = checked;
-                $("#lakeus-theme-designer-input-" + name).prop('disabled', checked);
-                $("#lakeus-theme-designer-input-" + name + "-alpha").prop('disabled', checked);
-            });
-            panelElement.on('change', '.lakeus-theme-designer-do-not-generate-checkbox', function () {
-                var name = $(this).attr("name").replace("do-not-generate-", "");
-                Lakeus.variablesList[name].skipped = $(this).prop('checked');
-            });
+            // The two checkboxes need no handler here any more. They are controlled
+            // Codex components: the component reports the new value, vue.js writes
+            // it to the variable, and the input's disabled state is bound from the
+            // same variable, so nothing has to read the DOM back.
             Lakeus.syncVariableUiState();
             // Everything below is delegated on the panel root too, for the same
             // reason. These used to be bound per element with `.click()` and
@@ -1095,20 +1090,39 @@ Lakeus.clearTheme = function () {
     });
 }
 
+/**
+ * Tick the opposite of every auto-calculate box.
+ *
+ * These two used to walk the checkboxes and toggle them, relying on the change
+ * event to write the model. The boxes are controlled Codex components now, so
+ * there is nothing sensible to toggle: the model is what they render from, and
+ * refresh() is what makes them show it.
+ *
+ * The flush comes first so that whatever has been typed into the value fields is
+ * captured before the re-render writes the model back over them.
+ */
 Lakeus.invertAutoCalculateSelection = function () {
-    $(".lakeus-theme-designer-auto-calculate-checkbox").each(function () {
-        var checked = $(this).prop('checked');
-        $(this).prop('checked', !checked).trigger('change');
+    Object.keys(Lakeus.variablesList).forEach(function (k) {
+        var v = Lakeus.variablesList[k];
+        // A variable only has the box at all when its rule is not manual.
+        if ((v.rule || {}).autoCalculate !== 'manual') {
+            v.autoCalculateOn = !v.autoCalculateOn;
+        }
     });
+    Lakeus.updateVariablesListFromForm();
+    if (Lakeus.vueModule) {
+        Lakeus.vueModule.refresh();
+    }
 }
 
 Lakeus.unselectDoNotGenerateSelection = function () {
-    $(".lakeus-theme-designer-do-not-generate-checkbox").each(function () {
-        var checked = $(this).prop('checked');
-        if (checked) {
-            $(this).prop('checked', false).trigger('change');
-        }
+    Object.keys(Lakeus.variablesList).forEach(function (k) {
+        Lakeus.variablesList[k].skipped = false;
     });
+    Lakeus.updateVariablesListFromForm();
+    if (Lakeus.vueModule) {
+        Lakeus.vueModule.refresh();
+    }
 }
 
 /**

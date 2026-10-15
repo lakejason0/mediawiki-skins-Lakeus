@@ -62,34 +62,38 @@
 				:value="textValue"
 			>
 			<!--
-				Both boxes are BOUND, not written imperatively. Writing `checked`
-				from syncVariableUiState() looked like it worked and did not: Vue
-				re-renders from the model and drops attributes it does not know
-				about, so all 78 auto-calculate boxes came back unticked while the
-				generated stylesheet stayed correct. The panel was lying about the
-				state it was in - the same trap `disabled` fell into.
+				Real Codex checkboxes, driven by the model. They are controlled
+				components, so `modelValue` is the only way to set them - which is
+				also what removes the old trap: `checked` used to be written
+				imperatively by syncVariableUiState(), Vue re-renders from the model
+				and drops attributes it does not know about, and all 78 auto-calculate
+				boxes came back unticked while the generated stylesheet stayed
+				correct. The panel was lying about the state it was in.
 			-->
 			<div class="lakeus-theme-designer-vue-checkboxes">
-				<label v-if="hasAutoBox" class="lakeus-theme-designer-vue-checkbox">
-					<input
-						type="checkbox"
-						class="lakeus-theme-designer-auto-calculate-checkbox"
-						:name="'auto-calculate-' + name"
-						:id="'lakeus-theme-designer-input-auto-calculate-' + name"
-						:checked="autoOn"
-					>
+				<!--
+					`name` is passed because CdxCheckbox declares it as a prop and puts
+					it on its inner input, which makes it the one stable hook into the
+					component from outside. `id` is not: CdxCheckbox generates its own
+					and the id given to it lands on the wrapper div instead.
+				-->
+				<cdx-checkbox
+					v-if="hasAutoBox"
+					class="lakeus-theme-designer-auto-calculate-checkbox"
+					:name="'auto-calculate-' + name"
+					:model-value="autoOn"
+					@update:model-value="$emit( 'update:autoOn', $event )"
+				>
 					{{ autoCalculateLabel }}
-				</label>
-				<label class="lakeus-theme-designer-vue-checkbox">
-					<input
-						type="checkbox"
-						class="lakeus-theme-designer-do-not-generate-checkbox"
-						:name="'do-not-generate-' + name"
-						:id="'lakeus-theme-designer-input-do-not-generate-' + name"
-						:checked="skipped"
-					>
+				</cdx-checkbox>
+				<cdx-checkbox
+					class="lakeus-theme-designer-do-not-generate-checkbox"
+					:name="'do-not-generate-' + name"
+					:model-value="skipped"
+					@update:model-value="$emit( 'update:skipped', $event )"
+				>
 					{{ doNotGenerateLabel }}
-				</label>
+				</cdx-checkbox>
 			</div>
 		</div>
 	</cdx-field>
@@ -99,7 +103,7 @@
 // CodexModule injects a virtual './codex.js' exposing exactly the components the
 // module's codexComponents list names. There is no '@wikimedia/codex' module to
 // depend on; CodexModule refuses it.
-const { CdxField } = require( './codex.js' );
+const { CdxField, CdxCheckbox } = require( './codex.js' );
 
 // Must be module.exports, not export default: ResourceLoader appends
 // `module.exports.template = <compiled template>` to whatever this evaluates to,
@@ -107,7 +111,10 @@ const { CdxField } = require( './codex.js' );
 // template at all.
 module.exports = {
 	name: 'LakeusThemeDesignerVariableItem',
-	components: { CdxField },
+	components: { CdxField, CdxCheckbox },
+	// The two boxes are controlled Codex components, so their state leaves through
+	// here and is written to the model by whoever owns it.
+	emits: [ 'update:autoOn', 'update:skipped' ],
 	props: {
 		name: { type: String, required: true },
 		kind: { type: String, default: 'color' },
