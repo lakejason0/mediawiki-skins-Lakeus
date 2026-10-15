@@ -4,6 +4,8 @@
 // Renamed from 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-mixin-light.less'
 // Renamed from 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-mixin-reset.less'
 @import 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui-mixin-mode-reset.less';
+// Deliberate Lakeus -> Codex token mapping. See the file header for the rule.
+@import 'codex-adapter.less';
 
 /* Variables */
 /* Make less variables to CSS ones */
@@ -547,6 +549,9 @@
 		// .cdx-mode-light();
 		.cdx-mode-reset();
 		.theme-light();
+		// Must come after the reset: same selector, later in the block, so the
+		// adapter wins over Codex's own value for the tokens it names.
+		.codex-adapter();
 	}
 
 	/**
@@ -558,6 +563,10 @@
 	html.skin-theme-clientpref-night {
 		color-scheme: dark;
 		.cdx-mode-dark();
+		// Same selector as the dark half of the Codex reset, and after it.
+		// A `:root`-only adapter (specificity 0,1,0) would lose to this
+		// selector (0,1,1) and dark mode would keep Codex's own values.
+		.codex-adapter();
 
 		/**
 		 * Inverted dark color scheme
@@ -580,6 +589,9 @@
 	html.lakeus-color-scheme-wiki-default-dark.lakeus-color-scheme-clientpref-wiki {
 		color-scheme: dark;
 		.theme-dark();
+		// This selector list carries the highest specificity of the dark paths
+		// (`...-wiki-default-dark....-clientpref-wiki` is 0,2,1).
+		.codex-adapter();
 
 		/**
 		 * Inverted dark color scheme
@@ -634,6 +646,7 @@
 	html.skin-theme-clientpref-os {
 		color-scheme: light dark;
 		.cdx-mode-dark();
+		.codex-adapter();
 
 		// T365102 invert class specifically for image related elements
 		@{OOUIIconSelectors},
@@ -647,6 +660,7 @@
 	html.lakeus-color-scheme-wiki-default-os.lakeus-color-scheme-clientpref-wiki {
 		color-scheme: light dark;
 		.theme-dark();
+		.codex-adapter();
 
 		.notheme {
 			color-scheme: light;
