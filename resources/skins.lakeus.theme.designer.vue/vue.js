@@ -49,6 +49,8 @@ module.exports = function ( Lakeus ) {
 				hasAutoBox: rule.autoCalculate !== 'manual',
 				// Bound onto the inputs; see VariableItem.vue.
 				autoOn: !!( entry && entry.autoCalculateOn ),
+				// Whether the author has excluded this variable from the generated stylesheet.
+				skipped: !!( entry && entry.skipped ),
 				value: isColour ? value.hex( 'rgb' ) : String( value ),
 				alpha: isColour ? value.alpha() : 1
 			};

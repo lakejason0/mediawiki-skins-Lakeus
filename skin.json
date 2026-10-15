@@ -141,7 +141,8 @@
 				"lakeus-theme-designer-reset-theme",
 				"lakeus-theme-designer-reload",
 				"lakeus-theme-designer-invert-auto-calculate-selection",
-				"lakeus-theme-designer-unselect-do-not-generate-selection"
+				"lakeus-theme-designer-unselect-do-not-generate-selection",
+				"lakeus-theme-designer-color-scheme-hint"
 			]
 		},
 		"skins.lakeus.theme.designer": {

@@ -52,6 +52,7 @@
 	"lakeus-theme-designer-color-scheme": "正在编辑的配色方案",
 	"lakeus-theme-designer-color-scheme-light": "浅色",
 	"lakeus-theme-designer-color-scheme-dark": "深色",
+	"lakeus-theme-designer-color-scheme-hint": "测试前请先用右上角的外观菜单切换到对应的配色方案。",
 	"lakeus-theme-designer-alpha-channel": "Alpha（透明度）",
 	"lakeus-theme-designer-basic": "基本",
 	"lakeus-theme-designer-color-primary": "主要色（前景）",

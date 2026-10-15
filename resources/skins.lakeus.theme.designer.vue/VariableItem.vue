@@ -62,29 +62,35 @@
 				:value="textValue"
 			>
 			<!--
-				Rendered whenever the variable's rule is not manual. Its checked state
-				belongs to the model: syncVariableUiState() writes it and the panel's
-				delegated change handler reads it.
+				Both boxes are BOUND, not written imperatively. Writing `checked`
+				from syncVariableUiState() looked like it worked and did not: Vue
+				re-renders from the model and drops attributes it does not know
+				about, so all 78 auto-calculate boxes came back unticked while the
+				generated stylesheet stayed correct. The panel was lying about the
+				state it was in - the same trap `disabled` fell into.
 			-->
-			<label v-if="hasAutoBox" class="lakeus-theme-designer-vue-checkbox">
-				<input
-					type="checkbox"
-					class="lakeus-theme-designer-auto-calculate-checkbox"
-					:name="'auto-calculate-' + name"
-					:id="'lakeus-theme-designer-input-auto-calculate-' + name"
-				>
-				{{ autoCalculateLabel }}
-			</label>
-			<!-- Left uncontrolled for the same reason as the box above. -->
-			<label class="lakeus-theme-designer-vue-checkbox">
-				<input
-					type="checkbox"
-					class="lakeus-theme-designer-do-not-generate-checkbox"
-					:name="'do-not-generate-' + name"
-					:id="'lakeus-theme-designer-input-do-not-generate-' + name"
-				>
-				{{ doNotGenerateLabel }}
-			</label>
+			<div class="lakeus-theme-designer-vue-checkboxes">
+				<label v-if="hasAutoBox" class="lakeus-theme-designer-vue-checkbox">
+					<input
+						type="checkbox"
+						class="lakeus-theme-designer-auto-calculate-checkbox"
+						:name="'auto-calculate-' + name"
+						:id="'lakeus-theme-designer-input-auto-calculate-' + name"
+						:checked="autoOn"
+					>
+					{{ autoCalculateLabel }}
+				</label>
+				<label class="lakeus-theme-designer-vue-checkbox">
+					<input
+						type="checkbox"
+						class="lakeus-theme-designer-do-not-generate-checkbox"
+						:name="'do-not-generate-' + name"
+						:id="'lakeus-theme-designer-input-do-not-generate-' + name"
+						:checked="skipped"
+					>
+					{{ doNotGenerateLabel }}
+				</label>
+			</div>
 		</div>
 	</cdx-field>
 </template>
@@ -107,6 +113,13 @@ module.exports = {
 		kind: { type: String, default: 'color' },
 		allowAlpha: { type: Boolean, default: false },
 		hasAutoBox: { type: Boolean, default: false },
+		// Bound onto the checkboxes and the inputs. Writing these imperatively
+		// looked like it worked and did not, because Vue re-renders from the model
+		// and drops attributes it does not know about - which is how all 78
+		// auto-calculate boxes came back unticked, and how an auto-calculated field
+		// once came back editable.
+		autoOn: { type: Boolean, default: false },
+		skipped: { type: Boolean, default: false },
 		// Whether the rule, not the author, is in charge of this value. Bound onto
 		// the inputs rather than written imperatively: Vue re-renders from the model
 		// and would drop an attribute it does not know about.
@@ -143,13 +156,57 @@ module.exports = {
 
 <style lang="less">
 .lakeus-theme-designer-vue-item {
-	margin-bottom: 0.75em;
+	margin-bottom: 0.4em;
+}
+
+// Codex's own field spacing is generous, and the panel has 99 of these stacked.
+.lakeus-theme-designer-vue-item .cdx-field {
+	margin-bottom: 0;
 }
 
 .lakeus-theme-designer-vue-controls {
 	display: flex;
 	align-items: center;
-	gap: 0.75em;
+	gap: 0.35em 0.75em;
+	flex-wrap: wrap;
+	min-width: 0;
+}
+
+// The panel's width is driven by its contents, so these have to be FIXED widths.
+// `width: 100%` looked reasonable and made the panel collapse to a narrow strip:
+// each field shrank to fit a container that was itself shrinking to fit them.
+.lakeus-theme-designer-input-color {
+	width: 3em;
+	flex: none;
+}
+
+.lakeus-theme-designer-input-text,
+.lakeus-theme-designer-input-textarea {
+	width: 12em;
+	max-width: 100%;
+	min-width: 0;
+}
+
+// The colour-picker fallback rewrites a swatch's type attribute to `text`, which
+// makes it a text field needing a text field's width. This is why the width
+// cannot be decided by class alone.
+.lakeus-theme-designer-input-color[type="text"] {
+	width: 12em;
+	max-width: 100%;
+}
+
+.lakeus-theme-designer-input-alpha {
+	width: 4.5em;
+	min-width: 0;
+}
+
+// A row of its own, so a long variable name cannot leave one box next to the
+// swatch and the other wrapped onto the following line.
+.lakeus-theme-designer-vue-checkboxes {
+	flex-basis: 100%;
+	display: flex;
+	align-items: center;
+	gap: 0.35em 1em;
 	flex-wrap: wrap;
 }
 

@@ -38,6 +38,7 @@
 	"lakeus-theme-designer-color-scheme": "Colour scheme being edited",
 	"lakeus-theme-designer-color-scheme-light": "Light",
 	"lakeus-theme-designer-color-scheme-dark": "Dark",
+	"lakeus-theme-designer-color-scheme-hint": "Before testing, switch to this scheme with the appearance menu in the top right.",
 	"lakeus-theme-designer-system-messages-loaded": "Successfully loaded required system messages.",
 	"lakeus-theme-designer-all-loaded": "Theme Designer is loaded.",
 	"lakeus-theme-designer-auto-calculate": "Auto calculate",

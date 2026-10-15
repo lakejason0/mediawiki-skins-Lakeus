@@ -14,6 +14,7 @@
 		:allow-alpha="item.allowAlpha"
 		:has-auto-box="item.hasAutoBox"
 		:auto-on="item.autoOn"
+		:skipped="item.skipped"
 		:value="item.value"
 		:alpha="item.alpha"
 	/>

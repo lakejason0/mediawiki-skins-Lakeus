@@ -40,6 +40,7 @@
 	"lakeus-theme-designer-color-scheme": "Legend of the fieldset holding the radio buttons that choose which colour scheme's values the form edits. The skin renders a light and a dark colour scheme, and each one has its own palette in the Theme Designer.",
 	"lakeus-theme-designer-color-scheme-light": "Label of the radio button that makes the Theme Designer form edit the light colour scheme's values. {{Identical|Light}}",
 	"lakeus-theme-designer-color-scheme-dark": "Label of the radio button that makes the Theme Designer form edit the dark colour scheme's values. {{Identical|Dark}}",
+	"lakeus-theme-designer-color-scheme-hint": "Hint in the Theme Designer's colour-scheme fieldset. The designer edits the scheme selected here, but the wiki page keeps whatever scheme the appearance menu has chosen, so a theme for the other scheme cannot be judged until that menu matches.",
 	"lakeus-theme-designer-system-messages-loaded": "A message appearing in the console, indicating that system messages (l10n) are successfully loaded.",
 	"lakeus-theme-designer-all-loaded": "A message appearing in the console, indicating that the Theme Designer is all loaded.",
 	"lakeus-theme-designer-auto-calculate": "A checkbox label. Checking these will disable the corresponding form input and use the automatic calculation provided by the designer for the corresponding setting.",
