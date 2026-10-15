@@ -820,7 +820,15 @@ Lakeus.setupThemeDesigner = function () {
  * disappeared from the panel.
  */
 Lakeus.vueFieldsets = [
-    'lakeus-theme-designer-basic'
+    'lakeus-theme-designer-basic',
+    'lakeus-theme-designer-basic-derived',
+    'lakeus-theme-designer-global',
+    'lakeus-theme-designer-page-header',
+    'lakeus-theme-designer-toggle-list',
+    'lakeus-theme-designer-body',
+    'lakeus-theme-designer-portlet',
+    'lakeus-theme-designer-footer',
+    'lakeus-theme-designer-sticky-toc'
 ];
 
 /** @type {?Object} */

@@ -6,22 +6,25 @@
 	<legend class="lakeus-theme-designer-title">
 		{{ legend }}
 	</legend>
-	<color-item
+	<variable-item
 		v-for="item in items"
 		:key="item.name"
 		:name="item.name"
+		:kind="item.kind"
 		:allow-alpha="item.allowAlpha"
+		:has-auto-box="item.hasAutoBox"
+		:auto-on="item.autoOn"
 		:value="item.value"
 		:alpha="item.alpha"
 	/>
 </template>
 
 <script>
-const ColorItem = require( './ColorItem.vue' );
+const VariableItem = require( './VariableItem.vue' );
 
 module.exports = {
 	name: 'LakeusThemeDesignerFieldset',
-	components: { ColorItem },
+	components: { VariableItem },
 	props: {
 		fieldset: { type: String, required: true },
 		variables: { type: Array, default: () => [] }

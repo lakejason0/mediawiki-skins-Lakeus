@@ -1,22 +1,21 @@
 /**
  * The Vue half of the Theme Designer's panel.
  *
- * One fieldset is rendered by Vue instead of by the hand-written markup
- * themeDesigner.js builds as a string, as the first step of moving the panel over.
- * Doing exactly one answers the two questions that decide whether the rest should
- * follow: does a Codex-based fieldset render acceptably inside the existing panel,
- * and what does it cost in ResourceLoader payload?
+ * The panel's fieldsets are rendered by Vue with real Codex instead of by the
+ * hand-written markup themeDesigner.js builds as a string.
  *
- * The component reproduces the SAME DOM contract as the markup it replaces - the
+ * The components reproduce the SAME DOM contract as the markup they replace - the
  * same `lakeus-theme-designer-input-<name>` ids, the same
- * `lakeus-theme-designer-input-color` / `-do-not-generate-checkbox` classes. That
- * is what lets one fieldset move at a time: the designer reads its state out of the
- * DOM, so the markup is the seam.
+ * `lakeus-theme-designer-input-color` / `-input-alpha` / `-input-text` /
+ * `-auto-calculate-checkbox` / `-do-not-generate-checkbox` classes. That is what
+ * lets the swap happen without touching the form flush, the refresh or the scheme
+ * switch: none of them know or care who rendered the inputs.
  *
  * Nothing here keeps its own copy of the state. It renders what
  * Lakeus.variablesList holds and, when the designer refreshes the form, renders it
- * again. The delegated handlers on the panel root keep working across the swap,
- * which is why this does not need to re-implement any of them.
+ * again. The panel's handlers are delegated on the panel root, so they keep working
+ * on markup they never saw bound, and the checkbox states are written by
+ * Lakeus.syncVariableUiState() rather than bound here.
  *
  * @param {Object} Lakeus The shared namespace, injected by the designer.
  * @return {Object}
@@ -38,9 +37,16 @@ module.exports = function ( Lakeus ) {
 			const entry = Lakeus.variablesList[ name ];
 			const value = entry && entry.value;
 			const isColour = value && typeof value.hex === 'function';
+			const rule = ( entry && entry.rule ) || {};
 			return {
 				name,
+				kind: ( entry && entry.input ) || 'color',
 				allowAlpha: !!( entry && entry.allowAlpha ),
+				// The rule decides whether the variable HAS an auto-calculate box;
+				// whether it is ticked is model state (v.autoCalculateOn).
+				hasAutoBox: rule.autoCalculate !== 'manual',
+				// Bound onto the inputs; see VariableItem.vue.
+				autoOn: !!( entry && entry.autoCalculateOn ),
 				value: isColour ? value.hex( 'rgb' ) : String( value ),
 				alpha: isColour ? value.alpha() : 1
 			};
