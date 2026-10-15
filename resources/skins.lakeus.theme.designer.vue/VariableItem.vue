@@ -2,6 +2,7 @@
 	<cdx-field
 		:is-fieldset="false"
 		class="lakeus-theme-designer-vue-item"
+		:class="{ 'lakeus-theme-designer-vue-item--stacked': isStacked }"
 	>
 		<template #label>
 			{{ label }}
@@ -45,22 +46,21 @@
 					:value="alphaValue"
 				>
 			</template>
+			<!--
+				Text variables are a textarea, not a single-line input. Their values
+				are long CSS - a font stack runs to a hundred characters - and a panel
+				this narrow showed only the first few of them. A textarea uses the
+				width it has by wrapping, and being taller is the point: with a
+				sidebar this narrow, one of the two directions has to give.
+			-->
 			<textarea
-				v-else-if="kind === 'textarea'"
+				v-else
+				:rows="textRows"
 				class="lakeus-theme-designer-input-textarea"
 				:name="name"
 				:id="'lakeus-theme-designer-input-' + name"
 				:disabled="autoOn"
 			>{{ textValue }}</textarea>
-			<input
-				v-else
-				type="text"
-				class="lakeus-theme-designer-input-text"
-				:name="name"
-				:id="'lakeus-theme-designer-input-' + name"
-				:disabled="autoOn"
-				:value="textValue"
-			>
 			<!--
 				Real Codex checkboxes, driven by the model. They are controlled
 				components, so `modelValue` is the only way to set them - which is
@@ -156,6 +156,23 @@ module.exports = {
 		},
 		textValue() {
 			return this.value;
+		},
+		textRows() {
+			// Two rows holds a font stack at this width; anything longer scrolls.
+			return 2;
+		},
+		/**
+		 * Whether the label goes above the control rather than beside it.
+		 *
+		 * A textarea needs the panel's full width, and beside a label it got about
+		 * half of it. That is the bug the previous attempt at this hit: the item is
+		 * a flex row, the label took half, and `flex: 1 1 100%` on the textarea
+		 * resolved against the little that was left.
+		 *
+		 * @return {boolean}
+		 */
+		isStacked() {
+			return this.kind === 'textarea' || this.kind === 'text';
 		}
 	}
 };
@@ -192,6 +209,20 @@ module.exports = {
 .lakeus-theme-designer-vue-item > .cdx-field__control {
 	flex: 1 1 auto;
 	min-width: 0;
+}
+
+/*
+ * Label above, control across the full width. Without this the textarea sits beside
+ * the label and gets roughly half the panel, which is too little to read a font
+ * stack in.
+ */
+.lakeus-theme-designer-vue-item--stacked {
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.lakeus-theme-designer-vue-item--stacked > .cdx-field__label.cdx-label {
+	flex: 0 0 auto;
 }
 
 .lakeus-theme-designer-vue-item > .cdx-field__help-text {
