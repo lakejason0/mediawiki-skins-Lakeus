@@ -23,6 +23,8 @@
 module.exports = function ( Lakeus ) {
 	const Vue = require( 'vue' );
 	const Fieldset = require( './Fieldset.vue' );
+	const ColorSchemeFieldset = require( './ColorSchemeFieldset.vue' );
+	const DangerZoneFieldset = require( './DangerZoneFieldset.vue' );
 
 	const mounted = [];
 
@@ -85,10 +87,39 @@ module.exports = function ( Lakeus ) {
 	 * drift apart.
 	 */
 	function refresh() {
+		if ( chrome.colorScheme ) {
+			// The scheme switch writes it imperatively elsewhere; keep the radios bound
+			// to the model rather than letting them go stale.
+			chrome.colorScheme.current = Lakeus.colorSchemeMode;
+		}
 		mounted.forEach( ( entry ) => {
 			entry.instance.applyItems( itemsFor( entry.variables ) );
 		} );
 	}
 
-	return { mountFieldset, refresh, mounted };
+	/**
+	 * Render the panel's two non-variable fieldsets: the colour-scheme selector and
+	 * the dangerous one. Their click handlers are delegated on the panel root and
+	 * match by id, so rendering them here binds nothing.
+	 *
+	 * @return {void}
+	 */
+	function mountStatic() {
+		const scheme = document.getElementById( 'lakeus-theme-designer-fieldset-color-scheme' );
+		if ( scheme ) {
+			chrome.colorScheme = Vue.createMwApp( ColorSchemeFieldset, {
+				schemes: Lakeus.colorSchemes,
+				current: Lakeus.colorSchemeMode
+			} ).mount( scheme );
+		}
+		const danger = document.getElementById( 'lakeus-theme-designer-fieldset-danger-zone' );
+		if ( danger ) {
+			Vue.createMwApp( DangerZoneFieldset ).mount( danger );
+		}
+	}
+
+	/** @type {Object} */
+	const chrome = { colorScheme: null };
+
+	return { mountFieldset, mountStatic, refresh, mounted };
 };

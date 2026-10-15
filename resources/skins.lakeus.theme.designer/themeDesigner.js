@@ -817,6 +817,7 @@ Lakeus.mountVueFieldsets = function () {
             Lakeus.vueModule.mountFieldset(fieldset, Lakeus.fieldsetVariables(fieldset), host);
         }
     });
+    Lakeus.vueModule.mountStatic();
     // The Vue-rendered inputs are new elements, so the state has to be written onto
     // them; they are not covered by whatever the string builder set up.
     Lakeus.syncVariableUiState();
