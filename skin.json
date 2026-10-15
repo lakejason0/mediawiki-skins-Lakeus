@@ -105,12 +105,38 @@
 				}
 			}
 		},
+		"skins.lakeus.theme.designer.vue": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"es6": true,
+			"localBasePath": "resources/skins.lakeus.theme.designer.vue",
+			"remoteSkinPath": "Lakeus/resources/skins.lakeus.theme.designer.vue",
+			"packageFiles": [
+				"vue.js",
+				"Fieldset.vue",
+				"ColorItem.vue"
+			],
+			"codexComponents": [
+				"CdxField"
+			],
+			"messages": [
+				"lakeus-theme-designer-basic",
+				"lakeus-theme-designer-alpha-channel",
+				"lakeus-theme-designer-do-not-generate",
+				"lakeus-theme-designer-color-primary",
+				"lakeus-theme-designer-color-secondary",
+				"lakeus-theme-designer-color-neutral",
+				"lakeus-theme-designer-color-warning",
+				"lakeus-theme-designer-color-error",
+				"lakeus-theme-designer-color-success"
+			]
+		},
 		"skins.lakeus.theme.designer": {
 			"es6": true,
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.jqueryMsg",
 				"skins.lakeus.chroma",
+				"skins.lakeus.theme.designer.vue",
 				"user.options"
 			],
 			"packageFiles": [

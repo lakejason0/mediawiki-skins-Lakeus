@@ -802,7 +802,68 @@ Lakeus.setupThemeDesigner = function () {
         // per-scheme value.
         Lakeus.initColorSchemes();
         constructThemeDesigner();
+        Lakeus.mountVueFieldsets();
         console.log("[Lakeus] " + mw.message('lakeus-theme-designer-all-loaded'));
+};
+
+/**
+ * The fieldsets rendered by Vue instead of by the generated markup.
+ *
+ * One, for now. Moving exactly one establishes whether a Codex-based fieldset
+ * renders acceptably inside the existing panel and what it costs, before the other
+ * eight follow; the components reproduce the same DOM contract, which is what makes
+ * moving one at a time possible at all.
+ *
+ * Listed by fieldset id only - the variables belonging to it are read from the
+ * table. An earlier version hardcoded them and got the list wrong, so Vue replaced
+ * a fieldset's contents with only some of its variables and the rest silently
+ * disappeared from the panel.
+ */
+Lakeus.vueFieldsets = [
+    'lakeus-theme-designer-basic'
+];
+
+/** @type {?Object} */
+Lakeus.vueModule = null;
+
+/**
+ * The variables belonging to a fieldset, in table order.
+ *
+ * @param {string} fieldset
+ * @return {string[]}
+ */
+Lakeus.fieldsetVariables = function (fieldset) {
+    return Object.keys(Lakeus.variablesList).filter(function (k) {
+        return Lakeus.variablesList[k].fieldset === fieldset;
+    });
+};
+
+/**
+ * Hand the configured fieldsets to Vue.
+ *
+ * Deliberately failure-tolerant: if the Vue module cannot be loaded, the string
+ * builder's markup is still in the DOM and the panel keeps working exactly as
+ * before, so a broken rewrite degrades to the old renderer rather than to nothing.
+ *
+ * Order does not matter relative to the panel's handlers: they are delegated on the
+ * panel root, so they apply to whatever markup ends up there.
+ */
+Lakeus.mountVueFieldsets = function () {
+    try {
+        Lakeus.vueModule = require('skins.lakeus.theme.designer.vue')(Lakeus);
+    } catch (e) {
+        mw.log.warn('[Lakeus] Theme Designer: Vue fieldsets unavailable, keeping the generated markup. ' + e);
+        return;
+    }
+    Lakeus.vueFieldsets.forEach(function (fieldset) {
+        var host = document.getElementById('lakeus-theme-designer-fieldset-' + fieldset);
+        if (host) {
+            Lakeus.vueModule.mountFieldset(fieldset, Lakeus.fieldsetVariables(fieldset), host);
+        }
+    });
+    // The Vue-rendered inputs are new elements, so the state has to be written onto
+    // them; they are not covered by whatever the string builder set up.
+    Lakeus.syncVariableUiState();
 };
 
 /* Moving these functions into the init function */
@@ -879,6 +940,11 @@ Lakeus.updateFormFromVariablesList = function () {
             }
         }
     })
+    // The writes above go straight to the DOM, so the Vue-rendered fieldsets have
+    // to be told, or the two renderers would drift apart.
+    if (Lakeus.vueModule) {
+        Lakeus.vueModule.refresh();
+    }
 }
 
 /**
