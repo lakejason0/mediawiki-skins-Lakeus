@@ -124,7 +124,12 @@ module.exports = function ( Lakeus ) {
 		if ( scheme ) {
 			chrome.colorScheme = Vue.createMwApp( ColorSchemeFieldset, {
 				schemes: Lakeus.colorSchemes,
-				current: Lakeus.colorSchemeMode
+				current: Lakeus.colorSchemeMode,
+				// A controlled component reports the selection; the panel's old
+				// delegated handler read the radio's value out of the DOM instead.
+				onSelect: ( chosen ) => {
+					Lakeus.switchColorScheme( chosen );
+				}
 			} ).mount( scheme );
 		}
 		const danger = document.getElementById( 'lakeus-theme-designer-fieldset-danger-zone' );

@@ -731,9 +731,9 @@ Lakeus.setupThemeDesigner = function () {
             // and reload the page, throwing away the theme being edited. Submit
             // bubbles, so the delegated form of this still cancels it.
             panelElement.on('submit', '#lakeus-theme-designer-portlet-body', function (e) { e.preventDefault(); });
-            panelElement.on('change', '.lakeus-theme-designer-color-scheme-radio', function () {
-                Lakeus.switchColorScheme($(this).val());
-            });
+            // The colour-scheme radios need no handler here either: they are
+            // controlled CdxRadio components, and vue.js calls switchColorScheme()
+            // when one reports a selection.
             Lakeus.updateVariablesListFromForm();
         }
         // themeDesigner.css ships with this module as a ResourceLoader style,

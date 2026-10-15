@@ -3,16 +3,24 @@
 	<legend class="lakeus-theme-designer-title">
 		{{ legend }}
 	</legend>
-	<label v-for="scheme in schemes" :key="scheme">
-		<input
-			type="radio"
-			class="lakeus-theme-designer-color-scheme-radio"
-			name="lakeus-theme-designer-color-scheme"
-			:value="scheme"
-			:checked="scheme === current"
-		>
+	<!--
+		`input-value` is CdxRadio's analogue of a radio's `value`, and `name` groups
+		them. The panel's delegated change handler used to match
+		`.lakeus-theme-designer-color-scheme-radio` and read the element's value back
+		out of the DOM; a controlled component reports the selection instead, so the
+		handler is gone and this writes the scheme directly.
+	-->
+	<cdx-radio
+		v-for="scheme in schemes"
+		:key="scheme"
+		class="lakeus-theme-designer-color-scheme-radio"
+		name="lakeus-theme-designer-color-scheme"
+		:input-value="scheme"
+		:model-value="current"
+		@update:model-value="select( scheme )"
+	>
 		{{ labelFor( scheme ) }}
-	</label>
+	</cdx-radio>
 	<!--
 		The designer edits the scheme picked here, but the page keeps whatever the
 		appearance menu has chosen, so a theme for the other scheme cannot be judged
@@ -25,8 +33,14 @@
 </template>
 
 <script>
+// CodexModule injects a virtual './codex.js' exposing exactly the components the
+// module's codexComponents list names.
+const { CdxRadio } = require( './codex.js' );
+
 module.exports = {
 	name: 'LakeusThemeDesignerColorSchemeFieldset',
+	components: { CdxRadio },
+	emits: [ 'select' ],
 	props: {
 		schemes: { type: Array, default: () => [] },
 		// Which scheme is being edited. Bound, not written imperatively: Vue drops
@@ -49,6 +63,12 @@ module.exports = {
 		 */
 		labelFor( scheme ) {
 			return this.$i18n( 'lakeus-theme-designer-color-scheme-' + scheme ).text();
+		},
+		/**
+		 * @param {string} scheme
+		 */
+		select( scheme ) {
+			this.$emit( 'select', scheme );
 		}
 	}
 };

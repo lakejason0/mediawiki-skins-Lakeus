@@ -119,7 +119,8 @@
 			],
 			"codexComponents": [
 				"CdxCheckbox",
-				"CdxField"
+				"CdxField",
+				"CdxRadio"
 			],
 			"messages": [
 				"lakeus-theme-designer-alpha-channel",
