@@ -10,11 +10,11 @@
     bottom: 32px;
     user-select: none;
     z-index: 199;
-    color: var(--color-base, #000);
+    color: var( --lakeus-text-color-content, #000);
 }
 
 #lakeus-theme-designer-title {
-    color: var(--color-base, #000);
+    color: var( --lakeus-text-color-content, #000);
     font-size: 100%;
     font-weight: bold;
     margin-bottom: 0.6em;
@@ -80,7 +80,7 @@
 }
 
 #lakeus-theme-designer-portlet-body #lakeus-theme-designer-portlet-body-container {
-    background: var(--background-color-base, white);
+    background: var( --lakeus-background-color-base, white);
     overflow-y: scroll;
     box-shadow: 0 5px 17px 0 rgba(0,0,0,0.24),0 0 1px var(--border-color-base, #a2a9b1);
     border-radius: 3px;
@@ -90,7 +90,7 @@
 
 #lakeus-theme-designer #lakeus-theme-designer-modal-button {
     color: var(--color-inverted, #fff);
-    background: var(--background-color-base, #fff);
+    background: var( --lakeus-background-color-base, #fff);
     text-align: center;
     height: 45px;
     width: 45px;
@@ -133,7 +133,7 @@
 
 #lakeus-theme-designer-portlet-body #lakeus-theme-designer-action-buttons {
     position: sticky;
-    background: var(--background-color-base, #fff);
+    background: var( --lakeus-background-color-base, #fff);
     bottom: 0;
     margin-top: -1px;
     border-top: 1px solid var(--border-color-subtle, #c8ccd1);
@@ -144,7 +144,7 @@
 #lakeus-theme-designer-portlet-body .lakeus-theme-designer-action-button {
     padding: 0.35em;
     margin: 0.25em;
-    background-color: var(--background-color-base, #fff);
+    background-color: var( --lakeus-background-color-base, #fff);
     border-color: var(--border-color-base, #ccc);
     border-style: solid;
     border-width: 1px;

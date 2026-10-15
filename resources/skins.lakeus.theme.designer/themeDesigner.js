@@ -52,6 +52,8 @@ Lakeus.initThemeDesigner = function () {
             "lakeus-theme-designer-alpha-channel",
             "lakeus-theme-designer-basic",
             "lakeus-theme-designer-color-primary",
+            "lakeus-theme-designer-color-primary--hover",
+            "lakeus-theme-designer-color-primary--active",
             "lakeus-theme-designer-color-secondary",
             "lakeus-theme-designer-color-neutral",
             "lakeus-theme-designer-color-warning",
@@ -1029,7 +1031,7 @@ Lakeus.pasteThemeFromCurrentSettings = function () {
         var raw = Lakeus.getSkinVariableValue(k, scheme);
         if (raw === null) {
             raw = window.getComputedStyle(document.documentElement)
-                .getPropertyValue('--' + k).trim() || null;
+                .getPropertyValue('--lakeus-' + k).trim() || null;
         }
         v.value = Lakeus.parseVariableValue(raw, v, v.default);
         // Values were replaced wholesale, so any recorded fingerprint for this
@@ -1081,7 +1083,7 @@ Lakeus.panelPaletteTokens = function () {
         Lakeus.colorSchemes.forEach(function (scheme) {
             tokens['--' + k + '-' + scheme] = true;
         });
-        tokens['--' + k] = true;
+        tokens['--lakeus-' + k] = true;
     });
     Array.prototype.forEach.call(document.styleSheets, function (sheet) {
         var rules;

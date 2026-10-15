@@ -60,6 +60,40 @@ module.exports = function ( Lakeus, chroma ) {
             value: chroma("#36c"),
             calculate: derive.manual(),
         },
+        "color-primary--hover": {
+            fieldset: "lakeus-theme-designer-basic",
+            rule: {
+                autoCalculate: "calculateWhenNotNeeded",
+                generateByDefault: true,
+            },
+            input: "color",
+            allowAlpha: false,
+            skipped: false,
+            default: chroma("#1e5bbf"),
+            value: chroma("#1e5bbf"),
+            calculate: derive.nudge(
+                colour.of( 'color-primary' ),
+                colour.of( 'background-color-content' ).flattenOver( colour.of( 'background-color-body' ) ),
+                { brightenIfDark: 0.25, darkenIfLight: 0.25 }
+            ),
+        },
+        "color-primary--active": {
+            fieldset: "lakeus-theme-designer-basic",
+            rule: {
+                autoCalculate: "calculateWhenNotNeeded",
+                generateByDefault: true,
+            },
+            input: "color",
+            allowAlpha: false,
+            skipped: false,
+            default: chroma("#002a82"),
+            value: chroma("#002a82"),
+            calculate: derive.nudge(
+                colour.of( 'color-primary' ),
+                colour.of( 'background-color-content' ).flattenOver( colour.of( 'background-color-body' ) ),
+                { brightenIfDark: 0.5, darkenIfLight: 1.5 }
+            ),
+        },
         "color-secondary": {
             fieldset: "lakeus-theme-designer-basic",
             rule: {
@@ -362,8 +396,8 @@ module.exports = function ( Lakeus, chroma ) {
                 generateByDefault: true,
             },
             input: "text",
-            default: "var(--elevation)",
-            value: "var(--elevation)",
+            default: "var( --lakeus-elevation )",
+            value: "var( --lakeus-elevation )",
             calculate: derive.manual(),
         },
         "text-color-header": {
@@ -502,8 +536,8 @@ module.exports = function ( Lakeus, chroma ) {
                 generateByDefault: true,
             },
             input: "text",
-            default: "0 1px 1px var(--box-shadow-color-search-input)",
-            value: "0 1px 1px var(--box-shadow-color-search-input)",
+            default: "0 1px 1px var( --lakeus-box-shadow-color-search-input )",
+            value: "0 1px 1px var( --lakeus-box-shadow-color-search-input )",
             calculate: derive.manual(),
         },
         "box-shadow-color-search-input": {
@@ -756,8 +790,8 @@ module.exports = function ( Lakeus, chroma ) {
                 generateByDefault: true,
             },
             input: "text",
-            default: "var(--font-family)",
-            value: "var(--font-family)",
+            default: "var( --lakeus-font-family )",
+            value: "var( --lakeus-font-family )",
             calculate: derive.manual(),
         },
         "color-accent-header-tab": {
@@ -835,8 +869,8 @@ module.exports = function ( Lakeus, chroma ) {
                 generateByDefault: true,
             },
             input: "text",
-            default: "var(--font-family-serif)",
-            value: "var(--font-family-serif)",
+            default: "var( --lakeus-font-family-serif )",
+            value: "var( --lakeus-font-family-serif )",
             calculate: derive.manual(),
         },
         "background-color-edit-options": {
@@ -1319,8 +1353,8 @@ module.exports = function ( Lakeus, chroma ) {
                 generateByDefault: true,
             },
             input: "text",
-            default: "0 5px 17px 0 var(--box-shadow-color-portlet-body)",
-            value: "0 5px 17px 0 var(--box-shadow-color-portlet-body)",
+            default: "0 5px 17px 0 var( --lakeus-box-shadow-color-portlet-body )",
+            value: "0 5px 17px 0 var( --lakeus-box-shadow-color-portlet-body )",
             calculate: derive.manual(),
         },
         "box-shadow-color-portlet-body": {

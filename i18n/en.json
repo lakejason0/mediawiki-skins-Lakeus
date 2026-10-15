@@ -56,6 +56,8 @@
 	"lakeus-theme-designer-color-picker-fallback": "Use text input for color pickers",
 	"lakeus-theme-designer-alpha-channel": "Alpha (Opacity)",
 	"lakeus-theme-designer-basic": "Basic",
+	"lakeus-theme-designer-color-primary--hover": "Primary color (hover)",
+	"lakeus-theme-designer-color-primary--active": "Primary color (active)",
 	"lakeus-theme-designer-color-primary": "Primary color (foreground)",
 	"lakeus-theme-designer-color-secondary": "Secondary color (background)",
 	"lakeus-theme-designer-color-neutral": "Neutral color",
