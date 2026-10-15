@@ -360,6 +360,12 @@ Lakeus.setupThemeDesigner = function () {
         Lakeus.initColorSchemes = function () {
             var missingDark = [];
             $.each(Lakeus.variablesList, function (k, v) {
+                // Per-variable UI state lives on the variable, not in the DOM. It is
+                // initialised here because this runs before the form exists; a
+                // reload runs it again, which is right, since a reload starts over.
+                v.skipped = false;
+                v.autoCalculateOn = (v.rule || {}).autoCalculate === 'calculateWhenNotNeeded';
+
                 var lightDefault = v.defaults ? v.defaults.light : v.default;
                 var darkRaw = Lakeus.getSkinVariableValue(k, 'dark');
                 if (darkRaw === null) {
@@ -410,11 +416,45 @@ Lakeus.setupThemeDesigner = function () {
          * @return {boolean}
          */
         Lakeus.isAutoCalculated = function (k, v) {
-            var checkbox = $("#lakeus-theme-designer-input-auto-calculate-" + k);
-            if (checkbox.length) {
-                return checkbox.prop('checked');
-            }
-            return (v.rule || {}).autoCalculate === 'calculateWhenNotNeeded';
+            return !!v.autoCalculateOn;
+        };
+
+        /**
+         * Whether a variable's "do not generate" box is ticked, i.e. whether it is
+         * left out of the generated stylesheet.
+         *
+         * Kept on the variable rather than read from the DOM for the same reason as
+         * `autoCalculateOn`: the panel is a view over Lakeus.variablesList, and
+         * state that only exists in the markup disappears whenever the markup is
+         * rebuilt.
+         *
+         * @param {Object} v Entry from Lakeus.variablesList.
+         * @return {boolean}
+         */
+        Lakeus.isSkipped = function (v) {
+            return !!v.skipped;
+        };
+
+        /**
+         * Push every variable's UI state onto the form.
+         *
+         * The direction matters: the variables hold the state and the markup
+         * follows. Everything that used to read a checkbox or a `data()` flag now
+         * reads the variable, so the two can no longer disagree, and replacing the
+         * markup no longer loses anything.
+         */
+        Lakeus.syncVariableUiState = function () {
+            $.each(Lakeus.variablesList, function (k, v) {
+                // Disabled only mirrors the auto-calculate box; it is presentation,
+                // never read back. Reading it back is what once let a disabled
+                // fieldset turn a user value into a derived one.
+                $("#lakeus-theme-designer-input-" + k).prop('disabled', !!v.autoCalculateOn);
+                $("#lakeus-theme-designer-input-" + k + "-alpha").prop('disabled', !!v.autoCalculateOn);
+                // The checkboxes are the editable surface, so they are written both
+                // ways: set from the model here, and read in the delegated handlers.
+                $("#lakeus-theme-designer-input-auto-calculate-" + k).prop('checked', !!v.autoCalculateOn);
+                $("#lakeus-theme-designer-input-do-not-generate-" + k).prop('checked', !!v.skipped);
+            });
         };
 
         /**
@@ -714,26 +754,25 @@ Lakeus.setupThemeDesigner = function () {
                     '</div>' +
                 '</div>'
             );
-            $(".lakeus-theme-designer-auto-calculate-checkbox").on('change', function () {
+            // Delegated, bound once on the panel rather than per element at
+            // construction time. The panel's state lives on the variables now, and
+            // the handlers only move it between the two; binding per element meant
+            // that anything which replaces the markup - a re-render, or the Vue
+            // fieldset the rewrite is heading towards - silently lost the handlers
+            // along with the elements they were attached to.
+            var panelElement = $("#lakeus-theme-designer");
+            panelElement.on('change', '.lakeus-theme-designer-auto-calculate-checkbox', function () {
+                var name = $(this).attr("name").replace("auto-calculate-", "");
                 var checked = $(this).prop('checked');
-                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', checked);
-                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', checked);
+                Lakeus.variablesList[name].autoCalculateOn = checked;
+                $("#lakeus-theme-designer-input-" + name).prop('disabled', checked);
+                $("#lakeus-theme-designer-input-" + name + "-alpha").prop('disabled', checked);
             });
-            $(".lakeus-theme-designer-auto-calculate-checkbox:checked").each(function () {
-                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-")).prop('disabled', true);
-                $("#" + $(this).attr("name").replace("auto-calculate-", "lakeus-theme-designer-input-") + "-alpha").prop('disabled', true);
+            panelElement.on('change', '.lakeus-theme-designer-do-not-generate-checkbox', function () {
+                var name = $(this).attr("name").replace("do-not-generate-", "");
+                Lakeus.variablesList[name].skipped = $(this).prop('checked');
             });
-            $(".lakeus-theme-designer-do-not-generate-checkbox").on('change', function() {
-                var checked = $(this).prop('checked');
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-")).data('skipped', checked);
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-") + "-alpha").data('skipped', checked);
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-auto-calculate-")).data('skipped', checked);
-            });
-            $(".lakeus-theme-designer-do-not-generate-checkbox:checked").each(function () {
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-")).data('skipped', true);
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-") + "-alpha").data('skipped', true);
-                $("#" + $(this).attr("name").replace("do-not-generate-", "lakeus-theme-designer-input-auto-calculate-")).data('skipped', true);
-            });
+            Lakeus.syncVariableUiState();
             $("#lakeus-theme-designer-color-picker-fallback-checkbox").on('change', function () {
                 var checked = $(this).prop('checked');
                 $(".lakeus-theme-designer-input-color").attr("type", (checked ? "text" : "color"));
@@ -783,11 +822,13 @@ Lakeus.setupThemeDesigner = function () {
 Lakeus.updateVariablesListFromForm = function () {
     $.each(Lakeus.variablesList, function (k, v) {
         var inputElement = $("#lakeus-theme-designer-input-" + k);
-        if (inputElement.data('skipped')) {
-            v.skipped = true;
+        // `skipped` is the variable's own state now, kept up to date by the
+        // delegated handler below. It used to live in jQuery `.data()` on three
+        // separate DOM nodes, which meant the flag vanished whenever the markup
+        // was replaced - including by the form refresh.
+        if (v.skipped) {
             return;
         }
-        v.skipped = false;
         if (Lakeus.isAutoCalculated(k, v)) {
             // Derived below, once every user-entered value has been read.
             return;
