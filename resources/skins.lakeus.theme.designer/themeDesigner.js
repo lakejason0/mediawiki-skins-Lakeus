@@ -1065,6 +1065,88 @@ Lakeus.applyThemeToDocument = function () {
     });
 };
 
+/**
+ * Every custom property the panel might be drawn in.
+ *
+ * Two sources, because the panel is drawn from both: the designer's own variables
+ * (both halves - variables.less declares -light and -dark unconditionally on :root,
+ * so both are readable even while only one of them is in use), and whatever else
+ * the page declares, which is where the Codex components' tokens come from.
+ *
+ * @return {string[]}
+ */
+Lakeus.panelPaletteTokens = function () {
+    var tokens = {};
+    Object.keys(Lakeus.variablesList).forEach(function (k) {
+        Lakeus.colorSchemes.forEach(function (scheme) {
+            tokens['--' + k + '-' + scheme] = true;
+        });
+        tokens['--' + k] = true;
+    });
+    Array.prototype.forEach.call(document.styleSheets, function (sheet) {
+        var rules;
+        try {
+            rules = sheet.cssRules;
+        } catch (e) {
+            return; // another origin; nothing readable there
+        }
+        Array.prototype.forEach.call(rules || [], function (rule) {
+            Array.prototype.forEach.call((rule.style || []), function (property) {
+                if (/^--/.test(property)) {
+                    tokens[property] = true;
+                }
+            });
+        });
+    });
+    return Object.keys(tokens);
+};
+
+/**
+ * Pin the palette the panel is currently drawn in onto the panel.
+ *
+ * Testing a theme writes the generated variables as inline styles on <html>, and
+ * inline styles beat the skin's :root. The panel lives in the same page, so without
+ * this it is tinted by whatever theme is being previewed - and a theme with white
+ * text on a white background makes the panel vanish while you are still trying to
+ * edit it. The hardcoded colours in themeDesigner.css are the older, blunter form of
+ * the same protection and are deliberate, not debt.
+ *
+ * Inline styles on the panel root are nearer than inline styles on <html>, so
+ * everything inside - the Codex components included - resolves to the snapshot.
+ *
+ * MUST be called before applyThemeToDocument(): afterwards the values read back are
+ * the theme's, not the skin's, and the snapshot would be worthless.
+ *
+ * Nothing is pinned while no theme is being tested, so the panel follows the skin's
+ * light/dark exactly as it always did.
+ */
+Lakeus.freezePanelPalette = function () {
+    var panel = document.getElementById('lakeus-theme-designer');
+    if (!panel) {
+        return;
+    }
+    var computed = getComputedStyle(document.documentElement);
+    Lakeus.panelPalette = {};
+    Lakeus.panelPaletteTokens().forEach(function (token) {
+        var value = computed.getPropertyValue(token).trim();
+        if (value) {
+            Lakeus.panelPalette[token] = value;
+            panel.style.setProperty(token, value);
+        }
+    });
+};
+
+Lakeus.unfreezePanelPalette = function () {
+    var panel = document.getElementById('lakeus-theme-designer');
+    if (!panel || !Lakeus.panelPalette) {
+        return;
+    }
+    Object.keys(Lakeus.panelPalette).forEach(function (token) {
+        panel.style.removeProperty(token);
+    });
+    Lakeus.panelPalette = null;
+};
+
 Lakeus.testTheme = function () {
     Lakeus.updateVariablesListFromForm();
     Lakeus.updateFormFromVariablesList();
@@ -1074,11 +1156,13 @@ Lakeus.testTheme = function () {
     // The colour scheme selector stays live so both schemes can be previewed.
     $(".lakeus-theme-designer-fieldset").not(".lakeus-theme-designer-color-scheme-fieldset")
         .prop('disabled', true);
+    Lakeus.freezePanelPalette();
     Lakeus.applyThemeToDocument();
 }
 
 Lakeus.clearTheme = function () {
     $("body").attr("testing", "false");
+    Lakeus.unfreezePanelPalette();
     $("#lakeus-theme-designer-test-theme-button").prop('disabled', false);
     $("#lakeus-theme-designer-clear-theme-button").prop('disabled', true);
     $(".lakeus-theme-designer-fieldset").prop('disabled', false);
