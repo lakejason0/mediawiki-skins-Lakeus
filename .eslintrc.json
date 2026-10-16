@@ -1,10 +1,13 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/client-es6",
+		"wikimedia/client/es6",
 		"wikimedia/jquery",
 		"wikimedia/mediawiki"
 	],
+	"globals": {
+		"Lakeus": "writable"
+	},
 	"rules": {
 		"compat/compat": "off",
 		"vue/no-v-html": "off"

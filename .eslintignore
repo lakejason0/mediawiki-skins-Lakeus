@@ -1,0 +1,10 @@
+.eslintcache
+node_modules/
+
+# Vendored third-party libraries are not ours to lint. Each one carries its own
+# upstream licence and formatting; see resources/lib/*/README.md for provenance.
+resources/lib/
+
+# npm writes this itself and reformats it on every install; hand-formatting it is
+# pointless. It alone accounted for 4264 of the repo's lint errors.
+package-lock.json
