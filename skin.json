@@ -53,6 +53,11 @@
 				"CdxToggleSwitch"
 			]
 		},
+		"skins.lakeus.chroma": {
+			"packageFiles": [
+				"resources/lib/chroma-js/chroma.min.js"
+			]
+		},
 		"skins.lakeus.scripts": {
 			"styles": "resources/skins.lakeus.scripts/skin.js.less",
 			"packageFiles": [
@@ -79,18 +84,70 @@
 				}
 			}
 		},
+		"skins.lakeus.theme.designer.vue": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"es6": true,
+			"localBasePath": "resources/skins.lakeus.theme.designer.vue",
+			"remoteSkinPath": "Lakeus/resources/skins.lakeus.theme.designer.vue",
+			"packageFiles": [
+				"vue.js",
+				"Fieldset.vue",
+				"VariableItem.vue",
+				"ColorSchemeFieldset.vue",
+				"DangerZoneFieldset.vue"
+			],
+			"codexComponents": [
+				"CdxCheckbox",
+				"CdxField",
+				"CdxRadio"
+			],
+			"messages": [
+				"lakeus-theme-designer-alpha-channel",
+				"lakeus-theme-designer-auto-calculate",
+				"lakeus-theme-designer-do-not-generate",
+				"lakeus-theme-designer-basic",
+				"lakeus-theme-designer-basic-derived",
+				"lakeus-theme-designer-global",
+				"lakeus-theme-designer-page-header",
+				"lakeus-theme-designer-toggle-list",
+				"lakeus-theme-designer-body",
+				"lakeus-theme-designer-portlet",
+				"lakeus-theme-designer-footer",
+				"lakeus-theme-designer-sticky-toc",
+				"lakeus-theme-designer-color-scheme",
+				"lakeus-theme-designer-color-scheme-light",
+				"lakeus-theme-designer-color-scheme-dark",
+				"lakeus-theme-designer-danger-zone",
+				"lakeus-theme-designer-color-picker-fallback",
+				"lakeus-theme-designer-reset-theme",
+				"lakeus-theme-designer-reload",
+				"lakeus-theme-designer-invert-auto-calculate-selection",
+				"lakeus-theme-designer-unselect-do-not-generate-selection",
+				"lakeus-theme-designer-color-scheme-hint"
+			]
+		},
 		"skins.lakeus.theme.designer": {
 			"es6": true,
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.jqueryMsg",
+				"skins.lakeus.chroma",
+				"skins.lakeus.theme.designer.vue",
 				"user.options"
 			],
 			"packageFiles": [
-				"resources/skins.lakeus.theme.designer/themeDesigner.js"
+				"resources/skins.lakeus.theme.designer/themeDesigner.js",
+				"resources/skins.lakeus.theme.designer/themeDesigner.rules.js",
+				"resources/skins.lakeus.theme.designer/themeDesigner.variables.js"
+			],
+			"styles": [
+				"resources/skins.lakeus.theme.designer/themeDesigner.css"
 			],
 			"messages": [
 				"lakeus-theme-designer",
+				"lakeus-theme-designer-color-scheme",
+				"lakeus-theme-designer-color-scheme-light",
+				"lakeus-theme-designer-color-scheme-dark",
 				"lakeus-theme-designer-system-messages-loaded",
 				"lakeus-theme-designer-all-loaded",
 				"lakeus-theme-designer-auto-calculate",
@@ -211,6 +268,15 @@
 				"lakeus-theme-designer-color-accent-header-tab-selected",
 				"lakeus-theme-designer-color-accent-header-tab-new",
 				"lakeus-theme-designer-sticky-toc",
+				"lakeus-theme-designer-color-scheme",
+				"lakeus-theme-designer-color-scheme-light",
+				"lakeus-theme-designer-color-scheme-dark",
+				"lakeus-theme-designer-danger-zone",
+				"lakeus-theme-designer-color-picker-fallback",
+				"lakeus-theme-designer-reset-theme",
+				"lakeus-theme-designer-reload",
+				"lakeus-theme-designer-invert-auto-calculate-selection",
+				"lakeus-theme-designer-unselect-do-not-generate-selection",
 				"lakeus-theme-designer-background-color-toc-button",
 				"lakeus-theme-designer-border-color-toc-button",
 				"lakeus-theme-designer-icon-filter-toc-button",

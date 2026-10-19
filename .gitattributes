@@ -1,0 +1,5 @@
+# Vendored third-party files keep their upstream bytes verbatim, so the hashes
+# recorded in resources/lib/*/README.md keep matching. Without this, a Windows
+# checkout with core.autocrlf=true would rewrite their line endings and the
+# files would no longer be byte-identical to the upstream release.
+resources/lib/** -text

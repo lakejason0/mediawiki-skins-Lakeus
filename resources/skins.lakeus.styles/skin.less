@@ -365,7 +365,10 @@ p {
 			}
 
 			&-query {
-				color: @color-base;
+				// Was @color-base, which no longer exists: the bare name was
+				// retired in 2.0. This is the suggestion's text colour, and it is
+				// themeable now.
+				color: @color-search-suggestions-text;
 			}
 		}
 	}
