@@ -2,7 +2,6 @@
 	"extends": "stylelint-config-wikimedia",
 	"rules": {
 		"selector-max-id": null,
-		"no-descending-specificity": null,
-		"indentation": 2
+		"no-descending-specificity": null
 	}
 }
