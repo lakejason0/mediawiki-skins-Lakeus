@@ -17,9 +17,12 @@ const showEmptySearchRecommendations = false;
  * @return {void}
  */
 function initApp( searchBox ) {
-	urlGeneratorInstance = urlGenerator( mw.config.get( 'wgScript' ) );
+	// These two were assigned without a declaration, so they became implicit
+	// globals that leaked out of this function and were shared by every search box
+	// on the page.
+	const urlGeneratorInstance = urlGenerator( mw.config.get( 'wgScript' ) );
 
-	restClient = restSearchClient(
+	const restClient = restSearchClient(
 		searchApiUrl,
 		urlGeneratorInstance
 	);
@@ -70,12 +73,14 @@ function initApp( searchBox ) {
  * @return {void}
  */
 function main( document ) {
-	document.querySelectorAll( '.lakeus-search-box' )
-		.forEach(
-			function ( node ) {
-				initApp( node );
-			}
-		);
+	// NodeList.prototype.forEach does not exist in the browsers this skin still
+	// supports, so the array method is applied to the NodeList explicitly.
+	Array.prototype.forEach.call(
+		document.querySelectorAll( '.lakeus-search-box' ),
+		function ( node ) {
+			initApp( node );
+		}
+	);
 }
 
 /**

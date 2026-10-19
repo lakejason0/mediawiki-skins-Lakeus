@@ -326,7 +326,7 @@ function makeControl( featureName, config ) {
 			} );
 
 			break;
-		case 'switch':
+		case 'switch': {
 			const labelElement = document.createElement( 'label' );
 
 			labelElement.textContent = getFeatureLabelMsg( featureName ).text();
@@ -335,6 +335,7 @@ function makeControl( featureName, config ) {
 			);
 
 			break;
+		}
 		default:
 			throw new Error( 'Unknown client preference! Only switch or radio are supported.' );
 	}

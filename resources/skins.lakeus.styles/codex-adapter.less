@@ -1,0 +1,96 @@
+/**
+ * Lakeus -> Codex 适配层
+ *
+ * A small, deliberate, explicit list of Codex design tokens whose value the skin
+ * decides. Every line is here because the Lakeus variable system has a matching
+ * TERMINAL for it -- not because the names look similar.
+ *
+ * Why the Lakeus system and the Codex system are not the same shape:
+ *
+ *   Lakeus has two layers. `--color-*` is a layer of PIGMENTS; several of them
+ *   exist only to feed other variables and never paint anything themselves.
+ *   `--background-color-*` / `--border-color-*` / `--text-color-*` are the
+ *   TERMINAL layer - named after what they paint.
+ *
+ *   Codex has one layer: every token is `<property>-<role>` and is a terminal
+ *   used directly by a component.
+ *
+ * So the same name can sit at different layers in the two systems:
+ *
+ *   --color-error   Lakeus: a pigment, feeding --border-color-interface-message-box-error
+ *                   Codex:  a terminal, painting error text
+ *
+ * A pigment's value is chosen so that it looks right in ITS consumer's role
+ * (a 1px border), not so that it is legible as text. That mismatch is what made
+ * the 9 same-named tokens harmful rather than merely redundant.
+ *
+ * Therefore the rule for this file is LAYER TO LAYER:
+ *   1. both sides are terminals and the property matches  -> map (the list below)
+ *   2. Lakeus has only a pigment, Codex wants a terminal  -> do NOT map
+ *   3. layers match but nothing in Codex reads the token  -> optional
+ *
+ * Evidence for every line, and the full comparison of the two systems:
+ *   docs/VariableSystem-Compare.md   (tools/compare-variable-systems.mjs)
+ *   docs/Codex-Mapping-Derived.md    (tools/derive-adapter-mapping.mjs)
+ *
+ * ---
+ *
+ * Interface messages are why these four semantic colours exist in the skin at
+ * all: `--border-color-interface-message-box-{neutral,warning,error,success}`
+ * are what paints `.mw-message-box`. Codex paints its own, componentised
+ * messages (`.cdx-message`) from `--*-{error,warning,success,notice}*`, which the
+ * skin never touched -- so themed wikis got skin-coloured server-rendered
+ * messages next to untinted Codex ones. These eight lines are the fix, and they
+ * are the original intent of the four colours finally reachable on Codex.
+ *
+ * Known, intended side effect: Codex uses these tokens for form-control error
+ * states as well as for messages (CdxCheckbox / CdxRadio / CdxSelect /
+ * CdxChipInput / CdxInfoChip). In light mode the two palettes are nearly
+ * identical (#fee7e6 vs #ffe9e5); in dark mode they are not (#a92727 vs
+ * #3c1a13), so error-state form controls get noticeably redder. That is the
+ * price of the skin and Codex agreeing on one error colour.
+ *
+ * @param {string} [prefix] unused; kept for symmetry with the other mixins
+ */
+.codex-adapter() {
+	/* Codex background of a "subtle" (tinted) message box
+	   <- Lakeus: the background of `.mw-message-box-error` etc. */
+	--background-color-error-subtle: var( --lakeus-background-color-interface-message-box-error );
+	--background-color-warning-subtle: var( --lakeus-background-color-interface-message-box-warning );
+	--background-color-success-subtle: var( --lakeus-background-color-interface-message-box-success );
+	/* Codex calls the neutral one "notice" */
+	--background-color-notice-subtle: var( --lakeus-background-color-interface-message-box-neutral );
+
+	/* Base surface and body text. Both sides are terminals here: Codex paints
+	   page/card backgrounds from one and text from the other, and the skin does the
+	   same, so these two are the only non-message tokens with a layer match.
+	   The sources are the namespaced skin names (see the 2.0 rename). */
+	--background-color-base: var( --lakeus-background-color-content );
+	--color-base: var( --lakeus-text-color-content );
+
+
+	/* B1 - Codex's generic component border. 12 components read it: Card, Dialog,
+	   Popover, ChipInput, InfoChip, Menu, Message, SearchInput, Table, Tabs,
+	   TextArea, TextInput. Both sides are terminal borders, and the content border
+	   is the right source: every one of those is a surface sitting on the content
+	   area. --box-shadow-color-base is NOT mapped - a single reader across core and
+	   Codex does not earn a line. */
+	--border-color-base: var( --lakeus-border-color-content );
+
+	/* B2 - Codex's action colour follows the theme's primary. Codex's own root
+	   declares `--color-link: var( --color-progressive )`: Codex links ARE the
+	   progressive colour by design, deliberately separate from the skin's own link
+	   colour, so --color-link is NOT overridden here.
+	   The hover/active states are left to Codex. They are absolute values that
+	   darken in light mode and lighten in dark mode, and the skin has no
+	   primary-state variables; deriving them belongs in the Theme Designer (S5). */
+	--color-progressive: var( --lakeus-color-primary );
+	--color-progressive--hover: var( --lakeus-color-primary--hover );
+	--color-progressive--active: var( --lakeus-color-primary--active );
+	/* Codex border of a message box
+	   <- Lakeus: the border of the same `.mw-message-box-*` rules */
+	--border-color-error: var( --lakeus-border-color-interface-message-box-error );
+	--border-color-warning: var( --lakeus-border-color-interface-message-box-warning );
+	--border-color-success: var( --lakeus-border-color-interface-message-box-success );
+	--border-color-notice: var( --lakeus-border-color-interface-message-box-neutral );
+}
