@@ -4,6 +4,7 @@
 			"Ajeje Brazorf",
 			"Gomoko",
 			"JLTRY",
+			"SleaY",
 			"Verdy p"
 		]
 	},
@@ -36,6 +37,8 @@
 	"lakeus-preferences-smooth-scroll-behavior": "Activer le comportement de défilement fluide",
 	"lakeus-preferences-smooth-scroll-behavior-desc": "Activer une animation fluide lors du défilement de la page, par exemple lors de la navigation vers une section spécifique depuis la table des matières.",
 	"lakeus-theme-designer": "Concepteur de thèmes Lakeus",
+	"lakeus-theme-designer-color-scheme-light": "Clair",
+	"lakeus-theme-designer-color-scheme-dark": "Sombre",
 	"lakeus-theme-designer-system-messages-loaded": "Chargement réussi des messages système nécessaires.",
 	"lakeus-theme-designer-all-loaded": "Le concepteur de thèmes est chargé.",
 	"lakeus-theme-designer-auto-calculate": "Calcul automatique",
