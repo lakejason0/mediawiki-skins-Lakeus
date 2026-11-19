@@ -39,6 +39,7 @@
 	"lakeus-theme-designer-color-scheme": "색상 구성표를 수정하는 중입니다",
 	"lakeus-theme-designer-color-scheme-light": "라이트",
 	"lakeus-theme-designer-color-scheme-dark": "다크",
+	"lakeus-theme-designer-color-scheme-hint": "테스트 전에, 오른쪽 상단에 있는 외관 메뉴를 통해 이 스키마로 전환하세요.",
 	"lakeus-theme-designer-system-messages-loaded": "요구한 시스템 메시지를 성공적으로 로드했습니다.",
 	"lakeus-theme-designer-all-loaded": "테마 디자이너가 로드되었습니다.",
 	"lakeus-theme-designer-auto-calculate": "자동 계산",
